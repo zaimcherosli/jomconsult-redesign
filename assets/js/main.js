@@ -108,6 +108,17 @@ async function loadDynamicConfig() {
     }
     if (cfg.phone_display) {
       JOMCONSULT_CONFIG.phoneDisplay = cfg.phone_display;
+      document.querySelectorAll('.phone-display-text').forEach(el => el.textContent = cfg.phone_display);
+    }
+    if (cfg.announcement_text) {
+      const annEl = document.getElementById('announcement-text-display');
+      if (annEl) annEl.textContent = cfg.announcement_text;
+    }
+    if (cfg.min_interest_rate) {
+      document.querySelectorAll('.min-rate-display').forEach(el => el.textContent = cfg.min_interest_rate);
+    }
+    if (cfg.max_loan_amount) {
+      document.querySelectorAll('.max-loan-display').forEach(el => el.textContent = cfg.max_loan_amount);
     }
   } catch (e) {
     // Graceful offline fallback
