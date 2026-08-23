@@ -91,6 +91,8 @@ const OFFICIAL_AGENTS = [
     specialty: "Diagnostik Slip Gaji & Semakan Percuma",
     avatarBg: "bg-slate-800"
   }
+];
+
 // 0. Live Cloudflare D1 Config Sync
 async function loadDynamicConfig() {
   try {
