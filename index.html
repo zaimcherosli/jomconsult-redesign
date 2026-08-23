@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JomConsult | Agensi Perunding Pinjaman & Penyatuan Hutang Malaysia</title>
+  <meta name="description" content="Pinjaman Lulus Walaupun Pernah Kena Reject. JomConsult bantu susun strategi profil kredit, DSR dan rekod CCRIS untuk kelulusan pinjaman bank & koperasi terbaik.">
+  <link rel="icon" type="image/png" href="/logo.png">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-emerald-500 selection:text-white">
+
+  <!-- 1. STICKY NAVBAR -->
+  <!-- 1. STICKY NAVBAR WITH SUB-MENUS -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 py-3 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center shrink-0">
+        <img src="/logo.png" alt="JomConsult Logo" class="h-9 sm:h-11 w-auto object-contain">
+      </a>
+
+      <!-- Desktop Navigation with Dropdowns -->
+      <nav class="hidden md:flex items-center gap-6 lg:gap-8">
+        <a href="index.html" class="text-sm font-bold text-emerald-700 whitespace-nowrap">Utama</a>
+
+        <!-- 1. Perkhidmatan Dropdown -->
+        <div class="relative group">
+          <button type="button" class="flex items-center gap-1 text-sm text-slate-600 hover:text-emerald-700 font-medium py-2 transition whitespace-nowrap">
+            <span>Perkhidmatan</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-700 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="absolute left-0 top-full hidden group-hover:block pt-2 z-50 w-72">
+            <div class="bg-white rounded-2xl p-2.5 shadow-2xl border border-slate-200 space-y-1">
+              <a href="servis.html" class="block p-2.5 rounded-xl hover:bg-slate-50 transition">
+                <span class="block text-xs font-bold text-slate-900">Semua Perkhidmatan</span>
+                <span class="block text-[11px] text-slate-500">4 Tiang pembiayaan utama kami</span>
+              </a>
+              <a href="servis.html" class="block p-2.5 rounded-xl hover:bg-slate-50 transition">
+                <span class="block text-xs font-bold text-slate-900">Penyatuan Hutang (Debt Consolidation)</span>
+                <span class="block text-[11px] text-slate-500">Tutup baki kad kredit & jimat ansuran</span>
+              </a>
+              <a href="kalkulator.html" class="block p-2.5 rounded-xl hover:bg-slate-50 transition">
+                <span class="block text-xs font-bold text-slate-900">Kalkulator Penjimatan</span>
+                <span class="block text-[11px] text-slate-500">Kira potensi pengurangan ansuran</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Panduan & Analisis Dropdown -->
+        <div class="relative group">
+          <button type="button" class="flex items-center gap-1 text-sm text-slate-600 hover:text-emerald-700 font-medium py-2 transition whitespace-nowrap">
+            <span>Panduan & Analisis</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-700 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="absolute left-0 top-full hidden group-hover:block pt-2 z-50 w-72">
+            <div class="bg-white rounded-2xl p-2.5 shadow-2xl border border-slate-200 space-y-1">
+              <a href="punca-reject.html" class="block p-2.5 rounded-xl hover:bg-slate-50 transition">
+                <span class="block text-xs font-bold text-slate-900">Kenapa Pinjaman Kena Reject?</span>
+                <span class="block text-[11px] text-slate-500">Bedah siasat formula DSR & CCRIS</span>
+              </a>
+              <a href="cara-kerja.html" class="block p-2.5 rounded-xl hover:bg-slate-50 transition">
+                <span class="block text-xs font-bold text-slate-900">4 Langkah Proses Kelulusan</span>
+                <span class="block text-[11px] text-slate-500">Dari semakan awal ke tawaran rasmi</span>
+              </a>
+              <a href="testimoni.html" class="block p-2.5 rounded-xl hover:bg-slate-50 transition">
+                <span class="block text-xs font-bold text-slate-900">Kisah Kejayaan & Testimoni</span>
+                <span class="block text-[11px] text-slate-500">Bukti kelulusan klien sebelum/selepas</span>
+              </a>
+              <a href="faq.html" class="block p-2.5 rounded-xl hover:bg-slate-50 transition">
+                <span class="block text-xs font-bold text-slate-900">Soalan Lazim (FAQ)</span>
+                <span class="block text-[11px] text-slate-500">Jawapan rasmi berkaitan kos & proses</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Tentang Kami Dropdown -->
+        <div class="relative group">
+          <button type="button" class="flex items-center gap-1 text-sm text-slate-600 hover:text-emerald-700 font-medium py-2 transition whitespace-nowrap">
+            <span>Tentang Kami</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-700 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="absolute left-0 top-full hidden group-hover:block pt-2 z-50 w-72">
+            <div class="bg-white rounded-2xl p-2.5 shadow-2xl border border-slate-200 space-y-1">
+              <a href="tentang-kami.html" class="block p-2.5 rounded-xl hover:bg-slate-50 transition">
+                <span class="block text-xs font-bold text-slate-900">Profil Syarikat</span>
+                <span class="block text-[11px] text-slate-500">Latar belakang 8 tahun agensi</span>
+              </a>
+              <a href="pasukan.html" class="block p-2.5 rounded-xl hover:bg-slate-50 transition">
+                <span class="block text-xs font-bold text-slate-900">Pasukan Perunding</span>
+                <span class="block text-[11px] text-slate-500">Barisan penasihat bertauliah</span>
+              </a>
+              <a href="kerjaya.html" class="block p-2.5 rounded-xl hover:bg-slate-50 transition">
+                <span class="block text-xs font-bold text-slate-900">Peluang Kerjaya</span>
+                <span class="block text-[11px] text-slate-500">Sertai kami sebagai konsultan</span>
+              </a>
+              <a href="verify.html" class="block p-2.5 rounded-xl hover:bg-emerald-50 text-emerald-800 transition">
+                <span class="block text-xs font-bold text-emerald-800">Verify Identiti Ejen (Anti-Scam)</span>
+                <span class="block text-[11px] text-slate-500">Semak status pendaftaran sah staf</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="contact.html" class="text-sm font-medium text-slate-600 hover:text-emerald-700 transition whitespace-nowrap">Hubungi</a>
+      </nav>
+
+      <!-- Desktop Actions -->
+      <div class="hidden md:flex items-center gap-3 shrink-0">
+        <a href="https://wa.me/601171191170?text=Salam%20JomConsult,%20saya%20nak%20dapatkan%20konsultasi." target="_blank" class="text-xs font-semibold text-slate-600 hover:text-slate-900 px-3 py-2 whitespace-nowrap">
+          WhatsApp
+        </a>
+        <a href="index.html#semak-kelayakan" class="px-4 py-2.5 rounded-lg text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 transition shadow-sm whitespace-nowrap">
+          Semak Kelayakan
+        </a>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100" aria-label="Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Menu with Accordion Sub-Menus -->
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm">
+      <div class="fixed inset-y-0 right-0 max-w-xs w-full bg-white p-6 shadow-2xl flex flex-col justify-between overflow-y-auto">
+        <div>
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+            <img src="/logo.png" alt="JomConsult Logo" class="h-9 w-auto">
+            <button id="close-mobile-menu" class="p-2 text-slate-400 hover:text-slate-700">✕</button>
+          </div>
+          <nav class="mt-4 flex flex-col gap-1 text-sm text-slate-700">
+            <a href="index.html" class="p-2.5 rounded-lg hover:bg-slate-50 font-medium">Utama</a>
+            
+            <div class="pt-2 pb-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider px-2.5">Perkhidmatan</div>
+            <a href="servis.html" class="p-2 rounded-lg hover:bg-slate-50 text-xs pl-5 font-medium">Semua Perkhidmatan</a>
+            <a href="kalkulator.html" class="p-2 rounded-lg hover:bg-slate-50 text-xs pl-5 font-medium">Kalkulator Penjimatan</a>
+            
+            <div class="pt-2 pb-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider px-2.5">Panduan & Analisis</div>
+            <a href="punca-reject.html" class="p-2 rounded-lg hover:bg-slate-50 text-xs pl-5 font-medium">Kenapa Pinjaman Ditolak?</a>
+            <a href="cara-kerja.html" class="p-2 rounded-lg hover:bg-slate-50 text-xs pl-5 font-medium">4 Langkah Cara Kerja</a>
+            <a href="testimoni.html" class="p-2 rounded-lg hover:bg-slate-50 text-xs pl-5 font-medium">Testimoni Klien</a>
+            <a href="faq.html" class="p-2 rounded-lg hover:bg-slate-50 text-xs pl-5 font-medium">Soalan Lazim (FAQ)</a>
+
+            <div class="pt-2 pb-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider px-2.5">Tentang Kami</div>
+            <a href="tentang-kami.html" class="p-2 rounded-lg hover:bg-slate-50 text-xs pl-5 font-medium">Profil Syarikat</a>
+            <a href="pasukan.html" class="p-2 rounded-lg hover:bg-slate-50 text-xs pl-5 font-medium">Pasukan Perunding</a>
+            <a href="kerjaya.html" class="p-2 rounded-lg hover:bg-slate-50 text-xs pl-5 font-medium">Peluang Kerjaya</a>
+            <a href="verify.html" class="p-2 rounded-lg text-emerald-800 font-bold text-xs pl-5">Verify Identiti Ejen</a>
+
+            <a href="contact.html" class="p-2.5 rounded-lg hover:bg-slate-50 font-medium mt-2">Hubungi Kami</a>
+          </nav>
+        </div>
+        <div class="pt-4 border-t border-slate-100">
+          <a href="https://wa.me/601171191170?text=Salam%20JomConsult,%20saya%20nak%20semak%20kelayakan%20pinjaman." target="_blank" class="block w-full py-2.5 bg-emerald-600 text-white font-bold text-center text-xs rounded-xl shadow">
+            WhatsApp Penasihat (HQ)
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. PAPAIPAY-STYLE BALANCED HERO SECTION -->
+  <section class="relative overflow-hidden text-white bg-slate-950 flex flex-col justify-between">
+    
+    <!-- Background Image Carousel with Smooth Transitions -->
+    <div class="absolute inset-0 z-0">
+      <div id="hero-slide-bg-0" class="hero-bg-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100" style="background-image: url('assets/images/hero-advisor.jpg');"></div>
+      <div id="hero-slide-bg-1" class="hero-bg-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: url('assets/images/customer-success.jpg');"></div>
+      <div id="hero-slide-bg-2" class="hero-bg-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: url('https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?auto=format&fit=crop&w=1800&q=80');"></div>
+    </div>
+
+    <!-- Papaipay Rich Emerald Gradient Overlay -->
+    <div class="absolute inset-0 z-10 papaipay-gradient-overlay"></div>
+    <div class="absolute inset-0 z-10 bg-gradient-to-t from-[#021c10] via-transparent to-black/30"></div>
+
+    <!-- Main Hero Content with Balanced Spacing (Close to header & bottom) -->
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-6 sm:pt-10 sm:pb-10 lg:pt-12 lg:pb-12 w-full">
+      <div class="max-w-2xl lg:max-w-3xl space-y-3.5 sm:space-y-5">
+        
+        <!-- Pill Badge -->
+        <div class="inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 sm:px-4 sm:py-1 text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-white/90 backdrop-blur">
+          JomConsult • Pakar Pinjaman & Penyatuan Hutang
+        </div>
+
+        <!-- Carousel Slides -->
+        <div class="relative min-h-[200px] sm:min-h-[210px] md:min-h-[230px] lg:min-h-[240px]">
+          
+          <!-- Slide 0: EXACT USER HIGHLIGHTED COPY -->
+          <div id="hero-text-0" class="hero-text-slide absolute inset-0 transition-opacity duration-700 opacity-100 space-y-3 sm:space-y-4">
+            <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-[50px] font-extrabold leading-[1.12] tracking-tight text-white">
+              Pinjaman Kerap Reject?<br>
+              <span class="text-emerald-300">Kami Tahu Cara Sistem Bank Berfikir.</span>
+            </h1>
+            <p class="text-xs sm:text-base md:text-lg text-white/90 max-w-2xl leading-relaxed">
+              Realitinya, bank bukan tolak diri anda — bank tolak <strong class="text-white font-semibold">profil semasa anda</strong>. Kami bantu menstruktur semula komitmen, mencantikkan nisbah DSR dan memilih bank yang tepat sebelum dihantar.
+            </p>
+          </div>
+
+          <!-- Slide 1 -->
+          <div id="hero-text-1" class="hero-text-slide absolute inset-0 transition-opacity duration-700 opacity-0 space-y-3 sm:space-y-4 pointer-events-none">
+            <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-[50px] font-extrabold leading-[1.12] tracking-tight text-white">
+              Ubah Komitmen Kewangan Yang Membebankan Kepada <span class="text-emerald-300">Aset Bernilai.</span>
+            </h1>
+            <p class="text-xs sm:text-base md:text-lg text-white/90 max-w-2xl leading-relaxed">
+              Program Penyatuan Hutang (Debt Consolidation) untuk menutup baki kad kredit faedah tinggi dan memulihkan baki tunai bulanan anda ke paras selesa.
+            </p>
+          </div>
+
+          <!-- Slide 2 -->
+          <div id="hero-text-2" class="hero-text-slide absolute inset-0 transition-opacity duration-700 opacity-0 space-y-3 sm:space-y-4 pointer-events-none">
+            <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-[50px] font-extrabold leading-[1.12] tracking-tight text-white">
+              8 Tahun Membantu Ribuan Klien <span class="text-emerald-300">Mencapai Kelulusan.</span>
+            </h1>
+            <p class="text-xs sm:text-base md:text-lg text-white/90 max-w-2xl leading-relaxed">
+              Khidmat nasihat 100% percuma, sifar bayaran pendahuluan (No Upfront Fee), dan patuh sepenuhnya pada garis panduan institusi perbankan & koperasi berdaftar.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- CTA Action Buttons with Clean Spacing -->
+        <div class="pt-5 sm:pt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5">
+          <a href="#semak-kelayakan" class="rounded-full bg-white text-emerald-950 px-6 py-3 sm:px-8 sm:py-3.5 text-center text-xs font-extrabold uppercase tracking-wider shadow-2xl hover:bg-slate-100 transition transform hover:-translate-y-0.5">
+            Semak Sekarang
+          </a>
+          <a href="servis.html" class="rounded-full border border-white/30 px-6 py-3 sm:px-8 sm:py-3.5 text-center text-xs font-extrabold uppercase tracking-wider text-white backdrop-blur hover:bg-white/10 transition">
+            Ketahui Lanjut
+          </a>
+        </div>
+
+        <!-- Slide Indicator Dots with Clean Spacing -->
+        <div class="pt-3 sm:pt-4 flex items-center gap-2">
+          <button type="button" class="hero-dot-btn h-2 rounded-full transition-all duration-300 bg-white w-6" data-index="0" aria-label="Slide 1"></button>
+          <button type="button" class="hero-dot-btn h-2 rounded-full transition-all duration-300 bg-white/40 w-2" data-index="1" aria-label="Slide 2"></button>
+          <button type="button" class="hero-dot-btn h-2 rounded-full transition-all duration-300 bg-white/40 w-2" data-index="2" aria-label="Slide 3"></button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- JOMCONSULT BOTTOM 4-COLUMN VALUE BAR (Directly connected to hero) -->
+    <div class="relative z-20 border-t border-white/10 bg-[#042414]/95 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-0 lg:divide-x divide-white/10 px-4 py-3.5 sm:px-6 sm:py-4 lg:py-5">
+        
+        <!-- Point 1 -->
+        <div class="p-1.5 sm:p-2.5 lg:px-6 first:lg:pl-0">
+          <div class="text-xs sm:text-sm font-extrabold text-white">Penyatuan Hutang</div>
+          <p class="mt-0.5 text-[11px] sm:text-xs text-white/75 leading-relaxed">Tutup baki kad kredit & jimat ansuran bulanan.</p>
+        </div>
+
+        <!-- Point 2 -->
+        <div class="p-1.5 sm:p-2.5 lg:px-6">
+          <div class="text-xs sm:text-sm font-extrabold text-white">Pemulihan DSR & CCRIS</div>
+          <p class="mt-0.5 text-[11px] sm:text-xs text-white/75 leading-relaxed">Diagnostik untuk atasi rekod sangkut.</p>
+        </div>
+
+        <!-- Point 3 -->
+        <div class="p-1.5 sm:p-2.5 lg:px-6">
+          <div class="text-xs sm:text-sm font-extrabold text-white">Sifar Caj Upfront</div>
+          <p class="mt-0.5 text-[11px] sm:text-xs text-white/75 leading-relaxed">100% semakan percuma tanpa deposit.</p>
+        </div>
+
+        <!-- Point 4 -->
+        <div class="p-1.5 sm:p-2.5 lg:px-6 last:lg:pr-0">
+          <div class="text-xs sm:text-sm font-extrabold text-white">15+ Rangkaian Bank</div>
+          <p class="mt-0.5 text-[11px] sm:text-xs text-white/75 leading-relaxed">Saluran terus ke institusi kewangan sah.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- 3. MULTI-STEP ELIGIBILITY CHECKER & VALUE PROPOSITION -->
+  <section id="semak-kelayakan" class="py-12 md:py-16 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <div class="lg:col-span-6 space-y-5">
+          <div class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-900 text-[11px] sm:text-xs font-bold">
+            Semakan Kelayakan Pinjaman Percuma
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            Ketahui Pakej Pembiayaan & <span class="text-emerald-700">Potensi Kelulusan Anda.</span>
+          </h2>
+
+          <p class="text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed">
+            Hanya isi maklumat ringkas dalam masa 1 minit. Sistem diagnostik dan penasihat kredit JomConsult akan menyemak kelayakan dan merangka pelan penjimatan tanpa sebarang caj pendahuluan.
+          </p>
+
+          <!-- 4 Highlights Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 text-xs text-slate-700">
+            <div class="bg-white border border-slate-200 p-3 rounded-xl text-left shadow-sm">
+              <span class="font-bold text-slate-900 block mb-0.5">Tiada Caj Upfront</span>
+              <span class="text-slate-500 text-[11px]">100% khidmat nasihat & semakan percuma.</span>
+            </div>
+            <div class="bg-white border border-slate-200 p-3 rounded-xl text-left shadow-sm">
+              <span class="font-bold text-slate-900 block mb-0.5">Kes DSR Tinggi</span>
+              <span class="text-slate-500 text-[11px]">Satukan hutang jadi jimat bayaran bulanan.</span>
+            </div>
+            <div class="bg-white border border-slate-200 p-3 rounded-xl text-left shadow-sm">
+              <span class="font-bold text-slate-900 block mb-0.5">Isu CCRIS & SAA</span>
+              <span class="text-slate-500 text-[11px]">Pelan pemulihan & dokumen strategik.</span>
+            </div>
+            <div class="bg-white border border-slate-200 p-3 rounded-xl text-left shadow-sm">
+              <span class="font-bold text-slate-900 block mb-0.5">Patuh Bank Negara</span>
+              <span class="text-slate-500 text-[11px]">Melalui bank & koperasi berdaftar.</span>
+            </div>
+          </div>
+
+          <!-- Mobile-Optimized Animated Stats -->
+          <div class="grid grid-cols-3 gap-2 bg-white border border-slate-200 p-3 rounded-2xl text-center shadow-sm">
+            <div class="p-1">
+              <div class="text-lg sm:text-2xl font-extrabold text-slate-900 tracking-tight font-mono">
+                <span data-counter-end="4.9" data-counter-decimals="1">0.0</span><span class="text-[10px] font-normal text-slate-400">/5.0</span>
+              </div>
+              <p class="text-[10px] text-slate-500 font-medium mt-0.5">1,800+ Klien</p>
+            </div>
+
+            <div class="p-1 border-x border-slate-200">
+              <div class="text-lg sm:text-2xl font-extrabold text-emerald-700 tracking-tight font-mono">
+                RM<span data-counter-end="18.5" data-counter-decimals="1">0.0</span>M+
+              </div>
+              <p class="text-[10px] text-slate-500 font-medium mt-0.5">Nilai Disusun</p>
+            </div>
+
+            <div class="p-1">
+              <div class="text-lg sm:text-2xl font-extrabold text-slate-900 tracking-tight font-mono">
+                <span data-counter-end="96.4" data-counter-decimals="1">0.0</span>%
+              </div>
+              <p class="text-[10px] text-slate-500 font-medium mt-0.5">Kadar Lulus</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6">
+          <div class="relative">
+            <div class="absolute -top-3.5 left-4 sm:left-6 z-20 bg-amber-500 text-slate-950 font-extrabold text-[10px] sm:text-[11px] uppercase tracking-wider px-3 py-1 rounded-full shadow border border-amber-300">
+              Semakan Pantas Dalam Talian
+            </div>
+
+            <div id="eligibility-form-container" class="p-5 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-xl relative">
+              <div class="flex items-center justify-between mb-5 pb-3 border-b border-slate-100">
+                <div>
+                  <h3 class="text-base sm:text-xl font-bold text-slate-900 tracking-tight">Semak Kelayakan Percuma</h3>
+                  <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">Keputusan indikasi awal dalam 15 minit.</p>
+                </div>
+                <span id="wizard-step-indicator" class="text-[11px] sm:text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 shrink-0">
+                  Langkah 1 dari 3
+                </span>
+              </div>
+
+              <div class="w-full bg-slate-100 h-1.5 rounded-full mb-5 overflow-hidden">
+                <div id="wizard-progress-bar" class="bg-emerald-600 h-full transition-all duration-300 rounded-full" style="width: 33.3%;"></div>
+              </div>
+
+              <!-- Step 1 -->
+              <div id="wizard-step-1" class="space-y-3.5">
+                <label class="block text-xs sm:text-sm font-semibold text-slate-800">1. Sektor Pekerjaan Semasa Anda:</label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <button type="button" class="emp-opt-btn p-2.5 sm:p-3 rounded-xl text-left border bg-emerald-50 border-emerald-500 ring-2 ring-emerald-500/20" data-val="Swasta / Korporat">
+                    <span class="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 block w-fit mb-1">Kelulusan 48 Jam</span>
+                    <p class="text-xs font-bold text-emerald-950">Swasta / MNC / Korporat</p>
+                  </button>
+                  <button type="button" class="emp-opt-btn p-2.5 sm:p-3 rounded-xl text-left border bg-slate-50 border-slate-200" data-val="Kakitangan Kerajaan">
+                    <span class="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-slate-200 text-slate-600 block w-fit mb-1">Kadar Terendah</span>
+                    <p class="text-xs font-semibold text-slate-700">Kakitangan Kerajaan</p>
+                  </button>
+                  <button type="button" class="emp-opt-btn p-2.5 sm:p-3 rounded-xl text-left border bg-slate-50 border-slate-200" data-val="Perniagaan / SME">
+                    <span class="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-slate-200 text-slate-600 block w-fit mb-1">Modal Kerja</span>
+                    <p class="text-xs font-semibold text-slate-700">Peniaga / SME / Sendiri</p>
+                  </button>
+                  <button type="button" class="emp-opt-btn p-2.5 sm:p-3 rounded-xl text-left border bg-slate-50 border-slate-200" data-val="Syarikat GLC">
+                    <span class="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-slate-200 text-slate-600 block w-fit mb-1">Pakej Khas</span>
+                    <p class="text-xs font-semibold text-slate-700">Syarikat GLC</p>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div id="wizard-step-2" class="space-y-3.5 hidden">
+                <div>
+                  <label class="block text-xs sm:text-sm font-semibold text-slate-800 mb-1.5">2. Pendapatan Bersih Bulanan:</label>
+                  <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <button type="button" class="salary-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-slate-50 border-slate-200" data-val="Bawah RM2,500">Bawah RM2,500</button>
+                    <button type="button" class="salary-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-emerald-50 border-emerald-500 text-emerald-800 ring-1 ring-emerald-500" data-val="RM2,500 - RM4,000">RM2,500 - RM4k</button>
+                    <button type="button" class="salary-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-slate-50 border-slate-200" data-val="RM4,001 - RM7,000">RM4k - RM7k</button>
+                    <button type="button" class="salary-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-slate-50 border-slate-200" data-val="RM7,001 - RM12,000">RM7k - RM12k</button>
+                    <button type="button" class="salary-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-slate-50 border-slate-200" data-val="Lebih RM12,000">Lebih RM12k</button>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs sm:text-sm font-semibold text-slate-800 mb-1.5">3. Jumlah Pinjaman Diperlukan:</label>
+                  <div class="grid grid-cols-2 gap-2">
+                    <button type="button" class="loan-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-slate-50 border-slate-200" data-val="RM10,000 - RM30,000">RM10k - RM30k</button>
+                    <button type="button" class="loan-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-emerald-50 border-emerald-500 text-emerald-800 ring-1 ring-emerald-500" data-val="RM30,001 - RM70,000">RM30k - RM70k</button>
+                    <button type="button" class="loan-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-slate-50 border-slate-200" data-val="RM70,001 - RM150,000">RM70k - RM150k</button>
+                    <button type="button" class="loan-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-slate-50 border-slate-200" data-val="RM150,001 - RM300,000+">RM150k - RM300k+</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div id="wizard-step-3" class="space-y-3.5 hidden">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Penuh:</label>
+                    <input type="text" id="wizard-name-input" placeholder="Nama anda" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs text-slate-900">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nombor WhatsApp:</label>
+                    <input type="tel" id="wizard-phone-input" placeholder="012-3456789" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs text-slate-900">
+                  </div>
+                </div>
+                <div class="text-[10px] text-slate-500 bg-slate-50 p-2 rounded-lg border border-slate-200">
+                  Maklumat anda 100% dirahsiakan di bawah Akta PDPA 2010.
+                </div>
+              </div>
+
+              <!-- Result -->
+              <div id="wizard-result" class="text-center py-3 space-y-3 hidden">
+                <div class="w-10 h-10 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto text-lg font-bold">✓</div>
+                <div>
+                  <h4 class="text-base font-bold text-slate-900">Profil Anda Siap Dirumus</h4>
+                  <p class="text-xs text-slate-600 mt-0.5">Terima kasih <span id="res-client-name" class="font-bold text-emerald-700"></span>. Data sedia untuk disemak.</p>
+                </div>
+                <button id="wizard-whatsapp-send-btn" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow">
+                  Hantar Ke WhatsApp Penasihat JomConsult
+                </button>
+                <button id="wizard-reset-btn" class="text-xs text-slate-400 hover:text-slate-700">Kira Semula</button>
+              </div>
+
+              <!-- Buttons -->
+              <div class="flex items-center justify-between pt-3 border-t border-slate-100 mt-3">
+                <button id="wizard-prev-btn" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 hidden">Sebelumnya</button>
+                <button id="wizard-next-btn" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 transition ml-auto shadow-sm">Seterusnya</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. OFFICIAL BANK LOGOS INFINITE MARQUEE SLIDER -->
+  <div class="border-b border-slate-200 bg-white py-6 overflow-hidden">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mb-4 text-center">
+      <div class="text-emerald-800 text-xs font-bold uppercase tracking-wider mb-1">Rangkaian Institusi Padanan Kami</div>
+      <p class="text-[11px] sm:text-xs text-slate-500">Dipadankan secara strategik dengan polisi kelulusan 15+ institusi perbankan & koperasi berdaftar di Malaysia.</p>
+    </div>
+
+    <!-- Infinite Scrolling Single-Line Marquee Track (Right to Left) -->
+    <div class="relative w-full overflow-hidden py-2">
+      <div class="flex items-center gap-5 sm:gap-7 animate-bank-marquee whitespace-nowrap">
+        <!-- Set 1 (18 Authentic Official Bank Vector Logos) -->
+        <div class="inline-flex items-center gap-4 sm:gap-6 shrink-0">
+          <img src="/assets/banks/maybank.svg" alt="Maybank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Maybank">
+          <img src="/assets/banks/cimb.svg" alt="CIMB Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="CIMB Bank">
+          <img src="/assets/banks/rhb.svg" alt="RHB Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="RHB Bank">
+          <img src="/assets/banks/publicbank.svg" alt="Public Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Public Bank">
+          <img src="/assets/banks/hongleong.svg" alt="Hong Leong Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Hong Leong Bank">
+          <img src="/assets/banks/ambank.svg" alt="AmBank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="AmBank">
+          <img src="/assets/banks/bankrakyat.svg" alt="Bank Rakyat" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Bank Rakyat">
+          <img src="/assets/banks/bsn.svg" alt="BSN" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Bank Simpanan Nasional">
+          <img src="/assets/banks/bankislam.svg" alt="Bank Islam" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Bank Islam">
+          <img src="/assets/banks/muamalat.svg" alt="Bank Muamalat" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Bank Muamalat">
+          <img src="/assets/banks/affinbank.svg" alt="Affin Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Affin Bank">
+          <img src="/assets/banks/alliance.svg" alt="Alliance Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Alliance Bank">
+          <img src="/assets/banks/mbsb.svg" alt="MBSB Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="MBSB Bank">
+          <img src="/assets/banks/agrobank.svg" alt="Agrobank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Agrobank">
+          <img src="/assets/banks/uob.svg" alt="UOB Malaysia" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="UOB Malaysia">
+          <img src="/assets/banks/ocbc.svg" alt="OCBC Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="OCBC Bank">
+          <img src="/assets/banks/hsbc.svg" alt="HSBC Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="HSBC Bank">
+          <img src="/assets/banks/standardchartered.svg" alt="Standard Chartered" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Standard Chartered">
+        </div>
+
+        <!-- Set 2 (Duplicate for Continuous Seamless Loop) -->
+        <div class="inline-flex items-center gap-4 sm:gap-6 shrink-0" aria-hidden="true">
+          <img src="/assets/banks/maybank.svg" alt="Maybank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Maybank">
+          <img src="/assets/banks/cimb.svg" alt="CIMB Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="CIMB Bank">
+          <img src="/assets/banks/rhb.svg" alt="RHB Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="RHB Bank">
+          <img src="/assets/banks/publicbank.svg" alt="Public Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Public Bank">
+          <img src="/assets/banks/hongleong.svg" alt="Hong Leong Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Hong Leong Bank">
+          <img src="/assets/banks/ambank.svg" alt="AmBank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="AmBank">
+          <img src="/assets/banks/bankrakyat.svg" alt="Bank Rakyat" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Bank Rakyat">
+          <img src="/assets/banks/bsn.svg" alt="BSN" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Bank Simpanan Nasional">
+          <img src="/assets/banks/bankislam.svg" alt="Bank Islam" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Bank Islam">
+          <img src="/assets/banks/muamalat.svg" alt="Bank Muamalat" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Bank Muamalat">
+          <img src="/assets/banks/affinbank.svg" alt="Affin Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Affin Bank">
+          <img src="/assets/banks/alliance.svg" alt="Alliance Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Alliance Bank">
+          <img src="/assets/banks/mbsb.svg" alt="MBSB Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="MBSB Bank">
+          <img src="/assets/banks/agrobank.svg" alt="Agrobank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Agrobank">
+          <img src="/assets/banks/uob.svg" alt="UOB Malaysia" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="UOB Malaysia">
+          <img src="/assets/banks/ocbc.svg" alt="OCBC Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="OCBC Bank">
+          <img src="/assets/banks/hsbc.svg" alt="HSBC Bank" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="HSBC Bank">
+          <img src="/assets/banks/standardchartered.svg" alt="Standard Chartered" class="h-10 sm:h-12 w-auto object-contain hover:scale-110 transition cursor-pointer" title="Standard Chartered">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. QUICK LINKS TO SECTIONS / MULTI-PAGE -->
+  <section class="py-12 sm:py-16 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+        <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Ketahui Lebih Lanjut Solusi Kami</h2>
+        <p class="text-xs sm:text-sm text-slate-600 mt-1.5">Pilih bahagian untuk membaca panduan terperinci mengenai penstrukturan pinjaman anda.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        <a href="punca-reject.html" class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 hover:border-emerald-500 hover:shadow-md transition group">
+          <span class="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase">Analisis</span>
+          <h3 class="text-sm sm:text-base font-bold text-slate-900 mt-1 group-hover:text-emerald-700">Kenapa Pinjaman Kena Reject?</h3>
+          <p class="text-xs text-slate-600 mt-1.5">Ketahui bagaimana formula DSR, rekod CCRIS dan salah pilih bank menyebabkan permohonan anda ditolak.</p>
+          <span class="text-xs font-bold text-emerald-700 mt-3 inline-block">Baca Analisis →</span>
+        </a>
+
+        <a href="servis.html" class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 hover:border-emerald-500 hover:shadow-md transition group">
+          <span class="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase">Perkhidmatan</span>
+          <h3 class="text-sm sm:text-base font-bold text-slate-900 mt-1 group-hover:text-emerald-700">Penyatuan Hutang & Pinjaman</h3>
+          <p class="text-xs text-slate-600 mt-1.5">Ketahui 4 tiang servis utama kami untuk mengurangkan komitmen bulanan dan menjana lebihan tunai.</p>
+          <span class="text-xs font-bold text-emerald-700 mt-3 inline-block">Lihat Semua Servis →</span>
+        </a>
+
+        <a href="verify.html" class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 hover:border-emerald-500 hover:shadow-md transition group">
+          <span class="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase">Integriti & Anti-Scam</span>
+          <h3 class="text-sm sm:text-base font-bold text-slate-900 mt-1 group-hover:text-emerald-700">Verify Identiti Ejen JomConsult</h3>
+          <p class="text-xs text-slate-600 mt-1.5">Semak kesahihan Staff ID, nama atau nombor telefon perunding sebelum menyerahkan dokumen sulit anda.</p>
+          <span class="text-xs font-bold text-emerald-700 mt-3 inline-block">Semak Status Ejen Sekarang →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. FOOTER -->
+  <footer class="bg-slate-950 text-slate-400 text-xs pt-12 pb-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-10 border-b border-slate-800">
+        
+        <div class="lg:col-span-5 space-y-3">
+          <div class="bg-white p-2 rounded-xl inline-block shadow-sm">
+            <img src="/logo.png" alt="JomConsult Logo" class="h-9 w-auto">
+          </div>
+          <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
+            Agensi perundingan dan penstrukturan profil pinjaman di Malaysia. Kami membantu merancang strategi DSR, pemulihan CCRIS, dan padanan institusi perbankan yang tepat untuk kelulusan optimum.
+          </p>
+          <div class="inline-block p-2 rounded-lg bg-slate-900 border border-slate-800 text-[11px] text-slate-300">
+            100% Khidmat Nasihat Percuma. Tiada Bayaran Pendahuluan.
+          </div>
+        </div>
+
+        <div class="lg:col-span-3 space-y-2.5">
+          <h4 class="text-white font-bold text-sm tracking-wide">Navigasi Laman Web</h4>
+          <ul class="space-y-1.5">
+            <li><a href="index.html" class="hover:text-emerald-400 transition">Halaman Utama</a></li>
+            <li><a href="punca-reject.html" class="hover:text-emerald-400 transition">Kenapa Pinjaman Ditolak?</a></li>
+            <li><a href="servis.html" class="hover:text-emerald-400 transition">Perkhidmatan Kami</a></li>
+            <li><a href="kalkulator.html" class="hover:text-emerald-400 transition">Kalkulator Penjimatan</a></li>
+            <li><a href="cara-kerja.html" class="hover:text-emerald-400 transition">4 Langkah Kelulusan</a></li>
+            <li><a href="testimoni.html" class="hover:text-emerald-400 transition">Kisah Kejayaan Klien</a></li>
+            <li><a href="verify.html" class="text-emerald-400 font-semibold hover:underline">Sahkan Identiti Ejen (Verify)</a></li>
+            <li><a href="faq.html" class="hover:text-emerald-400 transition">Soalan Lazim (FAQ)</a></li>
+            <li><a href="contact.html" class="hover:text-emerald-400 transition">Hubungi Kami</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-4 space-y-2.5">
+          <h4 class="text-white font-bold text-sm tracking-wide">Maklumat Pejabat & Hubungi</h4>
+          <div class="space-y-2 text-slate-300">
+            <div>
+              <span class="font-semibold text-white block mb-0.5">Alamat:</span>
+              <span>A-10-12, Radia Office Bukit Jelutong, Persiaran Arked, 40150 Shah Alam, Selangor.</span>
+            </div>
+            <div>
+              <span class="font-semibold text-white block mb-0.5">Emel Rasmi:</span>
+              <a href="mailto:hello@jomconsult.com.my" class="hover:text-emerald-400">hello@jomconsult.com.my</a>
+            </div>
+            <div>
+              <span class="font-semibold text-white block mb-0.5">Waktu Operasi:</span>
+              <span>Isnin - Jumaat: 10:00 AM - 6:00 PM</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-6 space-y-3">
+        <p class="text-[11px] text-slate-300 leading-relaxed text-center sm:text-left">
+          <strong>Penafian:</strong> JomConsult (Jom Consult Solutions) merupakan agensi perundingan dan penasihat kewangan bebas. Kami bukan institusi perbankan atau pemberi pinjam wang berlesen langsung, sebaliknya bertindak sebagai perunding strategi permohonan ke institusi perbankan komersial, institusi kewangan pembangunan (DFI), dan koperasi berdaftar sah. Tiada bayaran pendahuluan dikenakan.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-800 text-[11px]">
+          <p>© 2026 Jom Consult Solutions. Hak Cipta Terpelihara.</p>
+          <div class="flex items-center gap-4">
+            <a href="#" class="hover:text-slate-300">Dasar Privasi (PDPA)</a>
+            <span>•</span>
+            <a href="#" class="hover:text-slate-300">Terma & Syarat</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 7. FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/601171191170?text=Salam%20JomConsult,%20saya%20nak%20semak%20kelayakan%20pinjaman%20saya." target="_blank" rel="noopener noreferrer" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center shadow-2xl shadow-[#25D366]/40 hover:scale-110 active:scale-95 transition-transform group animate-whatsapp-float" aria-label="WhatsApp Penasihat">
+    <svg viewBox="0 0 32 32" class="w-7 h-7 sm:w-9 sm:h-9 fill-current" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 2a13.9 13.9 0 0 0-12 21L2 30l7.3-1.9A13.9 13.9 0 1 0 16 2zm0 25.5a11.5 11.5 0 0 1-5.9-1.6l-.4-.3-4.4 1.1 1.2-4.2-.3-.5A11.5 11.5 0 1 1 16 27.5zm6.3-8.6c-.3-.2-2-.9-2.3-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a9.2 9.2 0 0 1-2.7-1.7 10.1 10.1 0 0 1-1.9-2.3c-.2-.3 0-.5.2-.7s.3-.4.5-.5.2-.4.3-.6 0-.4 0-.5-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.2 2.8 6.4 6.4 0 0 0 1.4 3.5 14.5 14.5 0 0 0 5.6 5c2.4 1 2.9.9 3.5.8a3 3 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.2-.1-.4-.2-.7-.4z"/>
+    </svg>
+    <span class="absolute -top-1 -right-1 flex h-4 w-4">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-4 w-4 bg-rose-500 text-[9px] font-bold text-white items-center justify-center">1</span>
+    </span>
+  </a>
+
+  <!-- Script -->
+  <script type="module" src="/assets/js/main.js"></script>
+</body>
+</html>
