@@ -1,5 +1,5 @@
 /**
- * JomConsult Admin CMS Interactive Controller
+ * JomConsult Admin CMS Interactive Controller (White / Light Theme)
  * Handles Auth, Leads CRM, Agents CRUD, Testimonials & Settings
  */
 
@@ -59,12 +59,12 @@ function initAuthFlow() {
           showDashboard();
         } else {
           alertBox.textContent = data.error || 'Gagal log masuk.';
-          alertBox.className = 'p-3 rounded-xl text-xs font-semibold bg-rose-500/20 text-rose-300 border border-rose-500/30';
+          alertBox.className = 'p-3.5 rounded-xl text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200';
           alertBox.classList.remove('hidden');
         }
       } catch (err) {
         alertBox.textContent = 'Ralat sambungan ke pelayan.';
-        alertBox.className = 'p-3 rounded-xl text-xs font-semibold bg-rose-500/20 text-rose-300 border border-rose-500/30';
+        alertBox.className = 'p-3.5 rounded-xl text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200';
         alertBox.classList.remove('hidden');
       } finally {
         btn.disabled = false;
@@ -115,10 +115,10 @@ function initTabs() {
     tab.addEventListener('click', () => {
       tabs.forEach(t => {
         t.classList.remove('tab-active');
-        t.classList.add('text-slate-400', 'hover:text-white', 'hover:bg-slate-800');
+        t.classList.add('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-100');
       });
       tab.classList.add('tab-active');
-      tab.classList.remove('text-slate-400', 'hover:text-white', 'hover:bg-slate-800');
+      tab.classList.remove('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-100');
 
       const targetId = tab.getAttribute('data-tab');
       document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
@@ -172,14 +172,14 @@ async function loadLeads() {
     renderLeadsTable(currentLeads);
   } catch (err) {
     console.error(err);
-    tbody.innerHTML = `<tr><td colspan="6" class="text-center py-6 text-rose-400">Gagal memuatkan data leads.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="6" class="text-center py-6 text-rose-500 font-medium">Gagal memuatkan data leads.</td></tr>`;
   }
 }
 
 function renderLeadsTable(leads) {
   const tbody = document.getElementById('leads-table-body');
   if (!leads || leads.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" class="text-center py-10 text-slate-500">Tiada permohonan dijumpai.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="6" class="text-center py-10 text-slate-400 font-medium">Tiada permohonan dijumpai.</td></tr>`;
     return;
   }
 
@@ -187,35 +187,35 @@ function renderLeadsTable(leads) {
     const cleanPhone = l.phone.replace(/\D/g, '');
     const waUrl = `https://wa.me/${cleanPhone.startsWith('60') ? cleanPhone : '60' + cleanPhone.replace(/^0/, '')}?text=${encodeURIComponent(`Salam ${l.applicant_name}, saya perunding pinjaman dari JomConsult mengenai permohonan semakan kelayakan anda.`)}`;
     
-    let statusClass = 'bg-slate-800 text-slate-300 border-slate-700';
-    if (l.status === 'BARU') statusClass = 'bg-amber-500/20 text-amber-300 border-amber-500/30 font-bold';
-    if (l.status === 'DALAM SEMAKAN') statusClass = 'bg-blue-500/20 text-blue-300 border-blue-500/30';
-    if (l.status === 'LULUS') statusClass = 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30 font-bold';
-    if (l.status === 'DITOLAK') statusClass = 'bg-rose-500/20 text-rose-300 border-rose-500/30';
+    let statusClass = 'bg-slate-100 text-slate-700 border-slate-200';
+    if (l.status === 'BARU') statusClass = 'bg-amber-50 text-amber-800 border-amber-300 font-bold';
+    if (l.status === 'DALAM SEMAKAN') statusClass = 'bg-blue-50 text-blue-800 border-blue-300';
+    if (l.status === 'LULUS') statusClass = 'bg-emerald-50 text-emerald-800 border-emerald-300 font-bold';
+    if (l.status === 'DITOLAK') statusClass = 'bg-rose-50 text-rose-800 border-rose-300';
 
     return `
-      <tr class="hover:bg-slate-850/50 transition">
+      <tr class="hover:bg-slate-50/80 transition">
         <td class="py-3.5 px-4 font-mono text-[11px]">
-          <span class="font-bold text-white block">#${l.id}</span>
-          <span class="text-slate-400 text-[10px]">${l.created_at || '-'}</span>
+          <span class="font-bold text-slate-900 block">#${l.id}</span>
+          <span class="text-slate-500 text-[10px]">${l.created_at || '-'}</span>
         </td>
         <td class="py-3.5 px-4">
-          <span class="font-bold text-white block">${l.applicant_name}</span>
-          <a href="${waUrl}" target="_blank" class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-400 hover:text-emerald-300 mt-0.5">
+          <span class="font-bold text-slate-900 block">${l.applicant_name}</span>
+          <a href="${waUrl}" target="_blank" class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 hover:text-emerald-800 mt-0.5">
             ${WHATSAPP_SVG}
             <span>${l.phone}</span>
           </a>
         </td>
         <td class="py-3.5 px-4">
-          <span class="text-slate-200 block">${l.sector || '-'}</span>
-          <span class="text-[10px] text-slate-400">Gaji: ${l.salary || '-'}</span>
+          <span class="text-slate-800 font-medium block">${l.sector || '-'}</span>
+          <span class="text-[10px] text-slate-500">Gaji: ${l.salary || '-'}</span>
         </td>
         <td class="py-3.5 px-4">
-          <span class="text-slate-300 font-medium block">${l.loan_purpose || 'Penyatuan Hutang'}</span>
-          <span class="text-[10px] text-slate-400">Isu: ${l.credit_issues || 'Tiada'}</span>
+          <span class="text-slate-700 font-medium block">${l.loan_purpose || 'Penyatuan Hutang'}</span>
+          <span class="text-[10px] text-slate-500">Isu: ${l.credit_issues || 'Tiada'}</span>
         </td>
         <td class="py-3.5 px-4">
-          <select onchange="updateLeadStatus(${l.id}, this.value)" class="text-[11px] rounded-lg px-2.5 py-1 border ${statusClass} bg-slate-900 focus:outline-none cursor-pointer">
+          <select onchange="updateLeadStatus(${l.id}, this.value)" class="text-[11px] font-semibold rounded-lg px-2.5 py-1 border ${statusClass} focus:outline-none cursor-pointer">
             <option value="BARU" ${l.status === 'BARU' ? 'selected' : ''}>BARU</option>
             <option value="DALAM SEMAKAN" ${l.status === 'DALAM SEMAKAN' ? 'selected' : ''}>DALAM SEMAKAN</option>
             <option value="HANTAR KE BANK" ${l.status === 'HANTAR KE BANK' ? 'selected' : ''}>HANTAR KE BANK</option>
@@ -224,7 +224,7 @@ function renderLeadsTable(leads) {
           </select>
         </td>
         <td class="py-3.5 px-4">
-          <button onclick="deleteLead(${l.id})" class="px-2.5 py-1 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg text-xs transition">
+          <button onclick="deleteLead(${l.id})" class="px-2.5 py-1 text-slate-500 hover:text-rose-600 hover:bg-rose-50 border border-transparent hover:border-rose-200 rounded-lg text-xs font-semibold transition">
             Padam
           </button>
         </td>
@@ -306,49 +306,49 @@ async function loadAgents() {
     document.getElementById('badge-agents-count').textContent = currentAgents.length;
 
     if (currentAgents.length === 0) {
-      container.innerHTML = `<div class="col-span-3 text-center py-10 text-slate-500">Tiada ejen didaftarkan.</div>`;
+      container.innerHTML = `<div class="col-span-3 text-center py-10 text-slate-400 font-medium">Tiada ejen didaftarkan.</div>`;
       return;
     }
 
     container.innerHTML = currentAgents.map(a => {
       const isAktif = a.status.includes('AKTIF');
       return `
-        <div class="p-5 rounded-2xl bg-slate-900 border ${isAktif ? 'border-slate-800' : 'border-rose-900/60 bg-rose-950/20'} space-y-4">
+        <div class="p-5 rounded-2xl bg-white border ${isAktif ? 'border-slate-200/90' : 'border-rose-200 bg-rose-50/30'} shadow-sm space-y-4">
           <div class="flex items-start justify-between">
             <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl ${a.avatar_bg || 'bg-emerald-700'} flex items-center justify-center font-extrabold text-white text-xs">
+              <div class="w-10 h-10 rounded-xl ${a.avatar_bg || 'bg-emerald-700'} flex items-center justify-center font-extrabold text-white text-xs shadow-sm">
                 ${a.initials || 'JC'}
               </div>
               <div>
-                <span class="font-bold text-white text-xs block">${a.name}</span>
-                <span class="text-[10px] font-mono text-emerald-400 font-bold">${a.staff_id}</span>
+                <span class="font-bold text-slate-900 text-xs block">${a.name}</span>
+                <span class="text-[10px] font-mono text-emerald-700 font-bold">${a.staff_id}</span>
               </div>
             </div>
-            <span class="px-2 py-0.5 rounded-full text-[9px] font-extrabold uppercase ${isAktif ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-300 border border-rose-500/30'}">
+            <span class="px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase ${isAktif ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-rose-50 text-rose-800 border border-rose-200'}">
               ${isAktif ? 'AKTIF' : 'DIGANTUNG'}
             </span>
           </div>
 
-          <div class="space-y-1.5 text-xs text-slate-300 pt-1 border-t border-slate-800">
-            <div class="text-[11px] text-slate-400">Jawatan: <span class="text-white">${a.role}</span></div>
-            <div class="text-[11px] text-slate-400 flex items-center gap-1.5">
+          <div class="space-y-1.5 text-xs text-slate-600 pt-2 border-t border-slate-100">
+            <div class="text-[11px]">Jawatan: <span class="text-slate-900 font-medium">${a.role}</span></div>
+            <div class="text-[11px] flex items-center gap-1.5">
               <span>WhatsApp:</span>
-              <a href="https://wa.me/${a.phone}" target="_blank" class="text-emerald-400 hover:underline inline-flex items-center gap-1">
+              <a href="https://wa.me/${a.phone}" target="_blank" class="text-emerald-700 font-semibold hover:underline inline-flex items-center gap-1">
                 ${WHATSAPP_SVG}
                 <span>${a.phone_display || a.phone}</span>
               </a>
             </div>
-            <div class="text-[11px] text-slate-400">Zon: <span class="text-white">${a.zone}</span></div>
-            <div class="text-[10px] text-slate-500">Semakan Anti-Scam: <span class="font-mono text-white">${a.verification_count || 0} kali</span></div>
+            <div class="text-[11px]">Zon: <span class="text-slate-900 font-medium">${a.zone}</span></div>
+            <div class="text-[10px] text-slate-500">Semakan Anti-Scam: <span class="font-mono text-slate-900 font-bold">${a.verification_count || 0} kali</span></div>
           </div>
 
-          <div class="flex items-center justify-between pt-2 border-t border-slate-800">
-            <button onclick="toggleAgentStatus(${a.id}, '${isAktif ? 'DIGANTUNG' : 'AKTIF & BERDAFTAR'}')" class="text-[11px] font-bold ${isAktif ? 'text-amber-400 hover:underline' : 'text-emerald-400 hover:underline'}">
+          <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+            <button onclick="toggleAgentStatus(${a.id}, '${isAktif ? 'DIGANTUNG' : 'AKTIF & BERDAFTAR'}')" class="text-[11px] font-bold ${isAktif ? 'text-amber-700 hover:underline' : 'text-emerald-700 hover:underline'}">
               ${isAktif ? 'Gantung Status' : 'Aktifkan Semula'}
             </button>
             <div class="flex items-center gap-2">
-              <button onclick="editAgentModal(${a.id})" class="px-2.5 py-1 text-slate-400 hover:text-white bg-slate-800 rounded-lg text-xs">Edit</button>
-              <button onclick="deleteAgent(${a.id})" class="px-2.5 py-1 text-slate-400 hover:text-rose-400 bg-slate-800 rounded-lg text-xs">Padam</button>
+              <button onclick="editAgentModal(${a.id})" class="px-3 py-1 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg text-xs font-semibold transition">Edit</button>
+              <button onclick="deleteAgent(${a.id})" class="px-3 py-1 text-slate-500 hover:text-rose-600 bg-slate-100 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 rounded-lg text-xs font-semibold transition">Padam</button>
             </div>
           </div>
         </div>
@@ -453,21 +453,26 @@ async function loadTestimonials() {
     const data = await res.json();
     const list = data.testimonials || [];
 
+    if (list.length === 0) {
+      container.innerHTML = `<div class="col-span-2 text-center py-10 text-slate-400 font-medium">Tiada testimoni didaftarkan.</div>`;
+      return;
+    }
+
     container.innerHTML = list.map(t => `
-      <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+      <div class="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-3">
         <div class="flex items-start justify-between">
           <div>
-            <span class="font-bold text-white text-xs block">${t.client_name}</span>
-            <span class="text-[11px] text-emerald-400 font-semibold">${t.profession}</span>
+            <span class="font-bold text-slate-900 text-xs block">${t.client_name}</span>
+            <span class="text-[11px] text-emerald-700 font-semibold">${t.profession}</span>
           </div>
-          <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-mono font-bold">
+          <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-mono font-bold">
             Lulus: ${t.loan_approved}
           </span>
         </div>
-        <p class="text-xs text-slate-300 italic">"${t.story || t.original_issue}"</p>
-        <div class="text-[11px] text-slate-400 flex items-center justify-between pt-2 border-t border-slate-800">
-          <span>Jimat: <strong class="text-emerald-400">${t.monthly_savings || '-'}</strong></span>
-          <button onclick="deleteTestimonial(${t.id})" class="px-2 py-0.5 text-slate-400 hover:text-rose-400 text-xs">Padam</button>
+        <p class="text-xs text-slate-600 italic">"${t.story || t.original_issue}"</p>
+        <div class="text-[11px] text-slate-500 flex items-center justify-between pt-2 border-t border-slate-100">
+          <span>Jimat: <strong class="text-emerald-700">${t.monthly_savings || '-'}</strong></span>
+          <button onclick="deleteTestimonial(${t.id})" class="px-2 py-0.5 text-slate-500 hover:text-rose-600 text-xs font-semibold">Padam</button>
         </div>
       </div>
     `).join('');
@@ -532,12 +537,12 @@ function initSettingsListeners() {
         const data = await res.json();
 
         alertBox.textContent = data.message || 'Tetapan berjaya disimpan.';
-        alertBox.className = 'p-3 rounded-xl text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+        alertBox.className = 'p-3.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200';
         alertBox.classList.remove('hidden');
         setTimeout(() => alertBox.classList.add('hidden'), 4000);
       } catch (err) {
         alertBox.textContent = 'Ralat menyimpan tetapan.';
-        alertBox.className = 'p-3 rounded-xl text-xs font-semibold bg-rose-500/20 text-rose-300 border border-rose-500/30';
+        alertBox.className = 'p-3.5 rounded-xl text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200';
         alertBox.classList.remove('hidden');
       }
     });
