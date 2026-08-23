@@ -9,6 +9,8 @@ let currentUser = JSON.parse(localStorage.getItem('jc_admin_user') || 'null');
 let currentLeads = [];
 let currentAgents = [];
 
+const WHATSAPP_SVG = `<svg class="w-3.5 h-3.5 fill-current text-[#25D366] inline-block shrink-0" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.564 1.724.814 2.796.814 3.18 0 5.767-2.588 5.767-5.766.001-3.182-2.585-5.77-5.767-5.77zm3.364 8.163c-.144.405-.837.774-1.17.825-.313.05-.725.09-2.072-.472-1.614-.672-2.656-2.316-2.736-2.423-.08-.107-.649-.864-.649-1.649 0-.784.408-1.171.553-1.332.145-.16.319-.2.425-.2.106 0 .213 0 .307.006.1.006.234-.038.365.281.135.327.464 1.132.505 1.215.041.083.069.18.014.288-.055.109-.083.176-.164.271-.082.096-.172.214-.246.287-.082.083-.169.173-.072.339.096.166.428.706.918 1.142.631.562 1.162.736 1.328.819.166.082.263.072.36-.041.097-.113.417-.487.528-.654.111-.167.222-.139.373-.083.152.056.963.454 1.129.537.166.083.277.125.318.194.042.069.042.402-.102.807z"/></svg>`;
+
 document.addEventListener('DOMContentLoaded', () => {
   initAuthFlow();
   initTabs();
@@ -199,8 +201,9 @@ function renderLeadsTable(leads) {
         </td>
         <td class="py-3.5 px-4">
           <span class="font-bold text-white block">${l.applicant_name}</span>
-          <a href="${waUrl}" target="_blank" class="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400 hover:text-emerald-300 mt-0.5">
-            <span>💬 ${l.phone}</span>
+          <a href="${waUrl}" target="_blank" class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-400 hover:text-emerald-300 mt-0.5">
+            ${WHATSAPP_SVG}
+            <span>${l.phone}</span>
           </a>
         </td>
         <td class="py-3.5 px-4">
@@ -221,8 +224,8 @@ function renderLeadsTable(leads) {
           </select>
         </td>
         <td class="py-3.5 px-4">
-          <button onclick="deleteLead(${l.id})" class="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition" title="Padam">
-            🗑️
+          <button onclick="deleteLead(${l.id})" class="px-2.5 py-1 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg text-xs transition">
+            Padam
           </button>
         </td>
       </tr>
@@ -328,7 +331,13 @@ async function loadAgents() {
 
           <div class="space-y-1.5 text-xs text-slate-300 pt-1 border-t border-slate-800">
             <div class="text-[11px] text-slate-400">Jawatan: <span class="text-white">${a.role}</span></div>
-            <div class="text-[11px] text-slate-400">WhatsApp: <a href="https://wa.me/${a.phone}" target="_blank" class="text-emerald-400 hover:underline">${a.phone_display || a.phone}</a></div>
+            <div class="text-[11px] text-slate-400 flex items-center gap-1.5">
+              <span>WhatsApp:</span>
+              <a href="https://wa.me/${a.phone}" target="_blank" class="text-emerald-400 hover:underline inline-flex items-center gap-1">
+                ${WHATSAPP_SVG}
+                <span>${a.phone_display || a.phone}</span>
+              </a>
+            </div>
             <div class="text-[11px] text-slate-400">Zon: <span class="text-white">${a.zone}</span></div>
             <div class="text-[10px] text-slate-500">Semakan Anti-Scam: <span class="font-mono text-white">${a.verification_count || 0} kali</span></div>
           </div>
@@ -338,8 +347,8 @@ async function loadAgents() {
               ${isAktif ? 'Gantung Status' : 'Aktifkan Semula'}
             </button>
             <div class="flex items-center gap-2">
-              <button onclick="editAgentModal(${a.id})" class="p-1.5 text-slate-400 hover:text-white bg-slate-800 rounded-lg text-xs">✏️ Edit</button>
-              <button onclick="deleteAgent(${a.id})" class="p-1.5 text-slate-400 hover:text-rose-400 bg-slate-800 rounded-lg text-xs">🗑️</button>
+              <button onclick="editAgentModal(${a.id})" class="px-2.5 py-1 text-slate-400 hover:text-white bg-slate-800 rounded-lg text-xs">Edit</button>
+              <button onclick="deleteAgent(${a.id})" class="px-2.5 py-1 text-slate-400 hover:text-rose-400 bg-slate-800 rounded-lg text-xs">Padam</button>
             </div>
           </div>
         </div>
@@ -458,7 +467,7 @@ async function loadTestimonials() {
         <p class="text-xs text-slate-300 italic">"${t.story || t.original_issue}"</p>
         <div class="text-[11px] text-slate-400 flex items-center justify-between pt-2 border-t border-slate-800">
           <span>Jimat: <strong class="text-emerald-400">${t.monthly_savings || '-'}</strong></span>
-          <button onclick="deleteTestimonial(${t.id})" class="text-slate-400 hover:text-rose-400 text-xs">Padam 🗑️</button>
+          <button onclick="deleteTestimonial(${t.id})" class="px-2 py-0.5 text-slate-400 hover:text-rose-400 text-xs">Padam</button>
         </div>
       </div>
     `).join('');

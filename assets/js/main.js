@@ -1,3 +1,5 @@
+const OFFICIAL_WHATSAPP_SVG = '<svg class="w-4 h-4 fill-current text-[#25D366] inline-block shrink-0" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.564 1.724.814 2.796.814 3.18 0 5.767-2.588 5.767-5.766.001-3.182-2.585-5.77-5.767-5.77zm3.364 8.163c-.144.405-.837.774-1.17.825-.313.05-.725.09-2.072-.472-1.614-.672-2.656-2.316-2.736-2.423-.08-.107-.649-.864-.649-1.649 0-.784.408-1.171.553-1.332.145-.16.319-.2.425-.2.106 0 .213 0 .307.006.1.006.234-.038.365.281.135.327.464 1.132.505 1.215.041.083.069.18.014.288-.055.109-.083.176-.164.271-.082.096-.172.214-.246.287-.082.083-.169.173-.072.339.096.166.428.706.918 1.142.631.562 1.162.736 1.328.819.166.082.263.072.36-.041.097-.113.417-.487.528-.654.111-.167.222-.139.373-.083.152.056.963.454 1.129.537.166.083.277.125.318.194.042.069.042.402-.102.807z"/></svg>';
+
 /**
  * JomConsult Solutions - Multi-Page Website Interactive Engine
  * Handling Navigation, Calculator, Multi-Step Form, Verification Portal, Papaipay Hero Slider & Animation
@@ -522,7 +524,7 @@ function initAgentVerification() {
             </div>
             <div>
               <div class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md mb-1">
-                <span>●</span> ${agent.status}
+                ${agent.status}
               </div>
               <h4 class="text-base font-bold text-slate-900 leading-tight">${agent.name}</h4>
               <div class="text-xs text-emerald-700 font-mono font-bold mt-0.5">Staff ID: ${agent.id}</div>
@@ -540,7 +542,7 @@ function initAgentVerification() {
 
         <div class="mt-5 pt-4 border-t border-slate-100">
           <a href="https://wa.me/${agent.phone}?text=Salam%20${encodeURIComponent(agent.name)}%20(ID:%20${agent.id}),%20saya%20telah%20mengesahkan%20profil%20tuan%2Fpuan%20di%20portal%20JomConsult%20dan%20ingin%20memohon%20konsultasi." target="_blank" class="inline-flex items-center justify-center w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-sm transition">
-            <span>WhatsApp ${agent.name.split(' ')[0]} (Rasmi)</span>
+            <span class='inline-flex items-center gap-1.5'>${OFFICIAL_WHATSAPP_SVG} WhatsApp ${agent.name.split(' ')[0]} (Rasmi)</span>
           </a>
         </div>
       </div>
@@ -604,7 +606,7 @@ function initAgentVerification() {
               </div>
               <div>
                 <span class="inline-block text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-emerald-600 text-white mb-1">
-                  ✓ IDENTITI DISAHKAN SAH & BERDAFTAR
+                  IDENTITI DISAHKAN SAH & BERDAFTAR
                 </span>
                 <h3 class="text-lg font-extrabold text-slate-900">${matched.name}</h3>
                 <p class="text-xs text-emerald-800 font-mono font-bold">Staff ID: ${matched.id}</p>
