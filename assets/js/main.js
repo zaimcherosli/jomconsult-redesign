@@ -108,16 +108,40 @@ function initMobileMenu() {
   const closeBtn = document.getElementById('close-mobile-menu');
 
   if (btn && drawer) {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       drawer.classList.remove('hidden');
+      drawer.classList.add('flex');
       document.body.style.overflow = 'hidden';
     });
   }
 
   if (closeBtn && drawer) {
-    closeBtn.addEventListener('click', () => {
+    closeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       drawer.classList.add('hidden');
-      document.body.style.overflow = 'auto';
+      drawer.classList.remove('flex');
+      document.body.style.overflow = '';
+    });
+  }
+
+  if (drawer) {
+    drawer.addEventListener('click', (e) => {
+      if (e.target === drawer) {
+        drawer.classList.add('hidden');
+        drawer.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+    });
+
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.add('hidden');
+        drawer.classList.remove('flex');
+        document.body.style.overflow = '';
+      });
     });
   }
 }
