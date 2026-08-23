@@ -92,6 +92,7 @@ const OFFICIAL_AGENTS = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
+  loadDynamicConfig();
   initMobileMenu();
   initPapaipayHeroSlider();
   initCountUpAnimations();
@@ -379,6 +380,21 @@ function initEligibilityWizard() {
             window.open(`https://wa.me/${JOMCONSULT_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
           };
         }
+
+                // Asynchronous Lead Submission to Cloudflare D1 Backend
+        fetch('/api/public/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            applicant_name: data.name,
+            phone: data.phone,
+            sector: data.employment,
+            salary: data.salary,
+            commitment: data.loanAmount,
+            loan_purpose: 'Penyatuan Hutang',
+            credit_issues: data.mainIssue
+          })
+        }).catch(err => console.log('D1 Lead intake note:', err));
 
         currentStep = 4;
         updateView();
