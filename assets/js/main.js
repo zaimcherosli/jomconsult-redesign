@@ -91,7 +91,26 @@ const OFFICIAL_AGENTS = [
     specialty: "Diagnostik Slip Gaji & Semakan Percuma",
     avatarBg: "bg-slate-800"
   }
-];
+// 0. Live Cloudflare D1 Config Sync
+async function loadDynamicConfig() {
+  try {
+    const res = await fetch('/api/public/config');
+    if (!res.ok) return;
+    const cfg = await res.json();
+    if (cfg.whatsapp_number) {
+      JOMCONSULT_CONFIG.whatsappNumber = cfg.whatsapp_number;
+      document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
+        const href = a.getAttribute('href');
+        a.setAttribute('href', href.replace(/wa\.me\/\d+/, `wa.me/${cfg.whatsapp_number}`));
+      });
+    }
+    if (cfg.phone_display) {
+      JOMCONSULT_CONFIG.phoneDisplay = cfg.phone_display;
+    }
+  } catch (e) {
+    // Graceful offline fallback
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   loadDynamicConfig();
