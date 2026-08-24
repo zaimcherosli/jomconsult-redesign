@@ -17,6 +17,7 @@ export default defineConfig({
         tentangKami: resolve(__dirname, 'tentang-kami.html'),
         pasukan: resolve(__dirname, 'pasukan.html'),
         kerjaya: resolve(__dirname, 'kerjaya.html'),
+        semakKelayakan: resolve(__dirname, 'semak-kelayakan.html'),
         admin: resolve(__dirname, 'admin.html'),
       }
     }

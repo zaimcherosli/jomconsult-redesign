@@ -301,156 +301,251 @@ function initCountUpAnimations() {
   counters.forEach(c => observer.observe(c));
 }
 
-// 4. Multi-Step Eligibility Form
+// 4. Multi-Step Eligibility Form (11 Questions V3)
 function initEligibilityWizard() {
+  // A. HOMEPAGE WIZARD
   const formContainer = document.getElementById('eligibility-form-container');
-  if (!formContainer) return;
+  if (formContainer) {
+    let currentStep = 1;
+    const step1 = document.getElementById('wizard-step-1');
+    const step2 = document.getElementById('wizard-step-2');
+    const step3 = document.getElementById('wizard-step-3');
+    const result = document.getElementById('wizard-result');
+    const progressBar = document.getElementById('wizard-progress-bar');
+    const stepIndicator = document.getElementById('wizard-step-indicator');
+    const btnNext = document.getElementById('wizard-next-btn');
+    const btnPrev = document.getElementById('wizard-prev-btn');
 
-  let currentStep = 1;
-  let data = {
-    employment: 'Swasta / Korporat',
-    salary: 'RM3,000 - RM5,000',
-    loanAmount: 'RM50,000 - RM100,000',
-    mainIssue: 'Komitmen Tinggi (DSR Terlebih)',
-    name: '',
-    phone: ''
-  };
+    function updateView() {
+      if (progressBar) progressBar.style.width = ((currentStep / 3) * 100) + '%';
+      if (stepIndicator) stepIndicator.innerText = `Langkah ${currentStep} dari 3`;
 
-  const step1 = document.getElementById('wizard-step-1');
-  const step2 = document.getElementById('wizard-step-2');
-  const step3 = document.getElementById('wizard-step-3');
-  const result = document.getElementById('wizard-result');
-  const progressBar = document.getElementById('wizard-progress-bar');
-  const stepIndicator = document.getElementById('wizard-step-indicator');
+      if (step1) step1.classList.toggle('hidden', currentStep !== 1);
+      if (step2) step2.classList.toggle('hidden', currentStep !== 2);
+      if (step3) step3.classList.toggle('hidden', currentStep !== 3);
+      if (result) result.classList.toggle('hidden', currentStep !== 4);
 
-  const btnNext = document.getElementById('wizard-next-btn');
-  const btnPrev = document.getElementById('wizard-prev-btn');
+      if (btnPrev) btnPrev.classList.toggle('hidden', currentStep <= 1 || currentStep >= 4);
+      if (btnNext) {
+        btnNext.classList.toggle('hidden', currentStep >= 4);
+        btnNext.innerText = currentStep === 3 ? 'Dapatkan Analisa Kelayakan' : 'Seterusnya';
+      }
+    }
 
-  function updateView() {
-    if (progressBar) progressBar.style.width = ((currentStep / 3) * 100) + '%';
-    if (stepIndicator) stepIndicator.innerText = `Langkah ${currentStep} dari 3`;
-
-    if (step1) step1.classList.toggle('hidden', currentStep !== 1);
-    if (step2) step2.classList.toggle('hidden', currentStep !== 2);
-    if (step3) step3.classList.toggle('hidden', currentStep !== 3);
-    if (result) result.classList.toggle('hidden', currentStep !== 4);
-
-    if (btnPrev) btnPrev.classList.toggle('hidden', currentStep <= 1 || currentStep >= 4);
     if (btnNext) {
-      btnNext.classList.toggle('hidden', currentStep >= 4);
-      btnNext.innerText = currentStep === 3 ? 'Dapatkan Analisa Kelayakan' : 'Seterusnya';
+      btnNext.addEventListener('click', () => {
+        if (currentStep === 1) {
+          currentStep = 2;
+          updateView();
+        } else if (currentStep === 2) {
+          currentStep = 3;
+          updateView();
+        } else if (currentStep === 3) {
+          const name = document.getElementById('wizard-name-input')?.value.trim();
+          const ic = document.getElementById('wizard-ic-input')?.value.trim();
+          const phone = document.getElementById('wizard-phone-input')?.value.trim();
+          const sector = document.getElementById('wiz-sector')?.value;
+          const employer = document.getElementById('wiz-employer')?.value.trim() || '-';
+          const employmentStatus = document.getElementById('wiz-employment-status')?.value;
+          const cert = document.getElementById('wiz-cert')?.value;
+          const salary = document.getElementById('wiz-salary')?.value;
+          const location = document.getElementById('wiz-location')?.value;
+          const socialChannel = document.getElementById('wiz-social-channel')?.value;
+
+          const checkedIssues = Array.from(document.querySelectorAll('.wiz-issue-cb:checked')).map(cb => cb.value);
+          const issuesStr = checkedIssues.length > 0 ? checkedIssues.join(', ') : 'Tiada Masalah';
+
+          if (!name || !phone) {
+            alert('Sila masukkan Nama Penuh dan Nombor WhatsApp anda.');
+            return;
+          }
+
+          const resName = document.getElementById('res-client-name');
+          if (resName) resName.innerText = name;
+
+          // Build Clean Formatted WhatsApp Message
+          const waMsg = `*BORANG SEMAK KELAYAKAN LOAN (V3)*\n` +
+            `━━━━━━━━━━━━━━━━━━\n` +
+            `*Nama Penuh:* ${name}\n` +
+            `*No. IC:* ${ic || '-'}\n` +
+            `*No. Telefon:* ${phone}\n` +
+            `*Lokasi / Negeri:* ${location}\n\n` +
+            `*Sektor Pekerjaan:* ${sector}\n` +
+            `*Majikan / Syarikat:* ${employer}\n` +
+            `*Status Jawatan:* ${employmentStatus}\n` +
+            `*Gaji Kasar:* ${salary}\n` +
+            `*Sijil Profesional:* ${cert}\n\n` +
+            `*Masalah Dihadapi:* ${issuesStr}\n` +
+            `*Saluran Sosmed:* ${socialChannel}\n` +
+            `━━━━━━━━━━━━━━━━━━\n` +
+            `Salam Team Faris / JomConsult, saya ingin memohon semakan kelayakan pinjaman berdasarkan maklumat di atas. Terima kasih!`;
+
+          const waBtn = document.getElementById('wizard-whatsapp-send-btn');
+          if (waBtn) {
+            waBtn.onclick = () => {
+              window.open(`https://wa.me/${JOMCONSULT_CONFIG.whatsappNumber}?text=${encodeURIComponent(waMsg)}`, '_blank');
+            };
+          }
+
+          // Asynchronous Lead Intake to Cloudflare D1
+          fetch('/api/public/leads', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              applicant_name: name,
+              ic_number: ic,
+              phone: phone,
+              location_state: location,
+              sector: sector,
+              employer_name: employer,
+              employment_status: employmentStatus,
+              salary: salary,
+              professional_cert: cert,
+              credit_issues: issuesStr,
+              social_channel: socialChannel,
+              source: 'Borang Semak Kelayakan V3 (Homepage)'
+            })
+          }).catch(err => console.log('D1 Lead intake note:', err));
+
+          currentStep = 4;
+          updateView();
+        }
+      });
+    }
+
+    if (btnPrev) {
+      btnPrev.addEventListener('click', () => {
+        if (currentStep > 1) {
+          currentStep--;
+          updateView();
+        }
+      });
+    }
+
+    const resetBtn = document.getElementById('wizard-reset-btn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        currentStep = 1;
+        updateView();
+      });
     }
   }
 
-  document.querySelectorAll('.emp-opt-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.emp-opt-btn').forEach(b => {
-        b.classList.remove('bg-emerald-50', 'border-emerald-500', 'ring-2', 'ring-emerald-500/20');
-        b.classList.add('bg-slate-50', 'border-slate-200');
-      });
-      btn.classList.add('bg-emerald-50', 'border-emerald-500', 'ring-2', 'ring-emerald-500/20');
-      btn.classList.remove('bg-slate-50', 'border-slate-200');
-      data.employment = btn.getAttribute('data-val');
-    });
-  });
+  // B. DEDICATED LANDING PAGE WIZARD (semak-kelayakan.html)
+  const pageStep1 = document.getElementById('page-wizard-step-1');
+  if (pageStep1) {
+    let pStep = 1;
+    const pStep2 = document.getElementById('page-wizard-step-2');
+    const pStep3 = document.getElementById('page-wizard-step-3');
+    const pResult = document.getElementById('page-wizard-result');
+    const pProgressBar = document.getElementById('page-wizard-progress-bar');
+    const pStepIndicator = document.getElementById('page-wizard-step-indicator');
+    const pBtnNext = document.getElementById('page-wizard-next-btn');
+    const pBtnPrev = document.getElementById('page-wizard-prev-btn');
 
-  document.querySelectorAll('.salary-opt-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.salary-opt-btn').forEach(b => {
-        b.classList.remove('bg-emerald-50', 'border-emerald-500', 'text-emerald-800', 'ring-1', 'ring-emerald-500');
-        b.classList.add('bg-slate-50', 'border-slate-200', 'text-slate-700');
-      });
-      btn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-800', 'ring-1', 'ring-emerald-500');
-      btn.classList.remove('bg-slate-50', 'border-slate-200', 'text-slate-700');
-      data.salary = btn.getAttribute('data-val');
-    });
-  });
+    function updatePageView() {
+      if (pProgressBar) pProgressBar.style.width = ((pStep / 3) * 100) + '%';
+      if (pStepIndicator) pStepIndicator.innerText = `Langkah ${pStep} dari 3`;
 
-  document.querySelectorAll('.loan-opt-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.loan-opt-btn').forEach(b => {
-        b.classList.remove('bg-emerald-50', 'border-emerald-500', 'text-emerald-800', 'ring-1', 'ring-emerald-500');
-        b.classList.add('bg-slate-50', 'border-slate-200', 'text-slate-700');
-      });
-      btn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-800', 'ring-1', 'ring-emerald-500');
-      btn.classList.remove('bg-slate-50', 'border-slate-200', 'text-slate-700');
-      data.loanAmount = btn.getAttribute('data-val');
-    });
-  });
+      if (pageStep1) pageStep1.classList.toggle('hidden', pStep !== 1);
+      if (pStep2) pStep2.classList.toggle('hidden', pStep !== 2);
+      if (pStep3) pStep3.classList.toggle('hidden', pStep !== 3);
+      if (pResult) pResult.classList.toggle('hidden', pStep !== 4);
 
-  if (btnNext) {
-    btnNext.addEventListener('click', () => {
-      if (currentStep < 3) {
-        currentStep++;
-        updateView();
-      } else if (currentStep === 3) {
-        const nameInput = document.getElementById('wizard-name-input');
-        const phoneInput = document.getElementById('wizard-phone-input');
-        const name = nameInput ? nameInput.value.trim() : '';
-        const phone = phoneInput ? phoneInput.value.trim() : '';
-
-        if (!name || !phone) {
-          alert('Sila masukkan Nama dan Nombor WhatsApp anda.');
-          return;
-        }
-
-        data.name = name;
-        data.phone = phone;
-
-        const resName = document.getElementById('res-client-name');
-        if (resName) resName.innerText = name;
-
-        const waBtn = document.getElementById('wizard-whatsapp-send-btn');
-        if (waBtn) {
-          waBtn.onclick = () => {
-            const msg = `Salam Penasihat JomConsult, saya telah semak kelayakan di laman web:\n\n` +
-              `*Nama:* ${data.name}\n` +
-              `*No. Telefon:* ${data.phone}\n` +
-              `*Sektor:* ${data.employment}\n` +
-              `*Gaji Bersih:* ${data.salary}\n` +
-              `*Jumlah Diperlukan:* ${data.loanAmount}\n` +
-              `*Isu Semasa:* ${data.mainIssue}\n\n` +
-              `Mohon bantu analisa profil kredit saya secara percuma. Terima kasih!`;
-            window.open(`https://wa.me/${JOMCONSULT_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
-          };
-        }
-
-                // Asynchronous Lead Submission to Cloudflare D1 Backend
-        fetch('/api/public/leads', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            applicant_name: data.name,
-            phone: data.phone,
-            sector: data.employment,
-            salary: data.salary,
-            commitment: data.loanAmount,
-            loan_purpose: 'Penyatuan Hutang',
-            credit_issues: data.mainIssue
-          })
-        }).catch(err => console.log('D1 Lead intake note:', err));
-
-        currentStep = 4;
-        updateView();
+      if (pBtnPrev) pBtnPrev.classList.toggle('hidden', pStep <= 1 || pStep >= 4);
+      if (pBtnNext) {
+        pBtnNext.classList.toggle('hidden', pStep >= 4);
+        pBtnNext.innerText = pStep === 3 ? 'Hantar Borang Semakan' : 'Seterusnya';
       }
-    });
-  }
+    }
 
-  if (btnPrev) {
-    btnPrev.addEventListener('click', () => {
-      if (currentStep > 1) {
-        currentStep--;
-        updateView();
-      }
-    });
-  }
+    if (pBtnNext) {
+      pBtnNext.addEventListener('click', () => {
+        if (pStep === 1) {
+          pStep = 2;
+          updatePageView();
+        } else if (pStep === 2) {
+          pStep = 3;
+          updatePageView();
+        } else if (pStep === 3) {
+          const name = document.getElementById('p-wizard-name-input')?.value.trim();
+          const ic = document.getElementById('p-wizard-ic-input')?.value.trim();
+          const phone = document.getElementById('p-wizard-phone-input')?.value.trim();
+          const sector = document.getElementById('p-wiz-sector')?.value;
+          const employer = document.getElementById('p-wiz-employer')?.value.trim() || '-';
+          const employmentStatus = document.getElementById('p-wiz-employment-status')?.value;
+          const cert = document.getElementById('p-wiz-cert')?.value;
+          const salary = document.getElementById('p-wiz-salary')?.value;
+          const location = document.getElementById('p-wiz-location')?.value;
+          const socialChannel = document.getElementById('p-wiz-social-channel')?.value;
 
-  const resetBtn = document.getElementById('wizard-reset-btn');
-  if (resetBtn) {
-    resetBtn.addEventListener('click', () => {
-      currentStep = 1;
-      updateView();
-    });
+          const checkedIssues = Array.from(document.querySelectorAll('.p-wiz-issue-cb:checked')).map(cb => cb.value);
+          const issuesStr = checkedIssues.length > 0 ? checkedIssues.join(', ') : 'Tiada Masalah';
+
+          if (!name || !phone) {
+            alert('Sila masukkan Nama Penuh dan Nombor WhatsApp anda.');
+            return;
+          }
+
+          const resName = document.getElementById('page-res-client-name');
+          if (resName) resName.innerText = name;
+
+          const waMsg = `*BORANG SEMAK KELAYAKAN LOAN (V3)*\n` +
+            `━━━━━━━━━━━━━━━━━━\n` +
+            `*Nama Penuh:* ${name}\n` +
+            `*No. IC:* ${ic || '-'}\n` +
+            `*No. Telefon:* ${phone}\n` +
+            `*Lokasi / Negeri:* ${location}\n\n` +
+            `*Sektor Pekerjaan:* ${sector}\n` +
+            `*Majikan / Syarikat:* ${employer}\n` +
+            `*Status Jawatan:* ${employmentStatus}\n` +
+            `*Gaji Kasar:* ${salary}\n` +
+            `*Sijil Profesional:* ${cert}\n\n` +
+            `*Masalah Dihadapi:* ${issuesStr}\n` +
+            `*Saluran Sosmed:* ${socialChannel}\n` +
+            `━━━━━━━━━━━━━━━━━━\n` +
+            `Salam Team Faris / JomConsult, saya ingin memohon semakan kelayakan pinjaman berdasarkan maklumat di atas. Terima kasih!`;
+
+          const waBtn = document.getElementById('page-wizard-whatsapp-send-btn');
+          if (waBtn) {
+            waBtn.onclick = () => {
+              window.open(`https://wa.me/${JOMCONSULT_CONFIG.whatsappNumber}?text=${encodeURIComponent(waMsg)}`, '_blank');
+            };
+          }
+
+          fetch('/api/public/leads', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              applicant_name: name,
+              ic_number: ic,
+              phone: phone,
+              location_state: location,
+              sector: sector,
+              employer_name: employer,
+              employment_status: employmentStatus,
+              salary: salary,
+              professional_cert: cert,
+              credit_issues: issuesStr,
+              social_channel: socialChannel,
+              source: 'Borang Semak Kelayakan V3 (Landing Page)'
+            })
+          }).catch(err => console.log('D1 Lead intake note:', err));
+
+          pStep = 4;
+          updatePageView();
+        }
+      });
+    }
+
+    if (pBtnPrev) {
+      pBtnPrev.addEventListener('click', () => {
+        if (pStep > 1) {
+          pStep--;
+          updatePageView();
+        }
+      });
+    }
   }
 }
 

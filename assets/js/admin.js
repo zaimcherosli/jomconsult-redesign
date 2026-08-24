@@ -184,7 +184,7 @@ function renderLeadsTable(leads) {
   }
 
   tbody.innerHTML = leads.map(l => {
-    const cleanPhone = l.phone.replace(/\D/g, '');
+    const cleanPhone = (l.phone || '').replace(/\D/g, '');
     const waUrl = `https://wa.me/${cleanPhone.startsWith('60') ? cleanPhone : '60' + cleanPhone.replace(/^0/, '')}?text=${encodeURIComponent(`Salam ${l.applicant_name}, saya perunding pinjaman dari JomConsult mengenai permohonan semakan kelayakan anda.`)}`;
     
     let statusClass = 'bg-slate-100 text-slate-700 border-slate-200';
@@ -198,21 +198,24 @@ function renderLeadsTable(leads) {
         <td class="py-3.5 px-4 font-mono text-[11px]">
           <span class="font-bold text-slate-900 block">#${l.id}</span>
           <span class="text-slate-500 text-[10px]">${l.created_at || '-'}</span>
+          <span class="inline-block mt-0.5 px-1.5 py-0.5 rounded bg-slate-100 text-[9px] text-slate-600 font-medium">${l.location_state || 'Selangor'}</span>
         </td>
         <td class="py-3.5 px-4">
           <span class="font-bold text-slate-900 block">${l.applicant_name}</span>
+          <span class="text-[10px] text-slate-500 block">IC: ${l.ic_number || '-'}</span>
           <a href="${waUrl}" target="_blank" class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 hover:text-emerald-800 mt-0.5">
             ${WHATSAPP_SVG}
             <span>${l.phone}</span>
           </a>
         </td>
         <td class="py-3.5 px-4">
-          <span class="text-slate-800 font-medium block">${l.sector || '-'}</span>
-          <span class="text-[10px] text-slate-500">Gaji: ${l.salary || '-'}</span>
+          <span class="text-slate-900 font-semibold block">${l.sector || '-'}</span>
+          <span class="text-[10px] text-slate-500 block">Majikan: ${l.employer_name || '-'}</span>
+          <span class="text-[10px] text-slate-600 font-medium">Gaji: ${l.salary || '-'}</span>
         </td>
         <td class="py-3.5 px-4">
-          <span class="text-slate-700 font-medium block">${l.loan_purpose || 'Penyatuan Hutang'}</span>
-          <span class="text-[10px] text-slate-500">Isu: ${l.credit_issues || 'Tiada'}</span>
+          <span class="text-slate-800 font-medium block">${l.credit_issues || 'Tiada Masalah'}</span>
+          <span class="text-[10px] text-slate-500">Sijil: ${l.professional_cert || 'TIADA'}</span>
         </td>
         <td class="py-3.5 px-4">
           <select onchange="updateLeadStatus(${l.id}, this.value)" class="text-[11px] font-semibold rounded-lg px-2.5 py-1 border ${statusClass} focus:outline-none cursor-pointer">
@@ -223,8 +226,11 @@ function renderLeadsTable(leads) {
             <option value="DITOLAK" ${l.status === 'DITOLAK' ? 'selected' : ''}>DITOLAK</option>
           </select>
         </td>
-        <td class="py-3.5 px-4">
-          <button onclick="deleteLead(${l.id})" class="px-2.5 py-1 text-slate-500 hover:text-rose-600 hover:bg-rose-50 border border-transparent hover:border-rose-200 rounded-lg text-xs font-semibold transition">
+        <td class="py-3.5 px-4 whitespace-nowrap space-x-1">
+          <button onclick="viewLeadDetails(${l.id})" class="px-2.5 py-1 text-emerald-700 hover:text-white bg-emerald-50 hover:bg-emerald-600 border border-emerald-200 rounded-lg text-xs font-semibold transition">
+            Butiran
+          </button>
+          <button onclick="deleteLead(${l.id})" class="px-2.5 py-1 text-slate-500 hover:text-rose-600 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 rounded-lg text-xs font-semibold transition">
             Padam
           </button>
         </td>
@@ -232,6 +238,70 @@ function renderLeadsTable(leads) {
     `;
   }).join('');
 }
+
+window.viewLeadDetails = function(id) {
+  const l = currentLeads.find(x => x.id === id);
+  if (!l) return;
+
+  document.getElementById('lead-modal-id').textContent = `Permohonan #${l.id} | Diterima: ${l.created_at || '-'}`;
+  const cleanPhone = (l.phone || '').replace(/\D/g, '');
+  const waUrl = `https://wa.me/${cleanPhone.startsWith('60') ? cleanPhone : '60' + cleanPhone.replace(/^0/, '')}?text=${encodeURIComponent(`Salam ${l.applicant_name}, saya perunding pinjaman dari JomConsult mengenai permohonan semakan kelayakan anda.`)}`;
+  document.getElementById('lead-modal-wa-btn').setAttribute('href', waUrl);
+
+  const container = document.getElementById('lead-details-content');
+  container.innerHTML = `
+    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+      <span class="text-slate-500 font-semibold block">1. Nama Penuh:</span>
+      <span class="text-slate-900 font-bold text-sm">${l.applicant_name || '-'}</span>
+    </div>
+    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+      <span class="text-slate-500 font-semibold block">2. Nombor Kad Pengenalan (IC):</span>
+      <span class="text-slate-900 font-bold font-mono text-sm">${l.ic_number || '-'}</span>
+    </div>
+    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+      <span class="text-slate-500 font-semibold block">3. Nombor Telefon WhatsApp:</span>
+      <span class="text-emerald-700 font-bold text-sm">${l.phone || '-'}</span>
+    </div>
+    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+      <span class="text-slate-500 font-semibold block">4. Lokasi / Negeri:</span>
+      <span class="text-slate-900 font-bold text-sm">${l.location_state || '-'}</span>
+    </div>
+    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+      <span class="text-slate-500 font-semibold block">5. Sektor Pekerjaan:</span>
+      <span class="text-slate-900 font-bold text-sm">${l.sector || '-'}</span>
+    </div>
+    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+      <span class="text-slate-500 font-semibold block">6. Majikan / Syarikat / Jabatan:</span>
+      <span class="text-slate-900 font-bold text-sm">${l.employer_name || '-'}</span>
+    </div>
+    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+      <span class="text-slate-500 font-semibold block">7. Status Jawatan:</span>
+      <span class="text-slate-900 font-bold text-sm">${l.employment_status || '-'}</span>
+    </div>
+    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+      <span class="text-slate-500 font-semibold block">8. Gaji Kasar Bulanan:</span>
+      <span class="text-slate-900 font-bold text-sm text-emerald-800">${l.salary || '-'}</span>
+    </div>
+    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+      <span class="text-slate-500 font-semibold block">9. Sijil Profesional:</span>
+      <span class="text-slate-900 font-bold text-sm">${l.professional_cert || 'TIADA'}</span>
+    </div>
+    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+      <span class="text-slate-500 font-semibold block">11. Saluran Media Sosial:</span>
+      <span class="text-slate-900 font-bold text-sm">${l.social_channel || 'Website'}</span>
+    </div>
+    <div class="sm:col-span-2 p-3.5 bg-amber-50 rounded-xl border border-amber-200 space-y-1">
+      <span class="text-amber-800 font-bold block">10. Masalah Kredit / Kewangan Dihadapi:</span>
+      <span class="text-slate-900 font-medium block leading-relaxed">${l.credit_issues || 'Tiada Masalah'}</span>
+    </div>
+  `;
+
+  document.getElementById('modal-lead-details').classList.remove('hidden');
+};
+
+window.closeLeadModal = function() {
+  document.getElementById('modal-lead-details').classList.add('hidden');
+};
 
 window.updateLeadStatus = async function(id, newStatus) {
   try {
@@ -269,25 +339,29 @@ function exportLeadsCSV() {
     return;
   }
 
-  const headers = ['ID', 'Nama Pemohon', 'No Telefon', 'Sektor', 'Gaji', 'Komitmen', 'Tujuan', 'Isu Kredit', 'Status', 'Tarikh'];
+  const headers = ['ID', 'Tarikh', 'Nama Pemohon', 'No IC', 'No Telefon', 'Negeri', 'Sektor Pekerjaan', 'Nama Majikan', 'Status Jawatan', 'Gaji Kasar', 'Sijil Profesional', 'Masalah Kredit', 'Saluran Sosmed', 'Status Kes'];
   const rows = currentLeads.map(l => [
     l.id,
+    `"${l.created_at || ''}"`,
     `"${(l.applicant_name || '').replace(/"/g, '""')}"`,
+    `"${l.ic_number || ''}"`,
     `"${l.phone || ''}"`,
+    `"${l.location_state || ''}"`,
     `"${l.sector || ''}"`,
+    `"${(l.employer_name || '').replace(/"/g, '""')}"`,
+    `"${l.employment_status || ''}"`,
     `"${l.salary || ''}"`,
-    `"${l.commitment || ''}"`,
-    `"${l.loan_purpose || ''}"`,
-    `"${l.credit_issues || ''}"`,
-    `"${l.status || ''}"`,
-    `"${l.created_at || ''}"`
+    `"${l.professional_cert || ''}"`,
+    `"${(l.credit_issues || '').replace(/"/g, '""')}"`,
+    `"${l.social_channel || ''}"`,
+    `"${l.status || ''}"`
   ]);
 
   const csvContent = 'data:text/csv;charset=utf-8,\uFEFF' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
   const encodedUri = encodeURI(csvContent);
   const link = document.createElement('a');
   link.setAttribute('href', encodedUri);
-  link.setAttribute('download', `JomConsult_Leads_${new Date().toISOString().slice(0,10)}.csv`);
+  link.setAttribute('download', `JomConsult_Leads_Full_${new Date().toISOString().slice(0,10)}.csv`);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

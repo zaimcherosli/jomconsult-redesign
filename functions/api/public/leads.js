@@ -12,23 +12,44 @@ export async function onRequestPost({ request, env }) {
     }
 
     const payload = await request.json();
-    const { applicant_name, phone, sector, salary, commitment, loan_purpose, credit_issues } = payload;
+    const {
+      applicant_name,
+      ic_number,
+      phone,
+      location_state,
+      sector,
+      employer_name,
+      employment_status,
+      salary,
+      professional_cert,
+      credit_issues,
+      social_channel,
+      source
+    } = payload;
 
     if (!phone) {
       return jsonResponse({ error: "Sila berikan nombor telefon WhatsApp anda." }, 400);
     }
 
     const res = await db.prepare(
-      `INSERT INTO leads (applicant_name, phone, sector, salary, commitment, loan_purpose, credit_issues, status) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, 'BARU')`
+      `INSERT INTO leads (
+        applicant_name, ic_number, phone, location_state, 
+        sector, employer_name, employment_status, salary, 
+        professional_cert, credit_issues, social_channel, source, status
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'BARU')`
     ).bind(
       applicant_name || "Pemohon Laman Web",
-      phone,
-      sector || "Swasta / MNC",
-      salary || "RM 3,000 - RM 5,000",
-      commitment || "Tiada maklumat",
-      loan_purpose || "Penyatuan Hutang",
-      credit_issues || "Tiada rekod tunggakan"
+      ic_number || "-",
+      phone.replace(/\D/g, ""),
+      location_state || "Selangor",
+      sector || "Swasta",
+      employer_name || "-",
+      employment_status || "Tetap (> 1 tahun)",
+      salary || "RM 3,001 - RM 4,000",
+      professional_cert || "TIADA",
+      Array.isArray(credit_issues) ? credit_issues.join(", ") : (credit_issues || "Tiada Masalah"),
+      social_channel || "Website",
+      source || "Borang Semak Kelayakan V3"
     ).run();
 
     return jsonResponse({

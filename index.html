@@ -429,99 +429,228 @@
             <div class="absolute -top-3.5 left-4 sm:left-6 z-20 bg-amber-500 text-slate-950 font-extrabold text-[10px] sm:text-[11px] uppercase tracking-wider px-3 py-1 rounded-full shadow border border-amber-300">Semakan Pantas Dalam Talian
             </div>
 
-            <div id="eligibility-form-container" class="p-5 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-xl relative">
-              <div class="flex items-center justify-between mb-5 pb-3 border-b border-slate-100">
+                        <div id="eligibility-form-container" class="p-5 sm:p-7 rounded-3xl bg-white border border-slate-200 shadow-xl relative">
+              <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
                 <div>
-                  <h3 class="text-base sm:text-xl font-bold text-slate-900 tracking-tight">Semak Kelayakan Percuma</h3>
-                  <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">Keputusan indikasi awal dalam 15 minit.</p>
+                  <h3 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">Borang Semak Kelayakan Loan</h3>
+                  <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">Team Faris JomConsult akan hubungi anda.</p>
                 </div>
-                <span id="wizard-step-indicator" class="text-[11px] sm:text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 shrink-0">Langkah 1 dari 3
-                </span>
+                <span id="wizard-step-indicator" class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 shrink-0">Langkah 1 dari 3</span>
               </div>
 
-              <div class="w-full bg-slate-100 h-1.5 rounded-full mb-5 overflow-hidden">
+              <div class="w-full bg-slate-100 h-1.5 rounded-full mb-4 overflow-hidden">
                 <div id="wizard-progress-bar" class="bg-emerald-600 h-full transition-all duration-300 rounded-full" style="width: 33.3%;"></div>
               </div>
 
-              <!-- Step 1 -->
-              <div id="wizard-step-1" class="space-y-3.5">
-                <label class="block text-xs sm:text-sm font-semibold text-slate-800">1. Sektor Pekerjaan Semasa Anda:</label>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  <button type="button" class="emp-opt-btn p-2.5 sm:p-3 rounded-xl text-left border bg-emerald-50 border-emerald-500 ring-2 ring-emerald-500/20" data-val="Swasta / Korporat">
-                    <span class="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 block w-fit mb-1">Kelulusan 48 Jam</span>
-                    <p class="text-xs font-bold text-emerald-950">Swasta / MNC / Korporat</p>
-                  </button>
-                  <button type="button" class="emp-opt-btn p-2.5 sm:p-3 rounded-xl text-left border bg-slate-50 border-slate-200" data-val="Kakitangan Kerajaan">
-                    <span class="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-slate-200 text-slate-600 block w-fit mb-1">Kadar Terendah</span>
-                    <p class="text-xs font-semibold text-slate-700">Kakitangan Kerajaan</p>
-                  </button>
-                  <button type="button" class="emp-opt-btn p-2.5 sm:p-3 rounded-xl text-left border bg-slate-50 border-slate-200" data-val="Perniagaan / SME">
-                    <span class="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-slate-200 text-slate-600 block w-fit mb-1">Modal Kerja</span>
-                    <p class="text-xs font-semibold text-slate-700">Peniaga / SME / Sendiri</p>
-                  </button>
-                  <button type="button" class="emp-opt-btn p-2.5 sm:p-3 rounded-xl text-left border bg-slate-50 border-slate-200" data-val="Syarikat GLC">
-                    <span class="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-slate-200 text-slate-600 block w-fit mb-1">Pakej Khas</span>
-                    <p class="text-xs font-semibold text-slate-700">Syarikat GLC</p>
-                  </button>
+              <!-- Step 1: Profil Kerjaya & Majikan (Q5, Q6, Q7, Q9) -->
+              <div id="wizard-step-1" class="space-y-3">
+                <div>
+                  <label class="block text-xs font-bold text-slate-800 mb-1">1. Sektor Pekerjaan:</label>
+                  <select id="wiz-sector" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-800 font-medium focus:outline-none focus:border-emerald-500 focus:bg-white transition">
+                    <option value="Swasta">Swasta</option>
+                    <option value="Kakitangan Kerajaan">Kakitangan Kerajaan</option>
+                    <option value="Kakitangan Kerajaan Negeri">Kakitangan Kerajaan Negeri</option>
+                    <option value="Badan Berkanun">Badan Berkanun</option>
+                    <option value="Gov-Link Comp. (GLC)">Gov-Link Comp. (GLC)</option>
+                    <option value="Public Listed Comp. (PLC)">Public Listed Comp. (PLC)</option>
+                    <option value="Multinational Comp. (MNC)">Multinational Comp. (MNC)</option>
+                    <option value="Kakitangan Perbankan">Kakitangan Perbankan</option>
+                    <option value="Professional (Engineer, Doctor, Lecturer, Architect, Accountant, Safety Officer & Lain2)">Professional (Engineer, Doctor, Lecturer, dll)</option>
+                    <option value="Tentera (Pegawai)">Tentera (Pegawai)</option>
+                    <option value="Tentera (LLP)">Tentera (LLP)</option>
+                    <option value="Pencen Kerajaan">Pencen Kerajaan</option>
+                    <option value="Berniaga Sendiri">Berniaga Sendiri</option>
+                  </select>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-xs font-bold text-slate-800 mb-1">2. Nama Majikan / Syarikat:</label>
+                    <input type="text" id="wiz-employer" placeholder="Cth: KKM / Maybank / Top Glove" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-emerald-500 focus:bg-white transition">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-slate-800 mb-1">3. Status Jawatan:</label>
+                    <select id="wiz-employment-status" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 font-medium focus:outline-none focus:border-emerald-500 focus:bg-white transition">
+                      <option value="Tetap (Lebih 1 tahun)">Tetap (Lebih 1 tahun)</option>
+                      <option value="Tetap (Kurang 1 tahun)">Tetap (Kurang 1 tahun)</option>
+                      <option value="Kontrak (Lebih 1 tahun)">Kontrak (Lebih 1 tahun)</option>
+                      <option value="Kontrak (Kurang 1 tahun)">Kontrak (Kurang 1 tahun)</option>
+                      <option value="Berniaga/Usahawan">Berniaga / Usahawan</option>
+                      <option value="Bersara (Pencen)">Bersara (Pencen)</option>
+                      <option value="Freelance (Ejen)">Freelance (Ejen)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-800 mb-1">4. Sijil Profesional (Jika Ada):</label>
+                  <select id="wiz-cert" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 font-medium focus:outline-none focus:border-emerald-500 focus:bg-white transition">
+                    <option value="TIADA">TIADA</option>
+                    <option value="BEM utk Jurutera">BEM utk Jurutera</option>
+                    <option value="MBOT utk Teknologis">MBOT utk Teknologis</option>
+                    <option value="MMC/MMA utk Doktor">MMC/MMA utk Doktor</option>
+                    <option value="MIA/ACCA/CIMA/CFA utk Akauntan/Juruaudit">MIA/ACCA/CIMA/CFA utk Akauntan/Juruaudit</option>
+                    <option value="YELLOW BOOK / GREEN BOOK dari DOSH utk OSHA">YELLOW BOOK / GREEN BOOK dari DOSH utk OSHA</option>
+                    <option value="LAM/PAM/ILAM utk Arkitek">LAM/PAM/ILAM utk Arkitek</option>
+                    <option value="PBM utk Ahli Farmasi">PBM utk Ahli Farmasi</option>
+                    <option value="BQSM utk Juru Ukur">BQSM utk Juru Ukur</option>
+                    <option value="MDC utk Doktor Gigi">MDC utk Doktor Gigi</option>
+                    <option value="MVC utk Doktor Veterinar">MVC utk Doktor Veterinar</option>
+                    <option value="MOC/APC/OLP utk Optometris">MOC/APC/OLP utk Optometris</option>
+                    <option value="ICAO/CAAM utk Jurutera Pesawat">ICAO/CAAM utk Jurutera Pesawat</option>
+                    <option value="CPL/ATPL/PPL/IR utk Juruterbang">CPL/ATPL/PPL/IR utk Juruterbang</option>
+                    <option value="Sekuriti Malaysia (SC) utk Pengurus Dana">Sekuriti Malaysia (SC) utk Pengurus Dana</option>
+                  </select>
                 </div>
               </div>
 
-              <!-- Step 2 -->
+              <!-- Step 2: Pendapatan & Masalah Kredit (Q8, Q10) -->
               <div id="wizard-step-2" class="space-y-3.5 hidden">
                 <div>
-                  <label class="block text-xs sm:text-sm font-semibold text-slate-800 mb-1.5">2. Pendapatan Bersih Bulanan:</label>
-                  <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                    <button type="button" class="salary-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-slate-50 border-slate-200" data-val="Bawah RM2,500">Bawah RM2,500</button>
-                    <button type="button" class="salary-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-emerald-50 border-emerald-500 text-emerald-800 ring-1 ring-emerald-500" data-val="RM2,500 - RM4,000">RM2,500 - RM4k</button>
-                    <button type="button" class="salary-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-slate-50 border-slate-200" data-val="RM4,001 - RM7,000">RM4k - RM7k</button>
-                    <button type="button" class="salary-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-slate-50 border-slate-200" data-val="RM7,001 - RM12,000">RM7k - RM12k</button>
-                    <button type="button" class="salary-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-slate-50 border-slate-200" data-val="Lebih RM12,000">Lebih RM12k</button>
-                  </div>
+                  <label class="block text-xs font-bold text-slate-800 mb-1.5">5. Gaji Kasar Bulanan:</label>
+                  <select id="wiz-salary" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-800 font-semibold focus:outline-none focus:border-emerald-500 focus:bg-white transition">
+                    <option value="RM1,000 - RM2,000">RM1,000 - RM2,000</option>
+                    <option value="RM2,001 - RM3,000">RM2,001 - RM3,000</option>
+                    <option value="RM3,001 - RM4,000" selected>RM3,001 - RM4,000</option>
+                    <option value="RM4,001 - RM5,000">RM4,001 - RM5,000</option>
+                    <option value="RM5,001 - RM6,000">RM5,001 - RM6,000</option>
+                    <option value="RM6,001 - RM7,000">RM6,001 - RM7,000</option>
+                    <option value="RM7,001 - RM8,000">RM7,001 - RM8,000</option>
+                    <option value="RM8,001 - RM9,000">RM8,001 - RM9,000</option>
+                    <option value="RM9,001 - RM10,000">RM9,001 - RM10,000</option>
+                    <option value="RM10,000 ke atas">RM10,000 ke atas</option>
+                  </select>
                 </div>
 
                 <div>
-                  <label class="block text-xs sm:text-sm font-semibold text-slate-800 mb-1.5">3. Jumlah Pinjaman Diperlukan:</label>
-                  <div class="grid grid-cols-2 gap-2">
-                    <button type="button" class="loan-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-slate-50 border-slate-200" data-val="RM10,000 - RM30,000">RM10k - RM30k</button>
-                    <button type="button" class="loan-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-emerald-50 border-emerald-500 text-emerald-800 ring-1 ring-emerald-500" data-val="RM30,001 - RM70,000">RM30k - RM70k</button>
-                    <button type="button" class="loan-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-slate-50 border-slate-200" data-val="RM70,001 - RM150,000">RM70k - RM150k</button>
-                    <button type="button" class="loan-opt-btn p-2 text-xs font-semibold rounded-lg border text-center bg-slate-50 border-slate-200" data-val="RM150,001 - RM300,000+">RM150k - RM300k+</button>
+                  <label class="block text-xs font-bold text-slate-800 mb-1">6. Masalah Dihadapi (Boleh Pilih Lebih Dari 1):</label>
+                  <div class="grid grid-cols-2 gap-1.5 max-h-48 overflow-y-auto p-1 border border-slate-200 rounded-xl bg-slate-50 text-[11px]" id="wiz-issues-container">
+                    <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-emerald-50">
+                      <input type="checkbox" class="wiz-issue-cb rounded text-emerald-600 focus:ring-0" value="Tiada Masalah" checked>
+                      <span class="font-medium text-slate-800">Tiada Masalah</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-emerald-50">
+                      <input type="checkbox" class="wiz-issue-cb rounded text-emerald-600 focus:ring-0" value="Komitmen Tinggi">
+                      <span class="font-medium text-slate-800">Komitmen Tinggi</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-emerald-50">
+                      <input type="checkbox" class="wiz-issue-cb rounded text-emerald-600 focus:ring-0" value="Peratus Gaji Lebih 60% (DSR)">
+                      <span class="font-medium text-slate-800">Peratus Gaji > 60%</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-emerald-50">
+                      <input type="checkbox" class="wiz-issue-cb rounded text-emerald-600 focus:ring-0" value="Tunggakan Loan (> 3 bulan)">
+                      <span class="font-medium text-slate-800">Tunggakan > 3 bln</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-emerald-50">
+                      <input type="checkbox" class="wiz-issue-cb rounded text-emerald-600 focus:ring-0" value="CCRIS Tunggakan PTPTN">
+                      <span class="font-medium text-slate-800">CCRIS PTPTN</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-emerald-50">
+                      <input type="checkbox" class="wiz-issue-cb rounded text-emerald-600 focus:ring-0" value="Akaun Pemerhatian Khas (SAA)">
+                      <span class="font-medium text-slate-800">SAA Blacklist</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-emerald-50">
+                      <input type="checkbox" class="wiz-issue-cb rounded text-emerald-600 focus:ring-0" value="Program AKPK">
+                      <span class="font-medium text-slate-800">Program AKPK</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-emerald-50">
+                      <input type="checkbox" class="wiz-issue-cb rounded text-emerald-600 focus:ring-0" value="Saman CTOS (Section D)">
+                      <span class="font-medium text-slate-800">Saman CTOS Sec D</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-emerald-50">
+                      <input type="checkbox" class="wiz-issue-cb rounded text-emerald-600 focus:ring-0" value="CTOS Coway/Cuckoo/SK Magic">
+                      <span class="font-medium text-slate-800">CTOS Coway/Cuckoo</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-emerald-50">
+                      <input type="checkbox" class="wiz-issue-cb rounded text-emerald-600 focus:ring-0" value="CTOS Telco (Maxis/Celcom/RedOne)">
+                      <span class="font-medium text-slate-800">CTOS Telco</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-emerald-50">
+                      <input type="checkbox" class="wiz-issue-cb rounded text-emerald-600 focus:ring-0" value="CTOS Loan Kedai Motor">
+                      <span class="font-medium text-slate-800">CTOS Kedai Motor</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-emerald-50">
+                      <input type="checkbox" class="wiz-issue-cb rounded text-emerald-600 focus:ring-0" value="CTOS Singer/Seng Heng">
+                      <span class="font-medium text-slate-800">CTOS Singer/SengHeng</span>
+                    </label>
                   </div>
                 </div>
               </div>
 
-              <!-- Step 3 -->
-              <div id="wizard-step-3" class="space-y-3.5 hidden">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <!-- Step 3: Maklumat Pemohon & Lokasi (Q1, Q2, Q3, Q4, Q11) -->
+              <div id="wizard-step-3" class="space-y-3 hidden">
+                <div>
+                  <label class="block text-xs font-bold text-slate-800 mb-1">7. Nama Penuh (Mengikut IC):</label>
+                  <input type="text" id="wizard-name-input" required placeholder="Nama penuh anda" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:bg-white transition">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Penuh:</label>
-                    <input type="text" id="wizard-name-input" placeholder="Nama anda" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs text-slate-900">
+                    <label class="block text-xs font-bold text-slate-800 mb-1">8. Nombor Kad Pengenalan:</label>
+                    <input type="text" id="wizard-ic-input" placeholder="900101105555 (tanpa -)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:bg-white transition">
                   </div>
                   <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nombor WhatsApp:</label>
-                    <input type="tel" id="wizard-phone-input" placeholder="012-3456789" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs text-slate-900">
+                    <label class="block text-xs font-bold text-slate-800 mb-1">9. Nombor WhatsApp:</label>
+                    <input type="tel" id="wizard-phone-input" required placeholder="01171191170 (tanpa -)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:bg-white transition">
                   </div>
                 </div>
-                <div class="text-[10px] text-slate-500 bg-slate-50 p-2 rounded-lg border border-slate-200">Maklumat anda 100% dirahsiakan di bawah Akta PDPA 2010.
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-xs font-bold text-slate-800 mb-1">10. Lokasi / Negeri:</label>
+                    <select id="wiz-location" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 font-medium focus:outline-none focus:border-emerald-500 focus:bg-white transition">
+                      <option value="Selangor">Selangor</option>
+                      <option value="Kuala Lumpur">Kuala Lumpur</option>
+                      <option value="Putrajaya">Putrajaya</option>
+                      <option value="Negeri Sembilan">Negeri Sembilan</option>
+                      <option value="Johor">Johor</option>
+                      <option value="Pahang">Pahang</option>
+                      <option value="Terengganu">Terengganu</option>
+                      <option value="Kelantan">Kelantan</option>
+                      <option value="Perak">Perak</option>
+                      <option value="Kedah">Kedah</option>
+                      <option value="Perlis">Perlis</option>
+                      <option value="Pulau Pinang">Pulau Pinang</option>
+                      <option value="Melaka">Melaka</option>
+                      <option value="Sabah">Sabah</option>
+                      <option value="Sarawak">Sarawak</option>
+                      <option value="Labuan">Labuan</option>
+                      <option value="Singapura">Singapura</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-slate-800 mb-1">11. Saluran Media Sosial:</label>
+                    <select id="wiz-social-channel" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 font-medium focus:outline-none focus:border-emerald-500 focus:bg-white transition">
+                      <option value="Website">Website</option>
+                      <option value="Facebook">Facebook</option>
+                      <option value="TikTok">TikTok</option>
+                      <option value="Google">Google</option>
+                      <option value="Instagram">Instagram</option>
+                      <option value="Threads">Threads</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 
-              <!-- Result -->
-              <div id="wizard-result" class="text-center py-3 space-y-3 hidden">
-                <div class="w-10 h-10 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto text-lg font-bold"></div>
-                <div>
-                  <h4 class="text-base font-bold text-slate-900">Profil Anda Siap Dirumus</h4>
-                  <p class="text-xs text-slate-600 mt-0.5">Terima kasih <span id="res-client-name" class="font-bold text-emerald-700"></span>. Data sedia untuk disemak.</p>
+              <!-- Step 4: Result -->
+              <div id="wizard-result" class="text-center py-3 space-y-3.5 hidden">
+                <div class="w-12 h-12 bg-emerald-100 text-emerald-800 rounded-full flex items-center justify-center mx-auto text-xl font-bold">
+                  ✓
                 </div>
-                <button id="wizard-whatsapp-send-btn" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow">Hantar Ke WhatsApp Penasihat JomConsult
+                <div>
+                  <h4 class="text-base font-extrabold text-slate-900">Maklumat Berjaya Disimpan</h4>
+                  <p class="text-xs text-slate-600 mt-0.5">Terima kasih <span id="res-client-name" class="font-bold text-emerald-700"></span>. Sila tekan butang WhatsApp di bawah untuk berhubung terus dengan penasihat kami.</p>
+                </div>
+                <button id="wizard-whatsapp-send-btn" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                  <span>Hantar Ke WhatsApp Team Faris / HQ</span>
                 </button>
-                <button id="wizard-reset-btn" class="text-xs text-slate-400 hover:text-slate-700">Kira Semula</button>
+                <button id="wizard-reset-btn" class="text-xs text-slate-400 hover:text-slate-700 font-medium">Semak Semula</button>
               </div>
 
-              <!-- Buttons -->
-              <div class="flex items-center justify-between pt-3 border-t border-slate-100 mt-3">
-                <button id="wizard-prev-btn" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 hidden">Sebelumnya</button>
-                <button id="wizard-next-btn" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 transition ml-auto shadow-sm">Seterusnya</button>
+              <!-- Navigation Buttons -->
+              <div class="flex items-center justify-between pt-3 border-t border-slate-100 mt-4">
+                <button id="wizard-prev-btn" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 hidden transition">Sebelumnya</button>
+                <button id="wizard-next-btn" class="px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 transition ml-auto shadow-sm">Seterusnya</button>
               </div>
             </div>
 
