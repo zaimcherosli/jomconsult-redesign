@@ -135,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSavingsCalculator();
   initFAQAccordion();
   initAgentVerification();
+  initCareerApplyForm();
 });
 
 // 1. Mobile Menu Toggle
@@ -805,3 +806,227 @@ function initAgentVerification() {
     }
   }
 }
+
+// 8. Career / Consultant Recruitment Form Wizard Logic
+function initCareerApplyForm() {
+  const form = document.getElementById('career-apply-form');
+  if (!form) return;
+
+  let currentStep = 1;
+  const totalSteps = 4;
+
+  const step1 = document.getElementById('career-step-1');
+  const step2 = document.getElementById('career-step-2');
+  const step3 = document.getElementById('career-step-3');
+  const step4 = document.getElementById('career-step-4');
+  const successCard = document.getElementById('career-success-card');
+
+  const titleEl = document.getElementById('career-step-title');
+  const badgeEl = document.getElementById('career-step-badge');
+  const barEl = document.getElementById('career-progress-bar');
+
+  const stepTitles = [
+    "Langkah 1: Maklumat Peribadi",
+    "Langkah 2: Maklumat Perhubungan & Alamat",
+    "Langkah 3: Dokumen Pengenalan Diri (KYC)",
+    "Langkah 4: Maklumat Akaun Bank Komisen"
+  ];
+
+  function updateCareerStep(step) {
+    currentStep = step;
+    [step1, step2, step3, step4].forEach((el, idx) => {
+      if (el) {
+        if (idx + 1 === currentStep) {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.add('hidden');
+        }
+      }
+    });
+
+    if (titleEl) titleEl.innerText = stepTitles[currentStep - 1] || `Langkah ${currentStep}`;
+    if (badgeEl) badgeEl.innerText = `${currentStep} dari ${totalSteps}`;
+    if (barEl) barEl.style.width = `${(currentStep / totalSteps) * 100}%`;
+
+    const formSec = document.getElementById('borang-kerjaya-section');
+    if (formSec) {
+      formSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // File Upload Preview & Base64 storage
+  let icFrontBase64 = "";
+  let icBackBase64 = "";
+  let selfieBase64 = "";
+
+  function handleFileUpload(inputId, btnId, previewId, callback) {
+    const input = document.getElementById(inputId);
+    const btn = document.getElementById(btnId);
+    const preview = document.getElementById(previewId);
+
+    if (btn && input) {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        input.click();
+      });
+    }
+
+    if (input) {
+      input.addEventListener('change', () => {
+        const file = input.files[0];
+        if (file) {
+          if (file.size > 5 * 1024 * 1024) {
+            alert('Saiz fail melebihi 5MB. Sila pilih fail yang lebih kecil.');
+            input.value = "";
+            return;
+          }
+          if (preview) {
+            preview.innerText = `✓ ${file.name}`;
+            preview.classList.remove('text-slate-400');
+            preview.classList.add('text-emerald-700', 'font-semibold');
+          }
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            callback(e.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+  }
+
+  handleFileUpload('c-file-ic-front', 'btn-browse-ic-front', 'preview-text-ic-front', (b64) => { icFrontBase64 = b64; });
+  handleFileUpload('c-file-ic-back', 'btn-browse-ic-back', 'preview-text-ic-back', (b64) => { icBackBase64 = b64; });
+  handleFileUpload('c-file-selfie', 'btn-browse-selfie', 'preview-text-selfie', (b64) => { selfieBase64 = b64; });
+
+  // Step 1 Navigation
+  const btnNext1 = document.getElementById('btn-career-next-1');
+  if (btnNext1) {
+    btnNext1.addEventListener('click', () => {
+      const name = document.getElementById('c-fullname')?.value.trim();
+      const ic = document.getElementById('c-icnumber')?.value.trim();
+      const dob = document.getElementById('c-dob')?.value.trim();
+      if (!name || !ic || !dob) {
+        alert('Sila lengkapkan Nama Penuh, No. Kad Pengenalan dan Tarikh Lahir.');
+        return;
+      }
+      updateCareerStep(2);
+    });
+  }
+
+  // Step 2 Navigation
+  const btnPrev2 = document.getElementById('btn-career-prev-2');
+  const btnNext2 = document.getElementById('btn-career-next-2');
+  if (btnPrev2) btnPrev2.addEventListener('click', () => updateCareerStep(1));
+  if (btnNext2) {
+    btnNext2.addEventListener('click', () => {
+      const phone = document.getElementById('c-phone')?.value.trim();
+      const email = document.getElementById('c-email')?.value.trim();
+      const addr1 = document.getElementById('c-address-1')?.value.trim();
+      const postcode = document.getElementById('c-postcode')?.value.trim();
+      const city = document.getElementById('c-city')?.value.trim();
+      if (!phone || !email || !addr1 || !postcode || !city) {
+        alert('Sila lengkapkan No. Telefon, Emel dan Alamat Kediaman.');
+        return;
+      }
+      updateCareerStep(3);
+    });
+  }
+
+  // Step 3 Navigation
+  const btnPrev3 = document.getElementById('btn-career-prev-3');
+  const btnNext3 = document.getElementById('btn-career-next-3');
+  if (btnPrev3) btnPrev3.addEventListener('click', () => updateCareerStep(2));
+  if (btnNext3) {
+    btnNext3.addEventListener('click', () => {
+      updateCareerStep(4);
+    });
+  }
+
+  // Step 4 Navigation & Submit
+  const btnPrev4 = document.getElementById('btn-career-prev-4');
+  if (btnPrev4) btnPrev4.addEventListener('click', () => updateCareerStep(3));
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const submitBtn = document.getElementById('btn-career-submit');
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Sedang Menghantar...</span>';
+    }
+
+    const payload = {
+      full_name: document.getElementById('c-fullname')?.value.trim() || '',
+      ic_number: document.getElementById('c-icnumber')?.value.trim() || '',
+      date_of_birth: document.getElementById('c-dob')?.value.trim() || '',
+      marital_status: document.getElementById('c-marital')?.value || 'Bujang',
+      race: document.getElementById('c-race')?.value || 'Melayu',
+      religion: document.getElementById('c-religion')?.value || 'Islam',
+      phone: document.getElementById('c-phone')?.value.trim() || '',
+      email: document.getElementById('c-email')?.value.trim() || '',
+      address_line_1: document.getElementById('c-address-1')?.value.trim() || '',
+      address_line_2: document.getElementById('c-address-2')?.value.trim() || '',
+      address_postcode: document.getElementById('c-postcode')?.value.trim() || '',
+      address_city: document.getElementById('c-city')?.value.trim() || '',
+      address_state: document.getElementById('c-state')?.value || 'Selangor',
+      bank_name: document.getElementById('c-bank-name')?.value || 'Maybank',
+      bank_account_name: document.getElementById('c-bank-acc-name')?.value.trim() || '',
+      bank_account_number: document.getElementById('c-bank-acc-num')?.value.trim() || '',
+      recruiter_name: document.getElementById('c-recruiter')?.value.trim() || 'HQ JomConsult',
+      ic_front_data: icFrontBase64,
+      ic_back_data: icBackBase64,
+      selfie_ic_data: selfieBase64
+    };
+
+    try {
+      const res = await fetch('/api/public/career-apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        form.classList.add('hidden');
+        if (successCard) {
+          successCard.classList.remove('hidden');
+          const refEl = document.getElementById('career-success-ref');
+          if (refEl) refEl.innerText = data.ref_no || 'JC-REC-SUCCESS';
+
+          const waBtn = document.getElementById('btn-whatsapp-hr-confirm');
+          if (waBtn) {
+            const msg = `*PENDAFTARAN PERUNDING JOMCONSULT*\n` +
+              `━━━━━━━━━━━━━━━━━━\n` +
+              `*No. Rujukan:* ${data.ref_no}\n` +
+              `*Nama Penuh:* ${payload.full_name}\n` +
+              `*No. IC:* ${payload.ic_number}\n` +
+              `*No. Telefon:* ${payload.phone}\n` +
+              `*Emel:* ${payload.email}\n` +
+              `*Lokasi:* ${payload.address_city}, ${payload.address_state}\n` +
+              `*Perekrut:* ${payload.recruiter_name}\n` +
+              `*Bank Komisen:* ${payload.bank_name} (${payload.bank_account_number})\n` +
+              `━━━━━━━━━━━━━━━━━━\n` +
+              `Salam Pasukan HR JomConsult, saya telah mengisi borang pendaftaran perunding di atas. Mohon semakan bagi sesi temuduga dan pengeluaran Staff ID. Terima kasih!`;
+            waBtn.href = `https://wa.me/${JOMCONSULT_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+          }
+        }
+      } else {
+        alert(data.error || 'Ralat semasa menghantar permohonan. Sila cuba lagi.');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+        }
+      }
+    } catch (err) {
+      alert('Ralat sambungan ke pelayan: ' + err.message);
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
+    }
+  });
+}
+

@@ -7,6 +7,7 @@ const API_BASE = '/api';
 let authToken = localStorage.getItem('jc_admin_token') || '';
 let currentUser = JSON.parse(localStorage.getItem('jc_admin_user') || 'null');
 let currentLeads = [];
+let currentCareer = [];
 let currentAgents = [];
 
 const WHATSAPP_SVG = `<svg class="w-3.5 h-3.5 fill-current text-[#25D366] inline-block shrink-0" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.564 1.724.814 2.796.814 3.18 0 5.767-2.588 5.767-5.766.001-3.182-2.585-5.77-5.767-5.77zm3.364 8.163c-.144.405-.837.774-1.17.825-.313.05-.725.09-2.072-.472-1.614-.672-2.656-2.316-2.736-2.423-.08-.107-.649-.864-.649-1.649 0-.784.408-1.171.553-1.332.145-.16.319-.2.425-.2.106 0 .213 0 .307.006.1.006.234-.038.365.281.135.327.464 1.132.505 1.215.041.083.069.18.014.288-.055.109-.083.176-.164.271-.082.096-.172.214-.246.287-.082.083-.169.173-.072.339.096.166.428.706.918 1.142.631.562 1.162.736 1.328.819.166.082.263.072.36-.041.097-.113.417-.487.528-.654.111-.167.222-.139.373-.083.152.056.963.454 1.129.537.166.083.277.125.318.194.042.069.042.402-.102.807z"/></svg>`;
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAuthFlow();
   initTabs();
   initLeadsListeners();
+  initCareerListeners();
   initSettingsListeners();
 });
 
@@ -96,6 +98,7 @@ function showDashboard() {
     document.getElementById('user-display').textContent = currentUser.full_name || currentUser.username;
   }
   loadLeads();
+  loadCareerApplications();
   loadAgents();
   loadTestimonials();
   loadSettings();
@@ -622,3 +625,311 @@ function initSettingsListeners() {
     });
   }
 }
+
+// ================= 7. CAREER APPLICATIONS (ONBOARDING KONSULTAN) =================
+async function loadCareerApplications() {
+  const status = document.getElementById('filter-career-status')?.value || 'ALL';
+  const search = document.getElementById('search-career')?.value.trim() || '';
+
+  try {
+    let url = `${API_BASE}/admin/career-applications?status=${encodeURIComponent(status)}`;
+    if (search) url += `&search=${encodeURIComponent(search)}`;
+
+    const res = await fetch(url, { headers: getAuthHeaders() });
+    if (!res.ok) return;
+    const data = await res.json();
+
+    currentCareer = data.applications || [];
+    renderCareerApplications(currentCareer);
+
+    // Update stats
+    if (data.stats) {
+      const s = data.stats;
+      const totalEl = document.getElementById('stat-total-career');
+      const baruEl = document.getElementById('stat-baru-career');
+      const temudugaEl = document.getElementById('stat-temuduga-career');
+      const lulusEl = document.getElementById('stat-lulus-career');
+      const badgeEl = document.getElementById('badge-career-count');
+
+      if (totalEl) totalEl.textContent = s.total || 0;
+      if (baruEl) baruEl.textContent = s.baru || 0;
+      if (temudugaEl) temudugaEl.textContent = s.temuduga || 0;
+      if (lulusEl) lulusEl.textContent = s.lulus || 0;
+      if (badgeEl) badgeEl.textContent = s.baru || 0;
+    }
+  } catch (err) {
+    console.error('Error loading career applications:', err);
+  }
+}
+
+function renderCareerApplications(apps) {
+  const tbody = document.getElementById('career-table-body');
+  if (!tbody) return;
+
+  if (apps.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-slate-400">Tiada rekod permohonan kerjaya dijumpai.</td></tr>`;
+    return;
+  }
+
+  const getStatusBadge = (st) => {
+    switch (st) {
+      case 'BARU':
+        return '<span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300">BARU</span>';
+      case 'TEMUDUGA':
+        return '<span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-100 text-blue-800 border border-blue-300">TEMUDUGA</span>';
+      case 'LULUS':
+        return '<span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">LULUS</span>';
+      case 'DITOLAK':
+        return '<span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-300">DITOLAK</span>';
+      default:
+        return `<span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-slate-100 text-slate-700">${st || 'BARU'}</span>`;
+    }
+  };
+
+  tbody.innerHTML = apps.map(app => `
+    <tr class="hover:bg-slate-50 transition border-b border-slate-100">
+      <td class="py-3 px-4">
+        <span class="font-bold text-slate-900 block font-mono text-[11px]">${app.ref_no || `JC-REC-${app.id}`}</span>
+        <span class="text-[10px] text-slate-400 block">${(app.created_at || '').substring(0, 10)}</span>
+      </td>
+      <td class="py-3 px-4">
+        <span class="font-bold text-slate-900 block">${app.full_name}</span>
+        <span class="text-[10px] text-slate-500 font-mono block">IC: ${app.ic_number}</span>
+      </td>
+      <td class="py-3 px-4">
+        <div class="flex items-center gap-1.5 font-bold text-emerald-700 font-mono">
+          <a href="https://wa.me/${app.phone}" target="_blank" class="hover:underline flex items-center gap-1">
+            ${WHATSAPP_SVG}
+            <span>${app.phone}</span>
+          </a>
+        </div>
+        <span class="text-[10px] text-slate-500 block truncate max-w-[140px]">${app.email || '-'}</span>
+      </td>
+      <td class="py-3 px-4">
+        <span class="font-semibold text-slate-800 block">${app.address_city || '-'}, ${app.address_state || '-'}</span>
+        <span class="text-[10px] text-slate-500 block">Perekrut: ${app.recruiter_name || 'HQ JomConsult'}</span>
+      </td>
+      <td class="py-3 px-4">
+        <span class="font-bold text-slate-800 block text-[11px]">${app.bank_name || '-'}</span>
+        <span class="text-[10px] text-slate-500 font-mono block">${app.bank_account_number || '-'}</span>
+      </td>
+      <td class="py-3 px-4">
+        ${getStatusBadge(app.status)}
+      </td>
+      <td class="py-3 px-4 text-right whitespace-nowrap space-x-1.5">
+        <button onclick="openCareerModal(${app.id})" class="px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white font-bold text-[11px] border border-emerald-200 transition">
+          Lihat KYC
+        </button>
+        <button onclick="deleteCareerApplication(${app.id})" class="px-2 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-600 text-rose-700 hover:text-white font-bold text-[11px] border border-rose-200 transition" title="Padam Permohonan">
+          ✕
+        </button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+let activeCareerAppId = null;
+
+window.openCareerModal = function(id) {
+  const app = currentCareer.find(a => a.id === id);
+  if (!app) return;
+
+  activeCareerAppId = id;
+  const modal = document.getElementById('modal-career-detail');
+  const refEl = document.getElementById('career-modal-ref');
+  const contentEl = document.getElementById('career-details-content');
+  const docsEl = document.getElementById('career-docs-preview');
+  const statusSelect = document.getElementById('modal-career-status-select');
+  const notesInput = document.getElementById('modal-career-notes-input');
+  const waBtn = document.getElementById('career-modal-wa-btn');
+
+  if (refEl) refEl.innerText = `${app.ref_no || `JC-REC-${app.id}`} • Diterima: ${app.created_at || '-'}`;
+  if (statusSelect) statusSelect.value = app.status || 'BARU';
+  if (notesInput) notesInput.value = app.notes || '';
+
+  if (contentEl) {
+    contentEl.innerHTML = `
+      <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+        <span class="font-bold text-slate-500 block text-[10px] uppercase">Nama Penuh (MyKad)</span>
+        <span class="font-extrabold text-slate-900 text-sm">${app.full_name}</span>
+      </div>
+      <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+        <span class="font-bold text-slate-500 block text-[10px] uppercase">No. Kad Pengenalan / IC</span>
+        <span class="font-mono font-bold text-slate-900 text-sm">${app.ic_number}</span>
+      </div>
+      <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+        <span class="font-bold text-slate-500 block text-[10px] uppercase">Tarikh Lahir & Status</span>
+        <span class="font-semibold text-slate-900">${app.date_of_birth || '-'} • ${app.marital_status || 'Bujang'} (${app.race || 'Melayu'}, ${app.religion || 'Islam'})</span>
+      </div>
+      <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+        <span class="font-bold text-slate-500 block text-[10px] uppercase">No. WhatsApp & Emel</span>
+        <span class="font-mono font-bold text-emerald-700">${app.phone}</span>
+        <span class="text-[11px] text-slate-600 block">${app.email || '-'}</span>
+      </div>
+      <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1 md:col-span-2">
+        <span class="font-bold text-slate-500 block text-[10px] uppercase">Alamat Kediaman Penuh</span>
+        <span class="font-medium text-slate-900 leading-relaxed">${app.address_line_1 || ''} ${app.address_line_2 || ''}, ${app.address_postcode || ''} ${app.address_city || ''}, ${app.address_state || ''}</span>
+      </div>
+      <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+        <span class="font-bold text-slate-500 block text-[10px] uppercase">Akaun Bank Komisen</span>
+        <span class="font-bold text-slate-900">${app.bank_name || '-'}</span>
+        <span class="font-mono text-slate-800 block">${app.bank_account_number || '-'} (${app.bank_account_name || app.full_name})</span>
+      </div>
+      <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+        <span class="font-bold text-slate-500 block text-[10px] uppercase">Perekrut / Penaja</span>
+        <span class="font-bold text-slate-900">${app.recruiter_name || 'HQ JomConsult'}</span>
+      </div>
+    `;
+  }
+
+  if (docsEl) {
+    const renderDocCard = (title, dataUri) => {
+      if (!dataUri) {
+        return `
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-center space-y-1">
+            <span class="font-bold text-slate-600 block text-[11px]">${title}</span>
+            <span class="text-[10px] text-slate-400">Tiada fail</span>
+          </div>
+        `;
+      }
+      const isPdf = dataUri.startsWith('data:application/pdf');
+      return `
+        <div class="p-3 bg-white border border-slate-200 rounded-xl text-center space-y-2 hover:border-emerald-500 transition shadow-sm">
+          <span class="font-bold text-slate-800 block text-[11px]">${title}</span>
+          ${isPdf ? `
+            <a href="${dataUri}" download="${title}.pdf" class="inline-block px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 font-bold text-[10px] border border-emerald-200 hover:bg-emerald-600 hover:text-white transition">
+              Muat Turun PDF
+            </a>
+          ` : `
+            <a href="${dataUri}" target="_blank" class="block group">
+              <img src="${dataUri}" alt="${title}" class="h-20 w-auto mx-auto object-cover rounded-lg border border-slate-200 group-hover:opacity-90">
+              <span class="text-[10px] text-emerald-700 font-semibold mt-1 block">Buka Gambar Penuh ↗</span>
+            </a>
+          `}
+        </div>
+      `;
+    };
+
+    docsEl.innerHTML = `
+      ${renderDocCard('1. IC Depan', app.ic_front_data)}
+      ${renderDocCard('2. IC Belakang', app.ic_back_data)}
+      ${renderDocCard('3. Selfie Bersama IC', app.selfie_ic_data)}
+    `;
+  }
+
+  if (waBtn) {
+    const msg = `Salam ${app.full_name}, kami daripada Pengurusan HR JomConsult merujuk kepada permohonan kerjaya anda (No Rujukan: ${app.ref_no || `JC-REC-${app.id}`}). Kami ingin menjemput anda untuk sesi taklimat kerjaya.`;
+    waBtn.href = `https://wa.me/${app.phone}?text=${encodeURIComponent(msg)}`;
+  }
+
+  if (modal) modal.classList.remove('hidden');
+};
+
+window.closeCareerModal = function() {
+  const modal = document.getElementById('modal-career-detail');
+  if (modal) modal.classList.add('hidden');
+  activeCareerAppId = null;
+};
+
+window.deleteCareerApplication = async function(id) {
+  if (!confirm('Adakah anda pasti ingin memadamkan rekod permohonan kerjaya ini?')) return;
+
+  try {
+    const res = await fetch(`${API_BASE}/admin/career-applications?id=${id}`, {
+      method: 'DELETE',
+      headers: getAuthHeaders()
+    });
+    if (res.ok) {
+      loadCareerApplications();
+    } else {
+      alert('Gagal memadamkan rekod.');
+    }
+  } catch (err) {
+    alert('Ralat sambungan: ' + err.message);
+  }
+};
+
+function initCareerListeners() {
+  const filterStatus = document.getElementById('filter-career-status');
+  const searchInput = document.getElementById('search-career');
+  const btnRefresh = document.getElementById('btn-refresh-career');
+  const btnExport = document.getElementById('btn-export-career-csv');
+  const btnSaveStatus = document.getElementById('btn-save-career-status');
+
+  if (filterStatus) filterStatus.addEventListener('change', () => loadCareerApplications());
+  if (searchInput) {
+    let timeout = null;
+    searchInput.addEventListener('input', () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => loadCareerApplications(), 350);
+    });
+  }
+  if (btnRefresh) btnRefresh.addEventListener('click', () => loadCareerApplications());
+
+  if (btnSaveStatus) {
+    btnSaveStatus.addEventListener('click', async () => {
+      if (!activeCareerAppId) return;
+      const status = document.getElementById('modal-career-status-select')?.value || 'BARU';
+      const notes = document.getElementById('modal-career-notes-input')?.value.trim() || '';
+
+      btnSaveStatus.disabled = true;
+      btnSaveStatus.innerText = 'Sedang Menyimpan...';
+
+      try {
+        const res = await fetch(`${API_BASE}/admin/career-applications`, {
+          method: 'PATCH',
+          headers: getAuthHeaders(),
+          body: JSON.stringify({ id: activeCareerAppId, status, notes })
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          alert('Status permohonan berjaya dikemaskini.');
+          closeCareerModal();
+          loadCareerApplications();
+        } else {
+          alert(data.error || 'Gagal mengemaskini status.');
+        }
+      } catch (err) {
+        alert('Ralat: ' + err.message);
+      } finally {
+        btnSaveStatus.disabled = false;
+        btnSaveStatus.innerText = 'Simpan Kemaskini';
+      }
+    });
+  }
+
+  if (btnExport) {
+    btnExport.addEventListener('click', () => {
+      if (!currentCareer.length) {
+        alert('Tiada data permohonan untuk dieksport.');
+        return;
+      }
+      const headers = ['No Rujukan', 'Nama Penuh', 'No IC', 'Telefon', 'Emel', 'Lokasi', 'Negeri', 'Perekrut', 'Bank', 'No Akaun', 'Status', 'Catatan', 'Tarikh'];
+      const rows = currentCareer.map(a => [
+        `"${a.ref_no || `JC-REC-${a.id}`}"`,
+        `"${(a.full_name || '').replace(/"/g, '""')}"`,
+        `"${a.ic_number || ''}"`,
+        `"${a.phone || ''}"`,
+        `"${a.email || ''}"`,
+        `"${(a.address_city || '').replace(/"/g, '""')}"`,
+        `"${a.address_state || ''}"`,
+        `"${(a.recruiter_name || '').replace(/"/g, '""')}"`,
+        `"${a.bank_name || ''}"`,
+        `"${a.bank_account_number || ''}"`,
+        `"${a.status || 'BARU'}"`,
+        `"${(a.notes || '').replace(/"/g, '""')}"`,
+        `"${a.created_at || ''}"`
+      ]);
+
+      const csvContent = 'data:text/csv;charset=utf-8,\uFEFF' + [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', `JomConsult_Permohonan_Kerjaya_${new Date().toISOString().slice(0, 10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  }
+}
+
