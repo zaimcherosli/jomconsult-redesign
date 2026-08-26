@@ -277,10 +277,16 @@ function initCountUpAnimations() {
         const end = parseFloat(el.getAttribute('data-counter-end')) || 0;
         const prefix = el.getAttribute('data-counter-prefix') || '';
         const suffix = el.getAttribute('data-counter-suffix') || '';
+        const decimals = parseInt(el.getAttribute('data-counter-decimals'), 10) || 0;
+        const duration = 2000;
+
         const formatNum = (val) => {
           if (decimals > 0) return val.toFixed(decimals);
           return Math.round(val).toLocaleString();
         };
+
+        // Reset to 0 before animating up
+        el.innerText = prefix + formatNum(0) + suffix;
 
         let startTimestamp = null;
         const step = (timestamp) => {
@@ -299,7 +305,7 @@ function initCountUpAnimations() {
         observer.unobserve(el);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
   counters.forEach(c => observer.observe(c));
 }
