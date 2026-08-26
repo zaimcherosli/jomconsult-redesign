@@ -645,12 +645,12 @@ async function loadTestimonials() {
 
     container.innerHTML = list.map(t => `
       <div class="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-3">
-        <div class="flex items-start justify-between">
-          <div>
-            <span class="font-bold text-slate-900 text-xs block">${t.client_name}</span>
-            <span class="text-[11px] text-emerald-700 font-semibold">${t.profession}</span>
+        <div class="flex items-start justify-between gap-2">
+          <div class="min-w-0">
+            <span class="font-bold text-slate-900 text-xs block truncate">${t.client_name}</span>
+            <span class="text-[11px] text-emerald-700 font-semibold block truncate">${t.profession}</span>
           </div>
-          <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-mono font-bold">
+          <span class="shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-mono font-bold">
             Lulus: ${t.loan_approved}
           </span>
         </div>
