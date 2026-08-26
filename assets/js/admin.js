@@ -103,6 +103,11 @@ function showDashboard() {
     const userDisplayMobile = document.getElementById('user-display-mobile');
     if (userDisplay) userDisplay.textContent = name;
     if (userDisplayMobile) userDisplayMobile.textContent = name;
+
+    const profUser = document.getElementById('prof-username');
+    const profName = document.getElementById('prof-fullname');
+    if (profUser) profUser.value = currentUser.username || 'admin';
+    if (profName) profName.value = currentUser.full_name || 'Admin JomConsult';
   }
   loadLeads();
   loadCareerApplications();
@@ -793,6 +798,64 @@ function initSettingsListeners() {
         alertBox.textContent = 'Ralat menyimpan tetapan.';
         alertBox.className = 'p-3.5 rounded-xl text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200';
         alertBox.classList.remove('hidden');
+      }
+    });
+  }
+
+  // Profile / Password Change Listener
+  const profileForm = document.getElementById('profile-form');
+  const profileAlert = document.getElementById('profile-alert');
+  if (profileForm) {
+    profileForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('prof-username').value.trim();
+      const full_name = document.getElementById('prof-fullname').value.trim();
+      const current_password = document.getElementById('prof-current-password').value;
+      const new_password = document.getElementById('prof-new-password').value;
+      const btn = document.getElementById('btn-save-profile');
+
+      btn.disabled = true;
+      btn.innerHTML = '<span>Sedang mengemaskini...</span>';
+      profileAlert.classList.add('hidden');
+
+      try {
+        const res = await fetch(`${API_BASE}/admin/profile`, {
+          method: 'PUT',
+          headers: getAuthHeaders(),
+          body: JSON.stringify({ username, full_name, current_password, new_password })
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          profileAlert.textContent = data.message || 'Profil berjaya dikemaskini.';
+          profileAlert.className = 'p-3.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200';
+          profileAlert.classList.remove('hidden');
+
+          if (data.user) {
+            currentUser = { ...currentUser, ...data.user };
+            localStorage.setItem('jc_admin_user', JSON.stringify(currentUser));
+            const name = currentUser.full_name || currentUser.username;
+            const userDisplay = document.getElementById('user-display');
+            const userDisplayMobile = document.getElementById('user-display-mobile');
+            if (userDisplay) userDisplay.textContent = name;
+            if (userDisplayMobile) userDisplayMobile.textContent = name;
+          }
+
+          document.getElementById('prof-current-password').value = '';
+          document.getElementById('prof-new-password').value = '';
+          setTimeout(() => profileAlert.classList.add('hidden'), 4000);
+        } else {
+          profileAlert.textContent = data.error || 'Gagal mengemaskini profil.';
+          profileAlert.className = 'p-3.5 rounded-xl text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200';
+          profileAlert.classList.remove('hidden');
+        }
+      } catch (err) {
+        profileAlert.textContent = 'Ralat sambungan ke pelayan.';
+        profileAlert.className = 'p-3.5 rounded-xl text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200';
+        profileAlert.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span>Kemaskini Akaun & Kata Laluan</span>';
       }
     });
   }

@@ -23,8 +23,8 @@ export async function onRequestPost({ request, env }) {
       .bind(username.toLowerCase().trim())
       .first();
 
-    // Check either SHA256 match or direct fallback match for ease of first login
-    if (!admin || (admin.password_hash !== hashedInput && password !== "JomConsult2026!")) {
+    // Strictly verify password with SHA-256 hash stored in DB
+    if (!admin || admin.password_hash !== hashedInput) {
       return jsonResponse({ error: "Nama pengguna atau kata laluan tidak sah." }, 401);
     }
 
