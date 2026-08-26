@@ -221,14 +221,17 @@
           </div>
         </div>
 
-        <!-- Leads Table Container -->
-        <div class="bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm">
-          <div class="px-4 py-2 bg-slate-50/50 border-b border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
-            <span>Senarai Permohonan Pembiayaan</span>
-            <span class="md:hidden">↔ Tatal untuk kolum penuh</span>
+        <!-- Mobile Cards View (Visible on Mobile Only) -->
+        <div id="leads-cards-container" class="md:hidden space-y-3">
+          <div class="text-center py-8 text-slate-400 text-xs bg-white rounded-2xl border border-slate-200/80 p-6">
+            Memuatkan senarai permohonan...
           </div>
+        </div>
+
+        <!-- Desktop Table Container (Visible on Desktop Only) -->
+        <div class="hidden md:block bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm">
           <div class="overflow-x-auto">
-            <table class="min-w-[780px] w-full text-left text-xs text-slate-700">
+            <table class="w-full text-left text-xs text-slate-700">
               <thead class="bg-slate-50 text-slate-600 uppercase text-[10px] font-bold tracking-wider border-b border-slate-200">
                 <tr>
                   <th class="py-3.5 px-4">ID / Tarikh</th>
@@ -393,14 +396,17 @@
           </div>
         </div>
 
-        <!-- Career Applications Table -->
-        <div class="bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm">
-          <div class="px-4 py-2 bg-slate-50/50 border-b border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
-            <span>Senarai Permohonan Kerjaya & KYC</span>
-            <span class="md:hidden">↔ Tatal untuk kolum penuh</span>
+        <!-- Mobile Cards View (Visible on Mobile Only) -->
+        <div id="career-cards-container" class="md:hidden space-y-3">
+          <div class="text-center py-8 text-slate-400 text-xs bg-white rounded-2xl border border-slate-200/80 p-6">
+            Sedang memuatkan senarai permohonan kerjaya...
           </div>
+        </div>
+
+        <!-- Desktop Table Container (Visible on Desktop Only) -->
+        <div class="hidden md:block bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm">
           <div class="overflow-x-auto">
-            <table class="min-w-[850px] w-full text-left text-xs text-slate-700">
+            <table class="w-full text-left text-xs text-slate-700">
               <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider text-[10px]">
                 <tr>
                   <th class="py-3.5 px-4">No. Rujukan</th>

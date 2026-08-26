@@ -209,65 +209,142 @@ async function loadLeads() {
 
 function renderLeadsTable(leads) {
   const tbody = document.getElementById('leads-table-body');
+  const cardsContainer = document.getElementById('leads-cards-container');
+
   if (!leads || leads.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" class="text-center py-10 text-slate-400 font-medium">Tiada permohonan dijumpai.</td></tr>`;
+    if (tbody) tbody.innerHTML = `<tr><td colspan="6" class="text-center py-10 text-slate-400 font-medium">Tiada permohonan dijumpai.</td></tr>`;
+    if (cardsContainer) cardsContainer.innerHTML = `<div class="p-6 rounded-2xl bg-white border border-slate-200 text-center text-slate-400 text-xs">Tiada permohonan dijumpai.</div>`;
     return;
   }
 
-  tbody.innerHTML = leads.map(l => {
-    const cleanPhone = (l.phone || '').replace(/\D/g, '');
-    const waUrl = `https://wa.me/${cleanPhone.startsWith('60') ? cleanPhone : '60' + cleanPhone.replace(/^0/, '')}?text=${encodeURIComponent(`Salam ${l.applicant_name}, saya perunding pinjaman dari JomConsult mengenai permohonan semakan kelayakan anda.`)}`;
-    
-    let statusClass = 'bg-slate-100 text-slate-700 border-slate-200';
-    if (l.status === 'BARU') statusClass = 'bg-amber-50 text-amber-800 border-amber-300 font-bold';
-    if (l.status === 'DALAM SEMAKAN') statusClass = 'bg-blue-50 text-blue-800 border-blue-300';
-    if (l.status === 'LULUS') statusClass = 'bg-emerald-50 text-emerald-800 border-emerald-300 font-bold';
-    if (l.status === 'DITOLAK') statusClass = 'bg-rose-50 text-rose-800 border-rose-300';
+  // 1. Render Desktop Table
+  if (tbody) {
+    tbody.innerHTML = leads.map(l => {
+      const cleanPhone = (l.phone || '').replace(/\D/g, '');
+      const waUrl = `https://wa.me/${cleanPhone.startsWith('60') ? cleanPhone : '60' + cleanPhone.replace(/^0/, '')}?text=${encodeURIComponent(`Salam ${l.applicant_name}, saya perunding pinjaman dari JomConsult mengenai permohonan semakan kelayakan anda.`)}`;
+      
+      let statusClass = 'bg-slate-100 text-slate-700 border-slate-200';
+      if (l.status === 'BARU') statusClass = 'bg-amber-50 text-amber-800 border-amber-300 font-bold';
+      if (l.status === 'DALAM SEMAKAN') statusClass = 'bg-blue-50 text-blue-800 border-blue-300';
+      if (l.status === 'LULUS') statusClass = 'bg-emerald-50 text-emerald-800 border-emerald-300 font-bold';
+      if (l.status === 'DITOLAK') statusClass = 'bg-rose-50 text-rose-800 border-rose-300';
 
-    return `
-      <tr class="hover:bg-slate-50/80 transition">
-        <td class="py-3.5 px-4 font-mono text-[11px]">
-          <span class="font-bold text-slate-900 block">#${l.id}</span>
-          <span class="text-slate-500 text-[10px]">${l.created_at || '-'}</span>
-          <span class="inline-block mt-0.5 px-1.5 py-0.5 rounded bg-slate-100 text-[9px] text-slate-600 font-medium">${l.location_state || 'Selangor'}</span>
-        </td>
-        <td class="py-3.5 px-4">
-          <span class="font-bold text-slate-900 block">${l.applicant_name}</span>
-          <span class="text-[10px] text-slate-500 block">IC: ${l.ic_number || '-'}</span>
-          <a href="${waUrl}" target="_blank" class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 hover:text-emerald-800 mt-0.5">
-            ${WHATSAPP_SVG}
-            <span>${l.phone}</span>
-          </a>
-        </td>
-        <td class="py-3.5 px-4">
-          <span class="text-slate-900 font-semibold block">${l.sector || '-'}</span>
-          <span class="text-[10px] text-slate-500 block">Majikan: ${l.employer_name || '-'}</span>
-          <span class="text-[10px] text-slate-600 font-medium">Gaji: ${l.salary || '-'}</span>
-        </td>
-        <td class="py-3.5 px-4">
-          <span class="text-slate-800 font-medium block">${l.credit_issues || 'Tiada Masalah'}</span>
-          <span class="text-[10px] text-slate-500">Sijil: ${l.professional_cert || 'TIADA'}</span>
-        </td>
-        <td class="py-3.5 px-4">
-          <select onchange="updateLeadStatus(${l.id}, this.value)" class="text-[11px] font-semibold rounded-lg px-2.5 py-1 border ${statusClass} focus:outline-none cursor-pointer">
-            <option value="BARU" ${l.status === 'BARU' ? 'selected' : ''}>BARU</option>
-            <option value="DALAM SEMAKAN" ${l.status === 'DALAM SEMAKAN' ? 'selected' : ''}>DALAM SEMAKAN</option>
-            <option value="HANTAR KE BANK" ${l.status === 'HANTAR KE BANK' ? 'selected' : ''}>HANTAR KE BANK</option>
-            <option value="LULUS" ${l.status === 'LULUS' ? 'selected' : ''}>LULUS</option>
-            <option value="DITOLAK" ${l.status === 'DITOLAK' ? 'selected' : ''}>DITOLAK</option>
-          </select>
-        </td>
-        <td class="py-3.5 px-4 whitespace-nowrap space-x-1">
-          <button onclick="viewLeadDetails(${l.id})" class="px-2.5 py-1 text-emerald-700 hover:text-white bg-emerald-50 hover:bg-emerald-600 border border-emerald-200 rounded-lg text-xs font-semibold transition">
-            Butiran
-          </button>
-          <button onclick="deleteLead(${l.id})" class="px-2.5 py-1 text-slate-500 hover:text-rose-600 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 rounded-lg text-xs font-semibold transition">
-            Padam
-          </button>
-        </td>
-      </tr>
-    `;
-  }).join('');
+      return `
+        <tr class="hover:bg-slate-50/80 transition">
+          <td class="py-3.5 px-4 font-mono text-[11px] whitespace-nowrap">
+            <span class="font-bold text-slate-900 block">#${l.id}</span>
+            <span class="text-slate-500 text-[10px]">${(l.created_at || '').substring(0, 16)}</span>
+            <span class="inline-block mt-0.5 px-1.5 py-0.5 rounded bg-slate-100 text-[9px] text-slate-600 font-medium">${l.location_state || 'Selangor'}</span>
+          </td>
+          <td class="py-3.5 px-4">
+            <span class="font-bold text-slate-900 block">${l.applicant_name}</span>
+            <span class="text-[10px] text-slate-500 block">IC: ${l.ic_number || '-'}</span>
+            <a href="${waUrl}" target="_blank" class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 hover:text-emerald-800 mt-0.5">
+              ${WHATSAPP_SVG}
+              <span>${l.phone}</span>
+            </a>
+          </td>
+          <td class="py-3.5 px-4">
+            <span class="text-slate-900 font-semibold block">${l.sector || '-'}</span>
+            <span class="text-[10px] text-slate-500 block">Majikan: ${l.employer_name || '-'}</span>
+            <span class="text-[10px] text-slate-600 font-medium">Gaji: ${l.salary || '-'}</span>
+          </td>
+          <td class="py-3.5 px-4">
+            <span class="text-slate-800 font-medium block">${l.credit_issues || 'Tiada Masalah'}</span>
+            <span class="text-[10px] text-slate-500">Sijil: ${l.professional_cert || 'TIADA'}</span>
+          </td>
+          <td class="py-3.5 px-4 whitespace-nowrap">
+            <select onchange="updateLeadStatus(${l.id}, this.value)" class="text-[11px] font-semibold rounded-lg px-2.5 py-1 border ${statusClass} focus:outline-none cursor-pointer">
+              <option value="BARU" ${l.status === 'BARU' ? 'selected' : ''}>BARU</option>
+              <option value="DALAM SEMAKAN" ${l.status === 'DALAM SEMAKAN' ? 'selected' : ''}>DALAM SEMAKAN</option>
+              <option value="HANTAR KE BANK" ${l.status === 'HANTAR KE BANK' ? 'selected' : ''}>HANTAR KE BANK</option>
+              <option value="LULUS" ${l.status === 'LULUS' ? 'selected' : ''}>LULUS</option>
+              <option value="DITOLAK" ${l.status === 'DITOLAK' ? 'selected' : ''}>DITOLAK</option>
+            </select>
+          </td>
+          <td class="py-3.5 px-4 text-right whitespace-nowrap space-x-1">
+            <button onclick="viewLeadDetails(${l.id})" class="px-2.5 py-1 text-emerald-700 hover:text-white bg-emerald-50 hover:bg-emerald-600 border border-emerald-200 rounded-lg text-xs font-semibold transition">
+              Butiran
+            </button>
+            <button onclick="deleteLead(${l.id})" class="px-2 py-1 text-slate-500 hover:text-rose-600 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 rounded-lg text-xs font-semibold transition" title="Padam">
+              ✕
+            </button>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // 2. Render Mobile Cards View
+  if (cardsContainer) {
+    cardsContainer.innerHTML = leads.map(l => {
+      const cleanPhone = (l.phone || '').replace(/\D/g, '');
+      const waUrl = `https://wa.me/${cleanPhone.startsWith('60') ? cleanPhone : '60' + cleanPhone.replace(/^0/, '')}?text=${encodeURIComponent(`Salam ${l.applicant_name}, saya perunding pinjaman dari JomConsult mengenai permohonan semakan kelayakan anda.`)}`;
+      
+      let statusClass = 'bg-slate-100 text-slate-700 border-slate-200';
+      if (l.status === 'BARU') statusClass = 'bg-amber-50 text-amber-800 border-amber-300 font-bold';
+      if (l.status === 'DALAM SEMAKAN') statusClass = 'bg-blue-50 text-blue-800 border-blue-300';
+      if (l.status === 'LULUS') statusClass = 'bg-emerald-50 text-emerald-800 border-emerald-300 font-bold';
+      if (l.status === 'DITOLAK') statusClass = 'bg-rose-50 text-rose-800 border-rose-300';
+
+      return `
+        <div class="p-4 bg-white rounded-2xl border border-slate-200/90 shadow-sm space-y-3">
+          <div class="flex items-center justify-between pb-2.5 border-b border-slate-100">
+            <div class="flex items-center gap-2">
+              <span class="font-mono font-bold text-slate-900 text-xs">#${l.id}</span>
+              <span class="text-[10px] text-slate-400 font-medium">${(l.created_at || '').substring(0, 16)}</span>
+              <span class="px-2 py-0.5 rounded-md bg-slate-100 text-[10px] font-semibold text-slate-600">${l.location_state || 'Selangor'}</span>
+            </div>
+            <div>
+              <select onchange="updateLeadStatus(${l.id}, this.value)" class="text-[11px] font-bold rounded-lg px-2 py-1 border ${statusClass} focus:outline-none cursor-pointer">
+                <option value="BARU" ${l.status === 'BARU' ? 'selected' : ''}>BARU</option>
+                <option value="DALAM SEMAKAN" ${l.status === 'DALAM SEMAKAN' ? 'selected' : ''}>DALAM SEMAKAN</option>
+                <option value="HANTAR KE BANK" ${l.status === 'HANTAR KE BANK' ? 'selected' : ''}>HANTAR KE BANK</option>
+                <option value="LULUS" ${l.status === 'LULUS' ? 'selected' : ''}>LULUS</option>
+                <option value="DITOLAK" ${l.status === 'DITOLAK' ? 'selected' : ''}>DITOLAK</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <span class="font-extrabold text-slate-900 text-sm block">${l.applicant_name}</span>
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+              <span class="text-[11px] text-slate-500 font-mono">IC: ${l.ic_number || '-'}</span>
+              <a href="${waUrl}" target="_blank" class="inline-flex items-center gap-1 font-bold text-emerald-700 hover:text-emerald-800 font-mono text-[11px]">
+                ${WHATSAPP_SVG}
+                <span>${l.phone}</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 p-2.5 bg-slate-50 rounded-xl border border-slate-100 text-xs">
+            <div>
+              <span class="text-[10px] text-slate-400 block font-bold uppercase">Sektor & Gaji</span>
+              <span class="font-semibold text-slate-800 text-[11px] block">${l.sector || '-'}</span>
+              <span class="text-[10px] text-slate-500 block truncate">${l.salary || '-'}</span>
+            </div>
+            <div>
+              <span class="text-[10px] text-slate-400 block font-bold uppercase">Isu Kredit / Tujuan</span>
+              <span class="font-semibold text-slate-800 text-[11px] block">${l.credit_issues || 'Tiada Masalah'}</span>
+              <span class="text-[10px] text-slate-500 block truncate">${l.loan_purpose || '-'}</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 pt-1">
+            <a href="${waUrl}" target="_blank" class="flex-1 py-2 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs text-center transition flex items-center justify-center gap-1.5 shadow-sm">
+              <span>WhatsApp</span>
+            </a>
+            <button onclick="viewLeadDetails(${l.id})" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs border border-slate-200 transition">
+              Butiran
+            </button>
+            <button onclick="deleteLead(${l.id})" class="p-2 rounded-xl bg-rose-50 hover:bg-rose-600 text-rose-700 hover:text-white border border-rose-200 transition text-xs font-bold" title="Padam Lead">
+              ✕
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
 }
 
 window.viewLeadDetails = function(id) {
@@ -696,10 +773,11 @@ async function loadCareerApplications() {
 
 function renderCareerApplications(apps) {
   const tbody = document.getElementById('career-table-body');
-  if (!tbody) return;
+  const cardsContainer = document.getElementById('career-cards-container');
 
-  if (apps.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-slate-400">Tiada rekod permohonan kerjaya dijumpai.</td></tr>`;
+  if (!apps || apps.length === 0) {
+    if (tbody) tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-slate-400">Tiada rekod permohonan kerjaya dijumpai.</td></tr>`;
+    if (cardsContainer) cardsContainer.innerHTML = `<div class="p-6 rounded-2xl bg-white border border-slate-200 text-center text-slate-400 text-xs">Tiada rekod permohonan kerjaya dijumpai.</div>`;
     return;
   }
 
@@ -718,46 +796,102 @@ function renderCareerApplications(apps) {
     }
   };
 
-  tbody.innerHTML = apps.map(app => `
-    <tr class="hover:bg-slate-50 transition border-b border-slate-100">
-      <td class="py-3 px-4">
-        <span class="font-bold text-slate-900 block font-mono text-[11px]">${app.ref_no || `JC-REC-${app.id}`}</span>
-        <span class="text-[10px] text-slate-400 block">${(app.created_at || '').substring(0, 10)}</span>
-      </td>
-      <td class="py-3 px-4">
-        <span class="font-bold text-slate-900 block">${app.full_name}</span>
-        <span class="text-[10px] text-slate-500 font-mono block">IC: ${app.ic_number}</span>
-      </td>
-      <td class="py-3 px-4">
-        <div class="flex items-center gap-1.5 font-bold text-emerald-700 font-mono">
-          <a href="https://wa.me/${app.phone}" target="_blank" class="hover:underline flex items-center gap-1">
-            ${WHATSAPP_SVG}
-            <span>${app.phone}</span>
-          </a>
+  // 1. Render Desktop Table
+  if (tbody) {
+    tbody.innerHTML = apps.map(app => `
+      <tr class="hover:bg-slate-50 transition border-b border-slate-100">
+        <td class="py-3 px-4">
+          <span class="font-bold text-slate-900 block font-mono text-[11px]">${app.ref_no || `JC-REC-${app.id}`}</span>
+          <span class="text-[10px] text-slate-400 block">${(app.created_at || '').substring(0, 10)}</span>
+        </td>
+        <td class="py-3 px-4">
+          <span class="font-bold text-slate-900 block">${app.full_name}</span>
+          <span class="text-[10px] text-slate-500 font-mono block">IC: ${app.ic_number}</span>
+        </td>
+        <td class="py-3 px-4">
+          <div class="flex items-center gap-1.5 font-bold text-emerald-700 font-mono">
+            <a href="https://wa.me/${app.phone}" target="_blank" class="hover:underline flex items-center gap-1">
+              ${WHATSAPP_SVG}
+              <span>${app.phone}</span>
+            </a>
+          </div>
+          <span class="text-[10px] text-slate-500 block truncate max-w-[140px]">${app.email || '-'}</span>
+        </td>
+        <td class="py-3 px-4">
+          <span class="font-semibold text-slate-800 block">${app.address_city || '-'}, ${app.address_state || '-'}</span>
+          <span class="text-[10px] text-slate-500 block">Perekrut: ${app.recruiter_name || 'HQ JomConsult'}</span>
+        </td>
+        <td class="py-3 px-4">
+          <span class="font-bold text-slate-800 block text-[11px]">${app.bank_name || '-'}</span>
+          <span class="text-[10px] text-slate-500 font-mono block">${app.bank_account_number || '-'}</span>
+        </td>
+        <td class="py-3 px-4">
+          ${getStatusBadge(app.status)}
+        </td>
+        <td class="py-3 px-4 text-right whitespace-nowrap space-x-1.5">
+          <button onclick="openCareerModal(${app.id})" class="px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white font-bold text-[11px] border border-emerald-200 transition">
+            Lihat KYC
+          </button>
+          <button onclick="deleteCareerApplication(${app.id})" class="px-2 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-600 text-rose-700 hover:text-white font-bold text-[11px] border border-rose-200 transition" title="Padam Permohonan">
+            ✕
+          </button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  // 2. Render Mobile Cards View
+  if (cardsContainer) {
+    cardsContainer.innerHTML = apps.map(app => `
+      <div class="p-4 bg-white rounded-2xl border border-slate-200/90 shadow-sm space-y-3">
+        <div class="flex items-center justify-between pb-2.5 border-b border-slate-100">
+          <div>
+            <span class="font-mono font-bold text-slate-900 text-xs block">${app.ref_no || `JC-REC-${app.id}`}</span>
+            <span class="text-[10px] text-slate-400 font-medium">${(app.created_at || '').substring(0, 10)}</span>
+          </div>
+          <div>
+            ${getStatusBadge(app.status)}
+          </div>
         </div>
-        <span class="text-[10px] text-slate-500 block truncate max-w-[140px]">${app.email || '-'}</span>
-      </td>
-      <td class="py-3 px-4">
-        <span class="font-semibold text-slate-800 block">${app.address_city || '-'}, ${app.address_state || '-'}</span>
-        <span class="text-[10px] text-slate-500 block">Perekrut: ${app.recruiter_name || 'HQ JomConsult'}</span>
-      </td>
-      <td class="py-3 px-4">
-        <span class="font-bold text-slate-800 block text-[11px]">${app.bank_name || '-'}</span>
-        <span class="text-[10px] text-slate-500 font-mono block">${app.bank_account_number || '-'}</span>
-      </td>
-      <td class="py-3 px-4">
-        ${getStatusBadge(app.status)}
-      </td>
-      <td class="py-3 px-4 text-right whitespace-nowrap space-x-1.5">
-        <button onclick="openCareerModal(${app.id})" class="px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white font-bold text-[11px] border border-emerald-200 transition">
-          Lihat KYC
-        </button>
-        <button onclick="deleteCareerApplication(${app.id})" class="px-2 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-600 text-rose-700 hover:text-white font-bold text-[11px] border border-rose-200 transition" title="Padam Permohonan">
-          ✕
-        </button>
-      </td>
-    </tr>
-  `).join('');
+
+        <div class="space-y-1">
+          <span class="font-extrabold text-slate-900 text-sm block">${app.full_name}</span>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+            <span class="text-[11px] text-slate-500 font-mono">IC: ${app.ic_number}</span>
+            <a href="https://wa.me/${app.phone}" target="_blank" class="inline-flex items-center gap-1 font-bold text-emerald-700 hover:text-emerald-800 font-mono text-[11px]">
+              ${WHATSAPP_SVG}
+              <span>${app.phone}</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 p-2.5 bg-slate-50 rounded-xl border border-slate-100 text-xs">
+          <div>
+            <span class="text-[10px] text-slate-400 block font-bold uppercase">Lokasi / Penaja</span>
+            <span class="font-semibold text-slate-800 text-[11px] block truncate">${app.address_city || '-'}, ${app.address_state || '-'}</span>
+            <span class="text-[10px] text-slate-500 block truncate">Perekrut: ${app.recruiter_name || 'HQ'}</span>
+          </div>
+          <div>
+            <span class="text-[10px] text-slate-400 block font-bold uppercase">Akaun Bank</span>
+            <span class="font-semibold text-slate-800 text-[11px] block truncate">${app.bank_name || '-'}</span>
+            <span class="text-[10px] text-slate-500 font-mono block truncate">${app.bank_account_number || '-'}</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 pt-1">
+          <button onclick="openCareerModal(${app.id})" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-sm flex items-center justify-center gap-1.5">
+            <span>Lihat KYC & Dokumen</span>
+          </button>
+          <a href="https://wa.me/${app.phone}" target="_blank" class="p-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition" title="WhatsApp">
+            ${WHATSAPP_SVG}
+          </a>
+          <button onclick="deleteCareerApplication(${app.id})" class="p-2 rounded-xl bg-rose-50 hover:bg-rose-600 text-rose-700 hover:text-white border border-rose-200 transition text-xs font-bold" title="Padam">
+            ✕
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
 }
 
 let activeCareerAppId = null;
