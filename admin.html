@@ -198,9 +198,9 @@
         </div>
 
         <!-- Filter & Search Controls -->
-        <div class="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-wrap items-center justify-between gap-4">
-          <div class="flex flex-wrap items-center gap-2.5">
-            <select id="filter-lead-status" class="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-emerald-500 focus:bg-white transition">
+        <div class="p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:flex md:items-center gap-2.5">
+            <select id="filter-lead-status" class="w-full sm:w-auto bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-emerald-500 focus:bg-white transition">
               <option value="ALL">Semua Status</option>
               <option value="BARU">BARU</option>
               <option value="DALAM SEMAKAN">DALAM SEMAKAN</option>
@@ -208,21 +208,27 @@
               <option value="LULUS">LULUS</option>
               <option value="DITOLAK">DITOLAK</option>
             </select>
-            <input type="text" id="search-lead" placeholder="Cari nama, telefon, sektor..." class="bg-slate-50 border border-slate-200 text-xs rounded-xl px-3.5 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white w-60 transition">
-            <button id="btn-refresh-leads" class="px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs border border-slate-200 transition">
-              Muat Semula
-            </button>
+            <input type="text" id="search-lead" placeholder="Cari nama, telefon, sektor..." class="w-full sm:w-auto bg-slate-50 border border-slate-200 text-xs rounded-xl px-3.5 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white flex-1 md:w-64 transition">
+            
+            <div class="grid grid-cols-2 sm:flex items-center gap-2 sm:ml-auto">
+              <button id="btn-refresh-leads" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs border border-slate-200 transition text-center">
+                Muat Semula
+              </button>
+              <button id="btn-export-csv" class="w-full sm:w-auto px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1.5 shadow-sm text-center">
+                <span>Export CSV</span>
+              </button>
+            </div>
           </div>
-
-          <button id="btn-export-csv" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition flex items-center gap-2 shadow-sm">
-            <span>Export ke CSV / Excel</span>
-          </button>
         </div>
 
-        <!-- Leads Table -->
+        <!-- Leads Table Container -->
         <div class="bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm">
+          <div class="px-4 py-2 bg-slate-50/50 border-b border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+            <span>Senarai Permohonan Pembiayaan</span>
+            <span class="md:hidden">↔ Tatal untuk kolum penuh</span>
+          </div>
           <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs text-slate-700">
+            <table class="min-w-[780px] w-full text-left text-xs text-slate-700">
               <thead class="bg-slate-50 text-slate-600 uppercase text-[10px] font-bold tracking-wider border-b border-slate-200">
                 <tr>
                   <th class="py-3.5 px-4">ID / Tarikh</th>
@@ -230,7 +236,7 @@
                   <th class="py-3.5 px-4">Sektor & Gaji</th>
                   <th class="py-3.5 px-4">Isu Kredit / Tujuan</th>
                   <th class="py-3.5 px-4">Status Kes</th>
-                  <th class="py-3.5 px-4">Tindakan</th>
+                  <th class="py-3.5 px-4 text-right">Tindakan</th>
                 </tr>
               </thead>
               <tbody id="leads-table-body" class="divide-y divide-slate-100">
@@ -365,30 +371,36 @@
         </div>
 
         <!-- Filter & Search Controls -->
-        <div class="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-wrap items-center justify-between gap-4">
-          <div class="flex flex-wrap items-center gap-2.5">
-            <select id="filter-career-status" class="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-emerald-500 focus:bg-white transition">
+        <div class="p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:flex md:items-center gap-2.5">
+            <select id="filter-career-status" class="w-full sm:w-auto bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-emerald-500 focus:bg-white transition">
               <option value="ALL">Semua Status</option>
               <option value="BARU">BARU</option>
               <option value="TEMUDUGA">TEMUDUGA</option>
               <option value="LULUS">LULUS</option>
               <option value="DITOLAK">DITOLAK</option>
             </select>
-            <input type="text" id="search-career" placeholder="Cari nama, IC, telefon, rujukan..." class="bg-slate-50 border border-slate-200 text-xs rounded-xl px-3.5 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white w-64 transition">
-            <button id="btn-refresh-career" class="px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs border border-slate-200 transition">
-              Muat Semula
-            </button>
+            <input type="text" id="search-career" placeholder="Cari nama, IC, telefon, rujukan..." class="w-full sm:w-auto bg-slate-50 border border-slate-200 text-xs rounded-xl px-3.5 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white flex-1 md:w-64 transition">
+            
+            <div class="grid grid-cols-2 sm:flex items-center gap-2 sm:ml-auto">
+              <button id="btn-refresh-career" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs border border-slate-200 transition text-center">
+                Muat Semula
+              </button>
+              <button id="btn-export-career-csv" class="w-full sm:w-auto px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1.5 shadow-sm text-center">
+                <span>Eksport CSV</span>
+              </button>
+            </div>
           </div>
-
-          <button id="btn-export-career-csv" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition flex items-center gap-2 shadow-sm">
-            <span>Eksport Data Rekrut (CSV)</span>
-          </button>
         </div>
 
         <!-- Career Applications Table -->
         <div class="bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm">
+          <div class="px-4 py-2 bg-slate-50/50 border-b border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+            <span>Senarai Permohonan Kerjaya & KYC</span>
+            <span class="md:hidden">↔ Tatal untuk kolum penuh</span>
+          </div>
           <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs text-slate-700">
+            <table class="min-w-[850px] w-full text-left text-xs text-slate-700">
               <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider text-[10px]">
                 <tr>
                   <th class="py-3.5 px-4">No. Rujukan</th>
