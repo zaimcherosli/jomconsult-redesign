@@ -578,6 +578,57 @@
     </div>
   </div>
 
+  <!-- ================= MODAL: ADD/EDIT TESTIMONIAL ================= -->
+  <div id="modal-testimonial" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="max-w-lg w-full bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-4 shadow-2xl overflow-y-auto max-h-[90vh]">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 id="modal-testimonial-title" class="font-bold text-base text-slate-900">Tambah Testimoni Baharu</h3>
+        <button onclick="closeTestimonialModal()" class="text-slate-400 hover:text-slate-700 p-1 text-lg font-bold">✕</button>
+      </div>
+
+      <form id="form-testimonial" class="space-y-3 text-xs">
+        <input type="hidden" id="testimonial-id">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Nama Klien:</label>
+            <input type="text" id="testi-name" required placeholder="Cth: Encik Azman & Isteri" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Pekerjaan / Sektor:</label>
+            <input type="text" id="testi-profession" required placeholder="Cth: Eksekutif Swasta (MNC)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Jumlah Lulus:</label>
+            <input type="text" id="testi-loan-approved" required placeholder="Cth: RM 145,000" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Anggaran Penjimatan Bulanan:</label>
+            <input type="text" id="testi-savings" placeholder="Cth: RM1,850 / bulan" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Kisah / Masalah Asal:</label>
+          <input type="text" id="testi-issue" placeholder="Cth: Penyatuan Hutang & DSR Tinggi" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Ulasan / Testimoni Penuh Klien:</label>
+          <textarea id="testi-story" rows="3" required placeholder="Alhamdulillah JomConsult bantu..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500"></textarea>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 flex justify-end gap-2">
+          <button type="button" onclick="closeTestimonialModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl">Batal</button>
+          <button type="submit" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow">Simpan Testimoni</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script type="module" src="/assets/js/admin.js"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@ let currentUser = JSON.parse(localStorage.getItem('jc_admin_user') || 'null');
 let currentLeads = [];
 let currentCareer = [];
 let currentAgents = [];
+let currentTestimonials = [];
 
 const WHATSAPP_SVG = `<svg class="w-3.5 h-3.5 fill-current text-[#25D366] inline-block shrink-0" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.564 1.724.814 2.796.814 3.18 0 5.767-2.588 5.767-5.766.001-3.182-2.585-5.77-5.767-5.77zm3.364 8.163c-.144.405-.837.774-1.17.825-.313.05-.725.09-2.072-.472-1.614-.672-2.656-2.316-2.736-2.423-.08-.107-.649-.864-.649-1.649 0-.784.408-1.171.553-1.332.145-.16.319-.2.425-.2.106 0 .213 0 .307.006.1.006.234-.038.365.281.135.327.464 1.132.505 1.215.041.083.069.18.014.288-.055.109-.083.176-.164.271-.082.096-.172.214-.246.287-.082.083-.169.173-.072.339.096.166.428.706.918 1.142.631.562 1.162.736 1.328.819.166.082.263.072.36-.041.097-.113.417-.487.528-.654.111-.167.222-.139.373-.083.152.056.963.454 1.129.537.166.083.277.125.318.194.042.069.042.402-.102.807z"/></svg>`;
 
@@ -636,14 +637,14 @@ async function loadTestimonials() {
   try {
     const res = await fetch(`${API_BASE}/admin/testimonials`, { headers: getAuthHeaders() });
     const data = await res.json();
-    const list = data.testimonials || [];
+    currentTestimonials = data.testimonials || [];
 
-    if (list.length === 0) {
+    if (currentTestimonials.length === 0) {
       container.innerHTML = `<div class="col-span-2 text-center py-10 text-slate-400 font-medium">Tiada testimoni didaftarkan.</div>`;
       return;
     }
 
-    container.innerHTML = list.map(t => `
+    container.innerHTML = currentTestimonials.map(t => `
       <div class="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-3">
         <div class="flex items-start justify-between gap-2">
           <div class="min-w-0">
@@ -657,7 +658,14 @@ async function loadTestimonials() {
         <p class="text-xs text-slate-600 italic">"${t.story || t.original_issue}"</p>
         <div class="text-[11px] text-slate-500 flex items-center justify-between pt-2 border-t border-slate-100">
           <span>Jimat: <strong class="text-emerald-700">${t.monthly_savings || '-'}</strong></span>
-          <button onclick="deleteTestimonial(${t.id})" class="px-2 py-0.5 text-slate-500 hover:text-rose-600 text-xs font-semibold">Padam</button>
+          <div class="flex items-center gap-1.5">
+            <button onclick="editTestimonialModal(${t.id})" class="px-2.5 py-1 text-emerald-700 hover:text-white bg-emerald-50 hover:bg-emerald-600 border border-emerald-200 rounded-lg text-xs font-semibold transition">
+              Edit
+            </button>
+            <button onclick="deleteTestimonial(${t.id})" class="px-2.5 py-1 text-slate-500 hover:text-rose-600 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 rounded-lg text-xs font-semibold transition">
+              Padam
+            </button>
+          </div>
         </div>
       </div>
     `).join('');
@@ -665,6 +673,62 @@ async function loadTestimonials() {
     console.error(err);
   }
 }
+
+// Modal open/close for Testimonial
+document.getElementById('btn-add-testimonial-modal')?.addEventListener('click', () => {
+  document.getElementById('form-testimonial').reset();
+  document.getElementById('testimonial-id').value = '';
+  document.getElementById('modal-testimonial-title').textContent = 'Tambah Testimoni Baharu';
+  document.getElementById('modal-testimonial').classList.remove('hidden');
+});
+
+window.closeTestimonialModal = function() {
+  document.getElementById('modal-testimonial').classList.add('hidden');
+};
+
+window.editTestimonialModal = function(id) {
+  const t = currentTestimonials.find(x => x.id === id);
+  if (!t) return;
+  document.getElementById('testimonial-id').value = t.id;
+  document.getElementById('testi-name').value = t.client_name || '';
+  document.getElementById('testi-profession').value = t.profession || '';
+  document.getElementById('testi-loan-approved').value = t.loan_approved || '';
+  document.getElementById('testi-savings').value = t.monthly_savings || '';
+  document.getElementById('testi-issue').value = t.original_issue || '';
+  document.getElementById('testi-story').value = t.story || '';
+  document.getElementById('modal-testimonial-title').textContent = 'Kemaskini Testimoni Klien';
+  document.getElementById('modal-testimonial').classList.remove('hidden');
+};
+
+document.getElementById('form-testimonial')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const id = document.getElementById('testimonial-id').value;
+  const payload = {
+    client_name: document.getElementById('testi-name').value.trim(),
+    profession: document.getElementById('testi-profession').value.trim(),
+    loan_approved: document.getElementById('testi-loan-approved').value.trim(),
+    monthly_savings: document.getElementById('testi-savings').value.trim(),
+    original_issue: document.getElementById('testi-issue').value.trim(),
+    story: document.getElementById('testi-story').value.trim()
+  };
+
+  try {
+    const res = await fetch(`${API_BASE}/admin/testimonials`, {
+      method: id ? 'PUT' : 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(id ? { id: parseInt(id), ...payload } : payload)
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      closeTestimonialModal();
+      loadTestimonials();
+    } else {
+      alert(data.error || 'Gagal menyimpan testimoni.');
+    }
+  } catch (err) {
+    alert('Ralat sambungan.');
+  }
+});
 
 window.deleteTestimonial = async function(id) {
   if (!confirm('Padamkan testimoni ini?')) return;
