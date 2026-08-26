@@ -75,15 +75,17 @@ function initAuthFlow() {
     });
   }
 
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', () => {
-      localStorage.removeItem('jc_admin_token');
-      localStorage.removeItem('jc_admin_user');
-      authToken = '';
-      currentUser = null;
-      showLogin();
-    });
-  }
+  const doLogout = () => {
+    localStorage.removeItem('jc_admin_token');
+    localStorage.removeItem('jc_admin_user');
+    authToken = '';
+    currentUser = null;
+    showLogin();
+  };
+
+  const logoutBtnMobile = document.getElementById('logout-btn-mobile');
+  if (logoutBtn) logoutBtn.addEventListener('click', doLogout);
+  if (logoutBtnMobile) logoutBtnMobile.addEventListener('click', doLogout);
 }
 
 function showLogin() {
