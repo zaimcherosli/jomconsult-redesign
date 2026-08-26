@@ -91,17 +91,35 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="bg-white text-slate-900 font-sans antialiased selection:bg-emerald-500 selection:text-white">
-  <!-- Top Announcement Bar (Controlled by CMS) -->
-  <div id="top-announcement-bar" class="bg-emerald-800 text-emerald-50 text-[11px] sm:text-xs font-semibold py-2 px-4 text-center border-b border-emerald-700/40">
-    <div class="max-w-7xl mx-auto flex items-center justify-center gap-2">
-      <span id="announcement-text-display">Semakan Kelayakan Pinjaman 100% Percuma Tanpa Sebarang Caj Upfront.</span>
-    </div>
-  </div>
-
-
   <!-- STICKY NAVBAR WITH DROPDOWNS -->
   <!-- 1. STICKY NAVBAR WITH SUB-MENUS -->
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 py-3 transition-all">
+  
+  <!-- STICKY TOP WRAPPER (Moving Announcement Bar & Header Locked Together on Scroll) -->
+  <div class="sticky top-0 z-50 shadow-sm">
+    <!-- Top Announcement Bar (Continuous Slow & Steady Marquee - 1 Line) -->
+    <div id="top-announcement-bar" class="bg-emerald-900 text-emerald-100 text-[11px] sm:text-xs font-semibold py-1.5 border-b border-emerald-800/60 overflow-hidden relative select-none">
+      <div class="flex items-center animate-announcement-marquee whitespace-nowrap">
+        <div class="inline-flex items-center gap-6 px-4 shrink-0">
+          <span class="announcement-text-item">Semakan Kelayakan Pinjaman 100% Percuma Tanpa Sebarang Caj Upfront.</span>
+          <span class="text-emerald-400 font-bold">•</span>
+          <span class="announcement-text-item">Pakar Penyatuan Hutang, Pemulihan DSR & Rekod CCRIS / CTOS.</span>
+          <span class="text-emerald-400 font-bold">•</span>
+          <span class="announcement-text-item">15+ Rangkaian Institusi Perbankan & Koperasi Berdaftar di Malaysia.</span>
+          <span class="text-emerald-400 font-bold">•</span>
+        </div>
+        <div class="inline-flex items-center gap-6 px-4 shrink-0" aria-hidden="true">
+          <span class="announcement-text-item">Semakan Kelayakan Pinjaman 100% Percuma Tanpa Sebarang Caj Upfront.</span>
+          <span class="text-emerald-400 font-bold">•</span>
+          <span class="announcement-text-item">Pakar Penyatuan Hutang, Pemulihan DSR & Rekod CCRIS / CTOS.</span>
+          <span class="text-emerald-400 font-bold">•</span>
+          <span class="announcement-text-item">15+ Rangkaian Institusi Perbankan & Koperasi Berdaftar di Malaysia.</span>
+          <span class="text-emerald-400 font-bold">•</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. STICKY NAVBAR -->
+    <header class="bg-white/95 backdrop-blur-md border-b border-slate-100 py-2.5 sm:py-3 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
       
       <!-- Brand Logo -->
@@ -212,7 +230,6 @@
 
     
   </header>
-
   <!-- Mobile Drawer Menu with Accordion Sub-Menus -->
     <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-[99999] bg-slate-950/70 backdrop-blur-sm justify-end">
       <div class="relative w-full max-w-xs h-full bg-white p-6 shadow-2xl flex flex-col justify-between overflow-y-auto z-[100000]">

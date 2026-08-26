@@ -57,6 +57,26 @@
   animation-play-state: paused;
 }
 
+/* Announcement Bar Infinite Smooth Marquee (Right to Left, Slow & Steady) */
+@keyframes announcementMarquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-announcement-marquee {
+  display: flex;
+  width: max-content;
+  animation: announcementMarquee 35s linear infinite;
+}
+
+.animate-announcement-marquee:hover {
+  animation-play-state: paused;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

@@ -111,6 +111,7 @@ async function loadDynamicConfig() {
       document.querySelectorAll('.phone-display-text').forEach(el => el.textContent = cfg.phone_display);
     }
     if (cfg.announcement_text) {
+      document.querySelectorAll('.announcement-text-item').forEach(el => el.textContent = cfg.announcement_text);
       const annEl = document.getElementById('announcement-text-display');
       if (annEl) annEl.textContent = cfg.announcement_text;
     }
