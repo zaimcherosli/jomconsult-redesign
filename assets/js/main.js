@@ -277,8 +277,10 @@ function initCountUpAnimations() {
         const end = parseFloat(el.getAttribute('data-counter-end')) || 0;
         const prefix = el.getAttribute('data-counter-prefix') || '';
         const suffix = el.getAttribute('data-counter-suffix') || '';
-        const decimals = parseInt(el.getAttribute('data-counter-decimals')) || 0;
-        const duration = 1800;
+        const formatNum = (val) => {
+          if (decimals > 0) return val.toFixed(decimals);
+          return Math.round(val).toLocaleString();
+        };
 
         let startTimestamp = null;
         const step = (timestamp) => {
@@ -286,11 +288,11 @@ function initCountUpAnimations() {
           const progress = Math.min((timestamp - startTimestamp) / duration, 1);
           const easeProgress = 1 - Math.pow(1 - progress, 3);
           const current = easeProgress * end;
-          el.innerText = prefix + (decimals > 0 ? current.toFixed(decimals) : Math.round(current)) + suffix;
+          el.innerText = prefix + formatNum(current) + suffix;
           if (progress < 1) {
             requestAnimationFrame(step);
           } else {
-            el.innerText = prefix + (decimals > 0 ? end.toFixed(decimals) : Math.round(end)) + suffix;
+            el.innerText = prefix + formatNum(end) + suffix;
           }
         };
         requestAnimationFrame(step);

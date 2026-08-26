@@ -15,7 +15,7 @@ export async function onRequestGet({ env }) {
         email: "hello@jomconsult.com.my",
         address: "A-10-12, Radia Office Bukit Jelutong, Persiaran Arked, 40150 Shah Alam, Selangor",
         office_hours: "Isnin - Jumaat: 10:00 AM - 6:00 PM",
-        announcement_text: "Semakan Kelayakan Pinjaman 100% Percuma Tanpa Sebarang Caj Upfront.",
+        announcement_text: "Semakan Kelayakan Pembiayaan Percuma",
         announcement_active: "1"
       });
     }
