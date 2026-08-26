@@ -1,4 +1,4 @@
-﻿import { jsonResponse, sha256, verifyAdminToken } from "../_utils.js";
+import { jsonResponse, sha256, verifyAdminToken } from "../_utils.js";
 
 export async function onRequestOptions() {
   return jsonResponse({ ok: true });
@@ -43,11 +43,7 @@ export async function onRequestPut({ request, env }) {
     const updatedFullName = (full_name && full_name.trim().length > 0) ? full_name.trim() : admin.full_name;
 
     await db.prepare(
-      UPDATE admins SET
-        username = ?,
-        full_name = ?,
-        password_hash = ?
-       WHERE id = ?
+      "UPDATE admins SET username = ?, full_name = ?, password_hash = ? WHERE id = ?"
     ).bind(
       updatedUsername,
       updatedFullName,
