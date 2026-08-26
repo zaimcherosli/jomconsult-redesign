@@ -95,7 +95,11 @@ function showDashboard() {
   document.getElementById('login-view').classList.add('hidden');
   document.getElementById('dashboard-view').classList.remove('hidden');
   if (currentUser) {
-    document.getElementById('user-display').textContent = currentUser.full_name || currentUser.username;
+    const name = currentUser.full_name || currentUser.username;
+    const userDisplay = document.getElementById('user-display');
+    const userDisplayMobile = document.getElementById('user-display-mobile');
+    if (userDisplay) userDisplay.textContent = name;
+    if (userDisplayMobile) userDisplayMobile.textContent = name;
   }
   loadLeads();
   loadCareerApplications();
@@ -111,22 +115,42 @@ function getAuthHeaders() {
   };
 }
 
-// ================= 2. TABS SWITCHING =================
+// ================= 2. TABS SWITCHING & MOBILE MENU =================
 function initTabs() {
   const tabs = document.querySelectorAll('.nav-tab');
+  const mobileMenu = document.getElementById('admin-mobile-menu');
+  const menuToggle = document.getElementById('admin-menu-toggle');
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      tabs.forEach(t => {
-        t.classList.remove('tab-active');
-        t.classList.add('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-100');
-      });
-      tab.classList.add('tab-active');
-      tab.classList.remove('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-100');
-
       const targetId = tab.getAttribute('data-tab');
+
+      // Update all tabs styling (both desktop and mobile)
+      tabs.forEach(t => {
+        if (t.getAttribute('data-tab') === targetId) {
+          t.classList.add('tab-active');
+          t.classList.remove('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-100');
+        } else {
+          t.classList.remove('tab-active');
+          t.classList.add('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-100');
+        }
+      });
+
+      // Switch tab contents
       document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
       const targetContent = document.getElementById(targetId);
       if (targetContent) targetContent.classList.remove('hidden');
+
+      // Close mobile menu if open
+      if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+      }
     });
   });
 }
@@ -168,8 +192,10 @@ async function loadLeads() {
       document.getElementById('stat-total-leads').textContent = data.stats.total || 0;
       document.getElementById('stat-baru-leads').textContent = data.stats.baru || 0;
       document.getElementById('stat-semakan-leads').textContent = data.stats.semakan || 0;
-      document.getElementById('stat-lulus-leads').textContent = data.stats.lulus || 0;
-      document.getElementById('badge-leads-count').textContent = data.stats.total || 0;
+      const leadsBadge = document.getElementById('badge-leads-count');
+      const leadsBadgeMobile = document.getElementById('badge-leads-count-mobile');
+      if (leadsBadge) leadsBadge.textContent = data.stats.total || 0;
+      if (leadsBadgeMobile) leadsBadgeMobile.textContent = data.stats.total || 0;
     }
 
     renderLeadsTable(currentLeads);
@@ -380,7 +406,10 @@ async function loadAgents() {
     const data = await res.json();
     currentAgents = data.agents || [];
 
-    document.getElementById('badge-agents-count').textContent = currentAgents.length;
+    const agentsBadge = document.getElementById('badge-agents-count');
+    const agentsBadgeMobile = document.getElementById('badge-agents-count-mobile');
+    if (agentsBadge) agentsBadge.textContent = currentAgents.length;
+    if (agentsBadgeMobile) agentsBadgeMobile.textContent = currentAgents.length;
 
     if (currentAgents.length === 0) {
       container.innerHTML = `<div class="col-span-3 text-center py-10 text-slate-400 font-medium">Tiada ejen didaftarkan.</div>`;
@@ -654,8 +683,9 @@ async function loadCareerApplications() {
       if (totalEl) totalEl.textContent = s.total || 0;
       if (baruEl) baruEl.textContent = s.baru || 0;
       if (temudugaEl) temudugaEl.textContent = s.temuduga || 0;
-      if (lulusEl) lulusEl.textContent = s.lulus || 0;
+      const badgeMobileEl = document.getElementById('badge-career-count-mobile');
       if (badgeEl) badgeEl.textContent = s.baru || 0;
+      if (badgeMobileEl) badgeMobileEl.textContent = s.baru || 0;
     }
   } catch (err) {
     console.error('Error loading career applications:', err);

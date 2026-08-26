@@ -58,15 +58,18 @@
   <div id="dashboard-view" class="hidden min-h-screen flex flex-col bg-slate-50">
     
     <!-- Top Header -->
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 px-4 sm:px-8 py-3.5 flex items-center justify-between shadow-sm">
-      <div class="flex items-center gap-4">
-        <a href="/" target="_blank" class="flex items-center gap-2.5">
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 px-4 sm:px-8 py-3 flex items-center justify-between shadow-sm">
+      <div class="flex items-center gap-3">
+        <!-- Mobile Hamburger Button -->
+        <button id="admin-menu-toggle" class="md:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition focus:outline-none border border-slate-200" aria-label="Buka Menu">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <a href="/" target="_blank" class="flex items-center gap-2">
           <img src="/logo.png" alt="JomConsult Logo" class="h-8 w-auto">
           <span class="font-extrabold text-sm text-slate-900 hidden sm:inline">CMS Backend</span>
         </a>
-        <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[10px] font-bold uppercase tracking-wider">
-          Cloudflare D1 Live
-        </span>
       </div>
 
       <div class="flex items-center gap-3">
@@ -78,14 +81,59 @@
           <span id="user-display" class="block text-xs font-bold text-slate-900">Admin JomConsult</span>
           <span class="block text-[10px] text-slate-500 font-medium">Super Administrator</span>
         </div>
-        <button id="logout-btn" class="px-3.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-600 text-rose-700 hover:text-white border border-rose-200 text-xs font-bold transition shadow-sm">
-          Log Keluar
+        <!-- Logout Button (Icon Only) -->
+        <button id="logout-btn" class="p-2.5 rounded-xl bg-rose-50 hover:bg-rose-600 text-rose-700 hover:text-white border border-rose-200 transition shadow-sm flex items-center justify-center" title="Log Keluar">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
         </button>
       </div>
     </header>
 
-    <!-- Navigation Tabs -->
-    <div class="bg-white border-b border-slate-200 px-4 sm:px-8">
+    <!-- Mobile Drawer Menu (Hidden by default, shown via hamburger) -->
+    <div id="admin-mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 py-3 shadow-md space-y-1.5 sticky top-[57px] z-30">
+      <div class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 px-3 py-1">Menu Pengurusan</div>
+      <button class="nav-tab w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-between tab-active" data-tab="tab-leads">
+        <span class="flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span>Peti Masuk Leads</span>
+        </span>
+        <span id="badge-leads-count-mobile" class="px-2 py-0.5 rounded-full bg-emerald-800 text-[10px] font-mono text-white">0</span>
+      </button>
+      <button class="nav-tab w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center justify-between" data-tab="tab-career">
+        <span class="flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <span>Permohonan Kerjaya</span>
+        </span>
+        <span id="badge-career-count-mobile" class="px-2 py-0.5 rounded-full bg-amber-500 text-[10px] font-mono text-white">0</span>
+      </button>
+      <button class="nav-tab w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center justify-between" data-tab="tab-agents">
+        <span class="flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <span>Pengurusan Ejen Sah</span>
+        </span>
+        <span id="badge-agents-count-mobile" class="px-2 py-0.5 rounded-full bg-slate-200 text-[10px] font-mono text-slate-700">0</span>
+      </button>
+      <button class="nav-tab w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center justify-between" data-tab="tab-testimonials">
+        <span class="flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          <span>Testimoni Klien</span>
+        </span>
+      </button>
+      <button class="nav-tab w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center justify-between" data-tab="tab-settings">
+        <span class="flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <span>Tetapan Web & WhatsApp</span>
+        </span>
+      </button>
+      <div class="pt-2 border-t border-slate-100 flex items-center justify-between px-3 text-[11px] text-slate-500">
+        <span>Pengguna: <strong id="user-display-mobile" class="text-slate-800">Admin</strong></span>
+        <a href="/" target="_blank" class="text-emerald-700 font-bold hover:underline">Buka Laman Web ↗</a>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation Tabs (Hidden on mobile) -->
+    <div class="hidden md:block bg-white border-b border-slate-200 px-4 sm:px-8">
       <div class="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto py-2.5 no-scrollbar">
         <button class="nav-tab px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 whitespace-nowrap tab-active" data-tab="tab-leads">
           <span>Peti Masuk Leads</span>
