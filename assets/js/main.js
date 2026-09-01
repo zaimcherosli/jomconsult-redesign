@@ -645,45 +645,77 @@ function initFAQAccordion() {
 }
 
 // 7. Agent Verification System (Verify.html)
-function initAgentVerification() {
+async function initAgentVerification() {
   const form = document.getElementById('agent-search-form');
   const input = document.getElementById('agent-search-input');
   const resultContainer = document.getElementById('verification-result');
   const directoryContainer = document.getElementById('agents-directory');
 
+  let activeAgents = [...OFFICIAL_AGENTS];
+
+  // Attempt to fetch live agents with photos from Cloudflare D1
+  try {
+    const res = await fetch('/api/public/agents');
+    if (res.ok) {
+      const data = await res.json();
+      if (data.agents && data.agents.length > 0) {
+        activeAgents = data.agents.map(a => ({
+          id: a.staff_id,
+          name: a.name,
+          role: a.role,
+          phone: a.phone,
+          phoneDisplay: a.phone_display || a.phone,
+          branch: a.branch,
+          zone: a.zone,
+          status: a.status,
+          joinedDate: a.created_at ? new Date(a.created_at).toLocaleDateString('ms-MY', { day: '2-digit', month: 'long', year: 'numeric' }) : '01 Januari 2024',
+          rating: a.rating || '5.0 / 5.0',
+          initials: a.initials || 'JC',
+          specialty: a.specialty || 'Penyatuan Hutang & Analisis DSR',
+          avatarBg: a.avatar_bg || 'bg-emerald-700',
+          photo_url: a.photo_url || null
+        }));
+      }
+    }
+  } catch (err) {}
+
   if (directoryContainer) {
-    directoryContainer.innerHTML = OFFICIAL_AGENTS.map(agent => `
-      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-        <div>
-          <div class="flex items-center gap-4 mb-4">
-            <div class="w-14 h-14 rounded-2xl ${agent.avatarBg} text-white flex items-center justify-center text-lg font-black shadow-md shrink-0">
-              ${agent.initials}
-            </div>
-            <div>
-              <div class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md mb-1">
-                ${agent.status}
+    directoryContainer.innerHTML = activeAgents.map(agent => {
+      const avatarHtml = agent.photo_url
+        ? `<img src="${agent.photo_url}" class="w-14 h-14 rounded-2xl object-cover shadow-md shrink-0 border border-slate-200" alt="${agent.name}">`
+        : `<div class="w-14 h-14 rounded-2xl ${agent.avatarBg} text-white flex items-center justify-center text-lg font-black shadow-md shrink-0">${agent.initials}</div>`;
+
+      return `
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center gap-4 mb-4">
+              ${avatarHtml}
+              <div>
+                <div class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md mb-1">
+                  ${agent.status}
+                </div>
+                <h4 class="text-base font-bold text-slate-900 leading-tight">${agent.name}</h4>
+                <div class="text-xs text-emerald-700 font-mono font-bold mt-0.5">Staff ID: ${agent.id}</div>
               </div>
-              <h4 class="text-base font-bold text-slate-900 leading-tight">${agent.name}</h4>
-              <div class="text-xs text-emerald-700 font-mono font-bold mt-0.5">Staff ID: ${agent.id}</div>
+            </div>
+
+            <div class="space-y-2 text-xs text-slate-600 border-t border-slate-100 pt-3">
+              <div><strong>Jawatan:</strong> ${agent.role}</div>
+              <div><strong>Cawangan:</strong> ${agent.branch}</div>
+              <div><strong>Zon Operasi:</strong> ${agent.zone}</div>
+              <div><strong>Pengkhususan:</strong> ${agent.specialty}</div>
+              <div><strong>Tarikh Pendaftaran:</strong> ${agent.joinedDate}</div>
             </div>
           </div>
 
-          <div class="space-y-2 text-xs text-slate-600 border-t border-slate-100 pt-3">
-            <div><strong>Jawatan:</strong> ${agent.role}</div>
-            <div><strong>Cawangan:</strong> ${agent.branch}</div>
-            <div><strong>Zon Operasi:</strong> ${agent.zone}</div>
-            <div><strong>Pengkhususan:</strong> ${agent.specialty}</div>
-            <div><strong>Tarikh Pendaftaran:</strong> ${agent.joinedDate}</div>
+          <div class="mt-5 pt-4 border-t border-slate-100">
+            <a href="https://wa.me/${agent.phone}?text=Salam%20${encodeURIComponent(agent.name)}%20(ID:%20${agent.id}),%20saya%20telah%20mengesahkan%20profil%20tuan%2Fpuan%20di%20portal%20JomConsult%20dan%20ingin%20memohon%20konsultasi." target="_blank" class="inline-flex items-center justify-center w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-sm transition">
+              <span class='inline-flex items-center gap-1.5'>${OFFICIAL_WHATSAPP_SVG} WhatsApp ${agent.name.split(' ')[0]} (Rasmi)</span>
+            </a>
           </div>
         </div>
-
-        <div class="mt-5 pt-4 border-t border-slate-100">
-          <a href="https://wa.me/${agent.phone}?text=Salam%20${encodeURIComponent(agent.name)}%20(ID:%20${agent.id}),%20saya%20telah%20mengesahkan%20profil%20tuan%2Fpuan%20di%20portal%20JomConsult%20dan%20ingin%20memohon%20konsultasi." target="_blank" class="inline-flex items-center justify-center w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-sm transition">
-            <span class='inline-flex items-center gap-1.5'>${OFFICIAL_WHATSAPP_SVG} WhatsApp ${agent.name.split(' ')[0]} (Rasmi)</span>
-          </a>
-        </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   }
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -720,7 +752,7 @@ function initAgentVerification() {
 
     const cleanQuery = query.toLowerCase().replace(/[^a-z0-9]/g, '');
 
-    const matched = OFFICIAL_AGENTS.find(agent => {
+    const matched = activeAgents.find(agent => {
       const cleanId = agent.id.toLowerCase().replace(/[^a-z0-9]/g, '');
       const cleanName = agent.name.toLowerCase().replace(/[^a-z0-9]/g, '');
       const cleanPhone = agent.phone.replace(/[^0-9]/g, '');
@@ -734,13 +766,15 @@ function initAgentVerification() {
     });
 
     if (matched) {
+      const avatarHtml = matched.photo_url
+        ? `<img src="${matched.photo_url}" class="w-12 h-12 rounded-xl object-cover shadow border border-emerald-200 shrink-0" alt="${matched.name}">`
+        : `<div class="w-12 h-12 rounded-xl ${matched.avatarBg} text-white flex items-center justify-center font-bold text-base shadow shrink-0">${matched.initials}</div>`;
+
       resultContainer.innerHTML = `
         <div class="p-6 rounded-2xl bg-emerald-50 border-2 border-emerald-500 shadow-xl space-y-4 animate-fade-in">
           <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-emerald-200">
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl ${matched.avatarBg} text-white flex items-center justify-center font-bold text-base shadow">
-                ${matched.initials}
-              </div>
+              ${avatarHtml}
               <div>
                 <span class="inline-block text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-emerald-600 text-white mb-1">
                   IDENTITI DISAHKAN SAH & BERDAFTAR

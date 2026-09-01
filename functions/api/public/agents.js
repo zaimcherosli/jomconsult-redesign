@@ -17,7 +17,7 @@ export async function onRequestGet({ request, env }) {
     if (query) {
       const cleanQ = `%${query}%`;
       const { results } = await db.prepare(
-        "SELECT id, staff_id, name, role, phone, phone_display, branch, zone, status, rating, initials, specialty, avatar_bg, verification_count FROM agents WHERE (staff_id LIKE ? OR phone LIKE ? OR name LIKE ?) ORDER BY id ASC"
+        "SELECT id, staff_id, name, role, phone, phone_display, branch, zone, status, rating, initials, specialty, avatar_bg, photo_url, verification_count FROM agents WHERE (staff_id LIKE ? OR phone LIKE ? OR name LIKE ?) ORDER BY id ASC"
       ).bind(cleanQ, cleanQ, cleanQ).all();
 
       // If exact match found, increment verification count
@@ -29,7 +29,7 @@ export async function onRequestGet({ request, env }) {
       return jsonResponse({ agents: results, total: results.length });
     } else {
       const { results } = await db.prepare(
-        "SELECT id, staff_id, name, role, phone, phone_display, branch, zone, status, rating, initials, specialty, avatar_bg FROM agents WHERE status LIKE '%AKTIF%' ORDER BY id ASC"
+        "SELECT id, staff_id, name, role, phone, phone_display, branch, zone, status, rating, initials, specialty, avatar_bg, photo_url FROM agents WHERE status LIKE '%AKTIF%' ORDER BY id ASC"
       ).all();
 
       return jsonResponse({ agents: results, total: results.length });

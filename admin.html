@@ -565,6 +565,33 @@
 
       <form id="form-agent" class="space-y-3 text-xs">
         <input type="hidden" id="agent-id">
+        <input type="hidden" id="agent-photo-url">
+
+        <!-- Profile Photo Upload Box -->
+        <div class="flex items-center gap-3.5 p-3 bg-slate-50 border border-slate-200 rounded-2xl">
+          <div class="relative shrink-0">
+            <div id="agent-photo-preview-wrap" class="w-14 h-14 rounded-2xl bg-emerald-700 text-white flex items-center justify-center font-black text-sm shadow-sm overflow-hidden border border-slate-200">
+              <span id="agent-avatar-initials">JC</span>
+              <img id="agent-photo-preview" src="" class="w-full h-full object-cover hidden" alt="Gambar Profil">
+            </div>
+          </div>
+
+          <div class="flex-1 min-w-0 space-y-1">
+            <label class="block font-bold text-slate-800 text-xs">Gambar Profil Perunding:</label>
+            <div class="flex flex-wrap items-center gap-2">
+              <label class="cursor-pointer inline-flex items-center gap-1.5 px-3 py-1 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl text-xs font-semibold shadow-xs transition">
+                <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                <span>Muat Naik Gambar</span>
+                <input type="file" id="agent-photo-file" accept="image/*" class="hidden">
+              </label>
+
+              <button type="button" id="btn-remove-agent-photo" class="hidden px-2.5 py-1 text-rose-600 hover:text-rose-700 hover:bg-rose-50 rounded-xl text-xs font-semibold transition">
+                Padam Gambar
+              </button>
+            </div>
+            <p class="text-[10px] text-slate-400">Format: JPG, PNG atau WebP (diselaraskan automatik)</p>
+          </div>
+        </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>

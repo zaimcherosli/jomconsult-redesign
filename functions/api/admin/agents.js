@@ -10,6 +10,11 @@ export async function onRequestGet({ request, env }) {
   }
 
   const db = env.DB;
+  // Ensure photo_url column exists
+  try {
+    await db.prepare("ALTER TABLE agents ADD COLUMN photo_url TEXT").run();
+  } catch (e) {}
+
   const { results } = await db.prepare("SELECT * FROM agents ORDER BY id ASC").all();
   return jsonResponse({ agents: results });
 }
@@ -20,8 +25,12 @@ export async function onRequestPost({ request, env }) {
   }
 
   const db = env.DB;
+  try {
+    await db.prepare("ALTER TABLE agents ADD COLUMN photo_url TEXT").run();
+  } catch (e) {}
+
   const payload = await request.json();
-  const { staff_id, name, role, phone, branch, zone, status, rating, specialty, avatar_bg } = payload;
+  const { staff_id, name, role, phone, branch, zone, status, rating, specialty, avatar_bg, photo_url } = payload;
 
   if (!staff_id || !name || !phone) {
     return jsonResponse({ error: "Staff ID, nama dan nombor telefon diperlukan." }, 400);
@@ -33,8 +42,8 @@ export async function onRequestPost({ request, env }) {
 
   try {
     const res = await db.prepare(
-      `INSERT INTO agents (staff_id, name, role, phone, phone_display, branch, zone, status, rating, initials, specialty, avatar_bg)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      `INSERT INTO agents (staff_id, name, role, phone, phone_display, branch, zone, status, rating, initials, specialty, avatar_bg, photo_url)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     ).bind(
       staff_id.trim().toUpperCase(),
       name.trim(),
@@ -47,7 +56,8 @@ export async function onRequestPost({ request, env }) {
       rating || "5.0 / 5.0",
       initials || "JC",
       specialty || "Penyatuan Hutang & Analisis DSR",
-      avatar_bg || "bg-emerald-700"
+      avatar_bg || "bg-emerald-700",
+      photo_url || null
     ).run();
 
     return jsonResponse({ success: true, message: "Ejen berjaya didaftarkan.", agent_id: res.meta.last_row_id });
@@ -62,8 +72,12 @@ export async function onRequestPut({ request, env }) {
   }
 
   const db = env.DB;
+  try {
+    await db.prepare("ALTER TABLE agents ADD COLUMN photo_url TEXT").run();
+  } catch (e) {}
+
   const payload = await request.json();
-  const { id, staff_id, name, role, phone, branch, zone, status, rating, specialty, avatar_bg } = payload;
+  const { id, staff_id, name, role, phone, branch, zone, status, rating, specialty, avatar_bg, photo_url } = payload;
 
   if (!id) {
     return jsonResponse({ error: "ID ejen diperlukan." }, 400);
@@ -84,6 +98,7 @@ export async function onRequestPut({ request, env }) {
       rating = COALESCE(?, rating),
       specialty = COALESCE(?, specialty),
       avatar_bg = COALESCE(?, avatar_bg),
+      photo_url = CASE WHEN ? = '__CLEAR__' THEN NULL WHEN ? IS NOT NULL THEN ? ELSE photo_url END,
       updated_at = CURRENT_TIMESTAMP
     WHERE id = ?`
   ).bind(
@@ -98,6 +113,9 @@ export async function onRequestPut({ request, env }) {
     rating || null,
     specialty || null,
     avatar_bg || null,
+    photo_url || null,
+    photo_url || null,
+    photo_url || null,
     id
   ).run();
 

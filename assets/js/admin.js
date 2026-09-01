@@ -503,13 +503,15 @@ async function loadAgents() {
 
     container.innerHTML = currentAgents.map(a => {
       const isAktif = a.status.includes('AKTIF');
+      const avatarHtml = a.photo_url
+        ? `<img src="${a.photo_url}" class="w-10 h-10 rounded-xl object-cover border border-slate-200 shadow-sm shrink-0" alt="${a.name}">`
+        : `<div class="w-10 h-10 rounded-xl ${a.avatar_bg || 'bg-emerald-700'} flex items-center justify-center font-extrabold text-white text-xs shadow-sm shrink-0">${a.initials || 'JC'}</div>`;
+
       return `
         <div class="p-5 rounded-2xl bg-white border ${isAktif ? 'border-slate-200/90' : 'border-rose-200 bg-rose-50/30'} shadow-sm space-y-4">
           <div class="flex items-start justify-between">
             <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl ${a.avatar_bg || 'bg-emerald-700'} flex items-center justify-center font-extrabold text-white text-xs shadow-sm">
-                ${a.initials || 'JC'}
-              </div>
+              ${avatarHtml}
               <div>
                 <span class="font-bold text-slate-900 text-xs block">${a.name}</span>
                 <span class="text-[10px] font-mono text-emerald-700 font-bold">${a.staff_id}</span>
@@ -554,6 +556,13 @@ async function loadAgents() {
 document.getElementById('btn-add-agent-modal')?.addEventListener('click', () => {
   document.getElementById('form-agent').reset();
   document.getElementById('agent-id').value = '';
+  document.getElementById('agent-photo-url').value = '';
+  document.getElementById('agent-photo-file').value = '';
+  document.getElementById('agent-photo-preview').src = '';
+  document.getElementById('agent-photo-preview').classList.add('hidden');
+  document.getElementById('agent-avatar-initials').textContent = 'JC';
+  document.getElementById('agent-avatar-initials').classList.remove('hidden');
+  document.getElementById('btn-remove-agent-photo')?.classList.add('hidden');
   document.getElementById('modal-agent-title').textContent = 'Tambah Ejen Baharu';
   document.getElementById('modal-agent').classList.remove('hidden');
 });
@@ -574,9 +583,87 @@ window.editAgentModal = function(id) {
   document.getElementById('agent-specialty').value = a.specialty || '';
   document.getElementById('agent-branch').value = a.branch || '';
   document.getElementById('agent-zone').value = a.zone || '';
+
+  // Photo setup
+  const photoUrl = a.photo_url || '';
+  document.getElementById('agent-photo-url').value = photoUrl;
+  if (document.getElementById('agent-photo-file')) document.getElementById('agent-photo-file').value = '';
+  const previewImg = document.getElementById('agent-photo-preview');
+  const initialsSpan = document.getElementById('agent-avatar-initials');
+  const removeBtn = document.getElementById('btn-remove-agent-photo');
+
+  if (photoUrl) {
+    previewImg.src = photoUrl;
+    previewImg.classList.remove('hidden');
+    initialsSpan.classList.add('hidden');
+    removeBtn?.classList.remove('hidden');
+  } else {
+    previewImg.src = '';
+    previewImg.classList.add('hidden');
+    initialsSpan.textContent = a.initials || 'JC';
+    initialsSpan.classList.remove('hidden');
+    removeBtn?.classList.add('hidden');
+  }
+
   document.getElementById('modal-agent-title').textContent = 'Kemaskini Ejen';
   document.getElementById('modal-agent').classList.remove('hidden');
 };
+
+// Photo file upload & compression listener
+document.getElementById('agent-photo-file')?.addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(evt) {
+    const img = new Image();
+    img.onload = function() {
+      // Compress to max 400x400 for ultra-fast load
+      const maxDim = 400;
+      let w = img.width;
+      let h = img.height;
+      if (w > maxDim || h > maxDim) {
+        if (w > h) {
+          h = Math.round((h * maxDim) / w);
+          w = maxDim;
+        } else {
+          w = Math.round((w * maxDim) / h);
+          h = maxDim;
+        }
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.85);
+
+      document.getElementById('agent-photo-url').value = compressedDataUrl;
+      const preview = document.getElementById('agent-photo-preview');
+      preview.src = compressedDataUrl;
+      preview.classList.remove('hidden');
+      document.getElementById('agent-avatar-initials').classList.add('hidden');
+      document.getElementById('btn-remove-agent-photo')?.classList.remove('hidden');
+    };
+    img.src = evt.target.result;
+  };
+  reader.readAsDataURL(file);
+});
+
+// Remove photo listener
+document.getElementById('btn-remove-agent-photo')?.addEventListener('click', function() {
+  document.getElementById('agent-photo-url').value = '__CLEAR__';
+  document.getElementById('agent-photo-file').value = '';
+  const preview = document.getElementById('agent-photo-preview');
+  preview.src = '';
+  preview.classList.add('hidden');
+  const initialsSpan = document.getElementById('agent-avatar-initials');
+  const nameVal = document.getElementById('agent-name')?.value.trim() || '';
+  const initials = nameVal.split(' ').map(w => w[0]).filter(Boolean).slice(0, 2).join('').toUpperCase() || 'JC';
+  initialsSpan.textContent = initials;
+  initialsSpan.classList.remove('hidden');
+  this.classList.add('hidden');
+});
 
 document.getElementById('form-agent')?.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -589,7 +676,8 @@ document.getElementById('form-agent')?.addEventListener('submit', async (e) => {
     status: document.getElementById('agent-status').value,
     specialty: document.getElementById('agent-specialty').value,
     branch: document.getElementById('agent-branch').value,
-    zone: document.getElementById('agent-zone').value
+    zone: document.getElementById('agent-zone').value,
+    photo_url: document.getElementById('agent-photo-url').value
   };
 
   try {
