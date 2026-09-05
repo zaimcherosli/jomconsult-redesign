@@ -39,6 +39,26 @@ html[data-theme="navy-gold"] .bg-\[\#07172C\] {
   background-color: #071021 !important;
 }
 
+html[data-theme="navy-gold"] #top-announcement-bar {
+  background-color: #060e1c !important;
+  color: #fde047 !important;
+  border-bottom-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+html[data-theme="navy-gold"] header {
+  background-color: rgba(7, 16, 33, 0.95) !important;
+  border-bottom-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+html[data-theme="navy-gold"] header .group > div > div {
+  background-color: #0a162c !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+html[data-theme="navy-gold"] header .group a:hover {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+}
+
 html[data-theme="navy-gold"] section[id="semak-kelayakan"],
 html[data-theme="navy-gold"] .bg-gradient-to-b {
   background-image: linear-gradient(180deg, #091429 0%, #0d1e3d 50%, #070e1c 100%) !important;
@@ -60,11 +80,6 @@ html[data-theme="navy-gold"] [class*="bg-slate-900/80"],
 html[data-theme="navy-gold"] .lg\:col-span-4.text-center {
   background-color: rgba(10, 22, 44, 0.85) !important;
   border-color: rgba(59, 130, 246, 0.22) !important;
-}
-
-html[data-theme="navy-gold"] header {
-  background-color: rgba(7, 16, 33, 0.95) !important;
-  border-bottom-color: rgba(59, 130, 246, 0.3) !important;
 }
 
 html[data-theme="navy-gold"] .gold-spotlight-top {
@@ -108,6 +123,26 @@ html[data-theme="emerald-gold"] .bg-\[\#07172C\] {
   background-color: #051912 !important;
 }
 
+html[data-theme="emerald-gold"] #top-announcement-bar {
+  background-color: #04140e !important;
+  color: #fde047 !important;
+  border-bottom-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+html[data-theme="emerald-gold"] header {
+  background-color: rgba(5, 25, 18, 0.95) !important;
+  border-bottom-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+html[data-theme="emerald-gold"] header .group > div > div {
+  background-color: #082117 !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+html[data-theme="emerald-gold"] header .group a:hover {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+}
+
 html[data-theme="emerald-gold"] section[id="semak-kelayakan"],
 html[data-theme="emerald-gold"] .bg-gradient-to-b {
   background-image: linear-gradient(180deg, #072218 0%, #0d3326 50%, #04140e 100%) !important;
@@ -129,11 +164,6 @@ html[data-theme="emerald-gold"] [class*="bg-slate-900/80"],
 html[data-theme="emerald-gold"] .lg\:col-span-4.text-center {
   background-color: rgba(7, 28, 21, 0.85) !important;
   border-color: rgba(16, 185, 129, 0.22) !important;
-}
-
-html[data-theme="emerald-gold"] header {
-  background-color: rgba(5, 25, 18, 0.95) !important;
-  border-bottom-color: rgba(16, 185, 129, 0.3) !important;
 }
 
 html[data-theme="emerald-gold"] .gold-spotlight-top {
@@ -177,6 +207,26 @@ html[data-theme="graphite-gold"] .bg-\[\#07172C\] {
   background-color: #15171c !important;
 }
 
+html[data-theme="graphite-gold"] #top-announcement-bar {
+  background-color: #121316 !important;
+  color: #fde047 !important;
+  border-bottom-color: rgba(148, 163, 184, 0.25) !important;
+}
+
+html[data-theme="graphite-gold"] header {
+  background-color: rgba(21, 23, 28, 0.95) !important;
+  border-bottom-color: rgba(234, 179, 8, 0.25) !important;
+}
+
+html[data-theme="graphite-gold"] header .group > div > div {
+  background-color: #1c1f26 !important;
+  border-color: rgba(148, 163, 184, 0.25) !important;
+}
+
+html[data-theme="graphite-gold"] header .group a:hover {
+  background-color: rgba(148, 163, 184, 0.15) !important;
+}
+
 html[data-theme="graphite-gold"] section[id="semak-kelayakan"],
 html[data-theme="graphite-gold"] .bg-gradient-to-b {
   background-image: linear-gradient(180deg, #181b22 0%, #222630 50%, #121316 100%) !important;
@@ -198,11 +248,6 @@ html[data-theme="graphite-gold"] [class*="bg-slate-900/80"],
 html[data-theme="graphite-gold"] .lg\:col-span-4.text-center {
   background-color: rgba(22, 26, 33, 0.85) !important;
   border-color: rgba(148, 163, 184, 0.18) !important;
-}
-
-html[data-theme="graphite-gold"] header {
-  background-color: rgba(21, 23, 28, 0.95) !important;
-  border-bottom-color: rgba(234, 179, 8, 0.25) !important;
 }
 
 html[data-theme="graphite-gold"] .relative.z-20.border-t.border-b {
@@ -259,82 +304,100 @@ html[data-theme="light-gold"] div[class*="blur-[110px]"] {
   display: none !important;
 }
 
-/* Typography across all pages in Light Mode (EXCEPT Footer and Dark Buttons) */
-html[data-theme="light-gold"] h1:not(footer *), 
-html[data-theme="light-gold"] h2:not(footer *), 
-html[data-theme="light-gold"] h3:not(footer *):not(#jc-theme-switcher-widget *), 
-html[data-theme="light-gold"] h4:not(footer *),
-html[data-theme="light-gold"] .hero-text-slide h1,
-html[data-theme="light-gold"] .hero-text-slide h2 {
-  color: #0f172a !important;
+/* --------------------------------------------------------------------------
+   HEADER & TOP ANNOUNCEMENT BAR (LIGHT MODE)
+   -------------------------------------------------------------------------- */
+/* Top Announcement Bar in Light Mode: Warm, Bright & 100% Readable */
+html[data-theme="light-gold"] #top-announcement-bar {
+  background-color: #fef9c3 !important;
+  color: #854d0e !important;
+  border-bottom: 1px solid #facc15 !important;
 }
 
-html[data-theme="light-gold"] p:not(footer *):not(#jc-theme-switcher-widget *),
-html[data-theme="light-gold"] .hero-text-slide p,
-html[data-theme="light-gold"] .text-slate-100:not(footer *):not(button *):not(a *),
-html[data-theme="light-gold"] .text-slate-200:not(footer *):not(button *):not(a *),
-html[data-theme="light-gold"] .text-slate-300:not(footer *):not(#jc-theme-switcher-widget *):not(button *):not(a *) {
-  color: #334155 !important;
+html[data-theme="light-gold"] #top-announcement-bar .announcement-text-item {
+  color: #854d0e !important;
+  font-weight: 600 !important;
 }
 
-html[data-theme="light-gold"] .text-slate-400:not(footer *):not(#jc-theme-switcher-widget *) {
-  color: #64748b !important;
+html[data-theme="light-gold"] #top-announcement-bar .text-yellow-400 {
+  color: #ca8a04 !important;
 }
 
-html[data-theme="light-gold"] section:not(footer) .text-white:not(button *):not(a *):not(button):not(a) {
-  color: #0f172a !important;
-}
-
-/* Yellow text in Light Mode turns to deep, legible Golden Amber (#b45309) */
-html[data-theme="light-gold"] .text-yellow-400:not(#jc-theme-switcher-widget *):not(footer *):not(#top-announcement-bar *):not(a[class*="bg-yellow-400"] *):not(button[class*="bg-yellow-400"] *),
-html[data-theme="light-gold"] .text-yellow-300:not(#jc-theme-switcher-widget *):not(footer *):not(#top-announcement-bar *),
-html[data-theme="light-gold"] .text-yellow-500:not(#jc-theme-switcher-widget *):not(footer *) {
-  color: #b45309 !important;
-}
-
-/* Headers & Navigation in Light Mode */
+/* Sticky Navbar in Light Mode */
 html[data-theme="light-gold"] header {
   background-color: rgba(255, 255, 255, 0.98) !important;
-  border-bottom-color: #e2e8f0 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
   box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05) !important;
 }
 
-html[data-theme="light-gold"] nav a,
+html[data-theme="light-gold"] nav a:not([class*="bg-yellow-400"]),
 html[data-theme="light-gold"] nav button {
   color: #334155 !important;
 }
 
 html[data-theme="light-gold"] nav a:hover,
 html[data-theme="light-gold"] nav button:hover,
-html[data-theme="light-gold"] nav a.text-yellow-400 {
+html[data-theme="light-gold"] nav a.text-yellow-400,
+html[data-theme="light-gold"] nav button.text-yellow-400 {
   color: #b45309 !important;
 }
 
-html[data-theme="light-gold"] #top-announcement-bar {
-  background-color: #0f172a !important;
-  color: #fde047 !important;
-  border-bottom-color: rgba(234, 179, 8, 0.25) !important;
+html[data-theme="light-gold"] nav svg {
+  color: currentColor !important;
 }
 
-/* Header Dropdowns in Light Mode */
+/* --------------------------------------------------------------------------
+   DESKTOP DROPDOWN MENUS (LIGHT MODE) - CRITICAL FIX
+   -------------------------------------------------------------------------- */
+/* Dropdown Card Container */
 html[data-theme="light-gold"] header .group > div > div {
   background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04) !important;
 }
 
-html[data-theme="light-gold"] header .group > div > div a:hover {
+/* Dropdown Menu Item Links - MUST NEVER BE A SOLID DARK BUTTON */
+header .group a,
+html[data-theme="light-gold"] header .group a {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light-gold"] header .group a:hover {
   background-color: #f1f5f9 !important;
 }
 
-html[data-theme="light-gold"] header .group > div > div span.text-white {
+/* Dropdown Item Title (Semua Perkhidmatan, Kenapa Pinjaman Kena Reject, etc.) */
+html[data-theme="light-gold"] header .group a span.text-white,
+html[data-theme="light-gold"] header .group a span:first-child {
   color: #0f172a !important;
+  font-weight: 700 !important;
 }
 
-/* Mobile Menu Drawer in Light Mode */
+/* Dropdown Item Subtitle (Pilihan & strategi pembiayaan, etc.) */
+html[data-theme="light-gold"] header .group a span.text-slate-400,
+html[data-theme="light-gold"] header .group a span:last-child {
+  color: #64748b !important;
+  font-weight: 400 !important;
+}
+
+/* Verify Ejen special gold item inside dropdown */
+html[data-theme="light-gold"] header .group a span.text-yellow-400,
+html[data-theme="light-gold"] header .group a[href*="verify"] span {
+  color: #b45309 !important;
+}
+
+html[data-theme="light-gold"] header .group a[href*="verify"]:hover {
+  background-color: #fefce8 !important;
+}
+
+/* --------------------------------------------------------------------------
+   MOBILE MENU DRAWER (LIGHT MODE)
+   -------------------------------------------------------------------------- */
 html[data-theme="light-gold"] #mobile-menu > div {
   background-color: #ffffff !important;
-  border-left-color: #e2e8f0 !important;
+  border-left: 1px solid #e2e8f0 !important;
   box-shadow: -10px 0 30px rgba(0, 0, 0, 0.12) !important;
 }
 
@@ -352,6 +415,46 @@ html[data-theme="light-gold"] #mobile-menu .border-slate-800 {
 }
 
 html[data-theme="light-gold"] #mobile-menu div[class*="text-yellow-400"] {
+  color: #b45309 !important;
+  font-weight: 700 !important;
+}
+
+html[data-theme="light-gold"] #mobile-menu #close-mobile-menu {
+  color: #475569 !important;
+}
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHY ACROSS ALL PAGES (LIGHT MODE)
+   -------------------------------------------------------------------------- */
+html[data-theme="light-gold"] h1:not(footer *), 
+html[data-theme="light-gold"] h2:not(footer *), 
+html[data-theme="light-gold"] h3:not(footer *):not(#jc-theme-switcher-widget *), 
+html[data-theme="light-gold"] h4:not(footer *),
+html[data-theme="light-gold"] .hero-text-slide h1,
+html[data-theme="light-gold"] .hero-text-slide h2 {
+  color: #0f172a !important;
+}
+
+html[data-theme="light-gold"] p:not(footer *):not(#jc-theme-switcher-widget *),
+html[data-theme="light-gold"] .hero-text-slide p,
+html[data-theme="light-gold"] .text-slate-100:not(footer *):not(button.solid-dark-btn *):not(a.solid-dark-btn *),
+html[data-theme="light-gold"] .text-slate-200:not(footer *):not(button.solid-dark-btn *):not(a.solid-dark-btn *),
+html[data-theme="light-gold"] .text-slate-300:not(footer *):not(#jc-theme-switcher-widget *):not(button.solid-dark-btn *):not(a.solid-dark-btn *) {
+  color: #334155 !important;
+}
+
+html[data-theme="light-gold"] .text-slate-400:not(footer *):not(#jc-theme-switcher-widget *) {
+  color: #64748b !important;
+}
+
+html[data-theme="light-gold"] section:not(footer) .text-white:not(button *):not(a *):not(button):not(a) {
+  color: #0f172a !important;
+}
+
+/* Yellow text in Light Mode turns to deep, legible Golden Amber (#b45309) */
+html[data-theme="light-gold"] .text-yellow-400:not(#jc-theme-switcher-widget *):not(footer *):not(#top-announcement-bar *):not(a[class*="bg-yellow-400"] *):not(button[class*="bg-yellow-400"] *),
+html[data-theme="light-gold"] .text-yellow-300:not(#jc-theme-switcher-widget *):not(footer *):not(#top-announcement-bar *),
+html[data-theme="light-gold"] .text-yellow-500:not(#jc-theme-switcher-widget *):not(footer *) {
   color: #b45309 !important;
 }
 
@@ -549,11 +652,11 @@ html[data-theme="light-gold"] button[class*="bg-yellow-400"]:hover {
   color: #0f172a !important;
 }
 
-/* SOLID DARK ACTION BUTTONS (MUST STAY SOLID DARK IN LIGHT MODE) */
-html[data-theme="light-gold"] a[class*="bg-slate-900"],
-html[data-theme="light-gold"] button[class*="bg-slate-900"],
-html[data-theme="light-gold"] a[class*="bg-slate-800"],
-html[data-theme="light-gold"] button[class*="bg-slate-800"],
+/* SOLID DARK ACTION BUTTONS (EXCLUDING HEADER & MOBILE DRAWER LINKS!) */
+html[data-theme="light-gold"] a[class~="bg-slate-900"]:not(header *):not(#mobile-menu *),
+html[data-theme="light-gold"] button[class~="bg-slate-900"]:not(header *):not(#mobile-menu *),
+html[data-theme="light-gold"] a[class~="bg-slate-800"]:not(header *):not(#mobile-menu *),
+html[data-theme="light-gold"] button[class~="bg-slate-800"]:not(header *):not(#mobile-menu *),
 html[data-theme="light-gold"] a[href="cara-kerja.html"].bg-slate-900,
 html[data-theme="light-gold"] a[href="cara-kerja.html"].bg-slate-800,
 html[data-theme="light-gold"] a[href="#bagaimana-kami-bantu"] {
@@ -562,17 +665,17 @@ html[data-theme="light-gold"] a[href="#bagaimana-kami-bantu"] {
   border-color: #0f172a !important;
 }
 
-html[data-theme="light-gold"] a[class*="bg-slate-900"] *,
-html[data-theme="light-gold"] button[class*="bg-slate-900"] *,
-html[data-theme="light-gold"] a[class*="bg-slate-800"] *,
-html[data-theme="light-gold"] button[class*="bg-slate-800"] * {
+html[data-theme="light-gold"] a[class~="bg-slate-900"]:not(header *):not(#mobile-menu *) *,
+html[data-theme="light-gold"] button[class~="bg-slate-900"]:not(header *):not(#mobile-menu *) *,
+html[data-theme="light-gold"] a[class~="bg-slate-800"]:not(header *):not(#mobile-menu *) *,
+html[data-theme="light-gold"] button[class~="bg-slate-800"]:not(header *):not(#mobile-menu *) * {
   color: #ffffff !important;
 }
 
-html[data-theme="light-gold"] a[class*="bg-slate-900"]:hover,
-html[data-theme="light-gold"] button[class*="bg-slate-900"]:hover,
-html[data-theme="light-gold"] a[class*="bg-slate-800"]:hover,
-html[data-theme="light-gold"] button[class*="bg-slate-800"]:hover {
+html[data-theme="light-gold"] a[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):hover,
+html[data-theme="light-gold"] button[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):hover,
+html[data-theme="light-gold"] a[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):hover,
+html[data-theme="light-gold"] button[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):hover {
   background-color: #1e293b !important;
   color: #ffffff !important;
   border-color: #1e293b !important;
