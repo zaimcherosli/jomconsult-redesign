@@ -52,9 +52,9 @@ export function applyTheme(themeId, save = true) {
     document.body.setAttribute('data-theme', themeId);
   }
 
-  // Handle Logo swap between dark/light themes
-  const logos = document.querySelectorAll('img[src*="logo"]');
-  logos.forEach(img => {
+  // Handle Logo swap ONLY for header & mobile menu (Footer ALWAYS stays white logo)
+  const headerLogos = document.querySelectorAll('header img[src*="logo"], #mobile-menu img[src*="logo"]');
+  headerLogos.forEach(img => {
     if (themeId === 'light-gold') {
       if (img.src.includes('logo-white.png')) {
         img.src = img.src.replace('logo-white.png', 'logo.png');
@@ -63,6 +63,14 @@ export function applyTheme(themeId, save = true) {
       if (img.src.includes('logo.png') && !img.src.includes('logo-white.png')) {
         img.src = img.src.replace('logo.png', 'logo-white.png');
       }
+    }
+  });
+
+  // Ensure footer logo is always white logo
+  const footerLogos = document.querySelectorAll('footer img[src*="logo"]');
+  footerLogos.forEach(img => {
+    if (img.src.includes('logo.png') && !img.src.includes('logo-white.png')) {
+      img.src = img.src.replace('logo.png', 'logo-white.png');
     }
   });
 
@@ -103,9 +111,9 @@ function initThemeSwitcher() {
 
   container.innerHTML = `
     <!-- Floating Trigger Pill Button -->
-    <button id="jc-theme-toggle-btn" type="button" class="flex items-center gap-2.5 px-4 py-2.5 bg-slate-900/95 hover:bg-slate-800 text-white rounded-full shadow-2xl border-2 border-yellow-400 transition-all transform hover:scale-105 active:scale-95 backdrop-blur-md cursor-pointer group">
+    <button id="jc-theme-toggle-btn" type="button" style="background-color: #0f172a !important; color: #ffffff !important; border: 2px solid #eab308 !important;" class="flex items-center gap-2.5 px-4 py-2.5 rounded-full shadow-2xl transition-all transform hover:scale-105 active:scale-95 backdrop-blur-md cursor-pointer group">
       <span class="text-base animate-bounce">🎨</span>
-      <span class="text-xs font-extrabold tracking-wide text-yellow-300 group-hover:text-white transition">Tukar Warna Web</span>
+      <span style="color: #fde047 !important;" class="text-xs font-extrabold tracking-wide">Tukar Warna Web</span>
       <span class="inline-flex h-2 w-2 rounded-full bg-yellow-400"></span>
     </button>
 
