@@ -1,0 +1,315 @@
+/* ==========================================================================
+   JOMCONSULT THEME SWITCHER ENGINE (DEMO CLIENT PREVIEW)
+   Supports 5 distinct color palettes:
+   1. default (black-gold) : Warm Black & Gold Luxury
+   2. navy-gold            : Corporate Royal Navy & Gold
+   3. emerald-gold         : Emerald Wealth & Syariah Gold
+   4. graphite-gold        : Titanium Graphite & Modern Sunburst
+   5. light-gold           : Clean Corporate Light Mode
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   THEME 1: BLACK & WARM GOLD (Default)
+   -------------------------------------------------------------------------- */
+html[data-theme="black-gold"] body,
+body:not([data-theme]) {
+  background-color: #0b0f19;
+  background-image: 
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(234, 179, 8, 0.22), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 5% 35%, rgba(245, 158, 11, 0.12), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 95% 65%, rgba(234, 179, 8, 0.15), transparent 55%),
+    radial-gradient(ellipse 85% 60% at 50% 110%, rgba(234, 179, 8, 0.18), transparent 70%);
+}
+
+/* --------------------------------------------------------------------------
+   THEME 2: CORPORATE ROYAL NAVY & GOLD
+   -------------------------------------------------------------------------- */
+html[data-theme="navy-gold"] body {
+  background-color: #060e1c !important;
+  background-image: 
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(37, 99, 235, 0.28), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 5% 35%, rgba(234, 179, 8, 0.14), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 95% 65%, rgba(30, 64, 175, 0.25), transparent 55%),
+    radial-gradient(ellipse 85% 60% at 50% 110%, rgba(234, 179, 8, 0.18), transparent 70%) !important;
+}
+
+html[data-theme="navy-gold"] .bg-\[\#0A0E17\],
+html[data-theme="navy-gold"] .bg-\[\#080C14\],
+html[data-theme="navy-gold"] .bg-\[\#07172C\] {
+  background-color: #071021 !important;
+}
+
+html[data-theme="navy-gold"] section[id="semak-kelayakan"],
+html[data-theme="navy-gold"] .bg-gradient-to-b {
+  background-image: linear-gradient(180deg, #091429 0%, #0d1e3d 50%, #070e1c 100%) !important;
+}
+
+html[data-theme="navy-gold"] .bg-slate-900,
+html[data-theme="navy-gold"] .bg-slate-900\/90,
+html[data-theme="navy-gold"] .bg-slate-900\/95,
+html[data-theme="navy-gold"] .bg-\[\#111625\]\/90 {
+  background-color: rgba(14, 28, 54, 0.92) !important;
+  border-color: rgba(59, 130, 246, 0.25) !important;
+}
+
+html[data-theme="navy-gold"] header {
+  background-color: rgba(7, 16, 33, 0.95) !important;
+  border-bottom-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+html[data-theme="navy-gold"] .gold-spotlight-top {
+  background: radial-gradient(ellipse at top, rgba(59, 130, 246, 0.3) 0%, rgba(234, 179, 8, 0.12) 50%, transparent 80%) !important;
+}
+
+/* --------------------------------------------------------------------------
+   THEME 3: EMERALD WEALTH & SYARIAH GOLD
+   -------------------------------------------------------------------------- */
+html[data-theme="emerald-gold"] body {
+  background-color: #04140e !important;
+  background-image: 
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(16, 185, 129, 0.25), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 5% 35%, rgba(234, 179, 8, 0.15), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 95% 65%, rgba(5, 150, 105, 0.22), transparent 55%),
+    radial-gradient(ellipse 85% 60% at 50% 110%, rgba(234, 179, 8, 0.18), transparent 70%) !important;
+}
+
+html[data-theme="emerald-gold"] .bg-\[\#0A0E17\],
+html[data-theme="emerald-gold"] .bg-\[\#080C14\],
+html[data-theme="emerald-gold"] .bg-\[\#07172C\] {
+  background-color: #051912 !important;
+}
+
+html[data-theme="emerald-gold"] section[id="semak-kelayakan"],
+html[data-theme="emerald-gold"] .bg-gradient-to-b {
+  background-image: linear-gradient(180deg, #072218 0%, #0d3326 50%, #04140e 100%) !important;
+}
+
+html[data-theme="emerald-gold"] .bg-slate-900,
+html[data-theme="emerald-gold"] .bg-slate-900\/90,
+html[data-theme="emerald-gold"] .bg-slate-900\/95,
+html[data-theme="emerald-gold"] .bg-\[\#111625\]\/90 {
+  background-color: rgba(11, 38, 29, 0.92) !important;
+  border-color: rgba(16, 185, 129, 0.25) !important;
+}
+
+html[data-theme="emerald-gold"] header {
+  background-color: rgba(5, 25, 18, 0.95) !important;
+  border-bottom-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+html[data-theme="emerald-gold"] .gold-spotlight-top {
+  background: radial-gradient(ellipse at top, rgba(16, 185, 129, 0.28) 0%, rgba(234, 179, 8, 0.12) 50%, transparent 80%) !important;
+}
+
+/* --------------------------------------------------------------------------
+   THEME 4: TITANIUM GRAPHITE & MODERN SUNBURST
+   -------------------------------------------------------------------------- */
+html[data-theme="graphite-gold"] body {
+  background-color: #121316 !important;
+  background-image: 
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(234, 179, 8, 0.20), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 5% 35%, rgba(148, 163, 184, 0.10), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 95% 65%, rgba(234, 179, 8, 0.14), transparent 55%),
+    radial-gradient(ellipse 85% 60% at 50% 110%, rgba(148, 163, 184, 0.12), transparent 70%) !important;
+}
+
+html[data-theme="graphite-gold"] .bg-\[\#0A0E17\],
+html[data-theme="graphite-gold"] .bg-\[\#080C14\],
+html[data-theme="graphite-gold"] .bg-\[\#07172C\] {
+  background-color: #15171c !important;
+}
+
+html[data-theme="graphite-gold"] section[id="semak-kelayakan"],
+html[data-theme="graphite-gold"] .bg-gradient-to-b {
+  background-image: linear-gradient(180deg, #181b22 0%, #222630 50%, #121316 100%) !important;
+}
+
+html[data-theme="graphite-gold"] .bg-slate-900,
+html[data-theme="graphite-gold"] .bg-slate-900\/90,
+html[data-theme="graphite-gold"] .bg-slate-900\/95,
+html[data-theme="graphite-gold"] .bg-\[\#111625\]\/90 {
+  background-color: rgba(30, 34, 43, 0.92) !important;
+  border-color: rgba(148, 163, 184, 0.22) !important;
+}
+
+html[data-theme="graphite-gold"] header {
+  background-color: rgba(21, 23, 28, 0.95) !important;
+  border-bottom-color: rgba(234, 179, 8, 0.25) !important;
+}
+
+/* --------------------------------------------------------------------------
+   THEME 5: CLEAN CORPORATE LIGHT MODE
+   -------------------------------------------------------------------------- */
+html[data-theme="light-gold"] body {
+  background-color: #f8fafc !important;
+  background-image: 
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(254, 240, 138, 0.4), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 5% 35%, rgba(254, 249, 195, 0.3), transparent 55%),
+    radial-gradient(ellipse 85% 60% at 50% 110%, rgba(254, 240, 138, 0.3), transparent 70%) !important;
+  color: #0f172a !important;
+}
+
+/* Headers & Navigation in Light Mode */
+html[data-theme="light-gold"] header {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  border-bottom-color: #e2e8f0 !important;
+  box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme="light-gold"] nav a,
+html[data-theme="light-gold"] nav button {
+  color: #334155 !important;
+}
+
+html[data-theme="light-gold"] nav a:hover,
+html[data-theme="light-gold"] nav button:hover {
+  color: #ca8a04 !important;
+}
+
+html[data-theme="light-gold"] #top-announcement-bar {
+  background-color: #0f172a !important;
+  color: #fde047 !important;
+}
+
+/* Sections & Overlays in Light Mode */
+html[data-theme="light-gold"] .bg-\[\#0A0E17\],
+html[data-theme="light-gold"] .bg-\[\#07172C\],
+html[data-theme="light-gold"] section[id="semak-kelayakan"] {
+  background-color: #f8fafc !important;
+  background-image: none !important;
+  border-color: #e2e8f0 !important;
+}
+
+html[data-theme="light-gold"] .papaipay-gradient-overlay {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.90) 40%, rgba(255, 255, 255, 0.70) 75%, rgba(255, 255, 255, 0.4) 100%) !important;
+}
+
+html[data-theme="light-gold"] .hero-text-slide h1,
+html[data-theme="light-gold"] .hero-text-slide h2,
+html[data-theme="light-gold"] h1, 
+html[data-theme="light-gold"] h2, 
+html[data-theme="light-gold"] h3, 
+html[data-theme="light-gold"] h4 {
+  color: #0f172a !important;
+}
+
+html[data-theme="light-gold"] .hero-text-slide p,
+html[data-theme="light-gold"] p,
+html[data-theme="light-gold"] .text-slate-200,
+html[data-theme="light-gold"] .text-slate-300 {
+  color: #475569 !important;
+}
+
+html[data-theme="light-gold"] .text-slate-400 {
+  color: #64748b !important;
+}
+
+/* Cards in Light Mode */
+html[data-theme="light-gold"] .bg-slate-900,
+html[data-theme="light-gold"] .bg-slate-900\/90,
+html[data-theme="light-gold"] .bg-slate-900\/95,
+html[data-theme="light-gold"] .bg-\[\#111625\]\/90,
+html[data-theme="light-gold"] .glass-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
+}
+
+html[data-theme="light-gold"] .bg-white\/5,
+html[data-theme="light-gold"] .bg-slate-900\/60 {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+/* Form Inputs in Light Mode */
+html[data-theme="light-gold"] input,
+html[data-theme="light-gold"] select,
+html[data-theme="light-gold"] textarea {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light-gold"] input:focus,
+html[data-theme="light-gold"] select:focus,
+html[data-theme="light-gold"] textarea:focus {
+  border-color: #eab308 !important;
+  background-color: #ffffff !important;
+}
+
+/* Buttons in Light Mode */
+html[data-theme="light-gold"] .bg-slate-800,
+html[data-theme="light-gold"] .bg-slate-900 {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Header Dropdowns in Light Mode */
+html[data-theme="light-gold"] header .group > div > div {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1) !important;
+}
+
+html[data-theme="light-gold"] header .group > div > div a:hover {
+  background-color: #f1f5f9 !important;
+}
+
+html[data-theme="light-gold"] header .group > div > div span.text-white {
+  color: #0f172a !important;
+}
+
+html[data-theme="light-gold"] .bg-\[\#111625\]\/90 span.font-bold,
+html[data-theme="light-gold"] .bg-\[\#111625\]\/90 h3,
+html[data-theme="light-gold"] .bg-\[\#111625\]\/90 h4 {
+  color: #0f172a !important;
+}
+
+html[data-theme="light-gold"] .bg-\[\#111625\]\/90 p,
+html[data-theme="light-gold"] .bg-\[\#111625\]\/90 span.text-slate-300 {
+  color: #475569 !important;
+}
+
+/* --------------------------------------------------------------------------
+   THEME SWITCHER MODAL & FLOATING BUTTON STYLES
+   -------------------------------------------------------------------------- */
+#jc-theme-switcher-widget {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  z-index: 999999 !important;
+}
+
+#jc-theme-switcher-widget #jc-theme-modal {
+  background-color: rgba(15, 23, 42, 0.98) !important;
+  border-color: rgba(234, 179, 8, 0.5) !important;
+  color: #f8fafc !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+}
+
+#jc-theme-switcher-widget h3,
+#jc-theme-switcher-widget span.font-extrabold {
+  color: #ffffff !important;
+}
+
+#jc-theme-switcher-widget p {
+  color: #cbd5e1 !important;
+}
+
+#jc-theme-switcher-widget .theme-option-card {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  background-color: rgba(3, 7, 18, 0.75) !important;
+  border-color: rgba(51, 65, 85, 0.7) !important;
+}
+
+#jc-theme-switcher-widget .theme-option-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(234, 179, 8, 0.6) !important;
+}
+
+#jc-theme-switcher-widget .theme-option-card.active-theme {
+  border-color: #eab308 !important;
+  background-color: rgba(234, 179, 8, 0.18) !important;
+  box-shadow: 0 0 15px -3px rgba(234, 179, 8, 0.3);
+}
