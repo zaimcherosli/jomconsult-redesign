@@ -89,8 +89,12 @@ export default function Footer() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-800 text-[11px]">
-            <p>© {currentYear} Jom Consult Solutions. Hak Cipta Terpelihara.</p>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-2 gap-y-1 text-center sm:text-left">
+              <span>© {currentYear} Jom Consult Solutions. Hak Cipta Terpelihara.</span>
+              <span className="hidden sm:inline text-slate-600">•</span>
+              <span>Design by <a href="https://kwikezee.my" target="_blank" rel="noopener noreferrer" className="font-bold underline hover:text-yellow-400 text-slate-200">kwikezee studio</a> ©️</span>
+            </div>
+            <div className="flex items-center gap-4 text-slate-400">
               <a href="#" className="hover:text-slate-300">Dasar Privasi (PDPA)</a>
               <span>•</span>
               <a href="#" className="hover:text-slate-300">Terma & Syarat</a>
