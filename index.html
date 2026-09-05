@@ -305,11 +305,11 @@
           JomConsult • Konsultan Pembiayaan & Penyatuan Komitmen
         </div>
 
-        <!-- Carousel Slides -->
-        <div class="relative min-h-[135px] sm:min-h-[175px] md:min-h-[210px] lg:min-h-[220px]">
+        <!-- Carousel Slides (Grid Stacking so height automatically matches the content on any screen) -->
+        <div class="hero-slider-grid relative">
           
           <!-- Slide 0: Primary Direct Message -->
-          <div id="hero-text-0" class="hero-text-slide absolute inset-0 transition-opacity duration-700 opacity-100 space-y-2 sm:space-y-3">
+          <div id="hero-text-0" class="hero-text-slide transition-opacity duration-700 opacity-100 space-y-2 sm:space-y-3">
             <h1 class="text-xl sm:text-3xl md:text-5xl lg:text-[46px] font-extrabold leading-[1.2] tracking-tight text-white">
               Pembiayaan Kerap Ditolak?<br>
               <span class="text-yellow-400">Semak Profil Dulu Sebelum Mohon Lagi.</span>
@@ -320,7 +320,7 @@
           </div>
 
           <!-- Slide 1: Second Message -->
-          <div id="hero-text-1" class="hero-text-slide absolute inset-0 transition-opacity duration-700 opacity-0 space-y-2 sm:space-y-3 pointer-events-none">
+          <div id="hero-text-1" class="hero-text-slide transition-opacity duration-700 opacity-0 space-y-2 sm:space-y-3 pointer-events-none">
             <h2 class="text-xl sm:text-3xl md:text-5xl lg:text-[46px] font-extrabold leading-[1.2] tracking-tight text-white">
               Kurangkan Tekanan Komitmen.<br>
               <span class="text-yellow-400">Bina Semula Ruang Tunai Bulanan.</span>
@@ -331,7 +331,7 @@
           </div>
 
           <!-- Slide 2: Experience / Social Proof Message -->
-          <div id="hero-text-2" class="hero-text-slide absolute inset-0 transition-opacity duration-700 opacity-0 space-y-2 sm:space-y-3 pointer-events-none">
+          <div id="hero-text-2" class="hero-text-slide transition-opacity duration-700 opacity-0 space-y-2 sm:space-y-3 pointer-events-none">
             <h2 class="text-xl sm:text-3xl md:text-5xl lg:text-[46px] font-extrabold leading-[1.2] tracking-tight text-white">
               8 Tahun Membantu Klien<br>
               <span class="text-yellow-400">Menilai & Menstruktur Pilihan Pembiayaan.</span>
@@ -344,7 +344,7 @@
         </div>
 
         <!-- Trust Points (Compact on mobile) -->
-        <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] sm:text-xs text-slate-200 font-medium pt-0.5">
+        <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] sm:text-xs text-slate-200 font-medium pt-2 sm:pt-1">
           <span class="flex items-center gap-1.5"><span class="text-yellow-400 font-bold">✓</span> Semakan awal percuma</span>
           <span class="flex items-center gap-1.5"><span class="text-yellow-400 font-bold">✓</span> Tiada caj pendahuluan</span>
           <span class="flex items-center gap-1.5"><span class="text-yellow-400 font-bold">✓</span> Analisis DSR & komitmen</span>
@@ -356,8 +356,8 @@
           <a href="semak-kelayakan.html" class="rounded-full bg-yellow-400 text-slate-950 px-6 py-3 sm:px-8 sm:py-3.5 text-center text-xs font-extrabold uppercase tracking-wider shadow-2xl shadow-yellow-500/25 hover:bg-yellow-300 transition transform hover:-translate-y-0.5">
             Semak Kelayakan Percuma
           </a>
-          <a href="#bagaimana-kami-bantu" class="rounded-full border border-yellow-500/30 px-6 py-3 sm:px-8 sm:py-3.5 text-center text-xs font-extrabold uppercase tracking-wider text-yellow-300 backdrop-blur hover:bg-yellow-400/10 transition">
-            Lihat Cara Kami Bantu
+          <a id="hero-secondary-btn" href="#bagaimana-kami-bantu" class="rounded-full border-2 border-yellow-400 bg-slate-900 px-6 py-3 sm:px-8 sm:py-3.5 text-center text-xs font-black uppercase tracking-wider text-yellow-300 hover:text-yellow-200 hover:bg-slate-800 transition shadow-lg">
+            <span style="color: #fde047 !important; font-weight: 900 !important; letter-spacing: 0.05em;">Lihat Cara Kami Bantu</span>
           </a>
         </div>
 
@@ -578,7 +578,7 @@
             <a href="semak-kelayakan.html" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-yellow-500/20 transition transform hover:-translate-y-0.5">
               Semak Kelayakan Percuma
             </a>
-            <a href="cara-kerja.html" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm border border-yellow-500/30 shadow-md transition">
+            <a href="cara-kerja.html" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-slate-900 hover:bg-slate-800 text-yellow-400 font-extrabold text-xs sm:text-sm border-2 border-yellow-400/80 shadow-md transition">
               Lihat Cara Kami Bantu
             </a>
           </div>

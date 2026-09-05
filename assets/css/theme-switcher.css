@@ -472,9 +472,9 @@ html[data-theme="light-gold"] main:not(footer) .text-white:not(button *):not(a *
   color: #0f172a !important;
 }
 
-/* Yellow text in Light Mode turns to deep, legible Golden Amber (#b45309) */
-html[data-theme="light-gold"] .text-yellow-400:not(#jc-theme-switcher-widget *):not(footer *):not(#top-announcement-bar *):not(a[class*="bg-yellow-400"] *):not(button[class*="bg-yellow-400"] *),
-html[data-theme="light-gold"] .text-yellow-300:not(#jc-theme-switcher-widget *):not(footer *):not(#top-announcement-bar *),
+/* Yellow text in Light Mode turns to deep, legible Golden Amber (#b45309) - excluding dark buttons */
+html[data-theme="light-gold"] .text-yellow-400:not(#jc-theme-switcher-widget *):not(footer *):not(#top-announcement-bar *):not(a[class*="bg-yellow-400"] *):not(button[class*="bg-yellow-400"] *):not(#hero-secondary-btn):not(#hero-secondary-btn *):not(a[href="#bagaimana-kami-bantu"]):not(a[href="#bagaimana-kami-bantu"] *):not(a[href="cara-kerja.html"]):not(a[href="cara-kerja.html"] *),
+html[data-theme="light-gold"] .text-yellow-300:not(#jc-theme-switcher-widget *):not(footer *):not(#top-announcement-bar *):not(#hero-secondary-btn):not(#hero-secondary-btn *):not(a[href="#bagaimana-kami-bantu"]):not(a[href="#bagaimana-kami-bantu"] *):not(a[href="cara-kerja.html"]):not(a[href="cara-kerja.html"] *),
 html[data-theme="light-gold"] .text-yellow-500:not(#jc-theme-switcher-widget *):not(footer *) {
   color: #b45309 !important;
 }
@@ -712,33 +712,96 @@ html[data-theme="light-gold"] button[class*="bg-yellow-400"]:hover {
   color: #0f172a !important;
 }
 
+/* HERO CAROUSEL GRID STACKING (Prevents text overlap on all mobile screen widths) */
+.hero-slider-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  grid-template-rows: 1fr !important;
+  position: relative !important;
+  min-height: auto !important;
+}
+
+.hero-slider-grid > .hero-text-slide {
+  grid-column: 1 / -1 !important;
+  grid-row: 1 / -1 !important;
+  position: relative !important;
+  inset: auto !important;
+}
+
 /* SOLID DARK ACTION BUTTONS (EXCLUDING HEADER & MOBILE DRAWER LINKS!) */
-html[data-theme="light-gold"] a[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):not(.tenure-btn),
+html[data-theme="light-gold"] a[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):not(.tenure-btn):not([href="#bagaimana-kami-bantu"]):not([href="cara-kerja.html"]),
 html[data-theme="light-gold"] button[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):not(.tenure-btn),
-html[data-theme="light-gold"] a[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):not(.tenure-btn),
-html[data-theme="light-gold"] button[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):not(.tenure-btn),
-html[data-theme="light-gold"] a[href="cara-kerja.html"].bg-slate-900,
-html[data-theme="light-gold"] a[href="cara-kerja.html"].bg-slate-800,
-html[data-theme="light-gold"] a[href="#bagaimana-kami-bantu"] {
+html[data-theme="light-gold"] a[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):not(.tenure-btn):not([href="#bagaimana-kami-bantu"]):not([href="cara-kerja.html"]),
+html[data-theme="light-gold"] button[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):not(.tenure-btn) {
   background-color: #0f172a !important;
   color: #ffffff !important;
   border-color: #0f172a !important;
 }
 
-html[data-theme="light-gold"] a[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):not(.tenure-btn) *,
+html[data-theme="light-gold"] a[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):not(.tenure-btn):not([href="#bagaimana-kami-bantu"]):not([href="cara-kerja.html"]) *,
 html[data-theme="light-gold"] button[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):not(.tenure-btn) *,
-html[data-theme="light-gold"] a[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):not(.tenure-btn) *,
+html[data-theme="light-gold"] a[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):not(.tenure-btn):not([href="#bagaimana-kami-bantu"]):not([href="cara-kerja.html"]) *,
 html[data-theme="light-gold"] button[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):not(.tenure-btn) * {
   color: #ffffff !important;
 }
 
-html[data-theme="light-gold"] a[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):not(.tenure-btn):hover,
-html[data-theme="light-gold"] button[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):not(.tenure-btn):hover,
-html[data-theme="light-gold"] a[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):not(.tenure-btn):hover,
-html[data-theme="light-gold"] button[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):not(.tenure-btn):hover {
+/* "LIHAT CARA KAMI BANTU" SECONDARY CTA BUTTON (BRIGHT YELLOW & BOLD ON DARK BUTTON) */
+#hero-secondary-btn,
+a#hero-secondary-btn,
+a[href="#bagaimana-kami-bantu"],
+html[data-theme="light-gold"] #hero-secondary-btn,
+html[data-theme="light-gold"] a#hero-secondary-btn,
+html[data-theme="light-gold"] a[href="#bagaimana-kami-bantu"],
+a[href="cara-kerja.html"].bg-slate-900,
+html[data-theme="light-gold"] a[href="cara-kerja.html"].bg-slate-900 {
+  background-color: #0f172a !important;
+  color: #fde047 !important;
+  border: 1.5px solid #facc15 !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  box-shadow: 0 4px 14px -2px rgba(250, 204, 21, 0.3) !important;
+}
+
+#hero-secondary-btn *,
+a#hero-secondary-btn *,
+a[href="#bagaimana-kami-bantu"] *,
+html[data-theme="light-gold"] #hero-secondary-btn *,
+html[data-theme="light-gold"] a#hero-secondary-btn *,
+html[data-theme="light-gold"] a[href="#bagaimana-kami-bantu"] *,
+a[href="cara-kerja.html"].bg-slate-900 *,
+html[data-theme="light-gold"] a[href="cara-kerja.html"].bg-slate-900 * {
+  color: #fde047 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-weight: 900 !important;
+}
+
+#hero-secondary-btn:hover,
+a#hero-secondary-btn:hover,
+a[href="#bagaimana-kami-bantu"]:hover,
+html[data-theme="light-gold"] #hero-secondary-btn:hover,
+html[data-theme="light-gold"] a#hero-secondary-btn:hover,
+html[data-theme="light-gold"] a[href="#bagaimana-kami-bantu"]:hover,
+a[href="cara-kerja.html"].bg-slate-900:hover,
+html[data-theme="light-gold"] a[href="cara-kerja.html"].bg-slate-900:hover {
   background-color: #1e293b !important;
+  border-color: #fde047 !important;
+  box-shadow: 0 6px 20px -2px rgba(250, 204, 21, 0.5) !important;
+}
+
+#hero-secondary-btn:hover *,
+a#hero-secondary-btn:hover *,
+a[href="#bagaimana-kami-bantu"]:hover *,
+html[data-theme="light-gold"] #hero-secondary-btn:hover *,
+html[data-theme="light-gold"] a#hero-secondary-btn:hover *,
+html[data-theme="light-gold"] a[href="#bagaimana-kami-bantu"]:hover *,
+a[href="cara-kerja.html"].bg-slate-900:hover *,
+html[data-theme="light-gold"] a[href="cara-kerja.html"].bg-slate-900:hover * {
   color: #ffffff !important;
-  border-color: #1e293b !important;
+  border: none !important;
 }
 
 /* HEADER SOLID BUTTONS (e.g. "Kembali ke Utama" on /semak-kelayakan & /daftar-kerjaya) */
