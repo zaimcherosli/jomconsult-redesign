@@ -35,17 +35,17 @@ export default function ServicesSection({ onOpenChecker }) {
 
     {
       id: 'profile',
-      title: 'Penstrukturan & Pemulihan Profil CCRIS',
-      tag: 'Pakar Strategi',
-      shortDesc: 'Khidmat analisa diagnostik mendalam untuk membersihkan dan mencantikkan semula skor kredit Bank Negara (CCRIS/CTOS).',
-      highlight: 'Berdasarkan Rangka Kerja Garis Panduan Bank Negara Malaysia',
+      title: 'Penyelesaian Masalah Senaraihitam CCRIS, CTOS, SAA & AKPK',
+      tag: 'Penyelesaian Isu Rekod & Kredit',
+      shortDesc: 'Khidmat diagnostik dan rundingan komprehensif menyelesaikan isu senaraihitam, tunggakan CCRIS, rekod saman CTOS, Akaun Perhatian Khas (SAA), dan komitmen AKPK.',
+      highlight: 'Rundingan Pelepasan Tunggakan & Padanan Saluran Sah Mesra Rekod Kredit',
       benefits: [
-        'Semakan menyeluruh laporan CCRIS, CTOS, dan kedudukan DSR semasa.',
-        'Pelan langkah demi langkah menyelesaikan rekod SAA / tunggakan lama.',
-        'Strategi membina semula skor kredit yang sihat dalam tempoh 1 - 3 bulan.',
-        'Mengelakkan daripada terjebak dengan pinjaman tidak berlesen.'
+        'Analisa mendalam laporan CCRIS, CTOS & semakan status SAA/AKPK.',
+        'Padanan pembiayaan institusi sah & koperasi mesra rekod kredit.',
+        'Penyusunan dokumen penyelesaian tunggakan & surat pelepasan sah.',
+        'Panduan pemulihan skor kredit & penstrukturan semula komitmen.'
       ],
-      idealFor: 'Individu yang pernah ada rekod lewat bayar atau pernah ditolak oleh bank disebabkan skor kredit rendah.'
+      idealFor: 'Individu yang mempunyai rekod sangkut CCRIS/CTOS/SAA, di bawah program AKPK, atau ditolak oleh bank.'
     }
   ];
 

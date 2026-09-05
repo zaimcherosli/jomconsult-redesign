@@ -537,6 +537,13 @@ html[data-theme="light-gold"] main:not(footer) div[class*="bg-slate-800"] strong
   color: #0f172a !important;
 }
 
+/* Badges & pill tags in Light Mode */
+html[data-theme="light-gold"] span.rounded-full:not(#jc-theme-switcher-widget *) {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+  border-color: #fcd34d !important;
+}
+
 /* Stats counter box on homepage */
 html[data-theme="light-gold"] .max-w-3xl.grid-cols-3 {
   background: #ffffff !important;
