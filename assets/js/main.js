@@ -611,11 +611,11 @@ function initSavingsCalculator() {
   tenureButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       tenureButtons.forEach(b => {
-        b.classList.remove('bg-emerald-600', 'text-white', 'border-emerald-600');
-        b.classList.add('bg-white', 'text-slate-700', 'border-slate-300');
+        b.classList.remove('bg-yellow-400', 'text-slate-950', 'border-yellow-400', 'font-extrabold');
+        b.classList.add('bg-slate-800', 'text-slate-300', 'border-slate-700');
       });
-      btn.classList.add('bg-emerald-600', 'text-white', 'border-emerald-600');
-      btn.classList.remove('bg-white', 'text-slate-700', 'border-slate-300');
+      btn.classList.add('bg-yellow-400', 'text-slate-950', 'border-yellow-400', 'font-extrabold');
+      btn.classList.remove('bg-slate-800', 'text-slate-300', 'border-slate-700');
       tenureYears = parseInt(btn.getAttribute('data-years')) || 7;
       recalculate();
     });
@@ -634,11 +634,11 @@ function initFAQAccordion() {
       const isHidden = body.classList.contains('hidden');
 
       document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
-      document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotate-180', 'text-emerald-700'));
+      document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotate-180', 'text-yellow-400'));
 
       if (isHidden) {
         body.classList.remove('hidden');
-        if (icon) icon.classList.add('rotate-180', 'text-emerald-700');
+        if (icon) icon.classList.add('rotate-180', 'text-yellow-400');
       }
     });
   });
@@ -672,7 +672,7 @@ async function initAgentVerification() {
           rating: a.rating || '5.0 / 5.0',
           initials: a.initials || 'JC',
           specialty: a.specialty || 'Penyatuan Hutang & Analisis DSR',
-          avatarBg: a.avatar_bg || 'bg-emerald-700',
+          avatarBg: a.avatar_bg || 'bg-slate-800 text-yellow-400 border border-yellow-500/30',
           photo_url: a.photo_url || null
         }));
       }
@@ -682,34 +682,34 @@ async function initAgentVerification() {
   if (directoryContainer) {
     directoryContainer.innerHTML = activeAgents.map(agent => {
       const avatarHtml = agent.photo_url
-        ? `<img src="${agent.photo_url}" class="w-14 h-14 rounded-2xl object-cover shadow-md shrink-0 border border-slate-200" alt="${agent.name}">`
-        : `<div class="w-14 h-14 rounded-2xl ${agent.avatarBg} text-white flex items-center justify-center text-lg font-black shadow-md shrink-0">${agent.initials}</div>`;
+        ? `<img src="${agent.photo_url}" class="w-14 h-14 rounded-2xl object-cover shadow-md shrink-0 border border-slate-700" alt="${agent.name}">`
+        : `<div class="w-14 h-14 rounded-2xl ${agent.avatarBg} flex items-center justify-center text-lg font-black shadow-md shrink-0">${agent.initials}</div>`;
 
       return `
-        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+        <div class="bg-slate-900/90 rounded-2xl p-6 border border-slate-800 shadow-xl hover:border-yellow-500/50 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
           <div>
             <div class="flex items-center gap-4 mb-4">
               ${avatarHtml}
               <div>
-                <div class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md mb-1">
+                <div class="inline-flex items-center gap-1 text-[11px] font-bold text-yellow-400 bg-yellow-500/10 border border-yellow-500/30 px-2 py-0.5 rounded-md mb-1">
                   ${agent.status}
                 </div>
-                <h4 class="text-base font-bold text-slate-900 leading-tight">${agent.name}</h4>
-                <div class="text-xs text-emerald-700 font-mono font-bold mt-0.5">Staff ID: ${agent.id}</div>
+                <h4 class="text-base font-bold text-white leading-tight">${agent.name}</h4>
+                <div class="text-xs text-yellow-400 font-mono font-bold mt-0.5">Staff ID: ${agent.id}</div>
               </div>
             </div>
 
-            <div class="space-y-2 text-xs text-slate-600 border-t border-slate-100 pt-3">
-              <div><strong>Jawatan:</strong> ${agent.role}</div>
-              <div><strong>Cawangan:</strong> ${agent.branch}</div>
-              <div><strong>Zon Operasi:</strong> ${agent.zone}</div>
-              <div><strong>Pengkhususan:</strong> ${agent.specialty}</div>
-              <div><strong>Tarikh Pendaftaran:</strong> ${agent.joinedDate}</div>
+            <div class="space-y-2 text-xs text-slate-300 border-t border-slate-800 pt-3">
+              <div><strong class="text-slate-100">Jawatan:</strong> ${agent.role}</div>
+              <div><strong class="text-slate-100">Cawangan:</strong> ${agent.branch}</div>
+              <div><strong class="text-slate-100">Zon Operasi:</strong> ${agent.zone}</div>
+              <div><strong class="text-slate-100">Pengkhususan:</strong> ${agent.specialty}</div>
+              <div><strong class="text-slate-100">Tarikh Pendaftaran:</strong> ${agent.joinedDate}</div>
             </div>
           </div>
 
-          <div class="mt-5 pt-4 border-t border-slate-100">
-            <a href="https://wa.me/${agent.phone}?text=Salam%20${encodeURIComponent(agent.name)}%20(ID:%20${agent.id}),%20saya%20telah%20mengesahkan%20profil%20tuan%2Fpuan%20di%20portal%20JomConsult%20dan%20ingin%20memohon%20konsultasi." target="_blank" class="inline-flex items-center justify-center w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-sm transition">
+          <div class="mt-5 pt-4 border-t border-slate-800">
+            <a href="https://wa.me/${agent.phone}?text=Salam%20${encodeURIComponent(agent.name)}%20(ID:%20${agent.id}),%20saya%20telah%20mengesahkan%20profil%20tuan%2Fpuan%20di%20portal%20JomConsult%20dan%20ingin%20memohon%20konsultasi." target="_blank" class="inline-flex items-center justify-center w-full py-2.5 px-4 bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold rounded-xl shadow-sm transition">
               <span class='inline-flex items-center gap-1.5'>${OFFICIAL_WHATSAPP_SVG} WhatsApp ${agent.name.split(' ')[0]} (Rasmi)</span>
             </a>
           </div>
@@ -767,51 +767,51 @@ async function initAgentVerification() {
 
     if (matched) {
       const avatarHtml = matched.photo_url
-        ? `<img src="${matched.photo_url}" class="w-12 h-12 rounded-xl object-cover shadow border border-emerald-200 shrink-0" alt="${matched.name}">`
-        : `<div class="w-12 h-12 rounded-xl ${matched.avatarBg} text-white flex items-center justify-center font-bold text-base shadow shrink-0">${matched.initials}</div>`;
+        ? `<img src="${matched.photo_url}" class="w-12 h-12 rounded-xl object-cover shadow border border-yellow-400 shrink-0" alt="${matched.name}">`
+        : `<div class="w-12 h-12 rounded-xl ${matched.avatarBg} flex items-center justify-center font-bold text-base shadow shrink-0">${matched.initials}</div>`;
 
       resultContainer.innerHTML = `
-        <div class="p-6 rounded-2xl bg-emerald-50 border-2 border-emerald-500 shadow-xl space-y-4 animate-fade-in">
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-emerald-200">
+        <div class="p-6 rounded-2xl bg-slate-900 border-2 border-yellow-400 shadow-2xl space-y-4 animate-fade-in text-white">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
             <div class="flex items-center gap-3">
               ${avatarHtml}
               <div>
-                <span class="inline-block text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-emerald-600 text-white mb-1">
+                <span class="inline-block text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-yellow-400 text-slate-950 mb-1">
                   IDENTITI DISAHKAN SAH & BERDAFTAR
                 </span>
-                <h3 class="text-lg font-extrabold text-slate-900">${matched.name}</h3>
-                <p class="text-xs text-emerald-800 font-mono font-bold">Staff ID: ${matched.id}</p>
+                <h3 class="text-lg font-extrabold text-white">${matched.name}</h3>
+                <p class="text-xs text-yellow-400 font-mono font-bold">Staff ID: ${matched.id}</p>
               </div>
             </div>
-            <span class="text-xs font-bold text-slate-700 bg-white px-3 py-1.5 rounded-lg border border-emerald-300">
+            <span class="text-xs font-bold text-slate-200 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
               Penilaian Klien: ${matched.rating}
             </span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700">
-            <div class="p-2.5 bg-white rounded-lg border border-emerald-200">
-              <span class="font-semibold text-slate-500 block">Jawatan Rasmi:</span>
-              <span class="font-bold text-slate-900">${matched.role}</span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-200">
+            <div class="p-2.5 bg-slate-800/80 rounded-lg border border-slate-700">
+              <span class="font-semibold text-slate-400 block">Jawatan Rasmi:</span>
+              <span class="font-bold text-white">${matched.role}</span>
             </div>
-            <div class="p-2.5 bg-white rounded-lg border border-emerald-200">
-              <span class="font-semibold text-slate-500 block">No. Telefon / WhatsApp Sah:</span>
-              <span class="font-bold text-emerald-700 font-mono text-sm">${matched.phoneDisplay}</span>
+            <div class="p-2.5 bg-slate-800/80 rounded-lg border border-slate-700">
+              <span class="font-semibold text-slate-400 block">No. Telefon / WhatsApp Sah:</span>
+              <span class="font-bold text-yellow-400 font-mono text-sm">${matched.phoneDisplay}</span>
             </div>
-            <div class="p-2.5 bg-white rounded-lg border border-emerald-200">
-              <span class="font-semibold text-slate-500 block">Cawangan / Pejabat:</span>
-              <span class="font-bold text-slate-900">${matched.branch}</span>
+            <div class="p-2.5 bg-slate-800/80 rounded-lg border border-slate-700">
+              <span class="font-semibold text-slate-400 block">Cawangan / Pejabat:</span>
+              <span class="font-bold text-white">${matched.branch}</span>
             </div>
-            <div class="p-2.5 bg-white rounded-lg border border-emerald-200">
-              <span class="font-semibold text-slate-500 block">Zon Liputan Khidmat:</span>
-              <span class="font-bold text-slate-900">${matched.zone}</span>
+            <div class="p-2.5 bg-slate-800/80 rounded-lg border border-slate-700">
+              <span class="font-semibold text-slate-400 block">Zon Liputan Khidmat:</span>
+              <span class="font-bold text-white">${matched.zone}</span>
             </div>
           </div>
 
           <div class="pt-2 flex flex-col sm:flex-row gap-3">
-            <a href="https://wa.me/${matched.phone}?text=Salam%20${encodeURIComponent(matched.name)}%20(ID:%20${matched.id}),%20saya%20telah%20mengesahkan%20profil%20tuan%2Fpuan%20di%20portal%20JomConsult%20dan%20ingin%20memohon%20konsultasi%20pinjaman." target="_blank" class="flex-1 py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl text-center shadow transition">
+            <a href="https://wa.me/${matched.phone}?text=Salam%20${encodeURIComponent(matched.name)}%20(ID:%20${matched.id}),%20saya%20telah%20mengesahkan%20profil%20tuan%2Fpuan%20di%20portal%20JomConsult%20dan%20ingin%20memohon%20konsultasi%20pinjaman." target="_blank" class="flex-1 py-3 px-4 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs rounded-xl text-center shadow transition">
               Hubungi Terus WhatsApp ${matched.name.split(' ')[0]} (Disahkan)
             </a>
-            <button onclick="document.getElementById('verification-result').innerHTML='';" class="py-3 px-4 bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs rounded-xl border border-slate-300 transition">
+            <button onclick="document.getElementById('verification-result').innerHTML='';" class="py-3 px-4 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded-xl border border-slate-700 transition">
               Tutup Carian
             </button>
           </div>
@@ -819,19 +819,19 @@ async function initAgentVerification() {
       `;
     } else {
       resultContainer.innerHTML = `
-        <div class="p-6 rounded-2xl bg-rose-50 border-2 border-rose-400 shadow-xl space-y-3 animate-fade-in">
-          <div class="flex items-center gap-2 text-rose-800 font-bold text-sm">
+        <div class="p-6 rounded-2xl bg-slate-900 border-2 border-rose-500 shadow-2xl space-y-3 animate-fade-in text-white">
+          <div class="flex items-center gap-2 text-rose-400 font-bold text-sm">
             <span>⚠️ MAKLUMAT TIDAK DIJUMPAI / TIDAK BERDAFTAR</span>
           </div>
-          <p class="text-xs text-slate-700 leading-relaxed">
-            Tiada rekod ejen rasmi JomConsult yang sepadan dengan carian <strong>"${query}"</strong>. 
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Tiada rekod ejen rasmi JomConsult yang sepadan dengan carian <strong class="text-white">"${query}"</strong>. 
             Sila pastikan ejaan nama, nombor Staff ID atau nombor telefon dimasukkan dengan tepat.
           </p>
-          <div class="p-3 bg-white rounded-lg border border-rose-200 text-xs text-rose-900">
-            <strong>Amaran Keselamatan:</strong> Jika individu berkenaan mendesak meminta bayaran pendahuluan (upfront) atau meminta pemindahan wang ke akaun peribadi, sila elakkan berurusan dan laporkan segera kepada pihak pengurusan kami.
+          <div class="p-3 bg-slate-800/80 rounded-lg border border-rose-500/40 text-xs text-rose-300">
+            <strong class="text-rose-400">Amaran Keselamatan:</strong> Jika individu berkenaan mendesak meminta bayaran pendahuluan (upfront) atau meminta pemindahan wang ke akaun peribadi, sila elakkan berurusan dan laporkan segera kepada pihak pengurusan kami.
           </div>
           <div class="pt-2">
-            <a href="https://wa.me/${JOMCONSULT_CONFIG.whatsappNumber}?text=Salam%20HQ%20JomConsult,%20saya%20ingin%20membuat%20semakan%20mengenai%20kesahihan%20ejen%20dengan%20maklumat:%20${encodeURIComponent(query)}" target="_blank" class="inline-block py-2.5 px-5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl transition">
+            <a href="https://wa.me/${JOMCONSULT_CONFIG.whatsappNumber}?text=Salam%20HQ%20JomConsult,%20saya%20ingin%20membuat%20semakan%20mengenai%20kesahihan%20ejen%20dengan%20maklumat:%20${encodeURIComponent(query)}" target="_blank" class="inline-block py-2.5 px-5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl transition shadow">
               Laporkan / Semak Bersama HQ JomConsult
             </a>
           </div>
@@ -917,7 +917,7 @@ function initCareerApplyForm() {
           if (preview) {
             preview.innerText = `✓ ${file.name}`;
             preview.classList.remove('text-slate-400');
-            preview.classList.add('text-emerald-700', 'font-semibold');
+            preview.classList.add('text-yellow-400', 'font-semibold');
           }
           const reader = new FileReader();
           reader.onload = (e) => {
