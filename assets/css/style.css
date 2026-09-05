@@ -21,26 +21,51 @@
   animation: whatsapp-wiggle 3.5s ease-in-out infinite;
 }
 
-/* Luxury Black & Yellow Dark Hero Overlay */
+/* Ambient Golden-Yellow Warmth for Luxury Dark & Yellow Theme */
+body {
+  background-color: #0b0f19;
+  background-image: 
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(234, 179, 8, 0.22), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 5% 35%, rgba(245, 158, 11, 0.12), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 95% 65%, rgba(234, 179, 8, 0.15), transparent 55%),
+    radial-gradient(ellipse 85% 60% at 50% 110%, rgba(234, 179, 8, 0.18), transparent 70%);
+  background-attachment: fixed;
+  color: #f8fafc;
+}
+
+/* Luxury Black & Yellow Dark Hero Overlay with warm golden ambiance */
 .papaipay-gradient-overlay {
-  background: linear-gradient(90deg, rgba(10, 14, 23, 0.98) 0%, rgba(10, 14, 23, 0.92) 40%, rgba(10, 14, 23, 0.65) 75%, rgba(10, 14, 23, 0.3) 100%);
+  background: linear-gradient(90deg, rgba(10, 14, 23, 0.96) 0%, rgba(20, 18, 10, 0.90) 40%, rgba(22, 19, 9, 0.70) 75%, rgba(10, 14, 23, 0.4) 100%);
 }
 
 .glass-card {
   background: rgba(17, 24, 39, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 25px -4px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(234, 179, 8, 0.25);
+  box-shadow: 0 4px 25px -4px rgba(0, 0, 0, 0.5), 0 0 15px -3px rgba(234, 179, 8, 0.08);
   backdrop-filter: blur(12px);
 }
 
 .glass-card:hover {
-  border-color: rgba(250, 204, 21, 0.3);
-  box-shadow: 0 12px 30px -6px rgba(234, 179, 8, 0.15);
+  border-color: rgba(250, 204, 21, 0.6);
+  box-shadow: 0 12px 30px -6px rgba(234, 179, 8, 0.25);
 }
 
-/* Yellow / Gold ambient accents */
+/* Warm Golden Glow Spotlights */
+.gold-spotlight-top {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  max-width: 950px;
+  height: 350px;
+  background: radial-gradient(ellipse at top, rgba(234, 179, 8, 0.24) 0%, rgba(234, 179, 8, 0.08) 50%, transparent 80%);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
 .bg-gold-glow {
-  background: radial-gradient(circle, rgba(234, 179, 8, 0.12) 0%, rgba(10, 14, 23, 0) 70%);
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.20) 0%, rgba(10, 14, 23, 0) 70%);
 }
 
 /* Bank Logos Infinite Marquee Animation (Right to Left) */

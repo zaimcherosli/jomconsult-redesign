@@ -131,7 +131,7 @@
     </div>
 
     <!-- 1. STICKY NAVBAR -->
-    <header class="bg-[#0A0E17]/95 backdrop-blur-md border-b border-slate-800/80 py-2.5 sm:py-3 transition-all">
+    <header class="bg-[#0A0E17]/95 backdrop-blur-md border-b border-yellow-500/20 py-2.5 sm:py-3 transition-all">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
         <!-- Brand Logo (High-contrast White + Yellow Speech Bubble) -->
@@ -291,6 +291,9 @@
     <!-- Luxury Black & Yellow Dark Overlay -->
     <div class="absolute inset-0 z-10 papaipay-gradient-overlay"></div>
     <div class="absolute inset-0 z-10 bg-gradient-to-t from-[#0A0E17] via-transparent to-black/60"></div>
+    <!-- Warm Golden Ambient Spotlights -->
+    <div class="absolute top-1/4 left-1/4 w-[500px] h-[350px] bg-yellow-400/20 rounded-full blur-[110px] pointer-events-none z-10"></div>
+    <div class="absolute top-0 right-0 w-96 h-96 bg-yellow-500/15 rounded-full blur-[100px] pointer-events-none z-10"></div>
 
     <!-- Main Hero Content -->
     <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-6 sm:pt-10 sm:pb-10 lg:pt-12 lg:pb-12 w-full">
@@ -368,8 +371,8 @@
     </div>
 
     <!-- 4-COLUMN VALUE BAR UNDER HERO -->
-    <div class="relative z-20 border-t border-b border-slate-800/80 bg-slate-900/95 backdrop-blur-md">
-      <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-0 lg:divide-x divide-slate-800 px-4 py-3.5 sm:px-6 sm:py-4 lg:py-5">
+    <div class="relative z-20 border-t border-b border-yellow-500/30 bg-gradient-to-r from-slate-900/95 via-[#1c1809] to-slate-900/95 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-0 lg:divide-x divide-yellow-500/20 px-4 py-3.5 sm:px-6 sm:py-4 lg:py-5">
         
         <!-- Point 1 -->
         <div class="p-1.5 sm:p-2.5 lg:px-6 first:lg:pl-0">
@@ -401,11 +404,16 @@
   </section>
 
   <!-- 3. VALUE PROPOSITION & HOW JOMCONSULT HELPS -->
-  <section id="semak-kelayakan" class="py-16 md:py-24 bg-[#0A0E17] border-b border-slate-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
+  <section id="semak-kelayakan" class="relative py-16 md:py-24 bg-gradient-to-b from-[#10141f] via-[#1a1708] to-[#0d1017] border-b border-yellow-500/20 overflow-hidden">
+    <!-- Warm Yellow Ambient Glow Spotlights -->
+    <div class="gold-spotlight-top"></div>
+    <div class="absolute -bottom-10 -right-10 w-96 h-96 bg-yellow-400/15 rounded-full blur-[90px] pointer-events-none"></div>
+    <div class="absolute top-1/2 -left-20 w-80 h-80 bg-yellow-500/15 rounded-full blur-[90px] pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
       
       <div class="space-y-4 max-w-3xl mx-auto">
-        <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-bold tracking-wide">
+        <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-yellow-500/15 border border-yellow-500/40 text-yellow-300 text-xs font-bold tracking-wide shadow-sm shadow-yellow-500/10">
           Semakan Kelayakan Pembiayaan Percuma
         </div>
 
@@ -420,52 +428,56 @@
 
       <!-- 4 Highlights Cards -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-left">
-        <div class="bg-slate-900/90 border border-slate-800 p-5 sm:p-6 rounded-3xl shadow-lg hover:border-yellow-500/40 transition">
+        <div class="bg-[#111625]/90 border border-yellow-500/30 p-5 sm:p-6 rounded-3xl shadow-xl hover:border-yellow-400/80 hover:shadow-yellow-500/15 transition group">
+          <div class="w-8 h-8 rounded-xl bg-yellow-400/15 border border-yellow-400/40 flex items-center justify-center text-yellow-400 mb-3 text-sm font-bold shadow-sm">✓</div>
           <span class="font-bold text-white text-sm sm:text-base block mb-1">Tiada Caj Pendahuluan</span>
           <span class="text-slate-300 text-xs sm:text-sm leading-relaxed">Semakan awal tanpa deposit atau bayaran upfront.</span>
         </div>
-        <div class="bg-slate-900/90 border border-slate-800 p-5 sm:p-6 rounded-3xl shadow-lg hover:border-yellow-500/40 transition">
+        <div class="bg-[#111625]/90 border border-yellow-500/30 p-5 sm:p-6 rounded-3xl shadow-xl hover:border-yellow-400/80 hover:shadow-yellow-500/15 transition group">
+          <div class="w-8 h-8 rounded-xl bg-yellow-400/15 border border-yellow-400/40 flex items-center justify-center text-yellow-400 mb-3 text-sm font-bold shadow-sm">📊</div>
           <span class="font-bold text-white text-sm sm:text-base block mb-1">Analisis DSR</span>
           <span class="text-slate-300 text-xs sm:text-sm leading-relaxed">Kenal pasti komitmen yang memberi kesan kepada tahap kelayakan anda.</span>
         </div>
-        <div class="bg-slate-900/90 border border-slate-800 p-5 sm:p-6 rounded-3xl shadow-lg hover:border-yellow-500/40 transition">
+        <div class="bg-[#111625]/90 border border-yellow-500/30 p-5 sm:p-6 rounded-3xl shadow-xl hover:border-yellow-400/80 hover:shadow-yellow-500/15 transition group">
+          <div class="w-8 h-8 rounded-xl bg-yellow-400/15 border border-yellow-400/40 flex items-center justify-center text-yellow-400 mb-3 text-sm font-bold shadow-sm">🛡️</div>
           <span class="font-bold text-white text-sm sm:text-base block mb-1">Semakan Profil Kredit</span>
           <span class="text-slate-300 text-xs sm:text-sm leading-relaxed">Fahami perkara dalam profil kredit yang mungkin perlu diberi perhatian sebelum memohon.</span>
         </div>
-        <div class="bg-slate-900/90 border border-slate-800 p-5 sm:p-6 rounded-3xl shadow-lg hover:border-yellow-500/40 transition">
+        <div class="bg-[#111625]/90 border border-yellow-500/30 p-5 sm:p-6 rounded-3xl shadow-xl hover:border-yellow-400/80 hover:shadow-yellow-500/15 transition group">
+          <div class="w-8 h-8 rounded-xl bg-yellow-400/15 border border-yellow-400/40 flex items-center justify-center text-yellow-400 mb-3 text-sm font-bold shadow-sm">🏛️</div>
           <span class="font-bold text-white text-sm sm:text-base block mb-1">Pilihan Pelbagai Institusi</span>
           <span class="text-slate-300 text-xs sm:text-sm leading-relaxed">Kenal pasti pilihan berdasarkan profil kewangan dan kriteria semasa.</span>
         </div>
       </div>
 
       <!-- Animated Stats with Static Fallbacks -->
-      <div class="max-w-3xl mx-auto grid grid-cols-3 gap-3 bg-slate-900/90 border border-slate-800 p-5 sm:p-6 rounded-3xl text-center shadow-lg">
+      <div class="max-w-3xl mx-auto grid grid-cols-3 gap-3 bg-gradient-to-r from-slate-900/95 via-[#221c09] to-slate-900/95 border border-yellow-500/35 p-5 sm:p-6 rounded-3xl text-center shadow-2xl">
         <div class="p-2">
           <div class="text-xl sm:text-3xl font-extrabold text-white tracking-tight font-mono">
             <span data-counter-end="8" data-counter-decimals="0">8</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400 font-medium mt-1">Tahun Pengalaman</p>
+          <p class="text-xs sm:text-sm text-slate-300 font-medium mt-1">Tahun Pengalaman</p>
         </div>
 
-        <div class="p-2 border-x border-slate-800">
+        <div class="p-2 border-x border-yellow-500/20">
           <div class="text-xl sm:text-3xl font-extrabold text-yellow-400 tracking-tight font-mono">
             <span data-counter-end="1800" data-counter-decimals="0" data-counter-suffix="+">1,800+</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400 font-medium mt-1">Klien Dibantu</p>
+          <p class="text-xs sm:text-sm text-yellow-200/80 font-medium mt-1">Klien Dibantu</p>
         </div>
 
         <div class="p-2">
           <div class="text-xl sm:text-3xl font-extrabold text-white tracking-tight font-mono">
             <span data-counter-end="15" data-counter-decimals="0" data-counter-suffix="+">15+</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-400 font-medium mt-1">Pilihan Institusi</p>
+          <p class="text-xs sm:text-sm text-slate-300 font-medium mt-1">Pilihan Institusi</p>
         </div>
       </div>
 
       <!-- Section: Bagaimana JomConsult Bantu Anda -->
-      <div id="bagaimana-kami-bantu" class="pt-10 border-t border-slate-800 text-left space-y-8">
+      <div id="bagaimana-kami-bantu" class="pt-10 border-t border-yellow-500/20 text-left space-y-8">
         <div class="text-center max-w-2xl mx-auto space-y-2">
-          <span class="text-[11px] font-extrabold text-yellow-400 uppercase tracking-wider bg-yellow-500/10 px-3.5 py-1 rounded-full border border-yellow-500/30">
+          <span class="text-[11px] font-extrabold text-yellow-400 uppercase tracking-wider bg-yellow-500/15 px-3.5 py-1 rounded-full border border-yellow-500/30">
             Proses Telus & Teratur
           </span>
           <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
@@ -480,10 +492,10 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
           
           <!-- Step 01 -->
-          <div class="bg-slate-900/90 border border-slate-800 p-6 sm:p-7 rounded-3xl shadow-lg hover:border-yellow-500/40 transition relative flex flex-col justify-between group">
+          <div class="bg-[#111625]/90 border border-yellow-500/25 p-6 sm:p-7 rounded-3xl shadow-xl hover:border-yellow-400/70 transition relative flex flex-col justify-between group">
             <div>
               <div class="flex items-center justify-end mb-3">
-                <span class="text-3xl sm:text-4xl font-mono font-black text-slate-700 group-hover:text-yellow-400/50 transition">01</span>
+                <span class="text-3xl sm:text-4xl font-mono font-black text-yellow-500/30 group-hover:text-yellow-400/80 transition">01</span>
               </div>
               <h4 class="font-extrabold text-white text-base sm:text-lg mb-2">Semakan & Analisis</h4>
               <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">Analisis maklumat asas, dokumen pendapatan, komitmen dan kiraan DSR untuk memahami tahap kelayakan awal.</p>
@@ -491,10 +503,10 @@
           </div>
 
           <!-- Step 02 -->
-          <div class="bg-slate-900/90 border border-slate-800 p-6 sm:p-7 rounded-3xl shadow-lg hover:border-yellow-500/40 transition relative flex flex-col justify-between group">
+          <div class="bg-[#111625]/90 border border-yellow-500/25 p-6 sm:p-7 rounded-3xl shadow-xl hover:border-yellow-400/70 transition relative flex flex-col justify-between group">
             <div>
               <div class="flex items-center justify-end mb-3">
-                <span class="text-3xl sm:text-4xl font-mono font-black text-slate-700 group-hover:text-yellow-400/50 transition">02</span>
+                <span class="text-3xl sm:text-4xl font-mono font-black text-yellow-500/30 group-hover:text-yellow-400/80 transition">02</span>
               </div>
               <h4 class="font-extrabold text-white text-base sm:text-lg mb-2">Penstrukturan Profil</h4>
               <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">Merangka cadangan untuk menyusun komitmen dan memperkemas profil permohonan berdasarkan keadaan kewangan semasa.</p>
@@ -502,10 +514,10 @@
           </div>
 
           <!-- Step 03 -->
-          <div class="bg-slate-900/90 border border-slate-800 p-6 sm:p-7 rounded-3xl shadow-lg hover:border-yellow-500/40 transition relative flex flex-col justify-between group">
+          <div class="bg-[#111625]/90 border border-yellow-500/25 p-6 sm:p-7 rounded-3xl shadow-xl hover:border-yellow-400/70 transition relative flex flex-col justify-between group">
             <div>
               <div class="flex items-center justify-end mb-3">
-                <span class="text-3xl sm:text-4xl font-mono font-black text-slate-700 group-hover:text-yellow-400/50 transition">03</span>
+                <span class="text-3xl sm:text-4xl font-mono font-black text-yellow-500/30 group-hover:text-yellow-400/80 transition">03</span>
               </div>
               <h4 class="font-extrabold text-white text-base sm:text-lg mb-2">Padanan Pilihan Institusi</h4>
               <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">Mengenal pasti pilihan institusi yang lebih selari dengan profil pemohon dan kriteria pembiayaan semasa.</p>
@@ -513,10 +525,10 @@
           </div>
 
           <!-- Step 04 -->
-          <div class="bg-slate-900/90 border border-slate-800 p-6 sm:p-7 rounded-3xl shadow-lg hover:border-yellow-500/40 transition relative flex flex-col justify-between group">
+          <div class="bg-[#111625]/90 border border-yellow-500/25 p-6 sm:p-7 rounded-3xl shadow-xl hover:border-yellow-400/70 transition relative flex flex-col justify-between group">
             <div>
               <div class="flex items-center justify-end mb-3">
-                <span class="text-3xl sm:text-4xl font-mono font-black text-slate-700 group-hover:text-yellow-400/50 transition">04</span>
+                <span class="text-3xl sm:text-4xl font-mono font-black text-yellow-500/30 group-hover:text-yellow-400/80 transition">04</span>
               </div>
               <h4 class="font-extrabold text-white text-base sm:text-lg mb-2">Permohonan & Keputusan</h4>
               <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">Selepas pelanggan bersetuju dengan pilihan yang dicadangkan, permohonan boleh diteruskan kepada institusi berkaitan. Keputusan akhir dan apa-apa tawaran pembiayaan adalah tertakluk kepada penilaian serta kelulusan institusi tersebut.</p>
@@ -530,7 +542,7 @@
             <a href="semak-kelayakan.html" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-yellow-500/20 transition transform hover:-translate-y-0.5">
               Semak Kelayakan Percuma
             </a>
-            <a href="cara-kerja.html" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm border border-slate-700 shadow-md transition">
+            <a href="cara-kerja.html" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm border border-yellow-500/30 shadow-md transition">
               Lihat Cara Kami Bantu
             </a>
           </div>
@@ -545,8 +557,9 @@
 
 
   <!-- 5. EDUCATIONAL CONTENT & VERIFY SECTION -->
-  <section class="py-14 sm:py-20 bg-[#0A0E17] border-b border-slate-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative py-14 sm:py-20 bg-gradient-to-b from-[#0d1017] via-[#1a1708] to-[#0A0E17] border-b border-yellow-500/20 overflow-hidden">
+    <div class="gold-spotlight-top"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-2">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Fahami Pilihan Sebelum Buat Keputusan</h2>
         <p class="text-xs sm:text-sm text-slate-300">Ketahui bagaimana DSR, komitmen dan profil kredit boleh mempengaruhi sesuatu permohonan pembiayaan.</p>
@@ -554,7 +567,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
         <!-- Card 1 -->
-        <a href="punca-reject.html" class="p-6 sm:p-7 rounded-3xl bg-slate-900/90 border border-slate-800 hover:border-yellow-500/50 hover:shadow-xl transition group flex flex-col justify-between">
+        <a href="punca-reject.html" class="p-6 sm:p-7 rounded-3xl bg-[#111625]/90 border border-yellow-500/30 hover:border-yellow-400/80 hover:shadow-xl hover:shadow-yellow-500/15 transition group flex flex-col justify-between">
           <div>
             <span class="text-[10px] sm:text-xs font-bold text-yellow-400 uppercase tracking-wider">Analisis</span>
             <h3 class="text-base sm:text-lg font-bold text-white mt-2 group-hover:text-yellow-400 transition">Kenapa Permohonan Pembiayaan Ditolak?</h3>
@@ -564,7 +577,7 @@
         </a>
 
         <!-- Card 2 -->
-        <a href="servis.html" class="p-6 sm:p-7 rounded-3xl bg-slate-900/90 border border-slate-800 hover:border-yellow-500/50 hover:shadow-xl transition group flex flex-col justify-between">
+        <a href="servis.html" class="p-6 sm:p-7 rounded-3xl bg-[#111625]/90 border border-yellow-500/30 hover:border-yellow-400/80 hover:shadow-xl hover:shadow-yellow-500/15 transition group flex flex-col justify-between">
           <div>
             <span class="text-[10px] sm:text-xs font-bold text-yellow-400 uppercase tracking-wider">Perkhidmatan</span>
             <h3 class="text-base sm:text-lg font-bold text-white mt-2 group-hover:text-yellow-400 transition">Penyatuan Komitmen & Strategi Pembiayaan</h3>
@@ -574,7 +587,7 @@
         </a>
 
         <!-- Card 3 -->
-        <a href="verify.html" class="p-6 sm:p-7 rounded-3xl bg-slate-900/90 border border-slate-800 hover:border-yellow-500/50 hover:shadow-xl transition group flex flex-col justify-between">
+        <a href="verify.html" class="p-6 sm:p-7 rounded-3xl bg-[#111625]/90 border border-yellow-500/30 hover:border-yellow-400/80 hover:shadow-xl hover:shadow-yellow-500/15 transition group flex flex-col justify-between">
           <div>
             <span class="text-[10px] sm:text-xs font-bold text-yellow-400 uppercase tracking-wider">Integriti & Anti-Scam</span>
             <h3 class="text-base sm:text-lg font-bold text-white mt-2 group-hover:text-yellow-400 transition">Semak Identiti Konsultan JomConsult</h3>
