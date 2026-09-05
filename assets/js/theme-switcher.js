@@ -110,26 +110,26 @@ function initThemeSwitcher() {
     </button>
 
     <!-- Theme Selection Modal / Drawer -->
-    <div id="jc-theme-modal" class="hidden fixed bottom-16 left-5 w-[92vw] max-w-sm sm:max-w-md bg-slate-900/95 border-2 border-yellow-500/40 rounded-3xl p-5 shadow-2xl backdrop-blur-xl text-slate-100 animate-fadeIn">
-      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+    <div id="jc-theme-modal" class="hidden fixed bottom-16 left-3 sm:left-6 w-[94vw] max-w-sm sm:max-w-md bg-slate-900/98 border-2 border-yellow-500/40 rounded-3xl p-4 sm:p-5 shadow-2xl backdrop-blur-2xl text-slate-100 animate-fadeIn max-h-[82vh] flex flex-col justify-between">
+      <div class="flex items-center justify-between pb-2.5 border-b border-slate-800">
         <div class="flex items-center gap-2">
           <span class="text-xl">🎨</span>
           <div>
             <h3 class="font-extrabold text-sm text-white leading-tight">Pilih Tema Warna Web</h3>
-            <p class="text-[11px] text-yellow-400/90 font-medium">Demo Khas untuk Ujian Klien</p>
+            <p class="text-[11px] text-yellow-400 font-medium">Ujian Pilihan Klien</p>
           </div>
         </div>
-        <button id="jc-close-theme-modal" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-sm font-bold transition cursor-pointer">
+        <button id="jc-close-theme-modal" class="w-7 h-7 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-xs font-bold transition cursor-pointer">
           ✕
         </button>
       </div>
 
-      <p class="text-xs text-slate-300 py-3 leading-relaxed">
-        Klik mana-mana pilihan warna di bawah untuk melihat rupa website secara langsung. Pilihan disimpan automatik semasa anda melayari web.
+      <p class="text-[11px] text-slate-300 py-2 leading-relaxed">
+        Klik warna di bawah untuk melihat rupa website secara langsung. Pilihan disimpan automatik semasa melayari web.
       </p>
 
       <!-- Theme Cards List -->
-      <div class="space-y-2.5 max-h-[58vh] overflow-y-auto pr-1">
+      <div class="space-y-2 max-h-[38vh] sm:max-h-[44vh] overflow-y-auto pr-1">
         ${THEMES.map(theme => `
           <div class="theme-option-card flex items-start gap-3 p-3 rounded-2xl border border-slate-800 bg-slate-950/70 hover:border-yellow-400/60 transition ${theme.id === initialTheme ? 'active-theme' : ''}" data-theme-id="${theme.id}">
             <!-- Color Preview Circles -->
@@ -155,9 +155,11 @@ function initThemeSwitcher() {
 
       <!-- Footer Note -->
       <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
-        <span class="text-slate-400 text-[10px]">💡 Boleh didelete bila client dah confirm</span>
-        <button id="jc-done-theme-modal" class="px-4 py-1.5 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-extrabold text-xs transition">
-          Selesai
+        <span class="text-slate-400 text-[11px] font-medium flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Pratonton Langsung
+        </span>
+        <button id="jc-done-theme-modal" class="px-5 py-2 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-extrabold text-xs transition cursor-pointer shadow-md shadow-yellow-500/20">
+          Tutup & Lihat
         </button>
       </div>
     </div>

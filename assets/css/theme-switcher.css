@@ -138,7 +138,7 @@ html[data-theme="graphite-gold"] header {
 }
 
 /* --------------------------------------------------------------------------
-   THEME 5: CLEAN CORPORATE LIGHT MODE
+   THEME 5: CLEAN CORPORATE LIGHT MODE (HIGH-CONTRAST READABILITY)
    -------------------------------------------------------------------------- */
 html[data-theme="light-gold"] body {
   background-color: #f8fafc !important;
@@ -149,11 +149,18 @@ html[data-theme="light-gold"] body {
   color: #0f172a !important;
 }
 
+/* Yellow text in Light Mode turns to deep, legible Golden Amber (#b45309) */
+html[data-theme="light-gold"] .text-yellow-400,
+html[data-theme="light-gold"] .text-yellow-300,
+html[data-theme="light-gold"] .text-yellow-500 {
+  color: #b45309 !important;
+}
+
 /* Headers & Navigation in Light Mode */
 html[data-theme="light-gold"] header {
-  background-color: rgba(255, 255, 255, 0.96) !important;
+  background-color: rgba(255, 255, 255, 0.98) !important;
   border-bottom-color: #e2e8f0 !important;
-  box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05) !important;
 }
 
 html[data-theme="light-gold"] nav a,
@@ -162,8 +169,9 @@ html[data-theme="light-gold"] nav button {
 }
 
 html[data-theme="light-gold"] nav a:hover,
-html[data-theme="light-gold"] nav button:hover {
-  color: #ca8a04 !important;
+html[data-theme="light-gold"] nav button:hover,
+html[data-theme="light-gold"] nav a.text-yellow-400 {
+  color: #b45309 !important;
 }
 
 html[data-theme="light-gold"] #top-announcement-bar {
@@ -174,37 +182,88 @@ html[data-theme="light-gold"] #top-announcement-bar {
 /* Sections & Overlays in Light Mode */
 html[data-theme="light-gold"] .bg-\[\#0A0E17\],
 html[data-theme="light-gold"] .bg-\[\#07172C\],
-html[data-theme="light-gold"] section[id="semak-kelayakan"] {
+html[data-theme="light-gold"] section[id="semak-kelayakan"],
+html[data-theme="light-gold"] .bg-warm-dark {
   background-color: #f8fafc !important;
   background-image: none !important;
   border-color: #e2e8f0 !important;
 }
 
 html[data-theme="light-gold"] .papaipay-gradient-overlay {
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.90) 40%, rgba(255, 255, 255, 0.70) 75%, rgba(255, 255, 255, 0.4) 100%) !important;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.93) 40%, rgba(255, 255, 255, 0.75) 75%, rgba(255, 255, 255, 0.4) 100%) !important;
 }
 
-html[data-theme="light-gold"] .hero-text-slide h1,
-html[data-theme="light-gold"] .hero-text-slide h2,
+html[data-theme="light-gold"] .gold-spotlight-top {
+  display: none !important;
+}
+
+/* All Headings in Light Mode */
 html[data-theme="light-gold"] h1, 
 html[data-theme="light-gold"] h2, 
 html[data-theme="light-gold"] h3, 
-html[data-theme="light-gold"] h4 {
+html[data-theme="light-gold"] h4,
+html[data-theme="light-gold"] .hero-text-slide h1,
+html[data-theme="light-gold"] .hero-text-slide h2 {
   color: #0f172a !important;
 }
 
-html[data-theme="light-gold"] .hero-text-slide p,
+/* All Paragraphs & Slate text in Light Mode */
 html[data-theme="light-gold"] p,
+html[data-theme="light-gold"] .hero-text-slide p,
+html[data-theme="light-gold"] .text-slate-100,
 html[data-theme="light-gold"] .text-slate-200,
 html[data-theme="light-gold"] .text-slate-300 {
-  color: #475569 !important;
+  color: #334155 !important;
 }
 
 html[data-theme="light-gold"] .text-slate-400 {
   color: #64748b !important;
 }
 
-/* Cards in Light Mode */
+/* Hero Badge & Trust Points in Light Mode */
+html[data-theme="light-gold"] .rounded-full.bg-yellow-400\/10,
+html[data-theme="light-gold"] .rounded-full.bg-yellow-500\/15 {
+  background-color: #fef9c3 !important;
+  border-color: #facc15 !important;
+  color: #854d0e !important;
+}
+
+html[data-theme="light-gold"] .hero-text-slide ~ div,
+html[data-theme="light-gold"] .hero-text-slide ~ div span {
+  color: #1e293b !important;
+}
+
+/* Hero Secondary Button in Light Mode */
+html[data-theme="light-gold"] a[href="#bagaimana-kami-bantu"] {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #0f172a !important;
+}
+
+html[data-theme="light-gold"] a[href="#bagaimana-kami-bantu"]:hover {
+  background-color: #1e293b !important;
+}
+
+/* 4-Column Bar under Hero in Light Mode */
+html[data-theme="light-gold"] .relative.z-20.border-t.border-b {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+html[data-theme="light-gold"] .relative.z-20.border-t.border-b .text-white {
+  color: #0f172a !important;
+}
+
+html[data-theme="light-gold"] .relative.z-20.border-t.border-b .text-slate-300 {
+  color: #475569 !important;
+}
+
+html[data-theme="light-gold"] .relative.z-20.border-t.border-b .divide-yellow-500\/20,
+html[data-theme="light-gold"] .relative.z-20.border-t.border-b .divide-slate-800 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Cards across all sections in Light Mode */
 html[data-theme="light-gold"] .bg-slate-900,
 html[data-theme="light-gold"] .bg-slate-900\/90,
 html[data-theme="light-gold"] .bg-slate-900\/95,
@@ -215,11 +274,62 @@ html[data-theme="light-gold"] .glass-card {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
 }
 
-html[data-theme="light-gold"] .bg-white\/5,
-html[data-theme="light-gold"] .bg-slate-900\/60 {
-  background-color: #f1f5f9 !important;
-  border-color: #cbd5e1 !important;
+html[data-theme="light-gold"] .bg-\[\#111625\]\/90 span.font-bold,
+html[data-theme="light-gold"] .bg-\[\#111625\]\/90 h3,
+html[data-theme="light-gold"] .bg-\[\#111625\]\/90 h4,
+html[data-theme="light-gold"] .bg-slate-900 span.font-bold,
+html[data-theme="light-gold"] .bg-slate-900 h3,
+html[data-theme="light-gold"] .bg-slate-900 h4 {
   color: #0f172a !important;
+}
+
+html[data-theme="light-gold"] .bg-\[\#111625\]\/90 span.text-slate-300,
+html[data-theme="light-gold"] .bg-\[\#111625\]\/90 p,
+html[data-theme="light-gold"] .bg-slate-900 span.text-slate-300,
+html[data-theme="light-gold"] .bg-slate-900 p {
+  color: #475569 !important;
+}
+
+html[data-theme="light-gold"] .w-8.h-8.rounded-xl.bg-yellow-400\/15 {
+  background-color: #fef9c3 !important;
+  border-color: #fde047 !important;
+  color: #854d0e !important;
+}
+
+/* Stats Counter Box in Light Mode */
+html[data-theme="light-gold"] .max-w-3xl.grid-cols-3 {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06) !important;
+}
+
+html[data-theme="light-gold"] .max-w-3xl.grid-cols-3 .text-white {
+  color: #0f172a !important;
+}
+
+html[data-theme="light-gold"] .max-w-3xl.grid-cols-3 .text-yellow-400 {
+  color: #b45309 !important;
+}
+
+html[data-theme="light-gold"] .max-w-3xl.grid-cols-3 .border-yellow-500\/20,
+html[data-theme="light-gold"] .max-w-3xl.grid-cols-3 .border-slate-800 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Step Cards & Numbers in Light Mode */
+html[data-theme="light-gold"] #bagaimana-kami-bantu {
+  border-color: #e2e8f0 !important;
+}
+
+html[data-theme="light-gold"] #bagaimana-kami-bantu span.font-mono {
+  color: #cbd5e1 !important;
+}
+
+html[data-theme="light-gold"] a[href="cara-kerja.html"].bg-slate-900,
+html[data-theme="light-gold"] a[href="cara-kerja.html"].bg-slate-800 {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #0f172a !important;
 }
 
 /* Form Inputs in Light Mode */
@@ -234,16 +344,13 @@ html[data-theme="light-gold"] textarea {
 html[data-theme="light-gold"] input:focus,
 html[data-theme="light-gold"] select:focus,
 html[data-theme="light-gold"] textarea:focus {
-  border-color: #eab308 !important;
+  border-color: #ca8a04 !important;
   background-color: #ffffff !important;
+  box-shadow: 0 0 0 2px rgba(202, 138, 4, 0.2) !important;
 }
 
-/* Buttons in Light Mode */
-html[data-theme="light-gold"] .bg-slate-800,
-html[data-theme="light-gold"] .bg-slate-900 {
-  background-color: #e2e8f0 !important;
+html[data-theme="light-gold"] label {
   color: #0f172a !important;
-  border-color: #cbd5e1 !important;
 }
 
 /* Header Dropdowns in Light Mode */
@@ -261,15 +368,22 @@ html[data-theme="light-gold"] header .group > div > div span.text-white {
   color: #0f172a !important;
 }
 
-html[data-theme="light-gold"] .bg-\[\#111625\]\/90 span.font-bold,
-html[data-theme="light-gold"] .bg-\[\#111625\]\/90 h3,
-html[data-theme="light-gold"] .bg-\[\#111625\]\/90 h4 {
-  color: #0f172a !important;
+/* --------------------------------------------------------------------------
+   NAVY, EMERALD & GRAPHITE 4-COLUMN BAR STYLING
+   -------------------------------------------------------------------------- */
+html[data-theme="navy-gold"] .relative.z-20.border-t.border-b {
+  background: linear-gradient(90deg, #091429, #0d1e3d, #091429) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
 }
 
-html[data-theme="light-gold"] .bg-\[\#111625\]\/90 p,
-html[data-theme="light-gold"] .bg-\[\#111625\]\/90 span.text-slate-300 {
-  color: #475569 !important;
+html[data-theme="emerald-gold"] .relative.z-20.border-t.border-b {
+  background: linear-gradient(90deg, #072218, #0d3326, #072218) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+html[data-theme="graphite-gold"] .relative.z-20.border-t.border-b {
+  background: linear-gradient(90deg, #181b22, #222630, #181b22) !important;
+  border-color: rgba(148, 163, 184, 0.25) !important;
 }
 
 /* --------------------------------------------------------------------------
