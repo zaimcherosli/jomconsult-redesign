@@ -10,10 +10,11 @@ export async function onRequestGet({ env }) {
     if (!db) {
       // Fallback if DB not ready
       return jsonResponse({
-        whatsapp_number: "601171191170",
-        phone_display: "011-7119 1170",
+        whatsapp_number: "601171191179",
+        phone_display: "011-7119 1179",
+        office_phone: "03-7832 4539",
         email: "hello@jomconsult.com.my",
-        address: "A-10-12, Radia Office Bukit Jelutong, Persiaran Arked, 40150 Shah Alam, Selangor",
+        address: "22-2, Jalan Opera G U2/G, Taman TTDI Jaya, 40150 Shah Alam, Selangor",
         office_hours: "Isnin - Jumaat: 10:00 AM - 6:00 PM",
         announcement_text: "Semakan Kelayakan Pembiayaan Percuma",
         announcement_active: "1"

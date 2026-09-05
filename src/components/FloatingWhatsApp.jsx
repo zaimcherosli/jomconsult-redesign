@@ -34,7 +34,7 @@ export default function FloatingWhatsApp() {
 
       {/* Official Animated WhatsApp Button */}
       <a
-        href="https://wa.me/60172551460?text=Salam%20JomConsult,%20saya%20nak%20semak%20kelayakan%20pinjaman%20saya."
+        href="https://wa.me/601171191179?text=Salam%20JomConsult,%20saya%20nak%20semak%20kelayakan%20pinjaman%20saya."
         target="_blank"
         rel="noopener noreferrer"
         className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center shadow-2xl shadow-[#25D366]/40 hover:scale-110 active:scale-95 transition-transform group relative animate-whatsapp-float"

@@ -841,6 +841,7 @@ async function loadSettings() {
 
     if (settings.whatsapp_number) document.getElementById('set-whatsapp').value = settings.whatsapp_number;
     if (settings.phone_display) document.getElementById('set-phone-display').value = settings.phone_display;
+    if (settings.office_phone && document.getElementById('set-office-phone')) document.getElementById('set-office-phone').value = settings.office_phone;
     if (settings.email) document.getElementById('set-email').value = settings.email;
     if (settings.address) document.getElementById('set-address').value = settings.address;
     if (settings.office_hours) document.getElementById('set-hours').value = settings.office_hours;
@@ -862,6 +863,7 @@ function initSettingsListeners() {
       const payload = {
         whatsapp_number: document.getElementById('set-whatsapp').value.trim(),
         phone_display: document.getElementById('set-phone-display').value.trim(),
+        office_phone: document.getElementById('set-office-phone') ? document.getElementById('set-office-phone').value.trim() : '',
         email: document.getElementById('set-email').value.trim(),
         address: document.getElementById('set-address').value.trim(),
         office_hours: document.getElementById('set-hours').value.trim(),

@@ -78,10 +78,11 @@ INSERT OR IGNORE INTO admins (id, username, password_hash, full_name, role) VALU
 
 -- Site Settings
 INSERT OR REPLACE INTO site_settings (key, value, description) VALUES
-('whatsapp_number', '601171191170', 'Nombor WhatsApp Utama HQ'),
-('phone_display', '011-7119 1170', 'Paparan Nombor Telefon HQ'),
+('whatsapp_number', '601171191179', 'Nombor WhatsApp Utama HQ'),
+('phone_display', '011-7119 1179', 'Paparan Nombor Telefon HQ'),
+('office_phone', '03-7832 4539', 'Talian Pejabat HQ'),
 ('email', 'hello@jomconsult.com.my', 'Emel Rasmi Syarikat'),
-('address', 'A-10-12, Radia Office Bukit Jelutong, Persiaran Arked, 40150 Shah Alam, Selangor', 'Alamat Pejabat HQ'),
+('address', '22-2, Jalan Opera G U2/G, Taman TTDI Jaya, 40150 Shah Alam, Selangor', 'Alamat Pejabat HQ'),
 ('office_hours', 'Isnin - Jumaat: 10:00 AM - 6:00 PM', 'Waktu Operasi Pejabat'),
 ('min_interest_rate', '2.88%', 'Kadar Faedah Minimum Paparan Web'),
 ('max_loan_amount', 'RM250,000', 'Had Pembiayaan Maksimum'),
@@ -90,11 +91,11 @@ INSERT OR REPLACE INTO site_settings (key, value, description) VALUES
 
 -- Seed Official Agents
 INSERT OR REPLACE INTO agents (id, staff_id, name, role, phone, phone_display, branch, zone, status, rating, initials, specialty, avatar_bg) VALUES
-(1, 'JC-1021', 'Mohd Ali bin Osman', 'Pakar Penstrukturan DSR & Penyatuan Hutang', '601171191170', '011-7119 1170', 'Ibu Pejabat (Radia Bukit Jelutong, Shah Alam)', 'Selangor & Kuala Lumpur', 'AKTIF & BERDAFTAR', '4.9 / 5.0', 'AO', 'Penyatuan Hutang & Pinjaman Koperasi', 'bg-emerald-700'),
-(2, 'JC-1045', 'Siti Nurul Aminah binti Razak', 'Konsultan Pinjaman Peribadi Swasta & Bank', '601171191170', '011-7119 1170', 'Cawangan Wilayah Utara (Pulau Pinang)', 'Penang, Kedah & Perak', 'AKTIF & BERDAFTAR', '4.9 / 5.0', 'SA', 'Pinjaman Swasta MNC & Eksekutif', 'bg-teal-700'),
-(3, 'JC-1088', 'Muhammad Farhan bin Rosli', 'Pakar Penstrukturan & Pemulihan Profil CCRIS', '601171191170', '011-7119 1170', 'Cawangan Wilayah Selatan (Johor Bahru)', 'Johor, Melaka & Negeri Sembilan', 'AKTIF & BERDAFTAR', '5.0 / 5.0', 'FR', 'CCRIS / SAA & Mortgage Refinance', 'bg-indigo-700'),
-(4, 'JC-1102', 'Noraini binti Kassim', 'Penasihat Pembiayaan Penjawat Awam (AG / KKM / Guru)', '601171191170', '011-7119 1170', 'Cawangan Pantai Timur (Kuantan)', 'Pahang, Terengganu & Kelantan', 'AKTIF & BERDAFTAR', '4.8 / 5.0', 'NK', 'Koperasi BPA Angkasa & PDRM', 'bg-amber-700'),
-(5, 'JC-1120', 'Hafiz bin Zainal Abidin', 'Pengurus Khidmat Pelanggan & Analisis Kelayakan', '601171191170', '011-7119 1170', 'Ibu Pejabat (Radia Bukit Jelutong, Shah Alam)', 'Seluruh Malaysia', 'AKTIF & BERDAFTAR', '5.0 / 5.0', 'HZ', 'Diagnostik Slip Gaji & Semakan Percuma', 'bg-slate-800');
+(1, 'JC-1021', 'Mohd Ali bin Osman', 'Pakar Penstrukturan DSR & Penyatuan Hutang', '601171191179', '011-7119 1179', 'Ibu Pejabat (Taman TTDI Jaya, Shah Alam)', 'Selangor & Kuala Lumpur', 'AKTIF & BERDAFTAR', '4.9 / 5.0', 'AO', 'Penyatuan Hutang & Pinjaman Koperasi', 'bg-emerald-700'),
+(2, 'JC-1045', 'Siti Nurul Aminah binti Razak', 'Konsultan Pinjaman Peribadi Swasta & Bank', '601171191179', '011-7119 1179', 'Cawangan Wilayah Utara (Pulau Pinang)', 'Penang, Kedah & Perak', 'AKTIF & BERDAFTAR', '4.9 / 5.0', 'SA', 'Pinjaman Swasta MNC & Eksekutif', 'bg-teal-700'),
+(3, 'JC-1088', 'Muhammad Farhan bin Rosli', 'Pakar Penstrukturan & Pemulihan Profil CCRIS', '601171191179', '011-7119 1179', 'Cawangan Wilayah Selatan (Johor Bahru)', 'Johor, Melaka & Negeri Sembilan', 'AKTIF & BERDAFTAR', '5.0 / 5.0', 'FR', 'CCRIS / SAA & Mortgage Refinance', 'bg-indigo-700'),
+(4, 'JC-1102', 'Noraini binti Kassim', 'Penasihat Pembiayaan Penjawat Awam (AG / KKM / Guru)', '601171191179', '011-7119 1179', 'Cawangan Pantai Timur (Kuantan)', 'Pahang, Terengganu & Kelantan', 'AKTIF & BERDAFTAR', '4.8 / 5.0', 'NK', 'Koperasi BPA Angkasa & PDRM', 'bg-amber-700'),
+(5, 'JC-1120', 'Hafiz bin Zainal Abidin', 'Pengurus Khidmat Pelanggan & Analisis Kelayakan', '601171191179', '011-7119 1179', 'Ibu Pejabat (Taman TTDI Jaya, Shah Alam)', 'Seluruh Malaysia', 'AKTIF & BERDAFTAR', '5.0 / 5.0', 'HZ', 'Diagnostik Slip Gaji & Semakan Percuma', 'bg-slate-800');
 
 -- Seed Testimonials
 INSERT OR REPLACE INTO testimonials (id, client_name, profession, original_issue, loan_approved, monthly_savings, story, is_featured, display_order) VALUES

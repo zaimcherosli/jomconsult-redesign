@@ -18,7 +18,7 @@ export default function SavingsCalculator({ onOpenChecker }) {
       `*Bayaran Bulanan Sekarang:* RM ${currentMonthly.toLocaleString()}\n` +
       `*Anggaran Penjimatan Bulanan:* RM ${monthlySavings.toLocaleString()}/bulan\n\n` +
       `Boleh bantu saya buat permohonan penyatuan hutang ini?`;
-    window.open(`https://wa.me/60172551460?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://wa.me/601171191179?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (

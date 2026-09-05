@@ -67,7 +67,7 @@ export default function EligibilityChecker({ inline = false }) {
       `Mohon bantu analisa profil kredit saya secara percuma. Terima kasih!`;
 
     const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/60172551460?text=${encoded}`, '_blank');
+    window.open(`https://wa.me/601171191179?text=${encoded}`, '_blank');
   };
 
   const resetForm = () => {

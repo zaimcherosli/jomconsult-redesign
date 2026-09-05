@@ -28,7 +28,7 @@ export default function CTASection({ onOpenChecker }) {
             </button>
 
             <a
-              href="https://wa.me/60172551460?text=Salam%20JomConsult,%20saya%20nak%20dapatkan%20konsultasi%20pinjaman."
+              href="https://wa.me/601171191179?text=Salam%20JomConsult,%20saya%20nak%20dapatkan%20konsultasi%20pinjaman."
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-6 py-4 rounded-xl font-bold text-sm text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-all text-center"

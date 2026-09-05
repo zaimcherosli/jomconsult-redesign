@@ -51,7 +51,7 @@ export default function Navbar({ onOpenChecker }) {
         {/* Desktop Actions - Minimal & Clean */}
         <div className="hidden md:flex items-center gap-3 shrink-0">
           <a
-            href="https://wa.me/60172551460?text=Salam%20JomConsult,%20saya%20nak%20dapatkan%20nasihat%20semakan%20kelayakan%20loan."
+            href="https://wa.me/601171191179?text=Salam%20JomConsult,%20saya%20nak%20dapatkan%20nasihat%20semakan%20kelayakan%20loan."
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs font-semibold text-slate-600 hover:text-slate-900 px-3 py-2 transition-colors whitespace-nowrap"
@@ -105,7 +105,7 @@ export default function Navbar({ onOpenChecker }) {
             </button>
 
             <a
-              href="https://wa.me/60172551460?text=Salam%20JomConsult,%20saya%20nak%20semak%20kelayakan%20pinjaman."
+              href="https://wa.me/601171191179?text=Salam%20JomConsult,%20saya%20nak%20semak%20kelayakan%20pinjaman."
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-2 rounded-lg text-xs font-semibold text-slate-700 bg-slate-100 text-center"

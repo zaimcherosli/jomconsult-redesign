@@ -9,10 +9,11 @@ const OFFICIAL_WHATSAPP_SVG = '<svg class="w-4 h-4 fill-current text-[#25D366] i
 
 const JOMCONSULT_CONFIG = {
   name: "JomConsult Solutions",
-  whatsappNumber: "601171191170",
+  whatsappNumber: "601171191179",
   email: "hello@jomconsult.com.my",
-  phoneDisplay: "+60 11-7119 1170",
-  address: "A-10-12, Radia Office Bukit Jelutong, Persiaran Arked, 40150 Shah Alam, Selangor",
+  phoneDisplay: "+60 11-7119 1179",
+  officePhone: "03-7832 4539",
+  address: "22-2, Jalan Opera G U2/G, Taman TTDI Jaya, 40150 Shah Alam, Selangor",
   hours: "Isnin - Jumaat: 10:00 AM - 6:00 PM"
 };
 
@@ -22,9 +23,9 @@ const OFFICIAL_AGENTS = [
     id: "JC-1021",
     name: "Mohd Ali bin Osman",
     role: "Pakar Penstrukturan DSR & Penyatuan Hutang",
-    phone: "601171191170",
-    phoneDisplay: "011-7119 1170",
-    branch: "Ibu Pejabat (Radia Bukit Jelutong, Shah Alam)",
+    phone: "601171191179",
+    phoneDisplay: "011-7119 1179",
+    branch: "Ibu Pejabat (Taman TTDI Jaya, Shah Alam)",
     zone: "Selangor & Kuala Lumpur",
     status: "AKTIF & BERDAFTAR",
     joinedDate: "12 Januari 2021",
@@ -82,9 +83,9 @@ const OFFICIAL_AGENTS = [
     id: "JC-1120",
     name: "Hafiz bin Zainal Abidin",
     role: "Pengurus Khidmat Pelanggan & Analisis Kelayakan",
-    phone: "601171191170",
-    phoneDisplay: "011-7119 1170",
-    branch: "Ibu Pejabat (Radia Bukit Jelutong, Shah Alam)",
+    phone: "601171191179",
+    phoneDisplay: "011-7119 1179",
+    branch: "Ibu Pejabat (Taman TTDI Jaya, Shah Alam)",
     zone: "Seluruh Malaysia",
     status: "AKTIF & BERDAFTAR",
     joinedDate: "15 November 2020",
@@ -111,6 +112,10 @@ async function loadDynamicConfig() {
     if (cfg.phone_display) {
       JOMCONSULT_CONFIG.phoneDisplay = cfg.phone_display;
       document.querySelectorAll('.phone-display-text').forEach(el => el.textContent = cfg.phone_display);
+    }
+    if (cfg.office_phone) {
+      JOMCONSULT_CONFIG.officePhone = cfg.office_phone;
+      document.querySelectorAll('.office-phone-display-text').forEach(el => el.textContent = cfg.office_phone);
     }
     if (cfg.announcement_text) {
       document.querySelectorAll('.announcement-text-item').forEach(el => el.textContent = cfg.announcement_text);

@@ -50,7 +50,7 @@ export async function onRequestPost({ request, env }) {
       role || "Perunding Pinjaman Bertauliah",
       phone.replace(/\D/g, ""),
       phoneDisplay,
-      branch || "Ibu Pejabat (Radia Bukit Jelutong)",
+      branch || "Ibu Pejabat (Taman TTDI Jaya)",
       zone || "Selangor & KL",
       status || "AKTIF & BERDAFTAR",
       rating || "5.0 / 5.0",

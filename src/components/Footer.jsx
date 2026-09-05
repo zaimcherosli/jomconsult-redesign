@@ -49,7 +49,21 @@ export default function Footer() {
             <div className="space-y-2.5 text-slate-300">
               <div>
                 <span className="font-semibold text-white block mb-0.5">Alamat:</span>
-                <span>A-10-12, Radia Office Bukit Jelutong, Persiaran Arked, 40150 Shah Alam, Selangor.</span>
+                <span>22-2, Jalan Opera G U2/G, Taman TTDI Jaya, 40150 Shah Alam, Selangor.</span>
+              </div>
+
+              <div>
+                <span className="font-semibold text-white block mb-0.5">Talian Pejabat:</span>
+                <a href="tel:0378324539" className="hover:text-emerald-400 transition-colors">
+                  03-7832 4539
+                </a>
+              </div>
+
+              <div>
+                <span className="font-semibold text-white block mb-0.5">WhatsApp HQ:</span>
+                <a href="https://wa.me/601171191179" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">
+                  011-7119 1179
+                </a>
               </div>
 
               <div>

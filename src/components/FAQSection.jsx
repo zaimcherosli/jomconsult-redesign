@@ -87,7 +87,7 @@ export default function FAQSection() {
             <p className="text-xs text-slate-500 mt-0.5">Penasihat kami sedia membantu anda secara terus di WhatsApp.</p>
           </div>
           <a
-            href="https://wa.me/60172551460?text=Salam%20JomConsult,%20saya%20ada%20pertanyaan%20mengenai%20kelayakan%20pinjaman."
+            href="https://wa.me/601171191179?text=Salam%20JomConsult,%20saya%20ada%20pertanyaan%20mengenai%20kelayakan%20pinjaman."
             target="_blank"
             rel="noopener noreferrer"
             className="px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 shrink-0 transition-colors"
