@@ -104,6 +104,12 @@ html[data-theme="navy-gold"] .tenure-btn:not([class*="bg-yellow-400"]) {
   color: #93c5fd !important;
 }
 
+html[data-theme="navy-gold"] .feature-icon-badge {
+  background: rgba(30, 58, 138, 0.35) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  color: #60a5fa !important;
+}
+
 /* --------------------------------------------------------------------------
    THEME 3: EMERALD WEALTH & SYARIAH GOLD
    -------------------------------------------------------------------------- */
@@ -188,6 +194,12 @@ html[data-theme="emerald-gold"] .tenure-btn:not([class*="bg-yellow-400"]) {
   color: #a7f3d0 !important;
 }
 
+html[data-theme="emerald-gold"] .feature-icon-badge {
+  background: rgba(6, 78, 59, 0.4) !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+  color: #34d399 !important;
+}
+
 /* --------------------------------------------------------------------------
    THEME 4: TITANIUM GRAPHITE & MODERN SUNBURST
    -------------------------------------------------------------------------- */
@@ -266,6 +278,12 @@ html[data-theme="graphite-gold"] .tenure-btn:not([class*="bg-yellow-400"]) {
   background-color: rgba(30, 34, 43, 0.9) !important;
   border-color: rgba(148, 163, 184, 0.25) !important;
   color: #cbd5e1 !important;
+}
+
+html[data-theme="graphite-gold"] .feature-icon-badge {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(148, 163, 184, 0.3) !important;
+  color: #fde047 !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -543,6 +561,21 @@ html[data-theme="light-gold"] span.rounded-full:not(#jc-theme-switcher-widget *)
   background-color: #fef3c7 !important;
   color: #92400e !important;
   border-color: #fcd34d !important;
+}
+
+/* Feature highlight icon badge in Light Mode */
+html[data-theme="light-gold"] .feature-icon-badge {
+  background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%) !important;
+  border: 1.5px solid #fde047 !important;
+  color: #92400e !important;
+  box-shadow: 0 4px 12px -2px rgba(202, 138, 4, 0.18) !important;
+}
+
+html[data-theme="light-gold"] .group:hover .feature-icon-badge {
+  background: linear-gradient(135deg, #fef08a 0%, #facc15 100%) !important;
+  border-color: #eab308 !important;
+  color: #78350f !important;
+  box-shadow: 0 6px 16px -2px rgba(202, 138, 4, 0.28) !important;
 }
 
 /* Stats counter box on homepage */
