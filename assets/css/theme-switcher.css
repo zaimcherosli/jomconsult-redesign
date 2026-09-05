@@ -283,6 +283,7 @@ html[data-theme="light-gold"] body {
 
 /* Clear all dark section backgrounds & gradients in Light Mode */
 html[data-theme="light-gold"] section:not(footer),
+html[data-theme="light-gold"] main:not(footer),
 html[data-theme="light-gold"] .bg-\[\#0A0E17\],
 html[data-theme="light-gold"] .bg-\[\#080C14\],
 html[data-theme="light-gold"] .bg-\[\#07172C\],
@@ -447,7 +448,8 @@ html[data-theme="light-gold"] .text-slate-400:not(footer *):not(#jc-theme-switch
   color: #64748b !important;
 }
 
-html[data-theme="light-gold"] section:not(footer) .text-white:not(button *):not(a *):not(button):not(a) {
+html[data-theme="light-gold"] section:not(footer) .text-white:not(button *):not(a *):not(button):not(a),
+html[data-theme="light-gold"] main:not(footer) .text-white:not(button *):not(a *):not(button):not(a):not(#page-wizard-progress-bar *) {
   color: #0f172a !important;
 }
 
@@ -490,6 +492,12 @@ html[data-theme="light-gold"] section:not(footer) div.bg-slate-900,
 html[data-theme="light-gold"] section:not(footer) div[class*="bg-slate-900/90"],
 html[data-theme="light-gold"] section:not(footer) div[class*="bg-slate-900/95"],
 html[data-theme="light-gold"] section:not(footer) div[class*="bg-[#111625]"],
+html[data-theme="light-gold"] main:not(footer) div.bg-slate-900,
+html[data-theme="light-gold"] main:not(footer) div[class*="bg-slate-900/90"],
+html[data-theme="light-gold"] main:not(footer) div[class*="bg-slate-900/95"],
+html[data-theme="light-gold"] main:not(footer) div[class*="bg-[#111625]"],
+html[data-theme="light-gold"] #page-wizard-form-card,
+html[data-theme="light-gold"] #borang-kerjaya-section,
 html[data-theme="light-gold"] section:not(footer) .glass-card,
 html[data-theme="light-gold"] .p-8.rounded-3xl.bg-slate-900 {
   background-color: #ffffff !important;
@@ -497,14 +505,19 @@ html[data-theme="light-gold"] .p-8.rounded-3xl.bg-slate-900 {
   box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.04) !important;
 }
 
-/* Inner sub-boxes & feature cards across ALL pages (/servis, /testimoni, /cara-kerja, /verify, etc.) */
+/* Inner sub-boxes & feature cards across ALL pages (/servis, /testimoni, /cara-kerja, /verify, /semak-kelayakan, etc.) */
 html[data-theme="light-gold"] section:not(footer) div[class*="bg-slate-900/60"],
 html[data-theme="light-gold"] section:not(footer) div[class*="bg-slate-800"],
 html[data-theme="light-gold"] section:not(footer) div[class*="bg-slate-900/50"],
 html[data-theme="light-gold"] section:not(footer) div[class*="bg-slate-900/80"],
 html[data-theme="light-gold"] section:not(footer) div[class*="bg-white/5"],
 html[data-theme="light-gold"] section:not(footer) div[class*="bg-white/10"],
-html[data-theme="light-gold"] section:not(footer) .lg\:col-span-4.text-center {
+html[data-theme="light-gold"] section:not(footer) .lg\:col-span-4.text-center,
+html[data-theme="light-gold"] main:not(footer) div[class*="bg-slate-900/60"],
+html[data-theme="light-gold"] main:not(footer) div[class*="bg-slate-800"],
+html[data-theme="light-gold"] main:not(footer) div[class*="bg-slate-900/50"],
+html[data-theme="light-gold"] main:not(footer) div[class*="bg-slate-900/80"],
+html[data-theme="light-gold"] main:not(footer) div[class*="border-dashed"] {
   background-color: #f8fafc !important;
   border-color: #e2e8f0 !important;
 }
@@ -514,7 +527,13 @@ html[data-theme="light-gold"] section:not(footer) div[class*="bg-slate-900/60"] 
 html[data-theme="light-gold"] section:not(footer) div[class*="bg-slate-800"] span,
 html[data-theme="light-gold"] section:not(footer) div[class*="bg-slate-800"] p,
 html[data-theme="light-gold"] section:not(footer) div[class*="bg-slate-800"] div,
-html[data-theme="light-gold"] section:not(footer) div[class*="bg-slate-800"] strong {
+html[data-theme="light-gold"] section:not(footer) div[class*="bg-slate-800"] strong,
+html[data-theme="light-gold"] main:not(footer) div[class*="bg-slate-900/60"] span,
+html[data-theme="light-gold"] main:not(footer) div[class*="bg-slate-900/60"] p,
+html[data-theme="light-gold"] main:not(footer) div[class*="bg-slate-800"] span,
+html[data-theme="light-gold"] main:not(footer) div[class*="bg-slate-800"] p,
+html[data-theme="light-gold"] main:not(footer) div[class*="bg-slate-800"] div,
+html[data-theme="light-gold"] main:not(footer) div[class*="bg-slate-800"] strong {
   color: #0f172a !important;
 }
 
@@ -681,6 +700,25 @@ html[data-theme="light-gold"] button[class~="bg-slate-800"]:not(header *):not(#m
   border-color: #1e293b !important;
 }
 
+/* HEADER SOLID BUTTONS (e.g. "Kembali ke Utama" on /semak-kelayakan & /daftar-kerjaya) */
+html[data-theme="light-gold"] header a.solid-dark-btn,
+html[data-theme="light-gold"] header a[href="index.html"].bg-slate-900 {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border: 1px solid #0f172a !important;
+}
+
+html[data-theme="light-gold"] header a.solid-dark-btn *,
+html[data-theme="light-gold"] header a[href="index.html"].bg-slate-900 * {
+  color: #ffffff !important;
+}
+
+html[data-theme="light-gold"] header a.solid-dark-btn:hover,
+html[data-theme="light-gold"] header a[href="index.html"].bg-slate-900:hover {
+  background-color: #1e293b !important;
+  color: #fde047 !important;
+}
+
 /* WHATSAPP ACTION BUTTONS */
 html[data-theme="light-gold"] a[class*="bg-\[\#25D366\]"],
 html[data-theme="light-gold"] button[class*="bg-\[\#25D366\]"],
@@ -805,7 +843,45 @@ html[data-theme="light-gold"] #verification-result [class*="bg-slate-800"] span 
   color: #0f172a !important;
 }
 
-/* 4. /semak-kelayakan.html */
+/* 4. /semak-kelayakan.html (Clean, Crisp High-Contrast Light Mode) */
+html[data-theme="light-gold"] #page-wizard-form-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.06), 0 2px 8px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+html[data-theme="light-gold"] #page-wizard-form-card .border-b {
+  border-bottom-color: #e2e8f0 !important;
+}
+
+html[data-theme="light-gold"] #page-wizard-form-card span.text-white {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+html[data-theme="light-gold"] #page-wizard-form-card .bg-slate-800 {
+  background-color: #e2e8f0 !important;
+}
+
+html[data-theme="light-gold"] #page-wizard-form-card label {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+html[data-theme="light-gold"] #page-wizard-form-card input,
+html[data-theme="light-gold"] #page-wizard-form-card select {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light-gold"] #page-wizard-form-card input:focus,
+html[data-theme="light-gold"] #page-wizard-form-card select:focus {
+  border-color: #ca8a04 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 2px rgba(202, 138, 4, 0.2) !important;
+}
+
 html[data-theme="light-gold"] #p-wiz-issues-container {
   background-color: #ffffff !important;
   border-color: #cbd5e1 !important;
@@ -823,6 +899,61 @@ html[data-theme="light-gold"] #p-wiz-issues-container label:hover {
 
 html[data-theme="light-gold"] #p-wiz-issues-container span {
   color: #0f172a !important;
+}
+
+/* Trust Badges on /semak-kelayakan.html */
+html[data-theme="light-gold"] #semak-trust-badges > div {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme="light-gold"] #semak-trust-badges span.text-white {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+html[data-theme="light-gold"] #semak-trust-badges span.text-slate-400 {
+  color: #64748b !important;
+  font-weight: 500 !important;
+}
+
+/* 4b. /daftar-kerjaya.html */
+html[data-theme="light-gold"] #borang-kerjaya-section {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.06) !important;
+}
+
+html[data-theme="light-gold"] #borang-kerjaya-section label {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+html[data-theme="light-gold"] #borang-kerjaya-section input,
+html[data-theme="light-gold"] #borang-kerjaya-section select {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light-gold"] #borang-kerjaya-section div[class*="border-dashed"] {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+html[data-theme="light-gold"] #borang-kerjaya-section div[class*="border-dashed"] button {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light-gold"] #borang-kerjaya-section div[class*="border-dashed"] button:hover {
+  background-color: #f1f5f9 !important;
+}
+
+html[data-theme="light-gold"] #borang-kerjaya-section .bg-slate-800 {
+  background-color: #e2e8f0 !important;
 }
 
 /* 5. /pasukan.html */

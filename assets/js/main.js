@@ -60,7 +60,7 @@ const OFFICIAL_AGENTS = [
     joinedDate: "10 Ogos 2022",
     rating: "5.0 / 5.0",
     initials: "FR",
-    specialty: "CCRIS / SAA & Mortgage Refinance",
+    specialty: "CCRIS / SAA & Penyatuan Hutang",
     avatarBg: "bg-indigo-700"
   },
   {

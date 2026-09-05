@@ -32,20 +32,7 @@ export default function ServicesSection({ onOpenChecker }) {
       ],
       idealFor: 'Kakitangan yang memerlukan modal kecemasan, ubah suai rumah, perkahwinan, atau perubatan.'
     },
-    {
-      id: 'refinance',
-      title: 'Refinancing Rumah (Cash-Out)',
-      tag: 'Tunai Jumlah Besar',
-      shortDesc: 'Manfaatkan kenaikan nilai pasaran rumah anda untuk mendapatkan dana tunai besar berkadar faedah terendah.',
-      highlight: 'Kadar faedah serendah 3.85% setahun dengan tempoh sehingga 30 tahun',
-      benefits: [
-        'Dapatkan tunai bersih (cash out) dari RM50,000 hingga RM500,000+.',
-        'Kadar faedah mortgage jauh lebih murah berbanding pinjaman peribadi.',
-        'Boleh digunakan untuk membiayai modal perniagaan atau melunaskan semua hutang lain.',
-        'Kami uruskan penilaian hartanah (property valuation) dan proses guaman.'
-      ],
-      idealFor: 'Pemilik rumah yang mempunyai hartanah dengan nilai pasaran melebihi baki pinjaman semasa.'
-    },
+
     {
       id: 'profile',
       title: 'Penstrukturan & Pemulihan Profil CCRIS',
