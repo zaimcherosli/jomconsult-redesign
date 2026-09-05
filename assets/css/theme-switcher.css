@@ -11,8 +11,7 @@
 /* --------------------------------------------------------------------------
    THEME 1: BLACK & WARM GOLD (Default)
    -------------------------------------------------------------------------- */
-html[data-theme="black-gold"] body,
-body:not([data-theme]) {
+html[data-theme="black-gold"] body {
   background-color: #0b0f19;
   background-image: 
     radial-gradient(ellipse 90% 60% at 50% -10%, rgba(234, 179, 8, 0.22), transparent 70%),
@@ -272,7 +271,9 @@ html[data-theme="graphite-gold"] .tenure-btn:not([class*="bg-yellow-400"]) {
 /* --------------------------------------------------------------------------
    THEME 5: CLEAN CORPORATE LIGHT MODE (HIGH-CONTRAST READABILITY)
    -------------------------------------------------------------------------- */
-html[data-theme="light-gold"] body {
+html[data-theme="light-gold"] body,
+html:not([data-theme]) body,
+body:not([data-theme]) {
   background-color: #f8fafc !important;
   background-image: 
     radial-gradient(ellipse 90% 60% at 50% -10%, rgba(254, 240, 138, 0.35), transparent 70%),
@@ -679,10 +680,10 @@ html[data-theme="light-gold"] button[class*="bg-yellow-400"]:hover {
 }
 
 /* SOLID DARK ACTION BUTTONS (EXCLUDING HEADER & MOBILE DRAWER LINKS!) */
-html[data-theme="light-gold"] a[class~="bg-slate-900"]:not(header *):not(#mobile-menu *),
-html[data-theme="light-gold"] button[class~="bg-slate-900"]:not(header *):not(#mobile-menu *),
-html[data-theme="light-gold"] a[class~="bg-slate-800"]:not(header *):not(#mobile-menu *),
-html[data-theme="light-gold"] button[class~="bg-slate-800"]:not(header *):not(#mobile-menu *),
+html[data-theme="light-gold"] a[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):not(.tenure-btn),
+html[data-theme="light-gold"] button[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):not(.tenure-btn),
+html[data-theme="light-gold"] a[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):not(.tenure-btn),
+html[data-theme="light-gold"] button[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):not(.tenure-btn),
 html[data-theme="light-gold"] a[href="cara-kerja.html"].bg-slate-900,
 html[data-theme="light-gold"] a[href="cara-kerja.html"].bg-slate-800,
 html[data-theme="light-gold"] a[href="#bagaimana-kami-bantu"] {
@@ -691,17 +692,17 @@ html[data-theme="light-gold"] a[href="#bagaimana-kami-bantu"] {
   border-color: #0f172a !important;
 }
 
-html[data-theme="light-gold"] a[class~="bg-slate-900"]:not(header *):not(#mobile-menu *) *,
-html[data-theme="light-gold"] button[class~="bg-slate-900"]:not(header *):not(#mobile-menu *) *,
-html[data-theme="light-gold"] a[class~="bg-slate-800"]:not(header *):not(#mobile-menu *) *,
-html[data-theme="light-gold"] button[class~="bg-slate-800"]:not(header *):not(#mobile-menu *) * {
+html[data-theme="light-gold"] a[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):not(.tenure-btn) *,
+html[data-theme="light-gold"] button[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):not(.tenure-btn) *,
+html[data-theme="light-gold"] a[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):not(.tenure-btn) *,
+html[data-theme="light-gold"] button[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):not(.tenure-btn) * {
   color: #ffffff !important;
 }
 
-html[data-theme="light-gold"] a[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):hover,
-html[data-theme="light-gold"] button[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):hover,
-html[data-theme="light-gold"] a[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):hover,
-html[data-theme="light-gold"] button[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):hover {
+html[data-theme="light-gold"] a[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):not(.tenure-btn):hover,
+html[data-theme="light-gold"] button[class~="bg-slate-900"]:not(header *):not(#mobile-menu *):not(.tenure-btn):hover,
+html[data-theme="light-gold"] a[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):not(.tenure-btn):hover,
+html[data-theme="light-gold"] button[class~="bg-slate-800"]:not(header *):not(#mobile-menu *):not(.tenure-btn):hover {
   background-color: #1e293b !important;
   color: #ffffff !important;
   border-color: #1e293b !important;
@@ -782,16 +783,29 @@ html[data-theme="light-gold"] select option {
    PAGE-SPECIFIC COMPONENT POLISH (LIGHT MODE)
    -------------------------------------------------------------------------- */
 /* 1. /kalkulator.html */
-html[data-theme="light-gold"] .tenure-btn:not([class*="bg-yellow-400"]) {
-  background-color: #f1f5f9 !important;
-  color: #334155 !important;
-  border-color: #cbd5e1 !important;
+html[data-theme="light-gold"] .tenure-btn:not([class*="bg-yellow-400"]),
+html[data-theme="light-gold"] button.tenure-btn:not([class*="bg-yellow-400"]) {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
 }
 
-html[data-theme="light-gold"] .tenure-btn:not([class*="bg-yellow-400"]):hover {
-  background-color: #e2e8f0 !important;
-  color: #0f172a !important;
+html[data-theme="light-gold"] .tenure-btn:not([class*="bg-yellow-400"]):hover,
+html[data-theme="light-gold"] button.tenure-btn:not([class*="bg-yellow-400"]):hover {
+  background-color: #f8fafc !important;
+  color: #000000 !important;
   border-color: #94a3b8 !important;
+}
+
+html[data-theme="light-gold"] .tenure-btn.bg-yellow-400,
+html[data-theme="light-gold"] .tenure-btn[class*="bg-yellow-400"],
+html[data-theme="light-gold"] button.tenure-btn[class*="bg-yellow-400"] {
+  background-color: #facc15 !important;
+  color: #020617 !important;
+  border: 1.5px solid #eab308 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.25) !important;
 }
 
 /* 2. /faq.html */

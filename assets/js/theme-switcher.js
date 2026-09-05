@@ -43,7 +43,12 @@ const THEMES = [
 ];
 
 function getStoredTheme() {
-  return localStorage.getItem('jomconsult_theme') || 'black-gold';
+  if (!localStorage.getItem('jomconsult_default_v2')) {
+    localStorage.setItem('jomconsult_theme', 'light-gold');
+    localStorage.setItem('jomconsult_default_v2', 'true');
+    return 'light-gold';
+  }
+  return localStorage.getItem('jomconsult_theme') || 'light-gold';
 }
 
 export function applyTheme(themeId, save = true) {
