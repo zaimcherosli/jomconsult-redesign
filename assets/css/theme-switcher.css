@@ -437,8 +437,8 @@ html[data-theme="light-gold"] .hero-text-slide h2 {
 
 html[data-theme="light-gold"] p:not(footer *):not(#jc-theme-switcher-widget *),
 html[data-theme="light-gold"] .hero-text-slide p,
-html[data-theme="light-gold"] .text-slate-100:not(footer *):not(button.solid-dark-btn *):not(a.solid-dark-btn *),
-html[data-theme="light-gold"] .text-slate-200:not(footer *):not(button.solid-dark-btn *):not(a.solid-dark-btn *),
+html[data-theme="light-gold"] .text-slate-100:not(footer *):not(#jc-theme-switcher-widget *):not(button.solid-dark-btn *):not(a.solid-dark-btn *),
+html[data-theme="light-gold"] .text-slate-200:not(footer *):not(#jc-theme-switcher-widget *):not(button.solid-dark-btn *):not(a.solid-dark-btn *),
 html[data-theme="light-gold"] .text-slate-300:not(footer *):not(#jc-theme-switcher-widget *):not(button.solid-dark-btn *):not(a.solid-dark-btn *) {
   color: #334155 !important;
 }
@@ -882,61 +882,177 @@ html[data-theme="light-gold"] footer .bg-slate-900 {
 
 /* --------------------------------------------------------------------------
    THEME SWITCHER FLOATING BUTTON & MODAL
-   Must NEVER be overridden by page themes!
+   Airtight Isolation & High Contrast in ALL Themes (Dark, Navy, Emerald, Light)
    -------------------------------------------------------------------------- */
 #jc-theme-switcher-widget {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   z-index: 999999 !important;
+  color-scheme: dark !important;
 }
 
 #jc-theme-switcher-widget #jc-theme-toggle-btn {
-  background-color: #0f172a !important;
+  background-color: #0b0f19 !important;
+  background-image: linear-gradient(135deg, #111827 0%, #0b0f19 100%) !important;
   color: #ffffff !important;
   border: 2px solid #eab308 !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(234, 179, 8, 0.2) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(234, 179, 8, 0.25) !important;
   display: flex !important;
   align-items: center !important;
 }
 
-#jc-theme-switcher-widget #jc-theme-toggle-btn span {
-  color: #facc15 !important;
+#jc-theme-switcher-widget #jc-theme-toggle-btn .jc-btn-label {
+  color: #fde047 !important;
+  font-weight: 800 !important;
+  font-size: 12px !important;
+  letter-spacing: 0.025em !important;
 }
 
 #jc-theme-switcher-widget #jc-theme-toggle-btn:hover {
-  background-color: #1e293b !important;
-  border-color: #fde047 !important;
+  background-color: #1f2937 !important;
+  border-color: #facc15 !important;
+  box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.7), 0 0 20px rgba(234, 179, 8, 0.4) !important;
 }
 
+/* Modal Drawer */
 #jc-theme-switcher-widget #jc-theme-modal {
-  background-color: rgba(15, 23, 42, 0.98) !important;
-  border-color: rgba(234, 179, 8, 0.5) !important;
-  color: #f8fafc !important;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6) !important;
+  background-color: #0b0f19 !important;
+  background-image: linear-gradient(180deg, #0f172a 0%, #070a12 100%) !important;
+  border: 2px solid rgba(234, 179, 8, 0.6) !important;
+  color: #ffffff !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 25px rgba(234, 179, 8, 0.2) !important;
 }
 
-#jc-theme-switcher-widget h3,
-#jc-theme-switcher-widget span.font-extrabold {
+#jc-theme-switcher-widget .jc-modal-title {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  font-size: 14px !important;
+}
+
+#jc-theme-switcher-widget .jc-modal-subtitle {
+  color: #fde047 !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+}
+
+#jc-theme-switcher-widget .jc-modal-intro {
+  color: #e2e8f0 !important;
+  font-size: 11.5px !important;
+  line-height: 1.5 !important;
+}
+
+#jc-theme-switcher-widget #jc-close-theme-modal {
+  background-color: #1e293b !important;
+  color: #94a3b8 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+#jc-theme-switcher-widget #jc-close-theme-modal:hover {
+  background-color: #334155 !important;
   color: #ffffff !important;
 }
 
-#jc-theme-switcher-widget p {
-  color: #cbd5e1 !important;
-}
-
+/* Option Cards */
 #jc-theme-switcher-widget .theme-option-card {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  background-color: rgba(3, 7, 18, 0.75) !important;
-  border-color: rgba(51, 65, 85, 0.7) !important;
+  background-color: rgba(17, 24, 39, 0.85) !important;
+  border: 1px solid rgba(75, 85, 99, 0.5) !important;
+  border-radius: 14px !important;
+  padding: 10px 12px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
 }
 
 #jc-theme-switcher-widget .theme-option-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(234, 179, 8, 0.6) !important;
+  border-color: rgba(234, 179, 8, 0.8) !important;
+  background-color: rgba(31, 41, 55, 0.95) !important;
+  transform: translateY(-1px) !important;
 }
 
+#jc-theme-switcher-widget .theme-option-card .jc-card-title {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  font-size: 12.5px !important;
+}
+
+#jc-theme-switcher-widget .theme-option-card .jc-card-desc {
+  color: #e2e8f0 !important;
+  font-size: 11px !important;
+  line-height: 1.4 !important;
+  margin-top: 2px !important;
+}
+
+#jc-theme-switcher-widget .theme-option-card .jc-card-tag {
+  background-color: rgba(234, 179, 8, 0.15) !important;
+  color: #fde047 !important;
+  border: 1px solid rgba(234, 179, 8, 0.4) !important;
+  font-size: 9.5px !important;
+  font-weight: 700 !important;
+  padding: 2px 6px !important;
+  border-radius: 6px !important;
+}
+
+/* ACTIVE CARD STATE */
 #jc-theme-switcher-widget .theme-option-card.active-theme {
-  border-color: #eab308 !important;
-  background-color: rgba(234, 179, 8, 0.18) !important;
-  box-shadow: 0 0 15px -3px rgba(234, 179, 8, 0.3) !important;
+  border: 2px solid #eab308 !important;
+  background-color: rgba(234, 179, 8, 0.22) !important;
+  box-shadow: 0 0 15px -2px rgba(234, 179, 8, 0.4) !important;
+}
+
+#jc-theme-switcher-widget .theme-option-card.active-theme .jc-card-title {
+  color: #ffffff !important;
+}
+
+#jc-theme-switcher-widget .theme-option-card.active-theme .jc-card-desc {
+  color: #fef08a !important;
+  font-weight: 500 !important;
+}
+
+#jc-theme-switcher-widget .theme-option-card.active-theme .jc-card-tag {
+  background-color: #eab308 !important;
+  color: #0b0f19 !important;
+  border-color: #fde047 !important;
+  font-weight: 800 !important;
+}
+
+#jc-theme-switcher-widget .jc-active-badge {
+  background-color: #eab308 !important;
+  color: #0b0f19 !important;
+  font-weight: 900 !important;
+  font-size: 11px !important;
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 9999px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 0 10px rgba(234, 179, 8, 0.5) !important;
+}
+
+/* Footer of modal */
+#jc-theme-switcher-widget .jc-modal-footer {
+  border-top: 1px solid rgba(75, 85, 99, 0.4) !important;
+  padding-top: 10px !important;
+  margin-top: 10px !important;
+}
+
+#jc-theme-switcher-widget .jc-status-pill {
+  color: #cbd5e1 !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}
+
+#jc-theme-switcher-widget #jc-done-theme-modal {
+  background-color: #facc15 !important;
+  color: #0f172a !important;
+  font-weight: 800 !important;
+  font-size: 12px !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 7px 18px !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.3) !important;
+}
+
+#jc-theme-switcher-widget #jc-done-theme-modal:hover {
+  background-color: #eab308 !important;
+  color: #000000 !important;
 }

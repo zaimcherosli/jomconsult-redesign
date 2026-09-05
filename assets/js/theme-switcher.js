@@ -8,7 +8,7 @@ const THEMES = [
   {
     id: 'black-gold',
     name: '1. Hitam & Emas Hangat',
-    tag: 'Tema Semasa',
+    tag: 'Hitam Obsidian',
     colors: ['#0b0f19', '#eab308'],
     desc: 'Latar hitam obsidian mewah dengan ambient glow emas hangat & kontras tinggi.'
   },
@@ -36,7 +36,7 @@ const THEMES = [
   {
     id: 'light-gold',
     name: '5. Putih Bersih & Emas Gelap',
-    tag: 'Cerah & Segar (Light)',
+    tag: 'Cerah (Light Mode)',
     colors: ['#f8fafc', '#ca8a04'],
     desc: 'Latar putih bersih yang terang, kemas dan santai dengan tulisan gelap yang jelas.'
   }
@@ -87,12 +87,16 @@ function updateModalActiveState(activeId) {
   cards.forEach(card => {
     const themeId = card.getAttribute('data-theme-id');
     const badge = card.querySelector('.theme-active-indicator');
+    const tag = card.querySelector('.jc-card-tag');
+    const themeConfig = THEMES.find(t => t.id === themeId);
     if (themeId === activeId) {
       card.classList.add('active-theme');
       if (badge) badge.classList.remove('hidden');
+      if (tag) tag.textContent = '✓ AKTIF';
     } else {
       card.classList.remove('active-theme');
       if (badge) badge.classList.add('hidden');
+      if (tag && themeConfig) tag.textContent = themeConfig.tag;
     }
   });
 }
@@ -110,63 +114,73 @@ function initThemeSwitcher() {
   container.className = 'fixed bottom-5 left-5 z-[99999]';
 
   container.innerHTML = `
-    <!-- Floating Trigger Pill Button -->
-    <button id="jc-theme-toggle-btn" type="button" style="background-color: #0f172a !important; color: #ffffff !important; border: 2px solid #eab308 !important;" class="flex items-center gap-2.5 px-4 py-2.5 rounded-full shadow-2xl transition-all transform hover:scale-105 active:scale-95 backdrop-blur-md cursor-pointer group">
-      <span class="text-base animate-bounce">🎨</span>
-      <span style="color: #fde047 !important;" class="text-xs font-extrabold tracking-wide">Tukar Warna Web</span>
-      <span class="inline-flex h-2 w-2 rounded-full bg-yellow-400"></span>
+    <!-- Floating Trigger Pill Button (No emoji, clean modern dot) -->
+    <button id="jc-theme-toggle-btn" type="button" class="flex items-center gap-2.5 px-4 py-2.5 rounded-full shadow-2xl transition-all transform hover:scale-105 active:scale-95 cursor-pointer group">
+      <span class="relative flex h-2.5 w-2.5 shrink-0">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-yellow-400"></span>
+      </span>
+      <span class="jc-btn-label">Tukar Warna Web</span>
     </button>
 
     <!-- Theme Selection Modal / Drawer -->
-    <div id="jc-theme-modal" class="hidden fixed bottom-16 left-3 sm:left-6 w-[94vw] max-w-sm sm:max-w-md bg-slate-900/98 border-2 border-yellow-500/40 rounded-3xl p-4 sm:p-5 shadow-2xl backdrop-blur-2xl text-slate-100 animate-fadeIn max-h-[82vh] flex flex-col justify-between">
+    <div id="jc-theme-modal" class="hidden fixed bottom-16 left-3 sm:left-6 w-[94vw] max-w-sm sm:max-w-md rounded-3xl p-4 sm:p-5 shadow-2xl animate-fadeIn max-h-[88vh] flex flex-col justify-between">
       <div class="flex items-center justify-between pb-2.5 border-b border-slate-800">
-        <div class="flex items-center gap-2">
-          <span class="text-xl">🎨</span>
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-yellow-400/15 border border-yellow-400/30 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a10 10 0 0 1 0 20v-20z"></path>
+            </svg>
+          </div>
           <div>
-            <h3 class="font-extrabold text-sm text-white leading-tight">Pilih Tema Warna Web</h3>
-            <p class="text-[11px] text-yellow-400 font-medium">Ujian Pilihan Klien</p>
+            <h3 class="jc-modal-title text-sm leading-tight">Pilih Tema Warna Web</h3>
+            <p class="jc-modal-subtitle text-[11px]">Ujian Pilihan Klien (5 Tema)</p>
           </div>
         </div>
-        <button id="jc-close-theme-modal" class="w-7 h-7 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-xs font-bold transition cursor-pointer">
+        <button id="jc-close-theme-modal" type="button" class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition cursor-pointer">
           ✕
         </button>
       </div>
 
-      <p class="text-[11px] text-slate-300 py-2 leading-relaxed">
+      <p class="jc-modal-intro py-2">
         Klik warna di bawah untuk melihat rupa website secara langsung. Pilihan disimpan automatik semasa melayari web.
       </p>
 
-      <!-- Theme Cards List -->
-      <div class="space-y-2 max-h-[38vh] sm:max-h-[44vh] overflow-y-auto pr-1">
-        ${THEMES.map(theme => `
-          <div class="theme-option-card flex items-start gap-3 p-3 rounded-2xl border border-slate-800 bg-slate-950/70 hover:border-yellow-400/60 transition ${theme.id === initialTheme ? 'active-theme' : ''}" data-theme-id="${theme.id}">
+      <!-- Theme Cards List (Room for all 5 themes) -->
+      <div class="space-y-1.5 max-h-[58vh] sm:max-h-[62vh] overflow-y-auto pr-1">
+        ${THEMES.map(theme => {
+          const isActive = theme.id === initialTheme;
+          return `
+          <div class="theme-option-card flex items-start gap-3 ${isActive ? 'active-theme' : ''}" data-theme-id="${theme.id}">
             <!-- Color Preview Circles -->
-            <div class="flex items-center -space-x-1.5 shrink-0 mt-1">
-              <div class="w-5 h-5 rounded-full border border-white/20 shadow-sm" style="background-color: ${theme.colors[0]};"></div>
-              <div class="w-5 h-5 rounded-full border border-white/20 shadow-sm" style="background-color: ${theme.colors[1]};"></div>
+            <div class="flex items-center -space-x-1.5 shrink-0 mt-0.5">
+              <div class="w-5 h-5 rounded-full border border-white/30 shadow-sm" style="background-color: ${theme.colors[0]};"></div>
+              <div class="w-5 h-5 rounded-full border border-white/30 shadow-sm" style="background-color: ${theme.colors[1]};"></div>
             </div>
 
             <div class="flex-1 min-w-0">
               <div class="flex items-center justify-between gap-1.5 mb-0.5">
-                <span class="font-extrabold text-xs text-white truncate">${theme.name}</span>
-                <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 whitespace-nowrap">${theme.tag}</span>
+                <span class="jc-card-title truncate">${theme.name}</span>
+                <span class="jc-card-tag shrink-0">${isActive ? '✓ AKTIF' : theme.tag}</span>
               </div>
-              <p class="text-[11px] text-slate-300 leading-snug">${theme.desc}</p>
+              <p class="jc-card-desc">${theme.desc}</p>
             </div>
 
-            <div class="theme-active-indicator shrink-0 self-center ${theme.id === initialTheme ? '' : 'hidden'}">
-              <span class="w-5 h-5 rounded-full bg-yellow-400 text-slate-950 font-black text-xs flex items-center justify-center">✓</span>
+            <div class="theme-active-indicator shrink-0 self-center ${isActive ? '' : 'hidden'}">
+              <span class="jc-active-badge">✓</span>
             </div>
           </div>
-        `).join('')}
+          `;
+        }).join('')}
       </div>
 
       <!-- Footer Note -->
-      <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
-        <span class="text-slate-400 text-[11px] font-medium flex items-center gap-1">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Pratonton Langsung
+      <div class="jc-modal-footer flex items-center justify-between">
+        <span class="jc-status-pill flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Pratonton Langsung
         </span>
-        <button id="jc-done-theme-modal" class="px-5 py-2 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-extrabold text-xs transition cursor-pointer shadow-md shadow-yellow-500/20">
+        <button id="jc-done-theme-modal" type="button">
           Tutup & Lihat
         </button>
       </div>
