@@ -806,8 +806,7 @@ async function initAgentVerification() {
                 <span class="badge-verified inline-block text-[10px] sm:text-[11px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-yellow-100 text-yellow-800 border border-yellow-300 tracking-wide">
                   IDENTITI DISAHKAN
                 </span>
-                <span class="badge-active inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-300">
-                  <span class="pulse-dot w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="badge-active inline-block text-[10px] sm:text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-300">
                   Aktif
                 </span>
               </div>

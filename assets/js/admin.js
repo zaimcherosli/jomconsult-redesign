@@ -543,74 +543,112 @@ async function loadAgents() {
     if (agentsBadge) agentsBadge.textContent = currentAgents.length;
     if (agentsBadgeMobile) agentsBadgeMobile.textContent = currentAgents.length;
 
-    if (currentAgents.length === 0) {
-      container.innerHTML = `<div class="col-span-3 text-center py-10 text-slate-400 font-medium">Tiada ejen didaftarkan.</div>`;
-      return;
-    }
-
-    container.innerHTML = currentAgents.map(a => {
-      const isAktif = a.status.includes('AKTIF');
-      const avatarHtml = a.photo_url
-        ? `<img src="${a.photo_url}" class="w-10 h-10 rounded-xl object-cover border border-slate-200 shadow-sm shrink-0" alt="${a.name}">`
-        : `<div class="w-10 h-10 rounded-xl ${a.avatar_bg || 'bg-emerald-700'} flex items-center justify-center font-extrabold text-white text-xs shadow-sm shrink-0">${a.initials || 'JC'}</div>`;
-
-      return `
-        <div class="p-5 rounded-2xl bg-white border ${isAktif ? 'border-slate-200/90' : 'border-rose-200 bg-rose-50/30'} shadow-sm space-y-4">
-          <div class="flex items-start justify-between">
-            <div class="flex items-center gap-3">
-              ${avatarHtml}
-              <div>
-                <span class="font-bold text-slate-900 text-xs block">${a.name}</span>
-                <span class="text-[10px] font-mono text-emerald-700 font-bold">${a.staff_id}</span>
-              </div>
-            </div>
-            <span class="px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase ${isAktif ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-rose-50 text-rose-800 border border-rose-200'}">
-              ${isAktif ? 'AKTIF' : 'DIGANTUNG'}
-            </span>
-          </div>
-
-          <div class="space-y-1.5 text-xs text-slate-600 pt-2 border-t border-slate-100">
-            <div class="text-[11px] flex items-center justify-between">
-              <span class="text-slate-500 font-medium">Jawatan:</span>
-              <span class="font-bold text-slate-900">${a.role || 'Loan Strategist'}</span>
-            </div>
-            <div class="text-[11px] flex items-center justify-between">
-              <span class="text-slate-500 font-medium">HQ:</span>
-              <span class="font-bold text-slate-900">${a.branch || 'TTDI Jaya, Shah Alam'}</span>
-            </div>
-            <div class="text-[11px] flex items-center justify-between">
-              <span class="text-slate-500 font-medium">Zon Liputan:</span>
-              <span class="font-bold text-slate-900">${a.zone || 'Seluruh Malaysia'}</span>
-            </div>
-            <div class="text-[11px] flex items-center justify-between">
-              <span class="text-slate-500 font-medium">No. Telefon:</span>
-              <a href="https://wa.me/${a.phone}" target="_blank" class="text-emerald-700 font-bold hover:underline inline-flex items-center gap-1 font-mono">
-                ${WHATSAPP_SVG}
-                <span>${a.phone_display || a.phone}</span>
-              </a>
-            </div>
-            <div class="text-[10px] text-slate-400 flex items-center justify-between pt-1 border-t border-slate-50">
-              <span>Semakan Anti-Scam:</span>
-              <span class="font-mono text-slate-700 font-bold">${a.verification_count || 0} kali</span>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-            <button onclick="toggleAgentStatus(${a.id}, '${isAktif ? 'DIGANTUNG' : 'AKTIF & BERDAFTAR'}')" class="text-[11px] font-bold ${isAktif ? 'text-amber-700 hover:underline' : 'text-emerald-700 hover:underline'}">
-              ${isAktif ? 'Gantung Status' : 'Aktifkan Semula'}
-            </button>
-            <div class="flex items-center gap-2">
-              <button onclick="editAgentModal(${a.id})" class="px-3 py-1 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg text-xs font-semibold transition">Edit</button>
-              <button onclick="deleteAgent(${a.id})" class="px-3 py-1 text-slate-500 hover:text-rose-600 bg-slate-100 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 rounded-lg text-xs font-semibold transition">Padam</button>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join('');
+    renderAgentsGrid();
   } catch (err) {
     console.error(err);
   }
 }
+
+function renderAgentsGrid() {
+  const container = document.getElementById('agents-grid');
+  if (!container) return;
+
+  const searchInput = document.getElementById('search-agent');
+  const rawQuery = (searchInput?.value || '').trim().toLowerCase();
+
+  let filtered = currentAgents;
+  if (rawQuery) {
+    const cleanDigits = rawQuery.replace(/[^0-9]/g, '');
+    const cleanAlphaNum = rawQuery.replace(/[^a-z0-9]/gi, '');
+
+    filtered = currentAgents.filter(a => {
+      const name = (a.name || '').toLowerCase();
+      const staffId = (a.staff_id || '').toLowerCase();
+      const cleanStaffId = staffId.replace(/[^a-z0-9]/gi, '');
+      const phone = (a.phone || '').replace(/[^0-9]/g, '');
+      const phoneDisplay = (a.phone_display || '').toLowerCase();
+      const role = (a.role || '').toLowerCase();
+
+      return name.includes(rawQuery) ||
+        staffId.includes(rawQuery) ||
+        (cleanAlphaNum && cleanStaffId.includes(cleanAlphaNum)) ||
+        (cleanDigits && phone.includes(cleanDigits)) ||
+        phoneDisplay.includes(rawQuery) ||
+        role.includes(rawQuery);
+    });
+  }
+
+  if (filtered.length === 0) {
+    const safeQuery = rawQuery.replace(/"/g, '&quot;');
+    container.innerHTML = `<div class="col-span-1 md:col-span-2 lg:col-span-3 text-center py-12 text-slate-400 font-medium bg-white rounded-2xl border border-slate-200 shadow-xs">Tiada ejen dijumpai${rawQuery ? ` untuk carian "${safeQuery}"` : ''}.</div>`;
+    return;
+  }
+
+  container.innerHTML = filtered.map(a => {
+    const isAktif = a.status.includes('AKTIF');
+    const avatarHtml = a.photo_url
+      ? `<img src="${a.photo_url}" class="w-10 h-10 rounded-xl object-cover border border-slate-200 shadow-sm shrink-0" alt="${a.name}">`
+      : `<div class="w-10 h-10 rounded-xl ${a.avatar_bg || 'bg-emerald-700'} flex items-center justify-center font-extrabold text-white text-xs shadow-sm shrink-0">${a.initials || 'JC'}</div>`;
+
+    return `
+      <div class="p-5 rounded-2xl bg-white border ${isAktif ? 'border-slate-200/90' : 'border-rose-200 bg-rose-50/30'} shadow-sm space-y-4">
+        <div class="flex items-start justify-between">
+          <div class="flex items-center gap-3">
+            ${avatarHtml}
+            <div>
+              <span class="font-bold text-slate-900 text-xs block">${a.name}</span>
+              <span class="text-[10px] font-mono text-emerald-700 font-bold">${a.staff_id}</span>
+            </div>
+          </div>
+          <span class="px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase ${isAktif ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-rose-50 text-rose-800 border border-rose-200'}">
+            ${isAktif ? 'AKTIF' : 'DIGANTUNG'}
+          </span>
+        </div>
+
+        <div class="space-y-1.5 text-xs text-slate-600 pt-2 border-t border-slate-100">
+          <div class="text-[11px] flex items-center justify-between">
+            <span class="text-slate-500 font-medium">Jawatan:</span>
+            <span class="font-bold text-slate-900">${a.role || 'Loan Strategist'}</span>
+          </div>
+          <div class="text-[11px] flex items-center justify-between">
+            <span class="text-slate-500 font-medium">HQ:</span>
+            <span class="font-bold text-slate-900">${a.branch || 'TTDI Jaya, Shah Alam'}</span>
+          </div>
+          <div class="text-[11px] flex items-center justify-between">
+            <span class="text-slate-500 font-medium">Zon Liputan:</span>
+            <span class="font-bold text-slate-900">${a.zone || 'Seluruh Malaysia'}</span>
+          </div>
+          <div class="text-[11px] flex items-center justify-between">
+            <span class="text-slate-500 font-medium">No. Telefon:</span>
+            <a href="https://wa.me/${a.phone}" target="_blank" class="text-emerald-700 font-bold hover:underline inline-flex items-center gap-1 font-mono">
+              ${WHATSAPP_SVG}
+              <span>${a.phone_display || a.phone}</span>
+            </a>
+          </div>
+          <div class="text-[10px] text-slate-400 flex items-center justify-between pt-1 border-t border-slate-50">
+            <span>Semakan Anti-Scam:</span>
+            <span class="font-mono text-slate-700 font-bold">${a.verification_count || 0} kali</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+          <button onclick="toggleAgentStatus(${a.id}, '${isAktif ? 'DIGANTUNG' : 'AKTIF & BERDAFTAR'}')" class="text-[11px] font-bold ${isAktif ? 'text-amber-700 hover:underline' : 'text-emerald-700 hover:underline'}">
+            ${isAktif ? 'Gantung Status' : 'Aktifkan Semula'}
+          </button>
+          <div class="flex items-center gap-2">
+            <button onclick="editAgentModal(${a.id})" class="px-3 py-1 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg text-xs font-semibold transition">Edit</button>
+            <button onclick="deleteAgent(${a.id})" class="px-3 py-1 text-slate-500 hover:text-rose-600 bg-slate-100 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 rounded-lg text-xs font-semibold transition">Padam</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Search agents event listener
+document.getElementById('search-agent')?.addEventListener('input', () => {
+  renderAgentsGrid();
+});
 
 // Modal open/close for Agent
 document.getElementById('btn-add-agent-modal')?.addEventListener('click', () => {
