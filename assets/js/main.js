@@ -19,26 +19,26 @@ const JOMCONSULT_CONFIG = {
 
 // Database Ejen & Perunding Kewangan Sah JomConsult
 const OFFICIAL_AGENTS = [
-  { id: "JCS0014", name: "SITI ALIFAH", phone: "60182875879", phoneDisplay: "018-287 5879", status: "AKTIF & BERDAFTAR", initials: "SA", avatarBg: "bg-emerald-700" },
-  { id: "JCS0026", name: "FARRIEZ DANIAL", phone: "60193210182", phoneDisplay: "019-321 0182", status: "AKTIF & BERDAFTAR", initials: "FD", avatarBg: "bg-blue-700" },
-  { id: "JCS0028", name: "AIMAN HAIKAL", phone: "601167799318", phoneDisplay: "011-6779 9318", status: "AKTIF & BERDAFTAR", initials: "AH", avatarBg: "bg-indigo-700" },
-  { id: "JCS0038", name: "MUNIR YUSOF", phone: "601173044527", phoneDisplay: "011-7304 4527", status: "AKTIF & BERDAFTAR", initials: "MY", avatarBg: "bg-amber-700" },
-  { id: "JCS044",  name: "EISTER RINA", phone: "60148313059", phoneDisplay: "014-831 3059", status: "AKTIF & BERDAFTAR", initials: "ER", avatarBg: "bg-purple-700" },
-  { id: "JCS043",  name: "NOR SYAHIRAH (IRA)", phone: "60173384918", phoneDisplay: "017-338 4918", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-rose-700" },
-  { id: "JCS045",  name: "CATHERINE RENNA", phone: "601123244762", phoneDisplay: "011-2324 4762", status: "AKTIF & BERDAFTAR", initials: "CR", avatarBg: "bg-teal-700" },
-  { id: "JCS046",  name: "NURAINA ALIA", phone: "601126617640", phoneDisplay: "011-2661 7640", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-cyan-700" },
-  { id: "JCS049",  name: "MUHAMAD NUR AZZIQ (AZZIQ)", phone: "60104262806", phoneDisplay: "010-426 2806", status: "AKTIF & BERDAFTAR", initials: "MA", avatarBg: "bg-emerald-800" },
-  { id: "JCS050",  name: "JANNET JACKSON", phone: "60138686490", phoneDisplay: "013-868 6490", status: "AKTIF & BERDAFTAR", initials: "JJ", avatarBg: "bg-violet-700" },
-  { id: "JCS052",  name: "NURUL SYAHIRAH", phone: "601151277650", phoneDisplay: "011-5127 7650", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-pink-700" },
-  { id: "JCS055",  name: "SITI AMIRA", phone: "60102790679", phoneDisplay: "010-279 0679", status: "AKTIF & BERDAFTAR", initials: "SA", avatarBg: "bg-fuchsia-700" },
-  { id: "JCS058",  name: "NURSHAHIRA ALWANI", phone: "60146472319", phoneDisplay: "014-647 2319", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-lime-700" },
-  { id: "JCS057",  name: "MOHAMAD FAEZ", phone: "601151137825", phoneDisplay: "011-5113 7825", status: "AKTIF & BERDAFTAR", initials: "MF", avatarBg: "bg-slate-700" },
-  { id: "JCS061",  name: "NURFARISYA SOFEA", phone: "601136793312", phoneDisplay: "011-3679 3312", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-sky-700" },
-  { id: "JCS068",  name: "MUHAMMAD AIMAN", phone: "601137990763", phoneDisplay: "011-3799 0763", status: "AKTIF & BERDAFTAR", initials: "MA", avatarBg: "bg-blue-800" },
-  { id: "JCS074",  name: "NURUL AFIRZA", phone: "601127364273", phoneDisplay: "011-2736 4273", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-emerald-600" },
-  { id: "JCS076",  name: "HARITH IRFAN", phone: "60188748024", phoneDisplay: "018-874 8024", status: "AKTIF & BERDAFTAR", initials: "HI", avatarBg: "bg-amber-800" },
-  { id: "JCS082",  name: "NURUL AIDAYANA", phone: "601116442734", phoneDisplay: "011-1644 2734", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-teal-800" },
-  { id: "JCS080",  name: "ZULHELMI FAIZ", phone: "601111018297", phoneDisplay: "011-1101 8297", status: "AKTIF & BERDAFTAR", initials: "ZF", avatarBg: "bg-slate-800" }
+  { id: "JCS0014", name: "SITI ALIFAH", phone: "60182875879", phoneDisplay: "018-287 5879", status: "AKTIF & BERDAFTAR", initials: "SA", avatarBg: "bg-emerald-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS0026", name: "FARRIEZ DANIAL", phone: "60193210182", phoneDisplay: "019-321 0182", status: "AKTIF & BERDAFTAR", initials: "FD", avatarBg: "bg-blue-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS0028", name: "AIMAN HAIKAL", phone: "601167799318", phoneDisplay: "011-6779 9318", status: "AKTIF & BERDAFTAR", initials: "AH", avatarBg: "bg-indigo-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS0038", name: "MUNIR YUSOF", phone: "601173044527", phoneDisplay: "011-7304 4527", status: "AKTIF & BERDAFTAR", initials: "MY", avatarBg: "bg-amber-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS044",  name: "EISTER RINA", phone: "60148313059", phoneDisplay: "014-831 3059", status: "AKTIF & BERDAFTAR", initials: "ER", avatarBg: "bg-purple-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS043",  name: "NOR SYAHIRAH (IRA)", phone: "60173384918", phoneDisplay: "017-338 4918", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-rose-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS045",  name: "CATHERINE RENNA", phone: "601123244762", phoneDisplay: "011-2324 4762", status: "AKTIF & BERDAFTAR", initials: "CR", avatarBg: "bg-teal-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS046",  name: "NURAINA ALIA", phone: "601126617640", phoneDisplay: "011-2661 7640", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-cyan-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS049",  name: "MUHAMAD NUR AZZIQ (AZZIQ)", phone: "60104262806", phoneDisplay: "010-426 2806", status: "AKTIF & BERDAFTAR", initials: "MA", avatarBg: "bg-emerald-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS050",  name: "JANNET JACKSON", phone: "60138686490", phoneDisplay: "013-868 6490", status: "AKTIF & BERDAFTAR", initials: "JJ", avatarBg: "bg-violet-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS052",  name: "NURUL SYAHIRAH", phone: "601151277650", phoneDisplay: "011-5127 7650", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-pink-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS055",  name: "SITI AMIRA", phone: "60102790679", phoneDisplay: "010-279 0679", status: "AKTIF & BERDAFTAR", initials: "SA", avatarBg: "bg-fuchsia-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS058",  name: "NURSHAHIRA ALWANI", phone: "60146472319", phoneDisplay: "014-647 2319", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-lime-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS057",  name: "MOHAMAD FAEZ", phone: "601151137825", phoneDisplay: "011-5113 7825", status: "AKTIF & BERDAFTAR", initials: "MF", avatarBg: "bg-slate-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS061",  name: "NURFARISYA SOFEA", phone: "601136793312", phoneDisplay: "011-3679 3312", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-sky-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS068",  name: "MUHAMMAD AIMAN", phone: "601137990763", phoneDisplay: "011-3799 0763", status: "AKTIF & BERDAFTAR", initials: "MA", avatarBg: "bg-blue-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS074",  name: "NURUL AFIRZA", phone: "601127364273", phoneDisplay: "011-2736 4273", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-emerald-600", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS076",  name: "HARITH IRFAN", phone: "60188748024", phoneDisplay: "018-874 8024", status: "AKTIF & BERDAFTAR", initials: "HI", avatarBg: "bg-amber-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS082",  name: "NURUL AIDAYANA", phone: "601116442734", phoneDisplay: "011-1644 2734", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-teal-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
+  { id: "JCS080",  name: "ZULHELMI FAIZ", phone: "601111018297", phoneDisplay: "011-1101 8297", status: "AKTIF & BERDAFTAR", initials: "ZF", avatarBg: "bg-slate-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" }
 ];
 
 // 0. Live Cloudflare D1 Config Sync
@@ -614,16 +614,16 @@ async function initAgentVerification() {
         activeAgents = data.agents.map(a => ({
           id: a.staff_id,
           name: a.name,
-          role: a.role,
+          role: (a.role && a.role !== 'Perunding Pinjaman Sah') ? a.role : 'Loan Strategist',
           phone: a.phone,
           phoneDisplay: a.phone_display || a.phone,
-          branch: a.branch,
+          branch: (a.branch && a.branch !== 'HQ Taman TTDI Jaya' && a.branch !== 'Ibu Pejabat') ? a.branch : 'TTDI Jaya, Shah Alam',
           zone: a.zone,
           status: a.status,
           joinedDate: a.created_at ? new Date(a.created_at).toLocaleDateString('ms-MY', { day: '2-digit', month: 'long', year: 'numeric' }) : '01 Januari 2024',
           rating: a.rating || '5.0 / 5.0',
           initials: a.initials || 'JC',
-          specialty: a.specialty || 'Penyatuan Hutang & Analisis DSR',
+          specialty: a.specialty || 'Loan Strategist',
           avatarBg: a.avatar_bg || 'bg-slate-800 text-yellow-400 border border-yellow-500/30',
           photo_url: a.photo_url || null
         }));
@@ -721,16 +721,16 @@ async function initAgentVerification() {
           matched = {
             id: a.staff_id,
             name: a.name,
-            role: a.role,
+            role: (a.role && a.role !== 'Perunding Pinjaman Sah') ? a.role : 'Loan Strategist',
             phone: a.phone,
             phoneDisplay: a.phone_display || a.phone,
-            branch: a.branch,
+            branch: (a.branch && a.branch !== 'HQ Taman TTDI Jaya' && a.branch !== 'Ibu Pejabat') ? a.branch : 'TTDI Jaya, Shah Alam',
             zone: a.zone,
             status: a.status || 'AKTIF & BERDAFTAR',
             joinedDate: a.created_at ? new Date(a.created_at).toLocaleDateString('ms-MY', { day: '2-digit', month: 'long', year: 'numeric' }) : '01 Januari 2024',
             rating: a.rating || '5.0 / 5.0',
             initials: a.initials || 'JC',
-            specialty: a.specialty || 'Penyatuan Hutang & Analisis DSR',
+            specialty: a.specialty || 'Loan Strategist',
             avatarBg: a.avatar_bg || 'bg-slate-800 text-yellow-400 border border-yellow-500/30',
             photo_url: a.photo_url || null
           };
@@ -786,7 +786,7 @@ async function initAgentVerification() {
               ${avatarHtml}
               <div>
                 <span class="inline-block text-[11px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 mb-1">
-                  ✓ IDENTITI DISAHKAN SAH & BERDAFTAR
+                  IDENTITI DISAHKAN SAH & BERDAFTAR
                 </span>
                 <h3 class="text-xl font-extrabold text-slate-900 leading-tight">${matched.name}</h3>
                 <p class="text-xs text-yellow-600 font-mono font-bold mt-0.5">Staff ID: ${matched.id}</p>
@@ -798,12 +798,19 @@ async function initAgentVerification() {
             </span>
           </div>
 
-          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between flex-wrap gap-2 text-xs">
-            <div>
-              <span class="font-semibold text-slate-500 block text-[11px] mb-0.5">Nombor Telefon / WhatsApp Sah:</span>
-              <span class="font-bold text-slate-900 font-mono text-base">${matched.phoneDisplay}</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="font-semibold text-slate-500 block text-[11px] mb-0.5">Jawatan:</span>
+              <span class="font-bold text-slate-900 text-sm">${matched.role || 'Loan Strategist'}</span>
             </div>
-            <span class="text-[11px] text-slate-500">Wakil Perunding Rasmi JomConsult</span>
+            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="font-semibold text-slate-500 block text-[11px] mb-0.5">HQ:</span>
+              <span class="font-bold text-slate-900 text-sm">${matched.branch || 'TTDI Jaya, Shah Alam'}</span>
+            </div>
+            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="font-semibold text-slate-500 block text-[11px] mb-0.5">No. Telefon / WhatsApp Sah:</span>
+              <span class="font-bold text-slate-900 font-mono text-sm">${matched.phoneDisplay}</span>
+            </div>
           </div>
 
           <div class="pt-2 flex flex-col sm:flex-row gap-3">

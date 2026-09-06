@@ -15,7 +15,6 @@ export default defineConfig({
         faq: resolve(__dirname, 'faq.html'),
         contact: resolve(__dirname, 'contact.html'),
         tentangKami: resolve(__dirname, 'tentang-kami.html'),
-        pasukan: resolve(__dirname, 'pasukan.html'),
         kerjaya: resolve(__dirname, 'kerjaya.html'),
         daftarKerjaya: resolve(__dirname, 'daftar-kerjaya.html'),
         semakKelayakan: resolve(__dirname, 'semak-kelayakan.html'),
