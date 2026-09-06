@@ -798,42 +798,22 @@ async function initAgentVerification() {
 
       resultContainer.innerHTML = `
         <div class="px-3.5 py-4 sm:p-7 rounded-2xl bg-white border-2 border-yellow-400 shadow-xl space-y-4 animate-fade-in text-slate-900">
-          <!-- 1. MOBILE HEADER (< sm): Badges on top, Avatar & info below -->
-          <div class="sm:hidden space-y-3 pb-3 border-b border-slate-100">
-            <div class="flex items-center justify-between gap-2">
-              <span class="inline-block text-xs font-extrabold uppercase px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 tracking-wide">
-                IDENTITI DISAHKAN
-              </span>
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-700 font-bold text-xs rounded-full border border-emerald-200">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                Aktif
-              </span>
-            </div>
-            <div class="flex items-center gap-3 pt-0.5">
-              ${avatarHtml}
-              <div>
-                <h3 class="text-xl font-extrabold text-slate-900 leading-tight">${matched.name}</h3>
-                <p class="text-xs text-yellow-600 font-mono font-bold mt-0.5">Staff ID: ${matched.id}</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- 1. DESKTOP HEADER (sm: and above): Unified Avatar + Badge + Name on left, Aktif on right (As before) -->
-          <div class="hidden sm:flex items-center justify-between gap-4 pb-3.5 border-b border-slate-100">
-            <div class="flex items-center gap-3.5">
-              ${avatarHtml}
-              <div>
-                <span class="inline-block text-[11px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 mb-1 tracking-wide">
+          <!-- 1. HEADER: Avatar + Badges (IDENTITI DISAHKAN & AKTIF HIJAU Bersebelahan) + Nama + Staff ID -->
+          <div class="flex items-center gap-3.5 pb-3.5 border-b border-slate-100">
+            ${avatarHtml}
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center flex-wrap gap-2 mb-1">
+                <span class="badge-verified inline-block text-[10px] sm:text-[11px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-yellow-100 text-yellow-800 border border-yellow-300 tracking-wide">
                   IDENTITI DISAHKAN
                 </span>
-                <h3 class="text-2xl font-extrabold text-slate-900 leading-tight">${matched.name}</h3>
-                <p class="text-xs text-yellow-600 font-mono font-bold mt-0.5">Staff ID: ${matched.id}</p>
+                <span class="badge-active inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-300">
+                  <span class="pulse-dot w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  Aktif
+                </span>
               </div>
+              <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-tight">${matched.name}</h3>
+              <p class="text-xs text-yellow-600 font-mono font-bold mt-0.5">Staff ID: ${matched.id}</p>
             </div>
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-emerald-50 text-emerald-700 font-bold text-xs rounded-full border border-emerald-200 shrink-0">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              Aktif
-            </span>
           </div>
 
           <!-- 2. Maklumat Medan Teratur (2 Kolum Selesa pada Desktop untuk elak teks terputus/wrap) -->
