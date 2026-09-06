@@ -801,10 +801,10 @@ async function initAgentVerification() {
           <!-- 1. Identiti Disahkan Atas Sekali -->
           <div class="flex flex-col sm:flex-row items-center justify-between gap-2.5 pb-3.5 border-b border-slate-100 text-center sm:text-left">
             <span class="inline-block text-xs font-extrabold uppercase px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 tracking-wide">
-              IDENTITI DISAHKAN SAH & BERDAFTAR
+              IDENTITI DISAHKAN
             </span>
             <span class="inline-block text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-              Aktif Berdaftar
+              Aktif
             </span>
           </div>
 
