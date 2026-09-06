@@ -16,9 +16,12 @@ export async function onRequestGet({ request, env }) {
 
     if (query) {
       const cleanQ = `%${query}%`;
+      const numMatch = query.replace(/\D/g, '');
+      const paddedId = numMatch ? `JCS${numMatch.padStart(4, '0')}` : '';
+
       const { results } = await db.prepare(
-        "SELECT id, staff_id, name, role, phone, phone_display, branch, zone, status, rating, initials, specialty, avatar_bg, photo_url, verification_count FROM agents WHERE (staff_id LIKE ? OR phone LIKE ? OR name LIKE ?) ORDER BY id ASC"
-      ).bind(cleanQ, cleanQ, cleanQ).all();
+        "SELECT id, staff_id, name, role, phone, phone_display, branch, zone, status, rating, initials, specialty, avatar_bg, photo_url, verification_count FROM agents WHERE (staff_id LIKE ? OR staff_id = ? OR phone LIKE ? OR name LIKE ?) ORDER BY staff_id ASC"
+      ).bind(cleanQ, paddedId, cleanQ, cleanQ).all();
 
       // If exact match found, increment verification count
       if (results.length > 0) {
@@ -29,7 +32,7 @@ export async function onRequestGet({ request, env }) {
       return jsonResponse({ agents: results, total: results.length });
     } else {
       const { results } = await db.prepare(
-        "SELECT id, staff_id, name, role, phone, phone_display, branch, zone, status, rating, initials, specialty, avatar_bg, photo_url FROM agents WHERE status LIKE '%AKTIF%' ORDER BY id ASC"
+        "SELECT id, staff_id, name, role, phone, phone_display, branch, zone, status, rating, initials, specialty, avatar_bg, photo_url FROM agents WHERE status LIKE '%AKTIF%' ORDER BY staff_id ASC"
       ).all();
 
       return jsonResponse({ agents: results, total: results.length });

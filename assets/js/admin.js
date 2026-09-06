@@ -490,6 +490,11 @@ async function loadAgents() {
     });
     const data = await res.json();
     currentAgents = data.agents || [];
+    currentAgents.sort((a, b) => {
+      const numA = parseInt((a.staff_id || '').replace(/\D/g, ''), 10) || 0;
+      const numB = parseInt((b.staff_id || '').replace(/\D/g, ''), 10) || 0;
+      return numA - numB;
+    });
 
     const agentsBadge = document.getElementById('badge-agents-count');
     const agentsBadgeMobile = document.getElementById('badge-agents-count-mobile');

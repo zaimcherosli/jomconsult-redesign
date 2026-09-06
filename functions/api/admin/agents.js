@@ -15,7 +15,7 @@ export async function onRequestGet({ request, env }) {
     await db.prepare("ALTER TABLE agents ADD COLUMN photo_url TEXT").run();
   } catch (e) {}
 
-  const { results } = await db.prepare("SELECT * FROM agents ORDER BY id ASC").all();
+  const { results } = await db.prepare("SELECT * FROM agents ORDER BY staff_id ASC").all();
   return jsonResponse({ agents: results });
 }
 
