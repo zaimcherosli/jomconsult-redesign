@@ -523,16 +523,17 @@ async function loadAgents() {
           </div>
 
           <div class="space-y-1.5 text-xs text-slate-600 pt-2 border-t border-slate-100">
-            <div class="text-[11px]">Jawatan: <span class="text-slate-900 font-medium">${a.role}</span></div>
-            <div class="text-[11px] flex items-center gap-1.5">
-              <span>WhatsApp:</span>
-              <a href="https://wa.me/${a.phone}" target="_blank" class="text-emerald-700 font-semibold hover:underline inline-flex items-center gap-1">
+            <div class="text-[11px] flex items-center justify-between">
+              <span class="text-slate-500 font-medium">No. Telefon:</span>
+              <a href="https://wa.me/${a.phone}" target="_blank" class="text-emerald-700 font-bold hover:underline inline-flex items-center gap-1 font-mono">
                 ${WHATSAPP_SVG}
                 <span>${a.phone_display || a.phone}</span>
               </a>
             </div>
-            <div class="text-[11px]">Zon: <span class="text-slate-900 font-medium">${a.zone}</span></div>
-            <div class="text-[10px] text-slate-500">Semakan Anti-Scam: <span class="font-mono text-slate-900 font-bold">${a.verification_count || 0} kali</span></div>
+            <div class="text-[10px] text-slate-400 flex items-center justify-between">
+              <span>Semakan Anti-Scam:</span>
+              <span class="font-mono text-slate-700 font-bold">${a.verification_count || 0} kali</span>
+            </div>
           </div>
 
           <div class="flex items-center justify-between pt-3 border-t border-slate-100">

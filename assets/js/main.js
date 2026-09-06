@@ -19,81 +19,26 @@ const JOMCONSULT_CONFIG = {
 
 // Database Ejen & Perunding Kewangan Sah JomConsult
 const OFFICIAL_AGENTS = [
-  {
-    id: "JC-1021",
-    name: "Mohd Ali bin Osman",
-    role: "Pakar Penstrukturan DSR & Penyatuan Hutang",
-    phone: "601171191179",
-    phoneDisplay: "011-7119 1179",
-    branch: "Ibu Pejabat (Taman TTDI Jaya, Shah Alam)",
-    zone: "Selangor & Kuala Lumpur",
-    status: "AKTIF & BERDAFTAR",
-    joinedDate: "12 Januari 2021",
-    rating: "4.9 / 5.0",
-    initials: "AO",
-    specialty: "Penyatuan Hutang & Pinjaman Koperasi",
-    avatarBg: "bg-emerald-700"
-  },
-  {
-    id: "JC-1045",
-    name: "Siti Nurul Aminah binti Razak",
-    role: "Konsultan Pinjaman Peribadi Swasta & Bank",
-    phone: "60172551461",
-    phoneDisplay: "017-255 1461",
-    branch: "Cawangan Wilayah Utara (Pulau Pinang)",
-    zone: "Penang, Kedah & Perak",
-    status: "AKTIF & BERDAFTAR",
-    joinedDate: "03 Mac 2022",
-    rating: "4.9 / 5.0",
-    initials: "SA",
-    specialty: "Pinjaman Swasta MNC & Eksekutif",
-    avatarBg: "bg-teal-700"
-  },
-  {
-    id: "JC-1088",
-    name: "Muhammad Farhan bin Rosli",
-    role: "Pakar Penstrukturan & Pemulihan Profil CCRIS",
-    phone: "60172551462",
-    phoneDisplay: "017-255 1462",
-    branch: "Cawangan Wilayah Selatan (Johor Bahru)",
-    zone: "Johor, Melaka & Negeri Sembilan",
-    status: "AKTIF & BERDAFTAR",
-    joinedDate: "10 Ogos 2022",
-    rating: "5.0 / 5.0",
-    initials: "FR",
-    specialty: "CCRIS / SAA & Penyatuan Hutang",
-    avatarBg: "bg-indigo-700"
-  },
-  {
-    id: "JC-1102",
-    name: "Noraini binti Kassim",
-    role: "Penasihat Pembiayaan Penjawat Awam (AG / KKM / Guru)",
-    phone: "60172551463",
-    phoneDisplay: "017-255 1463",
-    branch: "Cawangan Pantai Timur (Kuantan)",
-    zone: "Pahang, Terengganu & Kelantan",
-    status: "AKTIF & BERDAFTAR",
-    joinedDate: "01 Februari 2023",
-    rating: "4.8 / 5.0",
-    initials: "NK",
-    specialty: "Koperasi BPA Angkasa & PDRM",
-    avatarBg: "bg-amber-700"
-  },
-  {
-    id: "JC-1120",
-    name: "Hafiz bin Zainal Abidin",
-    role: "Pengurus Khidmat Pelanggan & Analisis Kelayakan",
-    phone: "601171191179",
-    phoneDisplay: "011-7119 1179",
-    branch: "Ibu Pejabat (Taman TTDI Jaya, Shah Alam)",
-    zone: "Seluruh Malaysia",
-    status: "AKTIF & BERDAFTAR",
-    joinedDate: "15 November 2020",
-    rating: "5.0 / 5.0",
-    initials: "HZ",
-    specialty: "Diagnostik Slip Gaji & Semakan Percuma",
-    avatarBg: "bg-slate-800"
-  }
+  { id: "JCS0014", name: "SITI ALIFAH", phone: "60182875879", phoneDisplay: "018-287 5879", status: "AKTIF & BERDAFTAR", initials: "SA", avatarBg: "bg-emerald-700" },
+  { id: "JCS0026", name: "FARRIEZ DANIAL", phone: "60193210182", phoneDisplay: "019-321 0182", status: "AKTIF & BERDAFTAR", initials: "FD", avatarBg: "bg-blue-700" },
+  { id: "JCS0028", name: "AIMAN HAIKAL", phone: "601167799318", phoneDisplay: "011-6779 9318", status: "AKTIF & BERDAFTAR", initials: "AH", avatarBg: "bg-indigo-700" },
+  { id: "JCS0038", name: "MUNIR YUSOF", phone: "601173044527", phoneDisplay: "011-7304 4527", status: "AKTIF & BERDAFTAR", initials: "MY", avatarBg: "bg-amber-700" },
+  { id: "JCS044",  name: "EISTER RINA", phone: "60148313059", phoneDisplay: "014-831 3059", status: "AKTIF & BERDAFTAR", initials: "ER", avatarBg: "bg-purple-700" },
+  { id: "JCS043",  name: "NOR SYAHIRAH (IRA)", phone: "60173384918", phoneDisplay: "017-338 4918", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-rose-700" },
+  { id: "JCS045",  name: "CATHERINE RENNA", phone: "601123244762", phoneDisplay: "011-2324 4762", status: "AKTIF & BERDAFTAR", initials: "CR", avatarBg: "bg-teal-700" },
+  { id: "JCS046",  name: "NURAINA ALIA", phone: "601126617640", phoneDisplay: "011-2661 7640", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-cyan-700" },
+  { id: "JCS049",  name: "MUHAMAD NUR AZZIQ (AZZIQ)", phone: "60104262806", phoneDisplay: "010-426 2806", status: "AKTIF & BERDAFTAR", initials: "MA", avatarBg: "bg-emerald-800" },
+  { id: "JCS050",  name: "JANNET JACKSON", phone: "60138686490", phoneDisplay: "013-868 6490", status: "AKTIF & BERDAFTAR", initials: "JJ", avatarBg: "bg-violet-700" },
+  { id: "JCS052",  name: "NURUL SYAHIRAH", phone: "601151277650", phoneDisplay: "011-5127 7650", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-pink-700" },
+  { id: "JCS055",  name: "SITI AMIRA", phone: "60102790679", phoneDisplay: "010-279 0679", status: "AKTIF & BERDAFTAR", initials: "SA", avatarBg: "bg-fuchsia-700" },
+  { id: "JCS058",  name: "NURSHAHIRA ALWANI", phone: "60146472319", phoneDisplay: "014-647 2319", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-lime-700" },
+  { id: "JCS057",  name: "MOHAMAD FAEZ", phone: "601151137825", phoneDisplay: "011-5113 7825", status: "AKTIF & BERDAFTAR", initials: "MF", avatarBg: "bg-slate-700" },
+  { id: "JCS061",  name: "NURFARISYA SOFEA", phone: "601136793312", phoneDisplay: "011-3679 3312", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-sky-700" },
+  { id: "JCS068",  name: "MUHAMMAD AIMAN", phone: "601137990763", phoneDisplay: "011-3799 0763", status: "AKTIF & BERDAFTAR", initials: "MA", avatarBg: "bg-blue-800" },
+  { id: "JCS074",  name: "NURUL AFIRZA", phone: "601127364273", phoneDisplay: "011-2736 4273", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-emerald-600" },
+  { id: "JCS076",  name: "HARITH IRFAN", phone: "60188748024", phoneDisplay: "018-874 8024", status: "AKTIF & BERDAFTAR", initials: "HI", avatarBg: "bg-amber-800" },
+  { id: "JCS082",  name: "NURUL AIDAYANA", phone: "601116442734", phoneDisplay: "011-1644 2734", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-teal-800" },
+  { id: "JCS080",  name: "ZULHELMI FAIZ", phone: "601111018297", phoneDisplay: "011-1101 8297", status: "AKTIF & BERDAFTAR", initials: "ZF", avatarBg: "bg-slate-800" }
 ];
 
 // 0. Live Cloudflare D1 Config Sync
@@ -832,51 +777,41 @@ async function initAgentVerification() {
     if (matched) {
       const avatarHtml = matched.photo_url
         ? `<img src="${matched.photo_url}" class="w-14 h-14 rounded-2xl object-cover shadow border-2 border-yellow-400 shrink-0" alt="${matched.name}">`
-        : `<div class="w-14 h-14 rounded-2xl ${matched.avatarBg} flex items-center justify-center font-black text-lg shadow shrink-0">${matched.initials}</div>`;
+        : `<div class="w-14 h-14 rounded-2xl ${matched.avatarBg} flex items-center justify-center font-black text-lg text-white shadow shrink-0">${matched.initials}</div>`;
 
       resultContainer.innerHTML = `
-        <div class="p-6 rounded-2xl bg-slate-900 border-2 border-yellow-400 shadow-2xl space-y-4 animate-fade-in text-white">
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+        <div class="p-6 sm:p-7 rounded-2xl bg-white border-2 border-yellow-400 shadow-xl space-y-4 animate-fade-in text-slate-900">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-3 border-b border-slate-100">
             <div class="flex items-center gap-3.5">
               ${avatarHtml}
               <div>
-                <span class="inline-block text-[11px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-yellow-400 text-slate-950 mb-1">
+                <span class="inline-block text-[11px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 mb-1">
                   ✓ IDENTITI DISAHKAN SAH & BERDAFTAR
                 </span>
-                <h3 class="text-lg font-extrabold text-white leading-tight">${matched.name}</h3>
-                <p class="text-xs text-yellow-400 font-mono font-bold mt-0.5">Staff ID: ${matched.id}</p>
+                <h3 class="text-xl font-extrabold text-slate-900 leading-tight">${matched.name}</h3>
+                <p class="text-xs text-yellow-600 font-mono font-bold mt-0.5">Staff ID: ${matched.id}</p>
               </div>
             </div>
-            <span class="text-xs font-bold text-slate-200 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
-              Penilaian Klien: ${matched.rating}
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-700 font-bold text-xs rounded-lg border border-emerald-200">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              Aktif Berdaftar
             </span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-200">
-            <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-              <span class="font-semibold text-slate-400 block text-[11px] mb-0.5">Jawatan Rasmi:</span>
-              <span class="font-bold text-white">${matched.role}</span>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between flex-wrap gap-2 text-xs">
+            <div>
+              <span class="font-semibold text-slate-500 block text-[11px] mb-0.5">Nombor Telefon / WhatsApp Sah:</span>
+              <span class="font-bold text-slate-900 font-mono text-base">${matched.phoneDisplay}</span>
             </div>
-            <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-              <span class="font-semibold text-slate-400 block text-[11px] mb-0.5">No. Telefon / WhatsApp Sah:</span>
-              <span class="font-bold text-yellow-400 font-mono text-sm">${matched.phoneDisplay}</span>
-            </div>
-            <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-              <span class="font-semibold text-slate-400 block text-[11px] mb-0.5">Cawangan / Pejabat:</span>
-              <span class="font-bold text-white">${matched.branch}</span>
-            </div>
-            <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-              <span class="font-semibold text-slate-400 block text-[11px] mb-0.5">Zon Liputan Khidmat:</span>
-              <span class="font-bold text-white">${matched.zone}</span>
-            </div>
+            <span class="text-[11px] text-slate-500">Wakil Perunding Rasmi JomConsult</span>
           </div>
 
           <div class="pt-2 flex flex-col sm:flex-row gap-3">
-            <a href="https://wa.me/${matched.phone}?text=Salam%20${encodeURIComponent(matched.name)}%20(ID:%20${matched.id}),%20saya%20telah%20mengesahkan%20profil%20tuan%2Fpuan%20di%20portal%20JomConsult%20dan%20ingin%20memohon%20konsultasi%20pinjaman." target="_blank" class="flex-1 py-3 px-4 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs rounded-xl text-center shadow transition inline-flex items-center justify-center gap-2">
+            <a href="https://wa.me/${matched.phone}?text=Salam%20${encodeURIComponent(matched.name)}%20(ID:%20${matched.id}),%20saya%20telah%20mengesahkan%20profil%20tuan%2Fpuan%20di%20portal%20JomConsult%20dan%20ingin%20memohon%20konsultasi%20pinjaman." target="_blank" class="flex-1 py-3 px-5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs rounded-xl text-center shadow transition inline-flex items-center justify-center gap-2">
               <span class="w-4 h-4 shrink-0">${OFFICIAL_WHATSAPP_SVG}</span>
               <span>Hubungi Terus WhatsApp ${matched.name.split(' ')[0]} (Disahkan)</span>
             </a>
-            <button onclick="document.getElementById('verification-result').innerHTML=''; const inp = document.getElementById('agent-search-input'); if(inp){ inp.value=''; inp.focus(); }" class="py-3 px-4 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded-xl border border-slate-700 transition">
+            <button onclick="document.getElementById('verification-result').innerHTML=''; const inp = document.getElementById('agent-search-input'); if(inp){ inp.value=''; inp.focus(); }" class="btn-close-verify py-3 px-6 bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs rounded-xl border border-slate-300 shadow-sm transition">
               Tutup Carian
             </button>
           </div>
@@ -884,22 +819,22 @@ async function initAgentVerification() {
       `;
     } else {
       resultContainer.innerHTML = `
-        <div class="p-6 rounded-2xl bg-slate-900 border-2 border-rose-500 shadow-2xl space-y-3 animate-fade-in text-white">
-          <div class="flex items-center gap-2 text-rose-400 font-bold text-sm">
+        <div class="p-6 rounded-2xl bg-white border-2 border-rose-500 shadow-xl space-y-3 animate-fade-in text-slate-900">
+          <div class="flex items-center gap-2 text-rose-600 font-bold text-sm">
             <span>⚠️ MAKLUMAT TIDAK DIJUMPAI / TIDAK BERDAFTAR</span>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Tiada rekod ejen rasmi JomConsult yang sepadan dengan carian <strong class="text-white">"${query}"</strong>. 
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Tiada rekod ejen rasmi JomConsult yang sepadan dengan carian <strong class="text-slate-900">"${query}"</strong>. 
             Sila pastikan ejaan nama, nombor Staff ID atau nombor telefon dimasukkan dengan tepat.
           </p>
-          <div class="p-3 bg-slate-800/80 rounded-lg border border-rose-500/40 text-xs text-rose-300">
-            <strong class="text-rose-400">Amaran Keselamatan:</strong> Jika individu berkenaan mendesak meminta bayaran pendahuluan (upfront) atau meminta pemindahan wang ke akaun peribadi, sila elakkan berurusan dan laporkan segera kepada pihak pengurusan kami.
+          <div class="p-3 bg-rose-50 rounded-lg border border-rose-200 text-xs text-rose-700">
+            <strong class="text-rose-800">Amaran Keselamatan:</strong> Jika individu berkenaan mendesak meminta bayaran pendahuluan (upfront) atau meminta pemindahan wang ke akaun peribadi, sila elakkan berurusan dan laporkan segera kepada pihak pengurusan kami.
           </div>
           <div class="pt-2 flex flex-col sm:flex-row gap-3">
             <a href="https://wa.me/${JOMCONSULT_CONFIG.whatsappNumber}?text=Salam%20HQ%20JomConsult,%20saya%20ingin%20membuat%20semakan%20mengenai%20kesahihan%20ejen%20dengan%20maklumat:%20${encodeURIComponent(query)}" target="_blank" class="inline-block py-2.5 px-5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl transition shadow text-center">
               Laporkan / Semak Bersama HQ JomConsult
             </a>
-            <button onclick="document.getElementById('verification-result').innerHTML=''; const inp = document.getElementById('agent-search-input'); if(inp){ inp.value=''; inp.focus(); }" class="py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded-xl border border-slate-700 transition">
+            <button onclick="document.getElementById('verification-result').innerHTML=''; const inp = document.getElementById('agent-search-input'); if(inp){ inp.value=''; inp.focus(); }" class="btn-close-verify py-2.5 px-5 bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs rounded-xl border border-slate-300 shadow-sm transition">
               Cuba Carian Lain
             </button>
           </div>

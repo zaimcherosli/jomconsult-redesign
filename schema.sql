@@ -90,12 +90,27 @@ INSERT OR REPLACE INTO site_settings (key, value, description) VALUES
 ('announcement_active', '1', 'Status Paparan Pengumuman (1: Aktif, 0: Tutup)');
 
 -- Seed Official Agents
-INSERT OR REPLACE INTO agents (id, staff_id, name, role, phone, phone_display, branch, zone, status, rating, initials, specialty, avatar_bg) VALUES
-(1, 'JC-1021', 'Mohd Ali bin Osman', 'Pakar Penstrukturan DSR & Penyatuan Hutang', '601171191179', '011-7119 1179', 'Ibu Pejabat (Taman TTDI Jaya, Shah Alam)', 'Selangor & Kuala Lumpur', 'AKTIF & BERDAFTAR', '4.9 / 5.0', 'AO', 'Penyatuan Hutang & Pinjaman Koperasi', 'bg-emerald-700'),
-(2, 'JC-1045', 'Siti Nurul Aminah binti Razak', 'Konsultan Pinjaman Peribadi Swasta & Bank', '601171191179', '011-7119 1179', 'Cawangan Wilayah Utara (Pulau Pinang)', 'Penang, Kedah & Perak', 'AKTIF & BERDAFTAR', '4.9 / 5.0', 'SA', 'Pinjaman Swasta MNC & Eksekutif', 'bg-teal-700'),
-(3, 'JC-1088', 'Muhammad Farhan bin Rosli', 'Pakar Penstrukturan & Pemulihan Profil CCRIS', '601171191179', '011-7119 1179', 'Cawangan Wilayah Selatan (Johor Bahru)', 'Johor, Melaka & Negeri Sembilan', 'AKTIF & BERDAFTAR', '5.0 / 5.0', 'FR', 'CCRIS / SAA & Mortgage Refinance', 'bg-indigo-700'),
-(4, 'JC-1102', 'Noraini binti Kassim', 'Penasihat Pembiayaan Penjawat Awam (AG / KKM / Guru)', '601171191179', '011-7119 1179', 'Cawangan Pantai Timur (Kuantan)', 'Pahang, Terengganu & Kelantan', 'AKTIF & BERDAFTAR', '4.8 / 5.0', 'NK', 'Koperasi BPA Angkasa & PDRM', 'bg-amber-700'),
-(5, 'JC-1120', 'Hafiz bin Zainal Abidin', 'Pengurus Khidmat Pelanggan & Analisis Kelayakan', '601171191179', '011-7119 1179', 'Ibu Pejabat (Taman TTDI Jaya, Shah Alam)', 'Seluruh Malaysia', 'AKTIF & BERDAFTAR', '5.0 / 5.0', 'HZ', 'Diagnostik Slip Gaji & Semakan Percuma', 'bg-slate-800');
+INSERT OR REPLACE INTO agents (id, staff_id, name, phone, phone_display, status, initials, avatar_bg, role, branch, zone, rating, specialty, verification_count) VALUES
+(1, 'JCS0014', 'SITI ALIFAH', '60182875879', '018-287 5879', 'AKTIF & BERDAFTAR', 'SA', 'bg-emerald-700', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(2, 'JCS0026', 'FARRIEZ DANIAL', '60193210182', '019-321 0182', 'AKTIF & BERDAFTAR', 'FD', 'bg-blue-700', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(3, 'JCS0028', 'AIMAN HAIKAL', '601167799318', '011-6779 9318', 'AKTIF & BERDAFTAR', 'AH', 'bg-indigo-700', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(4, 'JCS0038', 'MUNIR YUSOF', '601173044527', '011-7304 4527', 'AKTIF & BERDAFTAR', 'MY', 'bg-amber-700', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(5, 'JCS044', 'EISTER RINA', '60148313059', '014-831 3059', 'AKTIF & BERDAFTAR', 'ER', 'bg-purple-700', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(6, 'JCS043', 'NOR SYAHIRAH (IRA)', '60173384918', '017-338 4918', 'AKTIF & BERDAFTAR', 'NS', 'bg-rose-700', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(7, 'JCS045', 'CATHERINE RENNA', '601123244762', '011-2324 4762', 'AKTIF & BERDAFTAR', 'CR', 'bg-teal-700', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(8, 'JCS046', 'NURAINA ALIA', '601126617640', '011-2661 7640', 'AKTIF & BERDAFTAR', 'NA', 'bg-cyan-700', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(9, 'JCS049', 'MUHAMAD NUR AZZIQ (AZZIQ)', '60104262806', '010-426 2806', 'AKTIF & BERDAFTAR', 'MA', 'bg-emerald-800', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(10, 'JCS050', 'JANNET JACKSON', '60138686490', '013-868 6490', 'AKTIF & BERDAFTAR', 'JJ', 'bg-violet-700', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(11, 'JCS052', 'NURUL SYAHIRAH', '601151277650', '011-5127 7650', 'AKTIF & BERDAFTAR', 'NS', 'bg-pink-700', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(12, 'JCS055', 'SITI AMIRA', '60102790679', '010-279 0679', 'AKTIF & BERDAFTAR', 'SA', 'bg-fuchsia-700', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(13, 'JCS058', 'NURSHAHIRA ALWANI', '60146472319', '014-647 2319', 'AKTIF & BERDAFTAR', 'NA', 'bg-lime-700', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(14, 'JCS057', 'MOHAMAD FAEZ', '601151137825', '011-5113 7825', 'AKTIF & BERDAFTAR', 'MF', 'bg-slate-700', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(15, 'JCS061', 'NURFARISYA SOFEA', '601136793312', '011-3679 3312', 'AKTIF & BERDAFTAR', 'NS', 'bg-sky-700', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(16, 'JCS068', 'MUHAMMAD AIMAN', '601137990763', '011-3799 0763', 'AKTIF & BERDAFTAR', 'MA', 'bg-blue-800', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(17, 'JCS074', 'NURUL AFIRZA', '601127364273', '011-2736 4273', 'AKTIF & BERDAFTAR', 'NA', 'bg-emerald-600', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(18, 'JCS076', 'HARITH IRFAN', '60188748024', '018-874 8024', 'AKTIF & BERDAFTAR', 'HI', 'bg-amber-800', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(19, 'JCS082', 'NURUL AIDAYANA', '601116442734', '011-1644 2734', 'AKTIF & BERDAFTAR', 'NA', 'bg-teal-800', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0),
+(20, 'JCS080', 'ZULHELMI FAIZ', '601111018297', '011-1101 8297', 'AKTIF & BERDAFTAR', 'ZF', 'bg-slate-800', 'Perunding Pinjaman Sah', 'HQ Taman TTDI Jaya', 'Seluruh Malaysia', '5.0 / 5.0', 'Perunding Kewangan', 0);
 
 -- Seed Testimonials
 INSERT OR REPLACE INTO testimonials (id, client_name, profession, original_issue, loan_approved, monthly_savings, story, is_featured, display_order) VALUES
