@@ -818,8 +818,8 @@ async function initAgentVerification() {
 
           <!-- 4. Butang Tindakan -->
           <div class="pt-2 flex flex-col sm:flex-row gap-3">
-            <a href="https://wa.me/${matched.phone}?text=Salam%20${encodeURIComponent(matched.name)}%20(ID:%20${matched.id}),%20saya%20telah%20mengesahkan%20profil%20tuan%2Fpuan%20di%20portal%20JomConsult%20dan%20ingin%20memohon%20konsultasi%20pinjaman." target="_blank" class="flex-1 py-3 px-5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs rounded-xl text-center shadow transition inline-flex items-center justify-center">
-              Hubungi Terus WhatsApp ${matched.name.split(' ')[0]} (Disahkan)
+            <a href="https://wa.me/${matched.phone}?text=Salam%20${encodeURIComponent(matched.name)}%20(ID:%20${matched.id}),%20saya%20telah%20mengesahkan%20profil%20tuan%2Fpuan%20di%20portal%20JomConsult%20dan%20ingin%20memohon%20konsultasi%20pinjaman." target="_blank" class="flex-1 py-3 px-5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm rounded-xl text-center shadow transition inline-flex items-center justify-center">
+              WhatsApp
             </a>
             <button onclick="document.getElementById('verification-result').innerHTML=''; const inp = document.getElementById('agent-search-input'); if(inp){ inp.value=''; inp.focus(); }" class="btn-close-verify py-3 px-6 bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs rounded-xl border border-slate-300 shadow-sm transition">
               Tutup Carian
