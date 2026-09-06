@@ -578,6 +578,34 @@ html[data-theme="light-gold"] .group:hover .feature-icon-badge {
   box-shadow: 0 6px 16px -2px rgba(202, 138, 4, 0.28) !important;
 }
 
+/* Bespoke Hand-Drawn Doodle Illustrations (Direct Lending Theme) */
+.doodle-stroke {
+  stroke: #0f172a;
+}
+.doodle-fill-bg {
+  fill: #ffffff;
+}
+.doodle-text {
+  fill: #0f172a;
+}
+.doodle-dot {
+  fill: #0f172a;
+}
+
+html:not([data-theme="light-gold"]) .doodle-stroke {
+  stroke: #f8fafc;
+}
+html:not([data-theme="light-gold"]) .doodle-fill-bg {
+  fill: #1e293b;
+}
+html:not([data-theme="light-gold"]) .doodle-text {
+  fill: #f8fafc;
+}
+html:not([data-theme="light-gold"]) .doodle-dot {
+  fill: #f8fafc;
+}
+
+
 /* Stats counter box on homepage */
 html[data-theme="light-gold"] .max-w-3xl.grid-cols-3 {
   background: #ffffff !important;
