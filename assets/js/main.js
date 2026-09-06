@@ -780,25 +780,28 @@ async function initAgentVerification() {
         : `<div class="w-14 h-14 rounded-2xl ${matched.avatarBg} flex items-center justify-center font-black text-lg text-white shadow shrink-0">${matched.initials}</div>`;
 
       resultContainer.innerHTML = `
-        <div class="p-6 sm:p-7 rounded-2xl bg-white border-2 border-yellow-400 shadow-xl space-y-4 animate-fade-in text-slate-900">
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-3 border-b border-slate-100">
-            <div class="flex items-center gap-3.5">
-              ${avatarHtml}
-              <div>
-                <span class="inline-block text-[11px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 mb-1">
-                  IDENTITI DISAHKAN SAH & BERDAFTAR
-                </span>
-                <h3 class="text-xl font-extrabold text-slate-900 leading-tight">${matched.name}</h3>
-                <p class="text-xs text-yellow-600 font-mono font-bold mt-0.5">Staff ID: ${matched.id}</p>
-              </div>
-            </div>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-700 font-bold text-xs rounded-lg border border-emerald-200">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <div class="p-5 sm:p-7 rounded-2xl bg-white border-2 border-yellow-400 shadow-xl space-y-4 animate-fade-in text-slate-900">
+          <!-- 1. Identiti Disahkan Atas Sekali -->
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-2.5 pb-3.5 border-b border-slate-100 text-center sm:text-left">
+            <span class="inline-block text-xs font-extrabold uppercase px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 tracking-wide">
+              IDENTITI DISAHKAN SAH & BERDAFTAR
+            </span>
+            <span class="inline-block text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
               Aktif Berdaftar
             </span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <!-- 2. Gambar & Profil Ke Bawah -->
+          <div class="flex items-center gap-3.5 pt-1">
+            ${avatarHtml}
+            <div>
+              <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-tight">${matched.name}</h3>
+              <p class="text-xs text-yellow-600 font-mono font-bold mt-0.5">Staff ID: ${matched.id}</p>
+            </div>
+          </div>
+
+          <!-- 3. Maklumat Medan Teratur -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs pt-1">
             <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
               <span class="font-semibold text-slate-500 block text-[11px] mb-0.5">Jawatan:</span>
               <span class="font-bold text-slate-900 text-sm">${matched.role || 'Loan Strategist'}</span>
@@ -813,10 +816,10 @@ async function initAgentVerification() {
             </div>
           </div>
 
+          <!-- 4. Butang Tindakan -->
           <div class="pt-2 flex flex-col sm:flex-row gap-3">
-            <a href="https://wa.me/${matched.phone}?text=Salam%20${encodeURIComponent(matched.name)}%20(ID:%20${matched.id}),%20saya%20telah%20mengesahkan%20profil%20tuan%2Fpuan%20di%20portal%20JomConsult%20dan%20ingin%20memohon%20konsultasi%20pinjaman." target="_blank" class="flex-1 py-3 px-5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs rounded-xl text-center shadow transition inline-flex items-center justify-center gap-2">
-              <span class="w-4 h-4 shrink-0">${OFFICIAL_WHATSAPP_SVG}</span>
-              <span>Hubungi Terus WhatsApp ${matched.name.split(' ')[0]} (Disahkan)</span>
+            <a href="https://wa.me/${matched.phone}?text=Salam%20${encodeURIComponent(matched.name)}%20(ID:%20${matched.id}),%20saya%20telah%20mengesahkan%20profil%20tuan%2Fpuan%20di%20portal%20JomConsult%20dan%20ingin%20memohon%20konsultasi%20pinjaman." target="_blank" class="flex-1 py-3 px-5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs rounded-xl text-center shadow transition inline-flex items-center justify-center">
+              Hubungi Terus WhatsApp ${matched.name.split(' ')[0]} (Disahkan)
             </a>
             <button onclick="document.getElementById('verification-result').innerHTML=''; const inp = document.getElementById('agent-search-input'); if(inp){ inp.value=''; inp.focus(); }" class="btn-close-verify py-3 px-6 bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs rounded-xl border border-slate-300 shadow-sm transition">
               Tutup Carian
@@ -828,7 +831,7 @@ async function initAgentVerification() {
       resultContainer.innerHTML = `
         <div class="p-6 rounded-2xl bg-white border-2 border-rose-500 shadow-xl space-y-3 animate-fade-in text-slate-900">
           <div class="flex items-center gap-2 text-rose-600 font-bold text-sm">
-            <span>⚠️ MAKLUMAT TIDAK DIJUMPAI / TIDAK BERDAFTAR</span>
+            <span>MAKLUMAT TIDAK DIJUMPAI / TIDAK BERDAFTAR</span>
           </div>
           <p class="text-xs text-slate-600 leading-relaxed">
             Tiada rekod ejen rasmi JomConsult yang sepadan dengan carian <strong class="text-slate-900">"${query}"</strong>. 
