@@ -135,32 +135,74 @@ function initTabs() {
     });
   }
 
+  function switchTab(targetId) {
+    if (!targetId || !document.getElementById(targetId)) return;
+
+    // Update all tabs styling (both desktop and mobile)
+    tabs.forEach(t => {
+      if (t.getAttribute('data-tab') === targetId) {
+        t.classList.add('tab-active');
+        t.classList.remove('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-100');
+      } else {
+        t.classList.remove('tab-active');
+        t.classList.add('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-100');
+      }
+    });
+
+    // Switch tab contents
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+    const targetContent = document.getElementById(targetId);
+    if (targetContent) targetContent.classList.remove('hidden');
+
+    // Save active tab state in localStorage and history hash so refresh stays on current page
+    localStorage.setItem('jc_admin_active_tab', targetId);
+    try {
+      const cleanHash = targetId.replace('tab-', '');
+      if (window.location.hash !== `#${cleanHash}`) {
+        history.replaceState(null, '', `#${cleanHash}`);
+      }
+    } catch (e) {}
+
+    // Close mobile menu if open
+    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+      mobileMenu.classList.add('hidden');
+    }
+  }
+
+  window.switchAdminTab = switchTab;
+
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const targetId = tab.getAttribute('data-tab');
-
-      // Update all tabs styling (both desktop and mobile)
-      tabs.forEach(t => {
-        if (t.getAttribute('data-tab') === targetId) {
-          t.classList.add('tab-active');
-          t.classList.remove('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-100');
-        } else {
-          t.classList.remove('tab-active');
-          t.classList.add('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-100');
-        }
-      });
-
-      // Switch tab contents
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-      const targetContent = document.getElementById(targetId);
-      if (targetContent) targetContent.classList.remove('hidden');
-
-      // Close mobile menu if open
-      if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-        mobileMenu.classList.add('hidden');
-      }
+      switchTab(targetId);
     });
   });
+
+  // Restore saved active tab on page load/refresh
+  const hash = window.location.hash.replace('#', '');
+  const hashTabId = hash ? `tab-${hash}` : null;
+  const savedTab = (hashTabId && document.getElementById(hashTabId) ? hashTabId : null) || localStorage.getItem('jc_admin_active_tab');
+  if (savedTab && document.getElementById(savedTab)) {
+    switchTab(savedTab);
+  }
+
+  // Hook up Agents real-time refresh icon button
+  const refreshAgentsBtn = document.getElementById('btn-refresh-agents');
+  if (refreshAgentsBtn) {
+    refreshAgentsBtn.addEventListener('click', async () => {
+      const icon = document.getElementById('icon-refresh-agents');
+      if (icon) icon.classList.add('animate-spin');
+      refreshAgentsBtn.disabled = true;
+      try {
+        await loadAgents();
+      } finally {
+        setTimeout(() => {
+          if (icon) icon.classList.remove('animate-spin');
+          refreshAgentsBtn.disabled = false;
+        }, 500);
+      }
+    });
+  }
 }
 
 // ================= 3. LEADS CRM =================
