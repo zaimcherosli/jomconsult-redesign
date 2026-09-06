@@ -529,13 +529,25 @@ async function loadAgents() {
 
           <div class="space-y-1.5 text-xs text-slate-600 pt-2 border-t border-slate-100">
             <div class="text-[11px] flex items-center justify-between">
+              <span class="text-slate-500 font-medium">Jawatan:</span>
+              <span class="font-bold text-slate-900">${a.role || 'Loan Strategist'}</span>
+            </div>
+            <div class="text-[11px] flex items-center justify-between">
+              <span class="text-slate-500 font-medium">HQ:</span>
+              <span class="font-bold text-slate-900">${a.branch || 'TTDI Jaya, Shah Alam'}</span>
+            </div>
+            <div class="text-[11px] flex items-center justify-between">
+              <span class="text-slate-500 font-medium">Zon Liputan:</span>
+              <span class="font-bold text-slate-900">${a.zone || 'Seluruh Malaysia'}</span>
+            </div>
+            <div class="text-[11px] flex items-center justify-between">
               <span class="text-slate-500 font-medium">No. Telefon:</span>
               <a href="https://wa.me/${a.phone}" target="_blank" class="text-emerald-700 font-bold hover:underline inline-flex items-center gap-1 font-mono">
                 ${WHATSAPP_SVG}
                 <span>${a.phone_display || a.phone}</span>
               </a>
             </div>
-            <div class="text-[10px] text-slate-400 flex items-center justify-between">
+            <div class="text-[10px] text-slate-400 flex items-center justify-between pt-1 border-t border-slate-50">
               <span>Semakan Anti-Scam:</span>
               <span class="font-mono text-slate-700 font-bold">${a.verification_count || 0} kali</span>
             </div>
@@ -562,6 +574,10 @@ async function loadAgents() {
 document.getElementById('btn-add-agent-modal')?.addEventListener('click', () => {
   document.getElementById('form-agent').reset();
   document.getElementById('agent-id').value = '';
+  document.getElementById('agent-role').value = 'Loan Strategist';
+  document.getElementById('agent-branch').value = 'TTDI Jaya, Shah Alam';
+  document.getElementById('agent-zone').value = 'Seluruh Malaysia';
+  document.getElementById('agent-specialty').value = 'Loan Strategist';
   document.getElementById('agent-photo-url').value = '';
   document.getElementById('agent-photo-file').value = '';
   document.getElementById('agent-photo-preview').src = '';

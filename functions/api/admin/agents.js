@@ -47,15 +47,15 @@ export async function onRequestPost({ request, env }) {
     ).bind(
       staff_id.trim().toUpperCase(),
       name.trim(),
-      role || "Perunding Pinjaman Bertauliah",
+      role || "Loan Strategist",
       phone.replace(/\D/g, ""),
       phoneDisplay,
-      branch || "Ibu Pejabat (Taman TTDI Jaya)",
-      zone || "Selangor & KL",
+      branch || "TTDI Jaya, Shah Alam",
+      zone || "Seluruh Malaysia",
       status || "AKTIF & BERDAFTAR",
       rating || "5.0 / 5.0",
       initials || "JC",
-      specialty || "Penyatuan Hutang & Analisis DSR",
+      specialty || "Loan Strategist",
       avatar_bg || "bg-emerald-700",
       photo_url || null
     ).run();

@@ -623,10 +623,22 @@
           <input type="text" id="agent-phone" required placeholder="Cth: 018-287 5879 atau 60182875879" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
         </div>
 
-        <input type="hidden" id="agent-role" value="Loan Strategist">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Jawatan:</label>
+            <input type="text" id="agent-role" required value="Loan Strategist" placeholder="Loan Strategist" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">HQ / Cawangan:</label>
+            <input type="text" id="agent-branch" required value="TTDI Jaya, Shah Alam" placeholder="TTDI Jaya, Shah Alam" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Zon Liputan:</label>
+            <input type="text" id="agent-zone" required value="Seluruh Malaysia" placeholder="Seluruh Malaysia" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+
         <input type="hidden" id="agent-specialty" value="Loan Strategist">
-        <input type="hidden" id="agent-branch" value="TTDI Jaya, Shah Alam">
-        <input type="hidden" id="agent-zone" value="Seluruh Malaysia">
 
         <div class="pt-3 border-t border-slate-100 flex justify-end gap-2">
           <button type="button" onclick="closeAgentModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl">Batal</button>

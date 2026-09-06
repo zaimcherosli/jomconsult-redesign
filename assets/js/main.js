@@ -19,40 +19,40 @@ const JOMCONSULT_CONFIG = {
 
 // Database Ejen & Perunding Kewangan Sah JomConsult (Disusun ikut No. Staff ID JCS0001 dan seterusnya)
 const OFFICIAL_AGENTS = [
-  { id: "JCS0001", name: "FARIS FAUZAN", phone: "60195140145", phoneDisplay: "019-514 0145", status: "AKTIF & BERDAFTAR", initials: "FF", avatarBg: "bg-emerald-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0002", name: "AZURA", phone: "60163380319", phoneDisplay: "016-338 0319", status: "AKTIF & BERDAFTAR", initials: "AZ", avatarBg: "bg-blue-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0004", name: "NURSYAMIMI SUHAILAH (MEMEY)", phone: "601155288052", phoneDisplay: "011-5528 8052", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-purple-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0005", name: "NUR HIDAYAH (AIDA)", phone: "601133145485", phoneDisplay: "011-3314 5485", status: "AKTIF & BERDAFTAR", initials: "NH", avatarBg: "bg-rose-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0006", name: "LISECA BASIUS (CHIKA)", phone: "60143751281", phoneDisplay: "014-375 1281", status: "AKTIF & BERDAFTAR", initials: "LB", avatarBg: "bg-amber-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0008", name: "AISHAH JOHAN", phone: "601153545064", phoneDisplay: "011-5354 5064", status: "AKTIF & BERDAFTAR", initials: "AJ", avatarBg: "bg-indigo-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0009", name: "MOHD SHAFIK", phone: "601113174306", phoneDisplay: "011-1317 4306", status: "AKTIF & BERDAFTAR", initials: "MS", avatarBg: "bg-teal-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0010", name: "NINA", phone: "60173145863", phoneDisplay: "017-314 5863", status: "AKTIF & BERDAFTAR", initials: "NI", avatarBg: "bg-cyan-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0011", name: "SITI ZULAIKHA (IKHA)", phone: "60145392670", phoneDisplay: "014-539 2670", status: "AKTIF & BERDAFTAR", initials: "SZ", avatarBg: "bg-fuchsia-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0012", name: "NUR SYIFAA", phone: "60182854356", phoneDisplay: "018-285 4356", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-pink-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0014", name: "SITI ALIFAH", phone: "60182875879", phoneDisplay: "018-287 5879", status: "AKTIF & BERDAFTAR", initials: "SA", avatarBg: "bg-emerald-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0018", name: "AHMAD ZULFADHLI (FAZZLI)", phone: "601123005811", phoneDisplay: "011-2300 5811", status: "AKTIF & BERDAFTAR", initials: "AZ", avatarBg: "bg-blue-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0023", name: "MUHAMAD SAPAWI", phone: "60186141192", phoneDisplay: "018-614 1192", status: "AKTIF & BERDAFTAR", initials: "MS", avatarBg: "bg-slate-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0024", name: "NORZAHIRYAH (CIK NOR)", phone: "601110650883", phoneDisplay: "011-1065 0883", status: "AKTIF & BERDAFTAR", initials: "NC", avatarBg: "bg-lime-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0025", name: "SURAINI", phone: "60194361386", phoneDisplay: "019-436 1386", status: "AKTIF & BERDAFTAR", initials: "SU", avatarBg: "bg-amber-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0026", name: "FARRIEZ DANIAL", phone: "60193210182", phoneDisplay: "019-321 0182", status: "AKTIF & BERDAFTAR", initials: "FD", avatarBg: "bg-blue-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0028", name: "AIMAN HAIKAL", phone: "601167799318", phoneDisplay: "011-6779 9318", status: "AKTIF & BERDAFTAR", initials: "AH", avatarBg: "bg-indigo-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0038", name: "MUNIR YUSOF", phone: "601173044527", phoneDisplay: "011-7304 4527", status: "AKTIF & BERDAFTAR", initials: "MY", avatarBg: "bg-amber-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0043", name: "NOR SYAHIRAH (IRA)", phone: "60173384918", phoneDisplay: "017-338 4918", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-rose-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0044", name: "EISTER RINA", phone: "60148313059", phoneDisplay: "014-831 3059", status: "AKTIF & BERDAFTAR", initials: "ER", avatarBg: "bg-purple-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0045", name: "CATHERINE RENNA", phone: "601123244762", phoneDisplay: "011-2324 4762", status: "AKTIF & BERDAFTAR", initials: "CR", avatarBg: "bg-teal-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0046", name: "NURAINA ALIA", phone: "601126617640", phoneDisplay: "011-2661 7640", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-cyan-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0049", name: "MUHAMAD NUR AZZIQ (AZZIQ)", phone: "60104262806", phoneDisplay: "010-426 2806", status: "AKTIF & BERDAFTAR", initials: "MA", avatarBg: "bg-emerald-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0050", name: "JANNET JACKSON", phone: "60138686490", phoneDisplay: "013-868 6490", status: "AKTIF & BERDAFTAR", initials: "JJ", avatarBg: "bg-violet-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0052", name: "NURUL SYAHIRAH", phone: "601151277650", phoneDisplay: "011-5127 7650", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-pink-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0055", name: "SITI AMIRA", phone: "60102790679", phoneDisplay: "010-279 0679", status: "AKTIF & BERDAFTAR", initials: "SA", avatarBg: "bg-fuchsia-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0057", name: "MOHAMAD FAEZ", phone: "601151137825", phoneDisplay: "011-5113 7825", status: "AKTIF & BERDAFTAR", initials: "MF", avatarBg: "bg-slate-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0058", name: "NURSHAHIRA ALWANI", phone: "60146472319", phoneDisplay: "014-647 2319", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-lime-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0061", name: "NURFARISYA SOFEA", phone: "601136793312", phoneDisplay: "011-3679 3312", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-sky-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0068", name: "MUHAMMAD AIMAN", phone: "601137990763", phoneDisplay: "011-3799 0763", status: "AKTIF & BERDAFTAR", initials: "MA", avatarBg: "bg-blue-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0074", name: "NURUL AFIRZA", phone: "601127364273", phoneDisplay: "011-2736 4273", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-emerald-600", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0076", name: "HARITH IRFAN", phone: "60188748024", phoneDisplay: "018-874 8024", status: "AKTIF & BERDAFTAR", initials: "HI", avatarBg: "bg-amber-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0080", name: "ZULHELMI FAIZ", phone: "601111018297", phoneDisplay: "011-1101 8297", status: "AKTIF & BERDAFTAR", initials: "ZF", avatarBg: "bg-slate-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" },
-  { id: "JCS0082", name: "NURUL AIDAYANA", phone: "601116442734", phoneDisplay: "011-1644 2734", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-teal-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam" }
+  { id: "JCS0001", name: "FARIS FAUZAN", phone: "60195140145", phoneDisplay: "019-514 0145", status: "AKTIF & BERDAFTAR", initials: "FF", avatarBg: "bg-emerald-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0002", name: "AZURA", phone: "60163380319", phoneDisplay: "016-338 0319", status: "AKTIF & BERDAFTAR", initials: "AZ", avatarBg: "bg-blue-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0004", name: "NURSYAMIMI SUHAILAH (MEMEY)", phone: "601155288052", phoneDisplay: "011-5528 8052", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-purple-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0005", name: "NUR HIDAYAH (AIDA)", phone: "601133145485", phoneDisplay: "011-3314 5485", status: "AKTIF & BERDAFTAR", initials: "NH", avatarBg: "bg-rose-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0006", name: "LISECA BASIUS (CHIKA)", phone: "60143751281", phoneDisplay: "014-375 1281", status: "AKTIF & BERDAFTAR", initials: "LB", avatarBg: "bg-amber-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0008", name: "AISHAH JOHAN", phone: "601153545064", phoneDisplay: "011-5354 5064", status: "AKTIF & BERDAFTAR", initials: "AJ", avatarBg: "bg-indigo-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0009", name: "MOHD SHAFIK", phone: "601113174306", phoneDisplay: "011-1317 4306", status: "AKTIF & BERDAFTAR", initials: "MS", avatarBg: "bg-teal-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0010", name: "NINA", phone: "60173145863", phoneDisplay: "017-314 5863", status: "AKTIF & BERDAFTAR", initials: "NI", avatarBg: "bg-cyan-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0011", name: "SITI ZULAIKHA (IKHA)", phone: "60145392670", phoneDisplay: "014-539 2670", status: "AKTIF & BERDAFTAR", initials: "SZ", avatarBg: "bg-fuchsia-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0012", name: "NUR SYIFAA", phone: "60182854356", phoneDisplay: "018-285 4356", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-pink-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0014", name: "SITI ALIFAH", phone: "60182875879", phoneDisplay: "018-287 5879", status: "AKTIF & BERDAFTAR", initials: "SA", avatarBg: "bg-emerald-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0018", name: "AHMAD ZULFADHLI (FAZZLI)", phone: "601123005811", phoneDisplay: "011-2300 5811", status: "AKTIF & BERDAFTAR", initials: "AZ", avatarBg: "bg-blue-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0023", name: "MUHAMAD SAPAWI", phone: "60186141192", phoneDisplay: "018-614 1192", status: "AKTIF & BERDAFTAR", initials: "MS", avatarBg: "bg-slate-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0024", name: "NORZAHIRYAH (CIK NOR)", phone: "601110650883", phoneDisplay: "011-1065 0883", status: "AKTIF & BERDAFTAR", initials: "NC", avatarBg: "bg-lime-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0025", name: "SURAINI", phone: "60194361386", phoneDisplay: "019-436 1386", status: "AKTIF & BERDAFTAR", initials: "SU", avatarBg: "bg-amber-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0026", name: "FARRIEZ DANIAL", phone: "60193210182", phoneDisplay: "019-321 0182", status: "AKTIF & BERDAFTAR", initials: "FD", avatarBg: "bg-blue-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0028", name: "AIMAN HAIKAL", phone: "601167799318", phoneDisplay: "011-6779 9318", status: "AKTIF & BERDAFTAR", initials: "AH", avatarBg: "bg-indigo-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0038", name: "MUNIR YUSOF", phone: "601173044527", phoneDisplay: "011-7304 4527", status: "AKTIF & BERDAFTAR", initials: "MY", avatarBg: "bg-amber-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0043", name: "NOR SYAHIRAH (IRA)", phone: "60173384918", phoneDisplay: "017-338 4918", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-rose-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0044", name: "EISTER RINA", phone: "60148313059", phoneDisplay: "014-831 3059", status: "AKTIF & BERDAFTAR", initials: "ER", avatarBg: "bg-purple-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0045", name: "CATHERINE RENNA", phone: "601123244762", phoneDisplay: "011-2324 4762", status: "AKTIF & BERDAFTAR", initials: "CR", avatarBg: "bg-teal-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0046", name: "NURAINA ALIA", phone: "601126617640", phoneDisplay: "011-2661 7640", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-cyan-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0049", name: "MUHAMAD NUR AZZIQ (AZZIQ)", phone: "60104262806", phoneDisplay: "010-426 2806", status: "AKTIF & BERDAFTAR", initials: "MA", avatarBg: "bg-emerald-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0050", name: "JANNET JACKSON", phone: "60138686490", phoneDisplay: "013-868 6490", status: "AKTIF & BERDAFTAR", initials: "JJ", avatarBg: "bg-violet-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0052", name: "NURUL SYAHIRAH", phone: "601151277650", phoneDisplay: "011-5127 7650", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-pink-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0055", name: "SITI AMIRA", phone: "60102790679", phoneDisplay: "010-279 0679", status: "AKTIF & BERDAFTAR", initials: "SA", avatarBg: "bg-fuchsia-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0057", name: "MOHAMAD FAEZ", phone: "601151137825", phoneDisplay: "011-5113 7825", status: "AKTIF & BERDAFTAR", initials: "MF", avatarBg: "bg-slate-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0058", name: "NURSHAHIRA ALWANI", phone: "60146472319", phoneDisplay: "014-647 2319", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-lime-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0061", name: "NURFARISYA SOFEA", phone: "601136793312", phoneDisplay: "011-3679 3312", status: "AKTIF & BERDAFTAR", initials: "NS", avatarBg: "bg-sky-700", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0068", name: "MUHAMMAD AIMAN", phone: "601137990763", phoneDisplay: "011-3799 0763", status: "AKTIF & BERDAFTAR", initials: "MA", avatarBg: "bg-blue-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0074", name: "NURUL AFIRZA", phone: "601127364273", phoneDisplay: "011-2736 4273", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-emerald-600", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0076", name: "HARITH IRFAN", phone: "60188748024", phoneDisplay: "018-874 8024", status: "AKTIF & BERDAFTAR", initials: "HI", avatarBg: "bg-amber-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0080", name: "ZULHELMI FAIZ", phone: "601111018297", phoneDisplay: "011-1101 8297", status: "AKTIF & BERDAFTAR", initials: "ZF", avatarBg: "bg-slate-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" },
+  { id: "JCS0082", name: "NURUL AIDAYANA", phone: "601116442734", phoneDisplay: "011-1644 2734", status: "AKTIF & BERDAFTAR", initials: "NA", avatarBg: "bg-teal-800", role: "Loan Strategist", branch: "TTDI Jaya, Shah Alam", zone: "Seluruh Malaysia" }
 ];
 
 // 0. Live Cloudflare D1 Config Sync
@@ -818,7 +818,7 @@ async function initAgentVerification() {
           </div>
 
           <!-- 3. Maklumat Medan Teratur -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs pt-1">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs pt-1">
             <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
               <span class="font-semibold text-slate-500 block text-[11px] mb-0.5">Jawatan:</span>
               <span class="font-bold text-slate-900 text-sm">${matched.role || 'Loan Strategist'}</span>
@@ -826,6 +826,10 @@ async function initAgentVerification() {
             <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
               <span class="font-semibold text-slate-500 block text-[11px] mb-0.5">HQ:</span>
               <span class="font-bold text-slate-900 text-sm">${matched.branch || 'TTDI Jaya, Shah Alam'}</span>
+            </div>
+            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+              <span class="font-semibold text-slate-500 block text-[11px] mb-0.5">Zon Liputan:</span>
+              <span class="font-bold text-slate-900 text-sm">${matched.zone || 'Seluruh Malaysia'}</span>
             </div>
             <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
               <span class="font-semibold text-slate-500 block text-[11px] mb-0.5">No. Telefon / WhatsApp Sah:</span>
