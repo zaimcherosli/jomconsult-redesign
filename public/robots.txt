@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin.html
 Disallow: /api/
 
-Sitemap: https://jomconsult.pages.dev/sitemap.xml
+Sitemap: https://jomconsult.com.my/sitemap.xml
