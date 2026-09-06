@@ -1338,6 +1338,17 @@ html[data-theme="light-gold"] .founder-badge {
   background-color: #ffffff !important;
   color: #0f172a !important;
   border: 2px solid #eab308 !important;
-  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(234, 179, 8, 0.2) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(234, 179, 8, 0.25) !important;
 }
+
+.founder-badge .founder-title,
+html[data-theme="light-gold"] .founder-badge .founder-title {
+  color: #b45309 !important;
+}
+
+.founder-badge .founder-name,
+html[data-theme="light-gold"] .founder-badge .founder-name {
+  color: #0f172a !important;
+}
+
 
