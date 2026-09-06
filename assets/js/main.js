@@ -797,7 +797,7 @@ async function initAgentVerification() {
         : `<div class="w-14 h-14 rounded-2xl ${matched.avatarBg} flex items-center justify-center font-black text-lg text-white shadow shrink-0">${matched.initials}</div>`;
 
       resultContainer.innerHTML = `
-        <div class="p-5 sm:p-7 rounded-2xl bg-white border-2 border-yellow-400 shadow-xl space-y-4 animate-fade-in text-slate-900">
+        <div class="px-3.5 py-4 sm:p-7 rounded-2xl bg-white border-2 border-yellow-400 shadow-xl space-y-4 animate-fade-in text-slate-900">
           <!-- 1. Identiti Disahkan Atas Sekali -->
           <div class="flex flex-col sm:flex-row items-center justify-between gap-2.5 pb-3.5 border-b border-slate-100 text-center sm:text-left">
             <span class="inline-block text-xs font-extrabold uppercase px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 tracking-wide">
@@ -818,20 +818,20 @@ async function initAgentVerification() {
           </div>
 
           <!-- 3. Maklumat Medan Teratur -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs pt-1">
-            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 text-xs pt-1">
+            <div class="p-3 sm:p-3.5 bg-slate-50 rounded-xl border border-slate-200">
               <span class="font-semibold text-slate-500 block text-[11px] mb-0.5">Jawatan:</span>
               <span class="font-bold text-slate-900 text-sm">${matched.role || 'Loan Strategist'}</span>
             </div>
-            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+            <div class="p-3 sm:p-3.5 bg-slate-50 rounded-xl border border-slate-200">
               <span class="font-semibold text-slate-500 block text-[11px] mb-0.5">HQ:</span>
               <span class="font-bold text-slate-900 text-sm">${matched.branch || 'TTDI Jaya, Shah Alam'}</span>
             </div>
-            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+            <div class="p-3 sm:p-3.5 bg-slate-50 rounded-xl border border-slate-200">
               <span class="font-semibold text-slate-500 block text-[11px] mb-0.5">Zon Liputan:</span>
               <span class="font-bold text-slate-900 text-sm">${matched.zone || 'Seluruh Malaysia'}</span>
             </div>
-            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+            <div class="p-3 sm:p-3.5 bg-slate-50 rounded-xl border border-slate-200">
               <span class="font-semibold text-slate-500 block text-[11px] mb-0.5">No. Telefon / WhatsApp Sah:</span>
               <span class="font-bold text-slate-900 font-mono text-sm">${matched.phoneDisplay}</span>
             </div>
@@ -850,7 +850,7 @@ async function initAgentVerification() {
       `;
     } else {
       resultContainer.innerHTML = `
-        <div class="p-6 rounded-2xl bg-white border-2 border-rose-500 shadow-xl space-y-3 animate-fade-in text-slate-900">
+        <div class="px-3.5 py-4 sm:p-6 rounded-2xl bg-white border-2 border-rose-500 shadow-xl space-y-3 animate-fade-in text-slate-900">
           <div class="flex items-center gap-2 text-rose-600 font-bold text-sm">
             <span>MAKLUMAT TIDAK DIJUMPAI / TIDAK BERDAFTAR</span>
           </div>
