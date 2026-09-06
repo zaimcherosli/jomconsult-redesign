@@ -947,6 +947,10 @@ html[data-theme="light-gold"] #verification-result > div {
   color: #0f172a !important;
 }
 
+html[data-theme="light-gold"] #verification-result > div.border-rose-500 {
+  border-color: #f43f5e !important;
+}
+
 html[data-theme="light-gold"] #verification-result h3 {
   color: #0f172a !important;
 }
@@ -958,6 +962,25 @@ html[data-theme="light-gold"] #verification-result [class*="bg-slate-800"] {
 
 html[data-theme="light-gold"] #verification-result [class*="bg-slate-800"] span {
   color: #0f172a !important;
+}
+
+html[data-theme="light-gold"] #verification-result button[class*="bg-slate-800"] {
+  background-color: #f1f5f9 !important;
+  color: #334155 !important;
+  border-color: #cbd5e1 !important;
+}
+
+html[data-theme="light-gold"] #verification-result button[class*="bg-slate-800"]:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light-gold"] #verification-result .text-slate-300 {
+  color: #475569 !important;
+}
+
+html[data-theme="light-gold"] #verification-result .text-slate-200 {
+  color: #334155 !important;
 }
 
 /* 4. /semak-kelayakan.html (Clean, Crisp High-Contrast Light Mode) */

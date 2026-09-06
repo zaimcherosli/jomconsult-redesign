@@ -750,44 +750,101 @@ async function initAgentVerification() {
     });
   }
 
-  function executeVerification(query) {
+  async function executeVerification(query) {
     if (!resultContainer) return;
     if (!query) {
       resultContainer.innerHTML = '';
       return;
     }
 
-    const cleanQuery = query.toLowerCase().replace(/[^a-z0-9]/g, '');
+    resultContainer.innerHTML = `
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-700 text-center text-slate-300 py-6 animate-pulse">
+        <div class="inline-block animate-spin w-6 h-6 border-2 border-yellow-400 border-t-transparent rounded-full mb-2"></div>
+        <p class="text-xs font-semibold text-yellow-300">Menyemak pangkalan data integriti JomConsult...</p>
+      </div>
+    `;
 
-    const matched = activeAgents.find(agent => {
-      const cleanId = agent.id.toLowerCase().replace(/[^a-z0-9]/g, '');
-      const cleanName = agent.name.toLowerCase().replace(/[^a-z0-9]/g, '');
-      const cleanPhone = agent.phone.replace(/[^0-9]/g, '');
-      const cleanDisplay = agent.phoneDisplay.replace(/[^0-9]/g, '');
+    let matched = null;
 
-      return cleanId.includes(cleanQuery) || 
-             cleanName.includes(cleanQuery) || 
-             cleanPhone.includes(cleanQuery) || 
-             cleanDisplay.includes(cleanQuery) ||
-             query.toLowerCase().split(' ').some(word => word.length > 2 && agent.name.toLowerCase().includes(word));
-    });
+    // 1. Try real-time Cloudflare D1 search API first
+    try {
+      const res = await fetch(`/api/public/agents?q=${encodeURIComponent(query)}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.agents && data.agents.length > 0) {
+          const a = data.agents[0];
+          matched = {
+            id: a.staff_id,
+            name: a.name,
+            role: a.role,
+            phone: a.phone,
+            phoneDisplay: a.phone_display || a.phone,
+            branch: a.branch,
+            zone: a.zone,
+            status: a.status || 'AKTIF & BERDAFTAR',
+            joinedDate: a.created_at ? new Date(a.created_at).toLocaleDateString('ms-MY', { day: '2-digit', month: 'long', year: 'numeric' }) : '01 Januari 2024',
+            rating: a.rating || '5.0 / 5.0',
+            initials: a.initials || 'JC',
+            specialty: a.specialty || 'Penyatuan Hutang & Analisis DSR',
+            avatarBg: a.avatar_bg || 'bg-slate-800 text-yellow-400 border border-yellow-500/30',
+            photo_url: a.photo_url || null
+          };
+        }
+      }
+    } catch (e) {
+      // Offline / fallback to local cache
+    }
+
+    // 2. Fallback to activeAgents list if API not reachable or no match yet
+    if (!matched) {
+      const cleanQuery = query.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const rawDigits = query.replace(/[^0-9]/g, '');
+      const normalizedQueryPhone = rawDigits.startsWith('60') ? rawDigits.slice(2) : (rawDigits.startsWith('0') ? rawDigits.slice(1) : rawDigits);
+
+      const queryWords = query.toLowerCase().split(/\s+/).filter(w => w.length >= 2 && !['bin', 'binti', 'dan', 'cik', 'en', 'encik', 'puan'].includes(w));
+
+      matched = activeAgents.find(agent => {
+        const cleanId = agent.id.toLowerCase().replace(/[^a-z0-9]/g, '');
+        const cleanName = agent.name.toLowerCase().replace(/[^a-z0-9]/g, '');
+        const rawAgentPhone = (agent.phone || '').replace(/[^0-9]/g, '');
+        const rawAgentDisplay = (agent.phoneDisplay || '').replace(/[^0-9]/g, '');
+        const normalizedAgentPhone = rawAgentPhone.startsWith('60') ? rawAgentPhone.slice(2) : (rawAgentPhone.startsWith('0') ? rawAgentPhone.slice(1) : rawAgentPhone);
+
+        // ID match (e.g. JC-1021, jc1021, 1021)
+        const idMatch = cleanId.includes(cleanQuery) || cleanQuery.includes(cleanId);
+
+        // Phone match
+        const phoneMatch = normalizedQueryPhone.length >= 6 && (
+          normalizedAgentPhone.includes(normalizedQueryPhone) || 
+          rawAgentPhone.includes(rawDigits) || 
+          rawAgentDisplay.includes(rawDigits)
+        );
+
+        // Name match (all significant words must match)
+        const nameMatch = cleanName.includes(cleanQuery) || (
+          queryWords.length > 0 && queryWords.every(word => agent.name.toLowerCase().includes(word))
+        );
+
+        return idMatch || phoneMatch || nameMatch;
+      });
+    }
 
     if (matched) {
       const avatarHtml = matched.photo_url
-        ? `<img src="${matched.photo_url}" class="w-12 h-12 rounded-xl object-cover shadow border border-yellow-400 shrink-0" alt="${matched.name}">`
-        : `<div class="w-12 h-12 rounded-xl ${matched.avatarBg} flex items-center justify-center font-bold text-base shadow shrink-0">${matched.initials}</div>`;
+        ? `<img src="${matched.photo_url}" class="w-14 h-14 rounded-2xl object-cover shadow border-2 border-yellow-400 shrink-0" alt="${matched.name}">`
+        : `<div class="w-14 h-14 rounded-2xl ${matched.avatarBg} flex items-center justify-center font-black text-lg shadow shrink-0">${matched.initials}</div>`;
 
       resultContainer.innerHTML = `
         <div class="p-6 rounded-2xl bg-slate-900 border-2 border-yellow-400 shadow-2xl space-y-4 animate-fade-in text-white">
           <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3.5">
               ${avatarHtml}
               <div>
-                <span class="inline-block text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-yellow-400 text-slate-950 mb-1">
-                  IDENTITI DISAHKAN SAH & BERDAFTAR
+                <span class="inline-block text-[11px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-yellow-400 text-slate-950 mb-1">
+                  ✓ IDENTITI DISAHKAN SAH & BERDAFTAR
                 </span>
-                <h3 class="text-lg font-extrabold text-white">${matched.name}</h3>
-                <p class="text-xs text-yellow-400 font-mono font-bold">Staff ID: ${matched.id}</p>
+                <h3 class="text-lg font-extrabold text-white leading-tight">${matched.name}</h3>
+                <p class="text-xs text-yellow-400 font-mono font-bold mt-0.5">Staff ID: ${matched.id}</p>
               </div>
             </div>
             <span class="text-xs font-bold text-slate-200 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
@@ -796,29 +853,30 @@ async function initAgentVerification() {
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-200">
-            <div class="p-2.5 bg-slate-800/80 rounded-lg border border-slate-700">
-              <span class="font-semibold text-slate-400 block">Jawatan Rasmi:</span>
+            <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
+              <span class="font-semibold text-slate-400 block text-[11px] mb-0.5">Jawatan Rasmi:</span>
               <span class="font-bold text-white">${matched.role}</span>
             </div>
-            <div class="p-2.5 bg-slate-800/80 rounded-lg border border-slate-700">
-              <span class="font-semibold text-slate-400 block">No. Telefon / WhatsApp Sah:</span>
+            <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
+              <span class="font-semibold text-slate-400 block text-[11px] mb-0.5">No. Telefon / WhatsApp Sah:</span>
               <span class="font-bold text-yellow-400 font-mono text-sm">${matched.phoneDisplay}</span>
             </div>
-            <div class="p-2.5 bg-slate-800/80 rounded-lg border border-slate-700">
-              <span class="font-semibold text-slate-400 block">Cawangan / Pejabat:</span>
+            <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
+              <span class="font-semibold text-slate-400 block text-[11px] mb-0.5">Cawangan / Pejabat:</span>
               <span class="font-bold text-white">${matched.branch}</span>
             </div>
-            <div class="p-2.5 bg-slate-800/80 rounded-lg border border-slate-700">
-              <span class="font-semibold text-slate-400 block">Zon Liputan Khidmat:</span>
+            <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
+              <span class="font-semibold text-slate-400 block text-[11px] mb-0.5">Zon Liputan Khidmat:</span>
               <span class="font-bold text-white">${matched.zone}</span>
             </div>
           </div>
 
           <div class="pt-2 flex flex-col sm:flex-row gap-3">
-            <a href="https://wa.me/${matched.phone}?text=Salam%20${encodeURIComponent(matched.name)}%20(ID:%20${matched.id}),%20saya%20telah%20mengesahkan%20profil%20tuan%2Fpuan%20di%20portal%20JomConsult%20dan%20ingin%20memohon%20konsultasi%20pinjaman." target="_blank" class="flex-1 py-3 px-4 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs rounded-xl text-center shadow transition">
-              Hubungi Terus WhatsApp ${matched.name.split(' ')[0]} (Disahkan)
+            <a href="https://wa.me/${matched.phone}?text=Salam%20${encodeURIComponent(matched.name)}%20(ID:%20${matched.id}),%20saya%20telah%20mengesahkan%20profil%20tuan%2Fpuan%20di%20portal%20JomConsult%20dan%20ingin%20memohon%20konsultasi%20pinjaman." target="_blank" class="flex-1 py-3 px-4 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs rounded-xl text-center shadow transition inline-flex items-center justify-center gap-2">
+              <span class="w-4 h-4 shrink-0">${OFFICIAL_WHATSAPP_SVG}</span>
+              <span>Hubungi Terus WhatsApp ${matched.name.split(' ')[0]} (Disahkan)</span>
             </a>
-            <button onclick="document.getElementById('verification-result').innerHTML='';" class="py-3 px-4 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded-xl border border-slate-700 transition">
+            <button onclick="document.getElementById('verification-result').innerHTML=''; const inp = document.getElementById('agent-search-input'); if(inp){ inp.value=''; inp.focus(); }" class="py-3 px-4 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded-xl border border-slate-700 transition">
               Tutup Carian
             </button>
           </div>
@@ -837,10 +895,13 @@ async function initAgentVerification() {
           <div class="p-3 bg-slate-800/80 rounded-lg border border-rose-500/40 text-xs text-rose-300">
             <strong class="text-rose-400">Amaran Keselamatan:</strong> Jika individu berkenaan mendesak meminta bayaran pendahuluan (upfront) atau meminta pemindahan wang ke akaun peribadi, sila elakkan berurusan dan laporkan segera kepada pihak pengurusan kami.
           </div>
-          <div class="pt-2">
-            <a href="https://wa.me/${JOMCONSULT_CONFIG.whatsappNumber}?text=Salam%20HQ%20JomConsult,%20saya%20ingin%20membuat%20semakan%20mengenai%20kesahihan%20ejen%20dengan%20maklumat:%20${encodeURIComponent(query)}" target="_blank" class="inline-block py-2.5 px-5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl transition shadow">
+          <div class="pt-2 flex flex-col sm:flex-row gap-3">
+            <a href="https://wa.me/${JOMCONSULT_CONFIG.whatsappNumber}?text=Salam%20HQ%20JomConsult,%20saya%20ingin%20membuat%20semakan%20mengenai%20kesahihan%20ejen%20dengan%20maklumat:%20${encodeURIComponent(query)}" target="_blank" class="inline-block py-2.5 px-5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl transition shadow text-center">
               Laporkan / Semak Bersama HQ JomConsult
             </a>
+            <button onclick="document.getElementById('verification-result').innerHTML=''; const inp = document.getElementById('agent-search-input'); if(inp){ inp.value=''; inp.focus(); }" class="py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded-xl border border-slate-700 transition">
+              Cuba Carian Lain
+            </button>
           </div>
         </div>
       `;
