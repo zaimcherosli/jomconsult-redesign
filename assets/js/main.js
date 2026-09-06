@@ -798,27 +798,46 @@ async function initAgentVerification() {
 
       resultContainer.innerHTML = `
         <div class="px-3.5 py-4 sm:p-7 rounded-2xl bg-white border-2 border-yellow-400 shadow-xl space-y-4 animate-fade-in text-slate-900">
-          <!-- 1. Identiti Disahkan Atas Sekali -->
-          <div class="flex flex-col sm:flex-row items-center justify-between gap-2.5 pb-3.5 border-b border-slate-100 text-center sm:text-left">
-            <span class="inline-block text-xs font-extrabold uppercase px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 tracking-wide">
-              IDENTITI DISAHKAN
-            </span>
-            <span class="inline-block text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+          <!-- 1. MOBILE HEADER (< sm): Badges on top, Avatar & info below -->
+          <div class="sm:hidden space-y-3 pb-3 border-b border-slate-100">
+            <div class="flex items-center justify-between gap-2">
+              <span class="inline-block text-xs font-extrabold uppercase px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 tracking-wide">
+                IDENTITI DISAHKAN
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-700 font-bold text-xs rounded-full border border-emerald-200">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                Aktif
+              </span>
+            </div>
+            <div class="flex items-center gap-3 pt-0.5">
+              ${avatarHtml}
+              <div>
+                <h3 class="text-xl font-extrabold text-slate-900 leading-tight">${matched.name}</h3>
+                <p class="text-xs text-yellow-600 font-mono font-bold mt-0.5">Staff ID: ${matched.id}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1. DESKTOP HEADER (sm: and above): Unified Avatar + Badge + Name on left, Aktif on right (As before) -->
+          <div class="hidden sm:flex items-center justify-between gap-4 pb-3.5 border-b border-slate-100">
+            <div class="flex items-center gap-3.5">
+              ${avatarHtml}
+              <div>
+                <span class="inline-block text-[11px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 mb-1 tracking-wide">
+                  IDENTITI DISAHKAN
+                </span>
+                <h3 class="text-2xl font-extrabold text-slate-900 leading-tight">${matched.name}</h3>
+                <p class="text-xs text-yellow-600 font-mono font-bold mt-0.5">Staff ID: ${matched.id}</p>
+              </div>
+            </div>
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-emerald-50 text-emerald-700 font-bold text-xs rounded-full border border-emerald-200 shrink-0">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               Aktif
             </span>
           </div>
 
-          <!-- 2. Gambar & Profil Ke Bawah -->
-          <div class="flex items-center gap-3.5 pt-1">
-            ${avatarHtml}
-            <div>
-              <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-tight">${matched.name}</h3>
-              <p class="text-xs text-yellow-600 font-mono font-bold mt-0.5">Staff ID: ${matched.id}</p>
-            </div>
-          </div>
-
-          <!-- 3. Maklumat Medan Teratur -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 text-xs pt-1">
+          <!-- 2. Maklumat Medan Teratur (2 Kolum Selesa pada Desktop untuk elak teks terputus/wrap) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 text-xs pt-1">
             <div class="p-3 sm:p-3.5 bg-slate-50 rounded-xl border border-slate-200">
               <span class="font-semibold text-slate-500 block text-[11px] mb-0.5">Jawatan:</span>
               <span class="font-bold text-slate-900 text-sm">${matched.role || 'Loan Strategist'}</span>
