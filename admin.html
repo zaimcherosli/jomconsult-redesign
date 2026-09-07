@@ -292,9 +292,44 @@
             <h2 class="text-xl font-bold text-slate-900">Kisah Kejayaan & Testimoni</h2>
             <p class="text-xs text-slate-500">Urus bukti kelulusan yang dipaparkan kepada pemohon</p>
           </div>
-          <button id="btn-add-testimonial-modal" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition flex items-center gap-2 shadow-sm">
+          <button id="btn-add-testimonial-modal" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition flex items-center gap-2 shadow-sm cursor-pointer">
             <span>Tambah Testimoni Baharu</span>
           </button>
+        </div>
+
+        <!-- Layout Preferences Box -->
+        <div class="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <h3 class="text-sm font-bold text-slate-900">Format Susunan Paparan Laman Web (/testimoni)</h3>
+              <span id="badge-layout-saved" class="hidden px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">Disimpan ✓</span>
+            </div>
+            <p class="text-xs text-slate-500">Pilih susunan kad testimoni sama ada tersusun ke bawah (Grid) atau menggelongsor melintang (Slider / Carousel).</p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <!-- Desktop Layout -->
+            <div class="flex items-center gap-2 bg-slate-50 border border-slate-200/90 rounded-xl px-3 py-2">
+              <label for="select-testi-layout-desktop" class="text-xs font-bold text-slate-700 whitespace-nowrap">Desktop:</label>
+              <select id="select-testi-layout-desktop" class="bg-white border border-slate-200 rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-800 focus:outline-none focus:border-emerald-500 cursor-pointer">
+                <option value="grid">Grid (Ke Bawah - 3 Kolum)</option>
+                <option value="slider">Slider (Carousel Melintang)</option>
+              </select>
+            </div>
+
+            <!-- Mobile Layout -->
+            <div class="flex items-center gap-2 bg-slate-50 border border-slate-200/90 rounded-xl px-3 py-2">
+              <label for="select-testi-layout-mobile" class="text-xs font-bold text-slate-700 whitespace-nowrap">Mobile:</label>
+              <select id="select-testi-layout-mobile" class="bg-white border border-slate-200 rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-800 focus:outline-none focus:border-emerald-500 cursor-pointer">
+                <option value="grid">Ke Bawah (Skrol Menegak)</option>
+                <option value="slider">Slider (Swipe Melintang)</option>
+              </select>
+            </div>
+
+            <button id="btn-save-testi-layout" type="button" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl shadow transition flex items-center gap-1.5 cursor-pointer">
+              <span>Simpan Susunan</span>
+            </button>
+          </div>
         </div>
 
         <div id="testimonials-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -353,6 +388,22 @@
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">Had Pembiayaan Maksimum:</label>
               <input type="text" id="set-max-loan" placeholder="RM250,000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:bg-white transition">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Susunan Testimoni Desktop (/testimoni):</label>
+              <select id="set-testi-layout-desktop" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:bg-white transition font-semibold">
+                <option value="grid">Grid (Ke Bawah - 3 Kolum)</option>
+                <option value="slider">Slider (Carousel Melintang)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Susunan Testimoni Mobile (/testimoni):</label>
+              <select id="set-testi-layout-mobile" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:bg-white transition font-semibold">
+                <option value="grid">Ke Bawah (Skrol Menegak)</option>
+                <option value="slider">Slider (Swipe Melintang)</option>
+              </select>
             </div>
 
             <div class="md:col-span-2">

@@ -124,3 +124,12 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #EAB308;
 }
+
+/* Hide scrollbar utility for sliders and carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}

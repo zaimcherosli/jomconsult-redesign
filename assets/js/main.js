@@ -1097,10 +1097,15 @@ function initCareerApplyForm() {
   });
 }
 
-// 10. Dynamic Testimonials Fetcher for testimoni.html
+// 10. Dynamic Testimonials Fetcher & Slider/Grid Layout Engine for testimoni.html
 async function loadDynamicTestimonials() {
   const container = document.getElementById('cases-grid');
   if (!container) return;
+
+  const controls = document.getElementById('cases-slider-controls');
+  const dotsContainer = document.getElementById('cases-slider-dots');
+  const btnPrev = document.getElementById('cases-btn-prev');
+  const btnNext = document.getElementById('cases-btn-next');
 
   try {
     const res = await fetch('/api/public/testimonials');
@@ -1109,8 +1114,41 @@ async function loadDynamicTestimonials() {
     const list = data.testimonials;
     if (!list || list.length === 0) return;
 
+    const desktopLayout = (data.layout && data.layout.desktop) || 'grid';
+    const mobileLayout = (data.layout && data.layout.mobile) || 'grid';
+
+    const isDesktopSlider = desktopLayout === 'slider';
+    const isMobileSlider = mobileLayout === 'slider';
+
+    // Base card styling
+    let cardClasses = 'p-6 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-sm space-y-4 flex flex-col justify-between ';
+
+    // Setup container classes
+    let containerClasses = 'transition-all duration-300 ';
+
+    // Mobile layout
+    if (isMobileSlider) {
+      containerClasses += 'flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar gap-4 pb-2 ';
+      cardClasses += 'w-[85vw] max-w-[360px] shrink-0 snap-center ';
+    } else {
+      containerClasses += 'grid grid-cols-1 gap-6 ';
+      cardClasses += 'w-full ';
+    }
+
+    // Desktop layout
+    if (isDesktopSlider) {
+      containerClasses += 'md:flex md:overflow-x-auto md:snap-x md:snap-mandatory md:scroll-smooth md:no-scrollbar md:gap-6 md:pb-2 ';
+      cardClasses += 'md:w-[calc(33.333%-1rem)] md:shrink-0 md:snap-start ';
+    } else {
+      containerClasses += 'md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:pb-0 ';
+      cardClasses += 'md:w-auto md:shrink md:snap-align-none ';
+    }
+
+    container.className = containerClasses;
+
+    // Render Cards
     container.innerHTML = list.map(t => `
-      <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-sm space-y-4 flex flex-col justify-between">
+      <div class="${cardClasses}">
         <div>
           <div class="flex items-center justify-between pb-3 border-b border-slate-800">
             <div>
@@ -1138,6 +1176,68 @@ async function loadDynamicTestimonials() {
         </div>
       </div>
     `).join('');
+
+    // Setup Slider Controls & Event Listeners
+    if (controls) {
+      if (isDesktopSlider || isMobileSlider) {
+        let controlDisplayClass = 'flex ';
+        if (isDesktopSlider && !isMobileSlider) {
+          controlDisplayClass = 'hidden md:flex ';
+        } else if (!isDesktopSlider && isMobileSlider) {
+          controlDisplayClass = 'flex md:hidden ';
+        }
+        controls.className = `${controlDisplayClass} mt-6 items-center justify-between gap-4 pt-2`;
+
+        // Render Dots
+        if (dotsContainer) {
+          dotsContainer.innerHTML = list.map((_, i) => `
+            <button data-index="${i}" aria-label="Kad ${i + 1}" class="case-dot h-2.5 rounded-full transition-all cursor-pointer ${i === 0 ? 'bg-yellow-400 w-6' : 'bg-slate-700 hover:bg-slate-500 w-2.5'}"></button>
+          `).join('');
+
+          dotsContainer.querySelectorAll('.case-dot').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const idx = parseInt(btn.dataset.index);
+              const card = container.children[idx];
+              if (card) {
+                container.scrollTo({ left: card.offsetLeft - container.offsetLeft, behavior: 'smooth' });
+              }
+            });
+          });
+        }
+
+        // Prev & Next Buttons
+        if (btnPrev) {
+          btnPrev.onclick = () => {
+            const scrollDist = container.clientWidth * 0.85;
+            container.scrollBy({ left: -scrollDist, behavior: 'smooth' });
+          };
+        }
+        if (btnNext) {
+          btnNext.onclick = () => {
+            const scrollDist = container.clientWidth * 0.85;
+            container.scrollBy({ left: scrollDist, behavior: 'smooth' });
+          };
+        }
+
+        // Active Dot update on scroll
+        container.addEventListener('scroll', () => {
+          if (!dotsContainer) return;
+          const scrollLeft = container.scrollLeft;
+          const cardWidth = container.firstElementChild ? container.firstElementChild.offsetWidth : 320;
+          const activeIndex = Math.min(list.length - 1, Math.max(0, Math.round(scrollLeft / cardWidth)));
+          dotsContainer.querySelectorAll('.case-dot').forEach((dot, idx) => {
+            if (idx === activeIndex) {
+              dot.className = 'case-dot h-2.5 rounded-full transition-all cursor-pointer bg-yellow-400 w-6';
+            } else {
+              dot.className = 'case-dot h-2.5 rounded-full transition-all cursor-pointer bg-slate-700 hover:bg-slate-500 w-2.5';
+            }
+          });
+        }, { passive: true });
+
+      } else {
+        controls.className = 'hidden';
+      }
+    }
   } catch (err) {
     // Keep static fallback
   }

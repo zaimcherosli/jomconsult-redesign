@@ -973,6 +973,20 @@ async function loadSettings() {
     if (settings.min_interest_rate) document.getElementById('set-rate').value = settings.min_interest_rate;
     if (settings.max_loan_amount) document.getElementById('set-max-loan').value = settings.max_loan_amount;
     if (settings.announcement_text) document.getElementById('set-announcement').value = settings.announcement_text;
+
+    // Testimonial Layout Settings
+    const desktopLayout = settings.testimonial_layout_desktop || 'grid';
+    const mobileLayout = settings.testimonial_layout_mobile || 'grid';
+
+    const selectDesktop = document.getElementById('select-testi-layout-desktop');
+    const setDesktop = document.getElementById('set-testi-layout-desktop');
+    if (selectDesktop) selectDesktop.value = desktopLayout;
+    if (setDesktop) setDesktop.value = desktopLayout;
+
+    const selectMobile = document.getElementById('select-testi-layout-mobile');
+    const setMobile = document.getElementById('set-testi-layout-mobile');
+    if (selectMobile) selectMobile.value = mobileLayout;
+    if (setMobile) setMobile.value = mobileLayout;
   } catch (err) {
     console.error(err);
   }
@@ -981,6 +995,47 @@ async function loadSettings() {
 function initSettingsListeners() {
   const form = document.getElementById('settings-form');
   const alertBox = document.getElementById('settings-alert');
+
+  // Dedicated Testimonial Layout Save Button in tab-testimonials
+  const btnSaveLayout = document.getElementById('btn-save-testi-layout');
+  if (btnSaveLayout) {
+    btnSaveLayout.addEventListener('click', async () => {
+      const desktop = document.getElementById('select-testi-layout-desktop').value;
+      const mobile = document.getElementById('select-testi-layout-mobile').value;
+      const badge = document.getElementById('badge-layout-saved');
+
+      try {
+        btnSaveLayout.disabled = true;
+        btnSaveLayout.innerHTML = '<span>Menyimpan...</span>';
+        const res = await fetch(`${API_BASE}/admin/settings`, {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: JSON.stringify({
+            testimonial_layout_desktop: desktop,
+            testimonial_layout_mobile: mobile
+          })
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          const setDesktop = document.getElementById('set-testi-layout-desktop');
+          const setMobile = document.getElementById('set-testi-layout-mobile');
+          if (setDesktop) setDesktop.value = desktop;
+          if (setMobile) setMobile.value = mobile;
+          if (badge) {
+            badge.classList.remove('hidden');
+            setTimeout(() => badge.classList.add('hidden'), 3500);
+          }
+        } else {
+          alert(data.error || 'Gagal menyimpan susunan testimoni.');
+        }
+      } catch (err) {
+        alert('Ralat sambungan.');
+      } finally {
+        btnSaveLayout.disabled = false;
+        btnSaveLayout.innerHTML = '<span>Simpan Susunan</span>';
+      }
+    });
+  }
 
   if (form) {
     form.addEventListener('submit', async (e) => {
@@ -994,6 +1049,8 @@ function initSettingsListeners() {
         office_hours: document.getElementById('set-hours').value.trim(),
         min_interest_rate: document.getElementById('set-rate').value.trim(),
         max_loan_amount: document.getElementById('set-max-loan').value.trim(),
+        testimonial_layout_desktop: document.getElementById('set-testi-layout-desktop') ? document.getElementById('set-testi-layout-desktop').value : 'grid',
+        testimonial_layout_mobile: document.getElementById('set-testi-layout-mobile') ? document.getElementById('set-testi-layout-mobile').value : 'grid',
         announcement_text: document.getElementById('set-announcement').value.trim()
       };
 
@@ -1004,6 +1061,12 @@ function initSettingsListeners() {
           body: JSON.stringify(payload)
         });
         const data = await res.json();
+
+        // sync dropdown in tab-testimonials
+        const selectDesktop = document.getElementById('select-testi-layout-desktop');
+        const selectMobile = document.getElementById('select-testi-layout-mobile');
+        if (selectDesktop && payload.testimonial_layout_desktop) selectDesktop.value = payload.testimonial_layout_desktop;
+        if (selectMobile && payload.testimonial_layout_mobile) selectMobile.value = payload.testimonial_layout_mobile;
 
         alertBox.textContent = data.message || 'Tetapan berjaya disimpan.';
         alertBox.className = 'p-3.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200';
