@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQAccordion();
   initAgentVerification();
   initCareerApplyForm();
+  initScrollEffects();
 });
 
 // 1. Mobile Menu Toggle
@@ -1177,6 +1178,10 @@ async function loadDynamicTestimonials() {
       </div>
     `).join('');
 
+    if (window.observeNewElements) {
+      window.observeNewElements(container);
+    }
+
     // Setup Slider Controls & Event Listeners
     if (controls) {
       if (isDesktopSlider || isMobileSlider) {
@@ -1242,4 +1247,118 @@ async function loadDynamicTestimonials() {
     // Keep static fallback
   }
 }
+
+// 11. Scroll Effects & Reveal Animations (Golden Progress Bar, Stagger Reveal & Back To Top)
+function initScrollEffects() {
+  // 1. Golden Scroll Progress Bar
+  let progressBar = document.getElementById('scroll-progress-bar');
+  if (!progressBar) {
+    progressBar = document.createElement('div');
+    progressBar.id = 'scroll-progress-bar';
+    document.body.prepend(progressBar);
+  }
+
+  // 2. Floating Back to Top Button
+  let backToTopBtn = document.getElementById('back-to-top-btn');
+  if (!backToTopBtn) {
+    backToTopBtn = document.createElement('button');
+    backToTopBtn.id = 'back-to-top-btn';
+    backToTopBtn.setAttribute('aria-label', 'Kembali ke Atas');
+    backToTopBtn.setAttribute('title', 'Kembali ke Atas');
+    backToTopBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 15l7-7 7 7"/></svg>';
+    document.body.appendChild(backToTopBtn);
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // 3. Scroll Listener for Progress Bar & Back-to-Top
+  const stickyHeader = document.querySelector('.sticky.top-0');
+  let ticking = false;
+
+  function updateScrollState() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+    if (progressBar && docHeight > 0) {
+      const progress = Math.min(1, Math.max(0, scrollY / docHeight));
+      progressBar.style.transform = `scaleX(${progress})`;
+    }
+
+    if (backToTopBtn) {
+      if (scrollY > 380) {
+        backToTopBtn.classList.add('is-visible');
+      } else {
+        backToTopBtn.classList.remove('is-visible');
+      }
+    }
+
+    if (stickyHeader) {
+      if (scrollY > 20) {
+        stickyHeader.classList.add('shadow-md');
+      } else {
+        stickyHeader.classList.remove('shadow-md');
+      }
+    }
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateScrollState);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updateScrollState();
+
+  // 4. Subtle & Fluid Scroll Reveal via IntersectionObserver
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -30px 0px'
+    });
+
+    function attachReveal(elements) {
+      elements.forEach(el => {
+        if (!el.classList.contains('reveal-on-scroll')) {
+          el.classList.add('reveal-on-scroll');
+          el.classList.add('card-hover-lift');
+        }
+        const parent = el.parentElement;
+        if (parent && (parent.classList.contains('grid') || parent.id === 'cases-grid')) {
+          const siblings = Array.from(parent.children);
+          const index = siblings.indexOf(el);
+          if (index >= 0) {
+            const delay = (index % 3) * 90;
+            el.style.transitionDelay = `${delay}ms`;
+          }
+        }
+        observer.observe(el);
+      });
+    }
+
+    window.observeNewElements = function(container) {
+      if (!container) return;
+      const items = container.querySelectorAll(':scope > div');
+      attachReveal(items);
+    };
+
+    // Auto-attach to all key cards & feature sections across the site
+    const targets = document.querySelectorAll(
+      '.reveal-on-scroll, section .grid > div.rounded-2xl, section .grid > div.rounded-3xl, section .grid > div.glass-card, #cases-grid > div'
+    );
+    attachReveal(targets);
+  }
+}
+
 
