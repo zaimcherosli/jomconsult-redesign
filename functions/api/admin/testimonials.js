@@ -21,15 +21,15 @@ export async function onRequestPost({ request, env }) {
 
   const db = env.DB;
   const payload = await request.json();
-  const { client_name, profession, original_issue, loan_approved, monthly_savings, story, is_featured } = payload;
+  const { client_name, profession, original_issue, loan_approved, monthly_savings, story, is_featured, case_note } = payload;
 
   if (!client_name || !profession || !loan_approved) {
     return jsonResponse({ error: "Nama, pekerjaan dan jumlah lulus diperlukan." }, 400);
   }
 
   const res = await db.prepare(
-    `INSERT INTO testimonials (client_name, profession, original_issue, loan_approved, monthly_savings, story, is_featured)
-     VALUES (?, ?, ?, ?, ?, ?, ?)`
+    `INSERT INTO testimonials (client_name, profession, original_issue, loan_approved, monthly_savings, story, is_featured, case_note)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
   ).bind(
     client_name,
     profession,
@@ -37,7 +37,8 @@ export async function onRequestPost({ request, env }) {
     loan_approved,
     monthly_savings || "-",
     story || "",
-    is_featured !== undefined ? is_featured : 1
+    is_featured !== undefined ? is_featured : 1,
+    case_note || "Kes Selesai"
   ).run();
 
   return jsonResponse({ success: true, message: "Testimoni berjaya ditambah.", id: res.meta.last_row_id });
@@ -50,7 +51,7 @@ export async function onRequestPut({ request, env }) {
 
   const db = env.DB;
   const payload = await request.json();
-  const { id, client_name, profession, original_issue, loan_approved, monthly_savings, story, is_featured, display_order } = payload;
+  const { id, client_name, profession, original_issue, loan_approved, monthly_savings, story, is_featured, display_order, case_note } = payload;
 
   if (!id) {
     return jsonResponse({ error: "ID testimoni diperlukan." }, 400);
@@ -65,7 +66,8 @@ export async function onRequestPut({ request, env }) {
       monthly_savings = COALESCE(?, monthly_savings),
       story = COALESCE(?, story),
       is_featured = COALESCE(?, is_featured),
-      display_order = COALESCE(?, display_order)
+      display_order = COALESCE(?, display_order),
+      case_note = COALESCE(?, case_note)
     WHERE id = ?`
   ).bind(
     client_name || null,
@@ -76,6 +78,7 @@ export async function onRequestPut({ request, env }) {
     story || null,
     is_featured !== undefined ? is_featured : null,
     display_order !== undefined ? display_order : null,
+    case_note || null,
     id
   ).run();
 

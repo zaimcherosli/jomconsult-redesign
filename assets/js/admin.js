@@ -835,25 +835,45 @@ async function loadTestimonials() {
     currentTestimonials = data.testimonials || [];
 
     if (currentTestimonials.length === 0) {
-      container.innerHTML = `<div class="col-span-2 text-center py-10 text-slate-400 font-medium">Tiada testimoni didaftarkan.</div>`;
+      container.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 font-medium">Tiada testimoni didaftarkan.</div>`;
       return;
     }
 
     container.innerHTML = currentTestimonials.map(t => `
-      <div class="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-3">
-        <div class="flex items-start justify-between gap-2">
-          <div class="min-w-0">
-            <span class="font-bold text-slate-900 text-xs block truncate">${t.client_name}</span>
-            <span class="text-[11px] text-emerald-700 font-semibold block truncate">${t.profession}</span>
+      <div class="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-300 transition">
+        <div class="space-y-3">
+          <!-- Header -->
+          <div class="flex items-start justify-between gap-2 pb-3 border-b border-slate-100">
+            <div class="min-w-0">
+              <h4 class="font-bold text-slate-900 text-sm truncate">${t.client_name}</h4>
+              <p class="text-[11px] text-slate-500 truncate font-medium">${t.profession || '-'}</p>
+            </div>
+            <span class="shrink-0 px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200 text-xs font-bold font-mono">
+              ${t.loan_approved || 'Lulus'}
+            </span>
           </div>
-          <span class="shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-mono font-bold">
-            Lulus: ${t.loan_approved}
-          </span>
+
+          <!-- 3 Structured Case Boxes -->
+          <div class="space-y-2.5 text-xs">
+            <div class="p-2.5 bg-rose-50/70 rounded-xl border border-rose-200/80 text-slate-700">
+              <strong class="text-rose-700 block text-[11px] font-bold mb-0.5">1. Masalah Asal:</strong>
+              <p class="leading-relaxed text-slate-600">${t.original_issue || '-'}</p>
+            </div>
+            <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-slate-700">
+              <strong class="text-slate-800 block text-[11px] font-bold mb-0.5">2. Strategi JomConsult:</strong>
+              <p class="leading-relaxed text-slate-600">${t.story || '-'}</p>
+            </div>
+            <div class="p-2.5 bg-amber-50/70 rounded-xl border border-amber-200/80 text-slate-700">
+              <strong class="text-amber-800 block text-[11px] font-bold mb-0.5">3. Hasil Akhir / Penjimatan:</strong>
+              <p class="leading-relaxed text-slate-600">${t.monthly_savings || '-'}</p>
+            </div>
+          </div>
         </div>
-        <p class="text-xs text-slate-600 italic">"${t.story || t.original_issue}"</p>
-        <div class="text-[11px] text-slate-500 flex items-center justify-between pt-2 border-t border-slate-100">
-          <span>Jimat: <strong class="text-emerald-700">${t.monthly_savings || '-'}</strong></span>
-          <div class="flex items-center gap-1.5">
+
+        <!-- Footer Note & Action Buttons -->
+        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+          <span class="font-semibold text-slate-600 truncate mr-2">${t.case_note || 'Kes Selesai'}</span>
+          <div class="flex items-center gap-1.5 shrink-0">
             <button onclick="editTestimonialModal(${t.id})" class="px-2.5 py-1 text-emerald-700 hover:text-white bg-emerald-50 hover:bg-emerald-600 border border-emerald-200 rounded-lg text-xs font-semibold transition">
               Edit
             </button>
@@ -873,6 +893,7 @@ async function loadTestimonials() {
 document.getElementById('btn-add-testimonial-modal')?.addEventListener('click', () => {
   document.getElementById('form-testimonial').reset();
   document.getElementById('testimonial-id').value = '';
+  document.getElementById('testi-case-note').value = 'Kes Selesai';
   document.getElementById('modal-testimonial-title').textContent = 'Tambah Testimoni Baharu';
   document.getElementById('modal-testimonial').classList.remove('hidden');
 });
@@ -888,6 +909,7 @@ window.editTestimonialModal = function(id) {
   document.getElementById('testi-name').value = t.client_name || '';
   document.getElementById('testi-profession').value = t.profession || '';
   document.getElementById('testi-loan-approved').value = t.loan_approved || '';
+  document.getElementById('testi-case-note').value = t.case_note || '';
   document.getElementById('testi-savings').value = t.monthly_savings || '';
   document.getElementById('testi-issue').value = t.original_issue || '';
   document.getElementById('testi-story').value = t.story || '';
@@ -902,6 +924,7 @@ document.getElementById('form-testimonial')?.addEventListener('submit', async (e
     client_name: document.getElementById('testi-name').value.trim(),
     profession: document.getElementById('testi-profession').value.trim(),
     loan_approved: document.getElementById('testi-loan-approved').value.trim(),
+    case_note: document.getElementById('testi-case-note').value.trim(),
     monthly_savings: document.getElementById('testi-savings').value.trim(),
     original_issue: document.getElementById('testi-issue').value.trim(),
     story: document.getElementById('testi-story').value.trim()

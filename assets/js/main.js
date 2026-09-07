@@ -94,6 +94,7 @@ async function loadDynamicConfig() {
 
 document.addEventListener('DOMContentLoaded', () => {
   loadDynamicConfig();
+  loadDynamicTestimonials();
   initMobileMenu();
   initPapaipayHeroSlider();
   initCountUpAnimations();
@@ -1094,5 +1095,51 @@ function initCareerApplyForm() {
       }
     }
   });
+}
+
+// 10. Dynamic Testimonials Fetcher for testimoni.html
+async function loadDynamicTestimonials() {
+  const container = document.getElementById('cases-grid');
+  if (!container) return;
+
+  try {
+    const res = await fetch('/api/public/testimonials');
+    if (!res.ok) return;
+    const data = await res.json();
+    const list = data.testimonials;
+    if (!list || list.length === 0) return;
+
+    container.innerHTML = list.map(t => `
+      <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-sm space-y-4 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div>
+              <h3 class="font-bold text-white text-sm">${t.client_name}</h3>
+              <p class="text-[11px] text-slate-400">${t.profession || ''}</p>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-yellow-500/15 text-yellow-300 font-bold text-xs">
+              ${t.loan_approved}
+            </span>
+          </div>
+          <div class="space-y-3 pt-3 text-xs">
+            <div class="p-2.5 bg-rose-950/40 rounded-lg border border-rose-800/50 text-slate-200">
+              <strong class="text-rose-400 block mb-0.5">Masalah Asal:</strong>${t.original_issue || '-'}
+            </div>
+            <div class="p-2.5 bg-slate-800/70 rounded-lg border border-slate-700 text-slate-200">
+              <strong class="text-slate-100 block mb-0.5">Strategi JomConsult:</strong>${t.story || '-'}
+            </div>
+            <div class="p-2.5 bg-yellow-500/10 rounded-lg border border-yellow-500/30 text-slate-200">
+              <strong class="text-yellow-400 block mb-0.5">Hasil Akhir:</strong>${t.monthly_savings || '-'}
+            </div>
+          </div>
+        </div>
+        <div class="pt-3 border-t border-slate-800 text-[11px] text-slate-400">
+          ${t.case_note || 'Kes Selesai'}
+        </div>
+      </div>
+    `).join('');
+  } catch (err) {
+    // Keep static fallback
+  }
 }
 

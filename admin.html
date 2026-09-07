@@ -297,7 +297,7 @@
           </button>
         </div>
 
-        <div id="testimonials-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div id="testimonials-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           <!-- Loaded dynamically -->
         </div>
       </section>
@@ -676,33 +676,38 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block font-bold text-slate-700 mb-1">Nama Klien:</label>
-            <input type="text" id="testi-name" required placeholder="Cth: Encik Azman & Isteri" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
+            <input type="text" id="testi-name" required placeholder="Cth: En. Firdaus M." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
           </div>
           <div>
-            <label class="block font-bold text-slate-700 mb-1">Pekerjaan / Sektor:</label>
-            <input type="text" id="testi-profession" required placeholder="Cth: Eksekutif Swasta (MNC)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
+            <label class="block font-bold text-slate-700 mb-1">Pekerjaan / Sektor & Lokasi:</label>
+            <input type="text" id="testi-profession" required placeholder="Cth: Eksekutif Swasta (Kuala Lumpur)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block font-bold text-slate-700 mb-1">Jumlah Lulus:</label>
-            <input type="text" id="testi-loan-approved" required placeholder="Cth: RM 145,000" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
+            <input type="text" id="testi-loan-approved" required placeholder="Cth: Lulus RM75,000" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
           </div>
           <div>
-            <label class="block font-bold text-slate-700 mb-1">Anggaran Penjimatan Bulanan:</label>
-            <input type="text" id="testi-savings" placeholder="Cth: RM1,850 / bulan" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
+            <label class="block font-bold text-slate-700 mb-1">Nota Kaki / Gaji Bersih:</label>
+            <input type="text" id="testi-case-note" placeholder="Cth: Gaji Bersih: RM4,800 • Kes Selesai" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
           </div>
         </div>
 
         <div>
-          <label class="block font-bold text-slate-700 mb-1">Kisah / Masalah Asal:</label>
-          <input type="text" id="testi-issue" placeholder="Cth: Penyatuan Hutang & DSR Tinggi" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500">
+          <label class="block font-bold text-rose-700 mb-1">1. Masalah Asal:</label>
+          <textarea id="testi-issue" rows="2" placeholder="Cth: 3 kali kena reject di bank komersial kerana DSR 82% (3 kad kredit + 1 pinjaman peribadi)." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500"></textarea>
         </div>
 
         <div>
-          <label class="block font-bold text-slate-700 mb-1">Ulasan / Testimoni Penuh Klien:</label>
-          <textarea id="testi-story" rows="3" required placeholder="Alhamdulillah JomConsult bantu..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500"></textarea>
+          <label class="block font-bold text-slate-800 mb-1">2. Strategi JomConsult:</label>
+          <textarea id="testi-story" rows="2" required placeholder="Cth: Penyatuan hutang RM75,000 menutup 3 kad kredit dengan kadar ansuran 3.9% setahun." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500"></textarea>
+        </div>
+
+        <div>
+          <label class="block font-bold text-amber-800 mb-1">3. Hasil Akhir / Penjimatan:</label>
+          <textarea id="testi-savings" rows="2" placeholder="Cth: DSR turun ke 48%, jimat RM1,350 sebulan dan lebihan tunai RM15,000." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-emerald-500"></textarea>
         </div>
 
         <div class="pt-3 border-t border-slate-100 flex justify-end gap-2">
