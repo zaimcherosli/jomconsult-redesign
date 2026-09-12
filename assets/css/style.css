@@ -248,5 +248,109 @@ body {
   .card-hover-lift:hover {
     transform: none !important;
   }
+  .btn-shimmer::after {
+    display: none !important;
+  }
+  .live-pulse-dot::before {
+    display: none !important;
+  }
 }
+
+/* ===================================================
+   5. GOLDEN SHIMMER SWEEP (PRIMARY ACTION BUTTONS)
+   =================================================== */
+.btn-shimmer,
+a[href*="semak-kelayakan"].bg-yellow-400,
+button[type="submit"].bg-yellow-400 {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after,
+a[href*="semak-kelayakan"].bg-yellow-400::after,
+button[type="submit"].bg-yellow-400::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  animation: btn-shimmer-sweep 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes btn-shimmer-sweep {
+  0%, 60% {
+    left: -120%;
+  }
+  100% {
+    left: 220%;
+  }
+}
+
+/* ===================================================
+   6. ARROW GLIDE ON HOVER (MICRO-INTERACTIONS)
+   =================================================== */
+.arrow-glide,
+a:hover .arrow-glide,
+button:hover .arrow-glide,
+a.group:hover svg.arrow-icon,
+button.group:hover svg.arrow-icon {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+a:hover .arrow-glide,
+button:hover .arrow-glide,
+a.group:hover svg.arrow-icon,
+button.group:hover svg.arrow-icon {
+  transform: translateX(4px);
+}
+
+/* ===================================================
+   7. LIVE RADAR SECURITY PULSE (STATUS BADGES)
+   =================================================== */
+.live-pulse-dot {
+  position: relative;
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background-color: #10b981;
+  vertical-align: middle;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.live-pulse-dot::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  background-color: inherit;
+  opacity: 0.75;
+  animation: live-radar-ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.live-pulse-dot.pulse-gold {
+  background-color: #eab308;
+}
+
+@keyframes live-radar-ping {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.85;
+  }
+  70%, 100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
 
